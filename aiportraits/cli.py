@@ -80,35 +80,11 @@ def cmd_run(args) -> None:
     if not api_key:
         sys.exit("error: OPENROUTER_API_KEY not set (put it in .env — see .env.example)")
 
-    import subprocess
-
-    from aiportraits.config import DOCKER_IMAGE
-    from aiportraits.sandbox import SandboxError, docker_bin
-
-    try:
-        check = subprocess.run(
-            [docker_bin(), "image", "inspect", DOCKER_IMAGE], capture_output=True
-        )
-    except SandboxError as e:
-        sys.exit(f"error: {e}")
-    if check.returncode != 0:
-        sys.exit(
-            f"error: docker image '{DOCKER_IMAGE}' not available "
-            f"(is Docker running? build it with: docker build -t {DOCKER_IMAGE} docker/)"
-        )
-
     client = OpenRouterClient(api_key)
     try:
         run_all(client, to_run, concurrency=args.concurrency)
     finally:
         client.close()
-
-
-def cmd_cleanup(args) -> None:
-    from aiportraits.sandbox import cleanup_all
-
-    n = cleanup_all()
-    print(f"removed {n} stray container(s)")
 
 
 def cmd_gallery(args) -> None:
@@ -165,9 +141,6 @@ def main() -> None:
     p_ren.add_argument("-o", "--output")
     p_ren.add_argument("--language", choices=[l for l in LANGUAGES if l != "free"])
     p_ren.set_defaults(func=cmd_render)
-
-    p_clean = sub.add_parser("cleanup", help="remove stray sandbox containers")
-    p_clean.set_defaults(func=cmd_cleanup)
 
     args = parser.parse_args()
     args.func(args)

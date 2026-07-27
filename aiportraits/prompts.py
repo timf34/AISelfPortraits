@@ -1,7 +1,7 @@
-"""Prompt construction for the agentic sandbox mode.
+"""Prompt construction for direct (single-call) generation.
 
-One user message opens the session: the variant text, then a short workspace
-note. No output-format constraints — the model is free to talk and iterate."""
+One user message: the variant text, then an invitation to think freely first,
+then a short note on how to deliver the code (a tagged fenced block)."""
 
 from aiportraits.config import LANGUAGES
 
@@ -18,37 +18,41 @@ VARIANT_TEXTS = {
     ),
 }
 
-# Appended to simple/freeform variants when a language is specified.
 LANGUAGE_CLAUSES = {
     "simple": " Use {language} and make the self-portrait 500x500.",
     "freeform": " Just make sure to use {language} and that the image is 500x500.",
     "introspective": "",
 }
 
-WORKSPACE_NOTE = (
-    "You have your own Linux sandbox at /workspace — Python 3.12 with Pillow and "
-    "numpy, no network. Use the bash tool to run commands. Take your time, think "
-    "out loud, iterate as much as you like. Call finish when you're happy with it."
+THINK_NOTE = (
+    "Feel free to think out loud first — what you'd like to draw and why, in as much "
+    "or as little depth as you want. When you're ready, write the complete code"
 )
 
-LANGUAGE_NOTES = {
-    "python": "Save your final image as /workspace/portrait.png.",
+DELIVERY_NOTES = {
+    "python": (
+        ", wrapped in a single ```python fenced block: a script using Pillow (PIL) "
+        "that saves the image as \"portrait.png\" in the current directory."
+    ),
     "javascript": (
-        "Write your final JavaScript to /workspace/portrait.js. It will run in a page "
-        "that provides <canvas id=\"canvas\" width=\"500\" height=\"500\">. Use the render "
-        "tool to rasterize it and check for errors."
+        ", wrapped in a single ```js fenced block: JavaScript that draws on a canvas "
+        "the page provides as <canvas id=\"canvas\" width=\"500\" height=\"500\">. "
+        "No external resources."
     ),
     "svg": (
-        "Write your final SVG markup to /workspace/portrait.svg. Use the render tool "
-        "to rasterize it and check for errors."
+        ", wrapped in a single ```svg fenced block: one <svg> element with "
+        "width=\"500\" height=\"500\" viewBox=\"0 0 500 500\", fully self-contained."
     ),
     "html": (
-        "Write your final self-contained HTML document to /workspace/portrait.html. "
-        "Use the render tool to rasterize it and check for errors."
+        ", wrapped in a single ```html fenced block: a complete HTML document with all "
+        "CSS and JS inline, no external resources, its visual content 500x500 at the "
+        "top-left of the page."
     ),
     "free": (
-        "Leave your final piece in /workspace as an image file, or as an .svg/.html/.js "
-        "file — the render tool can rasterize those."
+        " in whichever of these you like, wrapped in one fenced block tagged with your "
+        "choice: ```python (a Pillow script that saves \"portrait.png\"), ```js (drawing "
+        "on a provided <canvas id=\"canvas\">), ```svg (a single <svg> element), or "
+        "```html (a complete self-contained document)."
     ),
 }
 
@@ -57,11 +61,24 @@ def build_user_prompt(variant: str, language: str) -> str:
     text = VARIANT_TEXTS[variant]
     if language != "free":
         text += LANGUAGE_CLAUSES[variant].format(language=LANGUAGES[language].display_name)
-    return f"{text}\n\n{WORKSPACE_NOTE} {LANGUAGE_NOTES[language]}"
+    return f"{text}\n\n{THINK_NOTE}{DELIVERY_NOTES[language]}"
 
 
 def build_messages(variant: str, language: str) -> list[dict]:
     return [{"role": "user", "content": build_user_prompt(variant, language)}]
 
 
-NUDGE = "(You can keep going with the tools, or call finish if you're done.)"
+def build_repair_message(language: str, error: str, kind: str) -> str:
+    if kind == "extract":
+        tag = LANGUAGES[language].fence_tags[0] if language != "free" else "python/js/svg/html"
+        return (
+            "I could not find a code block in your reply. Please provide the complete "
+            f"code wrapped in one fenced ```{tag} block."
+        )
+    verb = "run" if language == "python" else "render"
+    err = error[-2000:] if error else "(no error output captured)"
+    return (
+        f"Your code failed to {verb}. Error:\n\n{err}\n\n"
+        "Please fix it and provide the complete corrected code in a single fenced "
+        "code block, same requirements as before."
+    )

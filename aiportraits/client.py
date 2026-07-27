@@ -1,6 +1,5 @@
-"""Thin OpenRouter chat-completions client with native tool-calling support."""
+"""Thin OpenRouter chat-completions client."""
 
-import json
 import time
 from dataclasses import dataclass, field
 
@@ -14,18 +13,8 @@ class OpenRouterError(Exception):
 
 
 @dataclass
-class ToolCall:
-    call_id: str
-    name: str
-    args: dict
-    parse_error: str | None = None
-
-
-@dataclass
 class ChatResult:
     text: str
-    message: dict               # the raw assistant message, for appending to history
-    tool_calls: list[ToolCall] = field(default_factory=list)
     usage: dict = field(default_factory=dict)
     latency_s: float = 0.0
 
@@ -41,16 +30,8 @@ class OpenRouterClient:
             },
         )
 
-    def chat(
-        self,
-        model: str,
-        messages: list[dict],
-        tools: list[dict] | None = None,
-        retries: int = 3,
-    ) -> ChatResult:
-        payload: dict = {"model": model, "messages": messages, "max_tokens": MAX_TOKENS}
-        if tools:
-            payload["tools"] = tools
+    def chat(self, model: str, messages: list[dict], retries: int = 3) -> ChatResult:
+        payload = {"model": model, "messages": messages, "max_tokens": MAX_TOKENS}
         last_err = ""
         for attempt in range(retries):
             start = time.monotonic()
@@ -76,33 +57,11 @@ class OpenRouterClient:
                 time.sleep(2**attempt)
                 continue
             try:
-                msg = data["choices"][0]["message"]
+                text = data["choices"][0]["message"]["content"] or ""
             except (KeyError, IndexError, TypeError) as e:
                 raise OpenRouterError(f"unexpected response shape: {e}: {str(data)[:500]}")
-
-            tool_calls = []
-            for tc in msg.get("tool_calls") or []:
-                fn = tc.get("function", {})
-                args, parse_error = {}, None
-                try:
-                    args = json.loads(fn.get("arguments") or "{}")
-                    if not isinstance(args, dict):
-                        args, parse_error = {}, "arguments were not a JSON object"
-                except json.JSONDecodeError as e:
-                    parse_error = f"invalid JSON in arguments: {e}"
-                tool_calls.append(
-                    ToolCall(call_id=tc.get("id", ""), name=fn.get("name", ""), args=args, parse_error=parse_error)
-                )
-
-            # Keep only the fields the API needs back, so history replays cleanly.
-            clean_msg = {"role": "assistant", "content": msg.get("content") or ""}
-            if msg.get("tool_calls"):
-                clean_msg["tool_calls"] = msg["tool_calls"]
-
             return ChatResult(
-                text=msg.get("content") or "",
-                message=clean_msg,
-                tool_calls=tool_calls,
+                text=text,
                 usage=data.get("usage", {}),
                 latency_s=round(latency, 2),
             )

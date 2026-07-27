@@ -15,7 +15,9 @@ def scan(root: Path = RESULTS_ROOT) -> list[dict]:
             meta = json.loads(meta_path.read_text())
         except (json.JSONDecodeError, OSError):
             continue
-        meta.pop("turns", None)  # keep the index light; full detail stays in metadata.json
+        # Keep the index light; full detail (raw responses) stays in metadata.json.
+        for attempt in meta.get("attempts", []):
+            attempt.pop("raw_response", None)
         meta["dir"] = str(meta_path.parent.relative_to(root))
         meta["has_image"] = (meta_path.parent / "portrait.png").exists()
         entries.append(meta)
@@ -69,22 +71,25 @@ def build_gallery(root: Path = RESULTS_ROOT) -> Path:
                 if entry is None:
                     cell = "<div class='missing'>not run</div>"
                 elif entry.get("status") == "ok" and entry.get("has_image"):
-                    cap = f"{entry.get('n_turns', '?')} turns · {entry.get('n_tool_calls', '?')} tool calls"
+                    cap = f"attempts: {entry.get('final_attempt', '?')}"
+                    if lang == "free" and entry.get("detected_language"):
+                        cap += f" · chose {entry['detected_language']}"
                     if entry.get("resized_from"):
                         cap += f" · resized from {entry['resized_from']}"
-                    elif entry.get("image_size") and entry["image_size"] != [500, 500]:
-                        cap += f" · {entry['image_size'][0]}x{entry['image_size'][1]}"
-                    cap += f" · <a href='{rel}/transcript.md'>transcript</a>"
+                    cap += f" · <a href='{rel}/response.md'>response</a>"
                     cell = (
                         f"<a href='{rel}/portrait.png'><img src='{rel}/portrait.png' loading='lazy'></a>"
                         f"<div class='cap'>{cap}</div>"
                     )
                 else:
-                    err = entry.get("render_error") or entry.get("api_error") or ""
+                    err = ""
+                    for attempt in reversed(entry.get("attempts", [])):
+                        err = (attempt.get("render") or {}).get("error") or attempt.get("api_error") or err
+                        if err:
+                            break
                     cell = (
                         f"<div class='fail'>{html.escape(entry.get('status', '?'))}\n"
                         f"{html.escape((err or '')[:300])}</div>"
-                        f"<div class='cap'><a href='{rel}/transcript.md'>transcript</a></div>"
                     )
                 parts.append(f"<td>{cell}</td>")
             parts.append("</tr>")

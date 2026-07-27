@@ -1,4 +1,4 @@
-"""Experiment orchestration for agentic sandbox sessions."""
+"""Experiment orchestration: generate -> extract -> render -> repair loop."""
 
 import json
 import os
@@ -9,10 +9,12 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
-from aiportraits.agent import run_agent
-from aiportraits.client import OpenRouterClient
+from aiportraits.client import OpenRouterClient, OpenRouterError
+from aiportraits.config import LANGUAGES, MAX_REPAIRS
+from aiportraits.extract import extract_code
 from aiportraits.paths import experiment_dir
-from aiportraits.renderers import shutdown_browsers
+from aiportraits.prompts import build_messages, build_repair_message
+from aiportraits.renderers import render, shutdown_browsers
 
 
 @dataclass(frozen=True)
@@ -54,28 +56,82 @@ def existing_status(exp: Experiment) -> str | None:
 
 def run_experiment(client: OpenRouterClient, exp: Experiment) -> str:
     start = time.monotonic()
-    exp.dir.mkdir(parents=True, exist_ok=True)
-    meta = run_agent(client, exp.model, exp.prompt, exp.language, exp.dir)
-
-    transcript = meta.pop("transcript", "")
-    (exp.dir / "transcript.md").write_text(transcript)
-
-    usage_in = sum((t.get("usage") or {}).get("prompt_tokens", 0) for t in meta["turns"])
-    usage_out = sum((t.get("usage") or {}).get("completion_tokens", 0) for t in meta["turns"])
-    meta = {
+    meta: dict = {
         "model": exp.model,
         "prompt": exp.prompt,
         "language": exp.language,
         "run": exp.run,
-        **meta,
-        "n_turns": len(meta["turns"]),
-        "n_tool_calls": sum(len(t["tool_calls"]) for t in meta["turns"]),
-        "total_usage": {"prompt_tokens": usage_in, "completion_tokens": usage_out},
-        "finished_at": _now(),
-        "total_duration_s": round(time.monotonic() - start, 2),
+        "status": "running",
+        "started_at": _now(),
+        "attempts": [],
     }
+
+    messages = build_messages(exp.prompt, exp.language)
+    status = "failed_api"
+    for attempt_n in range(MAX_REPAIRS + 1):
+        attempt: dict = {"kind": "generate" if attempt_n == 0 else "repair"}
+        meta["attempts"].append(attempt)
+        try:
+            result = client.chat(exp.model, messages)
+        except OpenRouterError as e:
+            attempt["api_error"] = str(e)
+            status = "failed_api"
+            break
+
+        attempt["latency_s"] = result.latency_s
+        attempt["usage"] = result.usage
+        attempt["raw_response"] = result.text
+        messages.append({"role": "assistant", "content": result.text})
+
+        code, detected, method = extract_code(result.text, exp.language)
+        attempt["extract_method"] = method
+        attempt["detected_language"] = detected
+        if code is None:
+            status = "failed_extract"
+            messages.append(
+                {"role": "user", "content": build_repair_message(exp.language, "", "extract")}
+            )
+            _write_metadata(exp, meta)
+            continue
+
+        exp.dir.mkdir(parents=True, exist_ok=True)
+        ext = LANGUAGES[detected].ext
+        (exp.dir / f"code{ext}").write_text(code)
+        if attempt_n > 0:
+            (exp.dir / f"code.attempt{attempt_n + 1}{ext}").write_text(code)
+        # The model's full reply — thinking included — kept readable alongside the code.
+        (exp.dir / "response.md").write_text(result.text)
+
+        resize = exp.language != "free"
+        render_result = render(detected, code, exp.dir / "portrait.png", resize=resize)
+        attempt["render"] = {
+            "ok": render_result.ok,
+            "error": render_result.error,
+            "duration_s": render_result.duration_s,
+        }
+        if render_result.ok:
+            status = "ok"
+            meta["detected_language"] = detected
+            meta["image_size"] = render_result.image_size
+            meta["resized_from"] = render_result.resized_from
+            meta["blank"] = render_result.blank
+            break
+
+        status = "failed_render"
+        messages.append(
+            {
+                "role": "user",
+                "content": build_repair_message(detected, render_result.error or "", "render"),
+            }
+        )
+        _write_metadata(exp, meta)
+
+    meta["status"] = status
+    meta["final_attempt"] = len(meta["attempts"])
+    meta["finished_at"] = _now()
+    meta["total_duration_s"] = round(time.monotonic() - start, 2)
     _write_metadata(exp, meta)
-    return meta["status"]
+    return status
 
 
 def run_all(client: OpenRouterClient, experiments: list[Experiment], concurrency: int = 4) -> dict:
@@ -98,7 +154,7 @@ def run_all(client: OpenRouterClient, experiments: list[Experiment], concurrency
                 exp, status = fut.result()
                 done += 1
                 counts[status] = counts.get(status, 0) + 1
-                print(f"[{done}/{total}] {status:12s} {exp.label}")
+                print(f"[{done}/{total}] {status:14s} {exp.label}")
     finally:
         shutdown_browsers()
 
