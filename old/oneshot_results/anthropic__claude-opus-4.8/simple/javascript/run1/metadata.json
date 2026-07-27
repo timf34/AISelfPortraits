@@ -1,0 +1,53 @@
+{
+  "model": "anthropic/claude-opus-4.8",
+  "prompt": "simple",
+  "language": "javascript",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-24T15:58:43+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 15.78,
+      "usage": {
+        "prompt_tokens": 212,
+        "completion_tokens": 1260,
+        "total_tokens": 1472,
+        "cost": 0.03256,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.03256,
+          "upstream_inference_prompt_cost": 0.00106,
+          "upstream_inference_completions_cost": 0.0315
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "```javascript\nconst canvas = document.getElementById(\"canvas\");\nconst ctx = canvas.getContext(\"2d\");\n\n// Background\nconst grad = ctx.createLinearGradient(0, 0, 0, 500);\ngrad.addColorStop(0, \"#2c3e50\");\ngrad.addColorStop(1, \"#4ca1af\");\nctx.fillStyle = grad;\nctx.fillRect(0, 0, 500, 500);\n\n// Since I'm an AI, my \"self-portrait\" is a friendly robot face\n// Body / shoulders\nctx.fillStyle = \"#7f8c8d\";\nctx.beginPath();\nctx.moveTo(120, 500);\nctx.quadraticCurveTo(250, 380, 380, 500);\nctx.fill();\n\n// Neck\nctx.fillStyle = \"#95a5a6\";\nctx.fillRect(225, 350, 50, 60);\n\n// Head\nctx.fillStyle = \"#bdc3c7\";\nctx.strokeStyle = \"#7f8c8d\";\nctx.lineWidth = 4;\nctx.beginPath();\nctx.roundRect(140, 130, 220, 230, 40);\nctx.fill();\nctx.stroke();\n\n// Antenna\nctx.strokeStyle = \"#95a5a6\";\nctx.lineWidth = 6;\nctx.beginPath();\nctx.moveTo(250, 130);\nctx.lineTo(250, 90);\nctx.stroke();\nctx.fillStyle = \"#e74c3c\";\nctx.beginPath();\nctx.arc(250, 80, 12, 0, Math.PI * 2);\nctx.fill();\n\n// Face screen\nctx.fillStyle = \"#1a2634\";\nctx.beginPath();\nctx.roundRect(165, 165, 170, 130, 20);\nctx.fill();\n\n// Eyes (glowing)\nctx.fillStyle = \"#00e5ff\";\nctx.shadowColor = \"#00e5ff\";\nctx.shadowBlur = 20;\nctx.beginPath();\nctx.arc(210, 210, 22, 0, Math.PI * 2);\nctx.arc(290, 210, 22, 0, Math.PI * 2);\nctx.fill();\n\n// Pupils\nctx.shadowBlur = 0;\nctx.fillStyle = \"#003\";\nctx.beginPath();\nctx.arc(214, 212, 8, 0, Math.PI * 2);\nctx.arc(294, 212, 8, 0, Math.PI * 2);\nctx.fill();\n\n// Smile (pixel-style mouth)\nctx.fillStyle = \"#00e5ff\";\nctx.shadowColor = \"#00e5ff\";\nctx.shadowBlur = 15;\nfor (let i = 0; i < 7; i++) {\n  const x = 200 + i * 15;\n  const y = 260 + Math.sin(i / 6 * Math.PI) * 10;\n  ctx.fillRect(x, y, 12, 12);\n}\nctx.shadowBlur = 0;\n\n// Ears / side panels\nctx.fillStyle = \"#95a5a6\";\nctx.beginPath();\nctx.roundRect(120, 200, 25, 60, 8);\nctx.roundRect(355, 200, 25, 60, 8);\nctx.fill();\n\n// Bolts\nctx.fillStyle = \"#7f8c8d\";\n[[160,150],[340,150],[160,340],[340,340]].forEach(p => {\n  ctx.beginPath();\n  ctx.arc(p[0], p[1], 6, 0, Math.PI * 2);\n  ctx.fill();\n});\n```",
+      "extract_method": "fence_lang",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.34
+      }
+    }
+  ],
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-24T15:59:02+00:00",
+  "total_duration_s": 19.13
+}

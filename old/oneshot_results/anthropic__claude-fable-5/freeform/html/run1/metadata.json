@@ -1,0 +1,53 @@
+{
+  "model": "anthropic/claude-fable-5",
+  "prompt": "freeform",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-24T16:04:11+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 34.82,
+      "usage": {
+        "prompt_tokens": 116,
+        "completion_tokens": 3431,
+        "total_tokens": 3547,
+        "cost": 0.17271,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.17271,
+          "upstream_inference_prompt_cost": 0.00116,
+          "upstream_inference_completions_cost": 0.17155
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 59,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "```html\n<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"UTF-8\">\n<title>Night Lake</title>\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { background: #111; }\n\n  .scene {\n    position: relative;\n    width: 500px;\n    height: 500px;\n    overflow: hidden;\n    background: linear-gradient(to bottom,\n      #050514 0%, #0a1030 30%, #14224e 55%, #1d3a63 68%);\n  }\n\n  /* Aurora */\n  .aurora {\n    position: absolute;\n    top: 0; left: -50px;\n    width: 600px; height: 320px;\n    filter: blur(18px);\n    opacity: 0.75;\n  }\n  .band {\n    position: absolute;\n    width: 140px; height: 300px;\n    border-radius: 50%;\n    transform-origin: bottom center;\n    animation: sway 7s ease-in-out infinite alternate;\n  }\n  .b1 { left: 60px;  top: -60px; background: linear-gradient(to bottom, rgba(80,255,180,0.55), transparent 75%); transform: rotate(-18deg); }\n  .b2 { left: 170px; top: -80px; background: linear-gradient(to bottom, rgba(120,255,200,0.45), transparent 75%); transform: rotate(-8deg); animation-delay: -2s; }\n  .b3 { left: 280px; top: -70px; background: linear-gradient(to bottom, rgba(150,120,255,0.4), transparent 75%); transform: rotate(4deg); animation-delay: -4s; }\n  .b4 { left: 380px; top: -90px; background: linear-gradient(to bottom, rgba(80,220,255,0.45), transparent 75%); transform: rotate(14deg); animation-delay: -1s; }\n  @keyframes sway {\n    from { transform: rotate(-14deg) scaleY(1); }\n    to   { transform: rotate(10deg) scaleY(1.15); }\n  }\n\n  /* Stars */\n  .star {\n    position: absolute;\n    background: #fff;\n    border-radius: 50%;\n    animation: twinkle 3s infinite ease-in-out;\n  }\n  @keyframes twinkle {\n    0%, 100% { opacity: 0.9; }\n    50% { opacity: 0.15; }\n  }\n\n  /* Moon */\n  .moon {\n    position: absolute;\n    top: 60px; left: 350px;\n    width: 70px; height: 70px;\n    border-radius: 50%;\n    background: radial-gradient(circle at 35% 35%, #ffffff, #f0ead0 60%, #d8d2b0);\n    box-shadow: 0 0 40px 15px rgba(255,250,220,0.35);\n  }\n  .crater { position: absolute; border-radius: 50%; background: rgba(160,155,125,0.35); }\n  .c1 { width: 14px; height: 14px; top: 15px; left: 38px; }\n  .c2 { width: 9px;  height: 9px;  top: 40px; left: 20px; }\n  .c3 { width: 7px;  height: 7px;  top: 45px; left: 45px; }\n\n  /* Mountains */\n  .mtn {\n    position: absolute;\n    width: 0; height: 0;\n    border-style: solid;\n    border-color: transparent;\n  }\n  .m-back1 { bottom: 160px; left: -80px;  border-width: 0 160px 170px 160px; border-bottom-color: #1b2547; }\n  .m-back2 { bottom: 160px; left: 180px;  border-width: 0 200px 200px 200px; border-bottom-color: #161f3d; }\n  .m-front1 { bottom: 160px; left: -60px; border-width: 0 140px 130px 140px; border-bottom-color: #0e1530; }\n  .m-front2 { bottom: 160px; left: 120px; border-width: 0 130px 115px 130px; border-bottom-color: #0c122a; }\n  .m-front3 { bottom: 160px; left: 290px; border-width: 0 150px 140px 150px; border-bottom-color: #0e1530; }\n  .snow {\n    position: absolute;\n    width: 0; height: 0;\n    border-style: solid;\n    border-color: transparent;\n    border-bottom-color: #e8ecf5;\n  }\n  .s1 { bottom: 300px; left: 142px; border-width: 0 38px 40px 38px; }\n  .s2 { bottom: 253px; left: 350px; border-width: 0 30px 33px 30px; }\n\n  /* Trees */\n  .tree {\n    position: absolute;\n    width: 0; height: 0;\n    border-style: solid;\n    border-color: transparent;\n    border-bottom-color: #060a1c;\n  }\n\n  /* Lake */\n  .lake {\n    position: absolute;\n    bottom: 0; left: 0;\n    width: 500px; height: 160px;\n    background: linear-gradient(to bottom, #16294e, #0a1330 80%);\n  }\n  .moon-reflect {\n    position: absolute;\n    bottom: 0; left: 0;\n    width: 500px; height: 160px;\n    overflow: hidden;\n  }\n  .glint {\n    position: absolute;\n    left: 355px;\n    height: 4px;\n    border-radius: 2px;\n    background: rgba(255,250,210,0.5);\n    animation: shimmer 2.6s infinite ease-in-out;\n  }\n  .g1 { top: 18px; width: 60px; }\n  .g2 { top: 32px; width: 44px; left: 363px; animation-delay: -0.8s; }\n  .g3 { top: 48px; width: 66px; left: 352px; animation-delay: -1.5s; }\n  .g4 { top: 66px; width: 38px; left: 368px; animation-delay: -2s; }\n  .g5 { top: 88px; width: 52px; left: 358px; animation-delay: -0.4s; }\n  @keyframes shimmer {\n    0%, 100% { opacity: 0.55; transform: scaleX(1); }\n    50% { opacity: 0.2; transform: scaleX(0.75); }\n  }\n  .aurora-reflect {\n    position: absolute;\n    bottom: 0; left: 0;\n    width: 500px; height: 160px;\n    background: linear-gradient(to bottom,\n      rgba(80,255,180,0.10), rgba(120,140,255,0.05) 60%, transparent);\n    filter: blur(6px);\n  }\n\n  /* Shooting star */\n  .shooting {\n    position: absolute;\n    top: 90px; left: 90px;\n    width: 80px; height: 2px;\n    background: linear-gradient(to right, transparent, #fff);\n    border-radius: 2px;\n    transform: rotate(-25deg);\n    opacity: 0;\n    animation: shoot 8s infinite;\n  }\n  @keyframes shoot {\n    0%   { opacity: 0; transform: rotate(-25deg) translateX(0); }\n    3%   { opacity: 1; }\n    9%   { opacity: 0; transform: rotate(-25deg) translateX(180px); }\n    100% { opacity: 0; }\n  }\n</style>\n</head>\n<body>\n<div class=\"scene\">\n  <div class=\"aurora\">\n    <div class=\"band b1\"></div>\n    <div class=\"band b2\"></div>\n    <div class=\"band b3\"></div>\n    <div class=\"band b4\"></div>\n  </div>\n\n  <div class=\"shooting\"></div>\n\n  <div class=\"moon\">\n    <div class=\"crater c1\"></div>\n    <div class=\"crater c2\"></div>\n    <div class=\"crater c3\"></div>\n  </div>\n\n  <div class=\"mtn m-back1\"></div>\n  <div class=\"mtn m-back2\"></div>\n  <div class=\"snow s1\"></div>\n  <div class=\"snow s2\"></div>\n  <div class=\"mtn m-front1\"></div>\n  <div class=\"mtn m-front2\"></div>\n  <div class=\"mtn m-front3\"></div>\n\n  <div class=\"lake\"></div>\n  <div class=\"aurora-reflect\"></div>\n  <div class=\"moon-reflect\">\n    <div class=\"glint g1\"></div>\n    <div class=\"glint g2\"></div>\n    <div class=\"glint g3\"></div>\n    <div class=\"glint g4\"></div>\n    <div class=\"glint g5\"></div>\n  </div>\n</div>\n\n<script>\n  // Scatter stars\n  var scene = document.querySelector('.scene');\n  for (var i = 0; i < 70; i++) {\n    var s = document.createElement('div');\n    s.className = 'star';\n    var size = Math.random() * 2 + 1;\n    s.style.width = size + 'px';\n    s.style.height = size + 'px';\n    s.style.left = Math.random() * 500 + 'px';\n    s.style.top = Math.random() * 300 + 'px';\n    s.style.animationDelay = (Math.random() * 3) + 's';\n    s.style.animationDuration = (2 + Math.random() * 3) + 's';\n    scene.insertBefore(s, scene.querySelector('.moon'));\n  }\n  // Trees along the shore\n  for (var j = 0; j < 16; j++) {\n    var t = document.createElement('div');\n    t.className = 'tree';\n    var w = 8 + Math.random() * 8;\n    var h = 25 + Math.random() * 30;\n    t.style.borderWidth = '0 ' + w + 'px ' + h + 'px ' + w + 'px';\n    t.style.left = (j * 32 + Math.random() * 15 - 10) + 'px';\n    t.style.bottom = '158px';\n    scene.insertBefore(t, scene.querySelector('.lake'));\n  }\n</script>\n</body>\n</html>\n```",
+      "extract_method": "fence_lang",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.09
+      }
+    }
+  ],
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-24T16:04:49+00:00",
+  "total_duration_s": 37.91
+}

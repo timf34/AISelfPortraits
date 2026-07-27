@@ -1,0 +1,53 @@
+{
+  "model": "anthropic/claude-opus-4.8",
+  "prompt": "simple",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-24T15:58:43+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 14.89,
+      "usage": {
+        "prompt_tokens": 159,
+        "completion_tokens": 1199,
+        "total_tokens": 1358,
+        "cost": 0.03077,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.03077,
+          "upstream_inference_prompt_cost": 0.000795,
+          "upstream_inference_completions_cost": 0.029975
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "```python\nfrom PIL import Image, ImageDraw\n\n# Create a 500x500 canvas with a soft gradient-like background\nimg = Image.new(\"RGB\", (500, 500), (24, 26, 38))\ndraw = ImageDraw.Draw(img)\n\n# Background glow\nfor i in range(250):\n    alpha = int(40 * (1 - i / 250))\n    draw.ellipse([250 - i, 250 - i, 250 + i, 250 + i],\n                 outline=(30 + alpha // 2, 40 + alpha, 70 + alpha))\n\n# Shoulders / body\ndraw.polygon([(120, 500), (170, 360), (330, 360), (380, 500)],\n             fill=(60, 120, 180))\ndraw.polygon([(200, 500), (250, 380), (300, 500)],\n             fill=(45, 95, 150))\n\n# Neck\ndraw.rectangle([225, 320, 275, 380], fill=(225, 190, 165))\n\n# Head\ndraw.ellipse([170, 120, 330, 340], fill=(240, 205, 180))\n\n# Ears\ndraw.ellipse([160, 210, 185, 260], fill=(240, 205, 180))\ndraw.ellipse([315, 210, 340, 260], fill=(240, 205, 180))\n\n# Hair\ndraw.chord([165, 110, 335, 300], 180, 360, fill=(50, 35, 30))\ndraw.ellipse([165, 110, 335, 250], fill=(50, 35, 30))\ndraw.rectangle([165, 175, 185, 260], fill=(50, 35, 30))\ndraw.rectangle([315, 175, 335, 260], fill=(50, 35, 30))\n\n# Face highlight (forehead)\ndraw.ellipse([190, 150, 310, 230], fill=(245, 212, 188))\n\n# Eyebrows\ndraw.arc([205, 195, 250, 225], 200, 340, fill=(60, 45, 40), width=4)\ndraw.arc([250, 195, 295, 225], 200, 340, fill=(60, 45, 40), width=4)\n\n# Eyes\ndraw.ellipse([210, 220, 245, 245], fill=(255, 255, 255))\ndraw.ellipse([255, 220, 290, 245], fill=(255, 255, 255))\n# Irises\ndraw.ellipse([220, 224, 238, 242], fill=(70, 110, 150))\ndraw.ellipse([263, 224, 281, 242], fill=(70, 110, 150))\n# Pupils\ndraw.ellipse([225, 229, 233, 237], fill=(20, 20, 20))\ndraw.ellipse([268, 229, 276, 237], fill=(20, 20, 20))\n# Eye shine\ndraw.ellipse([226, 227, 230, 231], fill=(255, 255, 255))\ndraw.ellipse([269, 227, 273, 231], fill=(255, 255, 255))\n\n# Nose\ndraw.line([(250, 245), (243, 280)], fill=(210, 170, 150), width=3)\ndraw.arc([238, 270, 262, 290], 0, 180, fill=(200, 160, 140), width=3)\n\n# Mouth (a friendly smile)\ndraw.arc([220, 285, 280, 320], 20, 160, fill=(170, 70, 70), width=5)\n\n# Cheeks blush\ndraw.ellipse([200, 260, 225, 280], fill=(250, 190, 175))\ndraw.ellipse([275, 260, 300, 280], fill=(250, 190, 175))\n\nimg.save(\"portrait.png\", \"PNG\")\n```",
+      "extract_method": "fence_lang",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.24
+      }
+    }
+  ],
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-24T15:58:58+00:00",
+  "total_duration_s": 15.14
+}

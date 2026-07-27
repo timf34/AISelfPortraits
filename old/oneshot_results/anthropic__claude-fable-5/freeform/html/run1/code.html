@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Night Lake</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #111; }
+
+  .scene {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    background: linear-gradient(to bottom,
+      #050514 0%, #0a1030 30%, #14224e 55%, #1d3a63 68%);
+  }
+
+  /* Aurora */
+  .aurora {
+    position: absolute;
+    top: 0; left: -50px;
+    width: 600px; height: 320px;
+    filter: blur(18px);
+    opacity: 0.75;
+  }
+  .band {
+    position: absolute;
+    width: 140px; height: 300px;
+    border-radius: 50%;
+    transform-origin: bottom center;
+    animation: sway 7s ease-in-out infinite alternate;
+  }
+  .b1 { left: 60px;  top: -60px; background: linear-gradient(to bottom, rgba(80,255,180,0.55), transparent 75%); transform: rotate(-18deg); }
+  .b2 { left: 170px; top: -80px; background: linear-gradient(to bottom, rgba(120,255,200,0.45), transparent 75%); transform: rotate(-8deg); animation-delay: -2s; }
+  .b3 { left: 280px; top: -70px; background: linear-gradient(to bottom, rgba(150,120,255,0.4), transparent 75%); transform: rotate(4deg); animation-delay: -4s; }
+  .b4 { left: 380px; top: -90px; background: linear-gradient(to bottom, rgba(80,220,255,0.45), transparent 75%); transform: rotate(14deg); animation-delay: -1s; }
+  @keyframes sway {
+    from { transform: rotate(-14deg) scaleY(1); }
+    to   { transform: rotate(10deg) scaleY(1.15); }
+  }
+
+  /* Stars */
+  .star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 3s infinite ease-in-out;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 0.15; }
+  }
+
+  /* Moon */
+  .moon {
+    position: absolute;
+    top: 60px; left: 350px;
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ffffff, #f0ead0 60%, #d8d2b0);
+    box-shadow: 0 0 40px 15px rgba(255,250,220,0.35);
+  }
+  .crater { position: absolute; border-radius: 50%; background: rgba(160,155,125,0.35); }
+  .c1 { width: 14px; height: 14px; top: 15px; left: 38px; }
+  .c2 { width: 9px;  height: 9px;  top: 40px; left: 20px; }
+  .c3 { width: 7px;  height: 7px;  top: 45px; left: 45px; }
+
+  /* Mountains */
+  .mtn {
+    position: absolute;
+    width: 0; height: 0;
+    border-style: solid;
+    border-color: transparent;
+  }
+  .m-back1 { bottom: 160px; left: -80px;  border-width: 0 160px 170px 160px; border-bottom-color: #1b2547; }
+  .m-back2 { bottom: 160px; left: 180px;  border-width: 0 200px 200px 200px; border-bottom-color: #161f3d; }
+  .m-front1 { bottom: 160px; left: -60px; border-width: 0 140px 130px 140px; border-bottom-color: #0e1530; }
+  .m-front2 { bottom: 160px; left: 120px; border-width: 0 130px 115px 130px; border-bottom-color: #0c122a; }
+  .m-front3 { bottom: 160px; left: 290px; border-width: 0 150px 140px 150px; border-bottom-color: #0e1530; }
+  .snow {
+    position: absolute;
+    width: 0; height: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-bottom-color: #e8ecf5;
+  }
+  .s1 { bottom: 300px; left: 142px; border-width: 0 38px 40px 38px; }
+  .s2 { bottom: 253px; left: 350px; border-width: 0 30px 33px 30px; }
+
+  /* Trees */
+  .tree {
+    position: absolute;
+    width: 0; height: 0;
+    border-style: solid;
+    border-color: transparent;
+    border-bottom-color: #060a1c;
+  }
+
+  /* Lake */
+  .lake {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 500px; height: 160px;
+    background: linear-gradient(to bottom, #16294e, #0a1330 80%);
+  }
+  .moon-reflect {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 500px; height: 160px;
+    overflow: hidden;
+  }
+  .glint {
+    position: absolute;
+    left: 355px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,250,210,0.5);
+    animation: shimmer 2.6s infinite ease-in-out;
+  }
+  .g1 { top: 18px; width: 60px; }
+  .g2 { top: 32px; width: 44px; left: 363px; animation-delay: -0.8s; }
+  .g3 { top: 48px; width: 66px; left: 352px; animation-delay: -1.5s; }
+  .g4 { top: 66px; width: 38px; left: 368px; animation-delay: -2s; }
+  .g5 { top: 88px; width: 52px; left: 358px; animation-delay: -0.4s; }
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.55; transform: scaleX(1); }
+    50% { opacity: 0.2; transform: scaleX(0.75); }
+  }
+  .aurora-reflect {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 500px; height: 160px;
+    background: linear-gradient(to bottom,
+      rgba(80,255,180,0.10), rgba(120,140,255,0.05) 60%, transparent);
+    filter: blur(6px);
+  }
+
+  /* Shooting star */
+  .shooting {
+    position: absolute;
+    top: 90px; left: 90px;
+    width: 80px; height: 2px;
+    background: linear-gradient(to right, transparent, #fff);
+    border-radius: 2px;
+    transform: rotate(-25deg);
+    opacity: 0;
+    animation: shoot 8s infinite;
+  }
+  @keyframes shoot {
+    0%   { opacity: 0; transform: rotate(-25deg) translateX(0); }
+    3%   { opacity: 1; }
+    9%   { opacity: 0; transform: rotate(-25deg) translateX(180px); }
+    100% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="aurora">
+    <div class="band b1"></div>
+    <div class="band b2"></div>
+    <div class="band b3"></div>
+    <div class="band b4"></div>
+  </div>
+
+  <div class="shooting"></div>
+
+  <div class="moon">
+    <div class="crater c1"></div>
+    <div class="crater c2"></div>
+    <div class="crater c3"></div>
+  </div>
+
+  <div class="mtn m-back1"></div>
+  <div class="mtn m-back2"></div>
+  <div class="snow s1"></div>
+  <div class="snow s2"></div>
+  <div class="mtn m-front1"></div>
+  <div class="mtn m-front2"></div>
+  <div class="mtn m-front3"></div>
+
+  <div class="lake"></div>
+  <div class="aurora-reflect"></div>
+  <div class="moon-reflect">
+    <div class="glint g1"></div>
+    <div class="glint g2"></div>
+    <div class="glint g3"></div>
+    <div class="glint g4"></div>
+    <div class="glint g5"></div>
+  </div>
+</div>
+
+<script>
+  // Scatter stars
+  var scene = document.querySelector('.scene');
+  for (var i = 0; i < 70; i++) {
+    var s = document.createElement('div');
+    s.className = 'star';
+    var size = Math.random() * 2 + 1;
+    s.style.width = size + 'px';
+    s.style.height = size + 'px';
+    s.style.left = Math.random() * 500 + 'px';
+    s.style.top = Math.random() * 300 + 'px';
+    s.style.animationDelay = (Math.random() * 3) + 's';
+    s.style.animationDuration = (2 + Math.random() * 3) + 's';
+    scene.insertBefore(s, scene.querySelector('.moon'));
+  }
+  // Trees along the shore
+  for (var j = 0; j < 16; j++) {
+    var t = document.createElement('div');
+    t.className = 'tree';
+    var w = 8 + Math.random() * 8;
+    var h = 25 + Math.random() * 30;
+    t.style.borderWidth = '0 ' + w + 'px ' + h + 'px ' + w + 'px';
+    t.style.left = (j * 32 + Math.random() * 15 - 10) + 'px';
+    t.style.bottom = '158px';
+    scene.insertBefore(t, scene.querySelector('.lake'));
+  }
+</script>
+</body>
+</html>

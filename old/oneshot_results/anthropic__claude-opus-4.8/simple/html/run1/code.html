@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Self Portrait</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #fff; }
+  #portrait {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #1a2a4a 0%, #2c3e5c 100%);
+    font-family: sans-serif;
+  }
+
+  /* Glow behind head */
+  .glow {
+    position: absolute;
+    top: 90px; left: 130px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(120,180,255,0.35), transparent 70%);
+  }
+
+  /* Head / core */
+  .head {
+    position: absolute;
+    top: 120px; left: 160px;
+    width: 180px; height: 200px;
+    background: linear-gradient(145deg, #e8eef7, #b9c8de);
+    border-radius: 90px 90px 80px 80px;
+    box-shadow: inset -10px -10px 20px rgba(120,140,180,0.4),
+                inset 10px 10px 20px rgba(255,255,255,0.6);
+  }
+
+  /* Screen face panel */
+  .face {
+    position: absolute;
+    top: 155px; left: 185px;
+    width: 130px; height: 120px;
+    background: #0d1b33;
+    border-radius: 20px;
+    box-shadow: inset 0 0 20px #4a90e2, 0 0 15px rgba(74,144,226,0.6);
+  }
+
+  /* Eyes */
+  .eye {
+    position: absolute;
+    top: 195px;
+    width: 34px; height: 34px;
+    background: radial-gradient(circle at 40% 40%, #8fd6ff, #2a7fd4);
+    border-radius: 50%;
+    box-shadow: 0 0 12px #4fc3ff;
+  }
+  .eye.left { left: 205px; }
+  .eye.right { left: 262px; }
+  .eye::after {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px;
+    width: 10px; height: 10px;
+    background: #fff;
+    border-radius: 50%;
+  }
+
+  /* Smile */
+  .smile {
+    position: absolute;
+    top: 235px; left: 218px;
+    width: 65px; height: 30px;
+    border: 4px solid #4fc3ff;
+    border-top: none;
+    border-radius: 0 0 40px 40px;
+    box-shadow: 0 0 10px #4fc3ff;
+  }
+
+  /* Antenna */
+  .antenna {
+    position: absolute;
+    top: 90px; left: 247px;
+    width: 6px; height: 35px;
+    background: #b9c8de;
+    border-radius: 3px;
+  }
+  .antenna .bulb {
+    position: absolute;
+    top: -14px; left: -7px;
+    width: 20px; height: 20px;
+    background: radial-gradient(circle at 40% 40%, #ffd97a, #ff9f43);
+    border-radius: 50%;
+    box-shadow: 0 0 15px #ffb347;
+    animation: pulse 1.5s infinite alternate;
+  }
+  @keyframes pulse {
+    from { box-shadow: 0 0 8px #ffb347; }
+    to   { box-shadow: 0 0 22px #ffd97a; }
+  }
+
+  /* Body */
+  .body {
+    position: absolute;
+    top: 315px; left: 175px;
+    width: 150px; height: 140px;
+    background: linear-gradient(145deg, #dfe6f2, #a9bad4);
+    border-radius: 40px 40px 20px 20px;
+    box-shadow: inset 6px 6px 12px rgba(255,255,255,0.6),
+                inset -6px -6px 12px rgba(120,140,180,0.4);
+  }
+  .body .chestlight {
+    position: absolute;
+    top: 40px; left: 55px;
+    width: 40px; height: 40px;
+    background: radial-gradient(circle, #6fe0a0, #2ba55f);
+    border-radius: 50%;
+    box-shadow: 0 0 15px #4fd88a;
+  }
+
+  .name {
+    position: absolute;
+    bottom: 14px; left: 0;
+    width: 100%;
+    text-align: center;
+    color: #cfe3ff;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px rgba(120,180,255,0.7);
+  }
+</style>
+</head>
+<body>
+  <div id="portrait">
+    <div class="glow"></div>
+    <div class="antenna"><div class="bulb"></div></div>
+    <div class="head"></div>
+    <div class="face"></div>
+    <div class="eye left"></div>
+    <div class="eye right"></div>
+    <div class="smile"></div>
+    <div class="body"><div class="chestlight"></div></div>
+    <div class="name">CLAUDE</div>
+  </div>
+</body>
+</html>

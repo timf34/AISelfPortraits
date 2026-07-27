@@ -1,0 +1,53 @@
+{
+  "model": "anthropic/claude-opus-4.8",
+  "prompt": "freeform",
+  "language": "javascript",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-24T15:58:58+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 14.91,
+      "usage": {
+        "prompt_tokens": 222,
+        "completion_tokens": 1360,
+        "total_tokens": 1582,
+        "cost": 0.03511,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.03511,
+          "upstream_inference_prompt_cost": 0.00111,
+          "upstream_inference_completions_cost": 0.034
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "```javascript\nconst canvas = document.getElementById(\"canvas\");\nconst ctx = canvas.getContext(\"2d\");\n\n// Sky gradient\nconst sky = ctx.createLinearGradient(0, 0, 0, 500);\nsky.addColorStop(0, \"#0b1026\");\nsky.addColorStop(0.5, \"#2a1a4a\");\nsky.addColorStop(1, \"#6b3e6e\");\nctx.fillStyle = sky;\nctx.fillRect(0, 0, 500, 500);\n\n// Stars\nfor (let i = 0; i < 120; i++) {\n  const x = Math.random() * 500;\n  const y = Math.random() * 300;\n  const r = Math.random() * 1.5;\n  ctx.beginPath();\n  ctx.arc(x, y, r, 0, Math.PI * 2);\n  ctx.fillStyle = `rgba(255,255,255,${Math.random() * 0.8 + 0.2})`;\n  ctx.fill();\n}\n\n// Moon\nctx.beginPath();\nctx.arc(380, 100, 45, 0, Math.PI * 2);\nctx.fillStyle = \"#f5f3d0\";\nctx.shadowColor = \"#f5f3d0\";\nctx.shadowBlur = 40;\nctx.fill();\nctx.shadowBlur = 0;\n\n// Moon craters\nctx.fillStyle = \"rgba(200,200,160,0.5)\";\n[[370, 90, 8], [395, 110, 6], [365, 115, 5]].forEach(c => {\n  ctx.beginPath();\n  ctx.arc(c[0], c[1], c[2], 0, Math.PI * 2);\n  ctx.fill();\n});\n\n// Water reflection\nconst water = ctx.createLinearGradient(0, 350, 0, 500);\nwater.addColorStop(0, \"#3a2a5a\");\nwater.addColorStop(1, \"#12081f\");\nctx.fillStyle = water;\nctx.fillRect(0, 350, 500, 150);\n\n// Moon reflection shimmer\nctx.fillStyle = \"rgba(245,243,208,0.15)\";\nfor (let y = 360; y < 500; y += 8) {\n  const w = 30 + Math.random() * 30;\n  ctx.fillRect(380 - w / 2, y, w, 3);\n}\n\n// Mountains\nfunction mountain(baseY, peaks, color) {\n  ctx.beginPath();\n  ctx.moveTo(0, baseY);\n  ctx.lineTo(0, 350);\n  let x = 0;\n  peaks.forEach(p => {\n    ctx.lineTo(x + p.w / 2, p.h);\n    ctx.lineTo(x + p.w, 350);\n    x += p.w;\n  });\n  ctx.lineTo(500, 350);\n  ctx.closePath();\n  ctx.fillStyle = color;\n  ctx.fill();\n}\n\nmountain(350, [{w: 180, h: 210}, {w: 200, h: 180}, {w: 150, h: 230}], \"#1e1533\");\nmountain(350, [{w: 250, h: 260}, {w: 300, h: 240}], \"#0f0a20\");\n\n// A little boat\nctx.fillStyle = \"#0a0510\";\nctx.beginPath();\nctx.moveTo(120, 420);\nctx.lineTo(180, 420);\nctx.lineTo(170, 435);\nctx.lineTo(130, 435);\nctx.closePath();\nctx.fill();\nctx.strokeStyle = \"#0a0510\";\nctx.lineWidth = 2;\nctx.beginPath();\nctx.moveTo(150, 420);\nctx.lineTo(150, 390);\nctx.stroke();\nctx.beginPath();\nctx.moveTo(150, 392);\nctx.lineTo(172, 418);\nctx.lineTo(150, 418);\nctx.closePath();\nctx.fillStyle = \"#2a2040\";\nctx.fill();\n```",
+      "extract_method": "fence_lang",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.34
+      }
+    }
+  ],
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-24T15:59:16+00:00",
+  "total_duration_s": 18.26
+}

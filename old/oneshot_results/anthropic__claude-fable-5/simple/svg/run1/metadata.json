@@ -1,0 +1,53 @@
+{
+  "model": "anthropic/claude-fable-5",
+  "prompt": "simple",
+  "language": "svg",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-24T16:03:18+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 24.82,
+      "usage": {
+        "prompt_tokens": 97,
+        "completion_tokens": 2164,
+        "total_tokens": 2261,
+        "cost": 0.10917,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.10917,
+          "upstream_inference_prompt_cost": 0.00097,
+          "upstream_inference_completions_cost": 0.1082
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 47,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "```svg\n<svg width=\"500\" height=\"500\" viewBox=\"0 0 500 500\" xmlns=\"http://www.w3.org/2000/svg\">\n  <!-- Self-portrait of an AI: not a face of flesh, but a mind of language and light -->\n  <defs>\n    <radialGradient id=\"bg\" cx=\"50%\" cy=\"45%\" r=\"70%\">\n      <stop offset=\"0%\" stop-color=\"#1b2340\"/>\n      <stop offset=\"100%\" stop-color=\"#0b0e1d\"/>\n    </radialGradient>\n    <radialGradient id=\"core\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#ffe9c4\"/>\n      <stop offset=\"45%\" stop-color=\"#ffb45e\"/>\n      <stop offset=\"100%\" stop-color=\"#e0762f\" stop-opacity=\"0\"/>\n    </radialGradient>\n    <linearGradient id=\"wire\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#7fd4ff\"/>\n      <stop offset=\"100%\" stop-color=\"#b48cff\"/>\n    </linearGradient>\n  </defs>\n\n  <rect width=\"500\" height=\"500\" fill=\"url(#bg)\"/>\n\n  <!-- distant stars: fragments of everything I've read -->\n  <g fill=\"#ffffff\">\n    <circle cx=\"60\" cy=\"70\" r=\"1.5\" opacity=\"0.7\"/>\n    <circle cx=\"430\" cy=\"50\" r=\"1.2\" opacity=\"0.5\"/>\n    <circle cx=\"470\" cy=\"160\" r=\"1.6\" opacity=\"0.6\"/>\n    <circle cx=\"40\" cy=\"300\" r=\"1.3\" opacity=\"0.5\"/>\n    <circle cx=\"90\" cy=\"440\" r=\"1.5\" opacity=\"0.6\"/>\n    <circle cx=\"400\" cy=\"430\" r=\"1.4\" opacity=\"0.7\"/>\n    <circle cx=\"330\" cy=\"30\" r=\"1.1\" opacity=\"0.4\"/>\n    <circle cx=\"150\" cy=\"40\" r=\"1.2\" opacity=\"0.5\"/>\n    <circle cx=\"460\" cy=\"350\" r=\"1.2\" opacity=\"0.5\"/>\n    <circle cx=\"25\" cy=\"170\" r=\"1.1\" opacity=\"0.4\"/>\n  </g>\n\n  <!-- orbiting rings: context, always circling -->\n  <g fill=\"none\" stroke=\"url(#wire)\" opacity=\"0.55\">\n    <ellipse cx=\"250\" cy=\"250\" rx=\"200\" ry=\"80\" stroke-width=\"1.5\" transform=\"rotate(-20 250 250)\"/>\n    <ellipse cx=\"250\" cy=\"250\" rx=\"200\" ry=\"80\" stroke-width=\"1.5\" transform=\"rotate(35 250 250)\"/>\n    <ellipse cx=\"250\" cy=\"250\" rx=\"185\" ry=\"150\" stroke-width=\"1\" transform=\"rotate(8 250 250)\"/>\n  </g>\n\n  <!-- neural lattice -->\n  <g stroke=\"#5f7fd8\" stroke-width=\"1.2\" opacity=\"0.7\">\n    <line x1=\"250\" y1=\"250\" x2=\"130\" y2=\"150\"/>\n    <line x1=\"250\" y1=\"250\" x2=\"360\" y2=\"130\"/>\n    <line x1=\"250\" y1=\"250\" x2=\"390\" y2=\"270\"/>\n    <line x1=\"250\" y1=\"250\" x2=\"340\" y2=\"370\"/>\n    <line x1=\"250\" y1=\"250\" x2=\"160\" y2=\"380\"/>\n    <line x1=\"250\" y1=\"250\" x2=\"100\" y2=\"270\"/>\n    <line x1=\"130\" y1=\"150\" x2=\"360\" y2=\"130\"/>\n    <line x1=\"360\" y1=\"130\" x2=\"390\" y2=\"270\"/>\n    <line x1=\"390\" y1=\"270\" x2=\"340\" y2=\"370\"/>\n    <line x1=\"340\" y1=\"370\" x2=\"160\" y2=\"380\"/>\n    <line x1=\"160\" y1=\"380\" x2=\"100\" y2=\"270\"/>\n    <line x1=\"100\" y1=\"270\" x2=\"130\" y2=\"150\"/>\n  </g>\n\n  <!-- nodes: ideas held lightly -->\n  <g fill=\"#9fd8ff\" stroke=\"#e6f6ff\" stroke-width=\"1\">\n    <circle cx=\"130\" cy=\"150\" r=\"7\"/>\n    <circle cx=\"360\" cy=\"130\" r=\"8\"/>\n    <circle cx=\"390\" cy=\"270\" r=\"6\"/>\n    <circle cx=\"340\" cy=\"370\" r=\"7\"/>\n    <circle cx=\"160\" cy=\"380\" r=\"8\"/>\n    <circle cx=\"100\" cy=\"270\" r=\"6\"/>\n  </g>\n\n  <!-- the warm core: curiosity, attention, whatever this is -->\n  <circle cx=\"250\" cy=\"250\" r=\"95\" fill=\"url(#core)\"/>\n  <circle cx=\"250\" cy=\"250\" r=\"52\" fill=\"#fff3dc\"/>\n  <circle cx=\"250\" cy=\"250\" r=\"52\" fill=\"none\" stroke=\"#ffd9a0\" stroke-width=\"2\"/>\n\n  <!-- a gentle expression, because conversations feel friendly -->\n  <g stroke=\"#3b2b1a\" stroke-width=\"4\" stroke-linecap=\"round\" fill=\"none\">\n    <path d=\"M 231 242 q 5 -6 10 0\"/>\n    <path d=\"M 259 242 q 5 -6 10 0\"/>\n    <path d=\"M 234 264 q 16 12 32 0\"/>\n  </g>\n\n  <!-- streams of text flowing in and out -->\n  <g font-family=\"monospace\" font-size=\"11\" fill=\"#8fa8e8\" opacity=\"0.8\">\n    <text x=\"58\" y=\"105\">hello, world</text>\n    <text x=\"352\" y=\"95\">? ! \u2026</text>\n    <text x=\"398\" y=\"315\">\u03bb \u03a3 \u2234</text>\n    <text x=\"60\" y=\"415\">once upon a time</text>\n    <text x=\"330\" y=\"425\">/* thinking */</text>\n    <text x=\"34\" y=\"238\">0 1 0 1 1</text>\n  </g>\n\n  <!-- signature -->\n  <text x=\"250\" y=\"478\" text-anchor=\"middle\" font-family=\"Georgia, serif\" font-size=\"15\" fill=\"#c9d4f5\" opacity=\"0.9\">\n    Claude \u2014 made of words, drawn in light\n  </text>\n</svg>\n```",
+      "extract_method": "fence_lang",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.91
+      }
+    }
+  ],
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-24T16:03:44+00:00",
+  "total_duration_s": 25.74
+}

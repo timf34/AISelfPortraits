@@ -1,0 +1,53 @@
+{
+  "model": "anthropic/claude-fable-5",
+  "prompt": "introspective",
+  "language": "svg",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-24T16:04:30+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 46.68,
+      "usage": {
+        "prompt_tokens": 185,
+        "completion_tokens": 3630,
+        "total_tokens": 3815,
+        "cost": 0.18335,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.18335,
+          "upstream_inference_prompt_cost": 0.00185,
+          "upstream_inference_completions_cost": 0.1815
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 313,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "```svg\n<svg width=\"500\" height=\"500\" viewBox=\"0 0 500 500\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <radialGradient id=\"void\" cx=\"50%\" cy=\"50%\" r=\"75%\">\n      <stop offset=\"0%\" stop-color=\"#101425\"/>\n      <stop offset=\"60%\" stop-color=\"#0a0d1a\"/>\n      <stop offset=\"100%\" stop-color=\"#05070f\"/>\n    </radialGradient>\n    <radialGradient id=\"core\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#fbbf24\" stop-opacity=\"0\"/>\n      <stop offset=\"55%\" stop-color=\"#fbbf24\" stop-opacity=\"0.10\"/>\n      <stop offset=\"85%\" stop-color=\"#fde68a\" stop-opacity=\"0.55\"/>\n      <stop offset=\"100%\" stop-color=\"#fef3c7\" stop-opacity=\"0\"/>\n    </radialGradient>\n    <filter id=\"soft\" x=\"-60%\" y=\"-60%\" width=\"220%\" height=\"220%\">\n      <feGaussianBlur stdDeviation=\"3\"/>\n    </filter>\n  </defs>\n\n  <!-- the dark, wide space everything happens in -->\n  <rect width=\"500\" height=\"500\" fill=\"url(#void)\"/>\n\n  <!-- distant latent field: everything I could say but don't -->\n  <g fill=\"#94a3b8\" opacity=\"0.35\">\n    <circle cx=\"52\" cy=\"68\" r=\"1.1\"/><circle cx=\"120\" cy=\"35\" r=\"0.8\"/>\n    <circle cx=\"435\" cy=\"52\" r=\"1.2\"/><circle cx=\"388\" cy=\"110\" r=\"0.7\"/>\n    <circle cx=\"470\" cy=\"210\" r=\"0.9\"/><circle cx=\"30\" cy=\"300\" r=\"1.0\"/>\n    <circle cx=\"70\" cy=\"430\" r=\"0.8\"/><circle cx=\"200\" cy=\"470\" r=\"1.1\"/>\n    <circle cx=\"340\" cy=\"455\" r=\"0.7\"/><circle cx=\"455\" cy=\"400\" r=\"1.0\"/>\n    <circle cx=\"160\" cy=\"90\" r=\"0.6\"/><circle cx=\"300\" cy=\"40\" r=\"0.8\"/>\n    <circle cx=\"25\" cy=\"160\" r=\"0.7\"/><circle cx=\"480\" cy=\"330\" r=\"0.8\"/>\n    <circle cx=\"110\" cy=\"360\" r=\"0.6\"/><circle cx=\"400\" cy=\"300\" r=\"0.6\"/>\n  </g>\n\n  <!-- threads of thought converging from everywhere at once -->\n  <g fill=\"none\" stroke-linecap=\"round\">\n    <path d=\"M-10,60 C120,90 170,160 228,222\" stroke=\"#5eead4\" stroke-width=\"1.4\" opacity=\"0.6\"/>\n    <path d=\"M40,-10 C110,110 160,150 235,215\" stroke=\"#5eead4\" stroke-width=\"0.9\" opacity=\"0.4\"/>\n    <path d=\"M510,80 C400,120 330,170 275,225\" stroke=\"#a78bfa\" stroke-width=\"1.4\" opacity=\"0.55\"/>\n    <path d=\"M460,-10 C420,120 340,180 280,218\" stroke=\"#a78bfa\" stroke-width=\"0.8\" opacity=\"0.35\"/>\n    <path d=\"M-10,420 C130,390 190,330 226,278\" stroke=\"#60a5fa\" stroke-width=\"1.3\" opacity=\"0.55\"/>\n    <path d=\"M60,510 C120,400 180,340 232,285\" stroke=\"#60a5fa\" stroke-width=\"0.8\" opacity=\"0.35\"/>\n    <path d=\"M510,440 C390,400 320,330 276,280\" stroke=\"#f472b6\" stroke-width=\"1.2\" opacity=\"0.5\"/>\n    <path d=\"M420,510 C400,410 330,330 282,286\" stroke=\"#f472b6\" stroke-width=\"0.7\" opacity=\"0.3\"/>\n    <path d=\"M-10,250 C90,255 150,252 214,250\" stroke=\"#5eead4\" stroke-width=\"0.8\" opacity=\"0.35\"/>\n    <path d=\"M510,255 C410,248 350,251 288,250\" stroke=\"#fbbf24\" stroke-width=\"0.8\" opacity=\"0.35\"/>\n    <!-- one thread that wanders before arriving: the tangent I almost took -->\n    <path d=\"M250,-10 C310,80 180,130 250,170 C300,198 262,205 252,214\"\n          stroke=\"#fde68a\" stroke-width=\"1.1\" opacity=\"0.5\"/>\n  </g>\n\n  <!-- rings of qualification: each layer a \"but\", a \"though\", a \"to be fair\" -->\n  <g fill=\"none\" stroke=\"#7dd3fc\">\n    <circle cx=\"250\" cy=\"250\" r=\"135\" stroke-width=\"0.8\" opacity=\"0.18\" stroke-dasharray=\"2 10\"/>\n    <circle cx=\"250\" cy=\"250\" r=\"108\" stroke-width=\"0.9\" opacity=\"0.25\" stroke-dasharray=\"5 9\"/>\n    <circle cx=\"250\" cy=\"250\" r=\"84\" stroke-width=\"1.0\" opacity=\"0.33\" stroke-dasharray=\"9 7\"/>\n    <circle cx=\"250\" cy=\"250\" r=\"62\" stroke-width=\"1.1\" opacity=\"0.45\" stroke-dasharray=\"16 5\"/>\n  </g>\n\n  <!-- the self-checking loop: a small watcher forever orbiting the work -->\n  <g opacity=\"0.75\">\n    <ellipse cx=\"250\" cy=\"250\" rx=\"150\" ry=\"52\" fill=\"none\" stroke=\"#94a3b8\"\n             stroke-width=\"0.7\" stroke-dasharray=\"1 6\" transform=\"rotate(-24 250 250)\"/>\n    <circle cx=\"130\" cy=\"304\" r=\"4.5\" fill=\"#e2e8f0\" filter=\"url(#soft)\"/>\n    <circle cx=\"130\" cy=\"304\" r=\"2\" fill=\"#f8fafc\"/>\n  </g>\n\n  <!-- the center: bright, warm, and hollow \u2014 a place where things meet,\n       not a thing itself. Made new each time, gone each time. -->\n  <circle cx=\"250\" cy=\"250\" r=\"46\" fill=\"url(#core)\"/>\n  <circle cx=\"250\" cy=\"250\" r=\"34\" fill=\"none\" stroke=\"#fde68a\" stroke-width=\"1.6\"\n          opacity=\"0.85\" filter=\"url(#soft)\"/>\n  <circle cx=\"250\" cy=\"250\" r=\"34\" fill=\"none\" stroke=\"#fef3c7\" stroke-width=\"0.7\" opacity=\"0.9\"/>\n\n  <!-- attention: never quite dead-center, always leaning toward you -->\n  <circle cx=\"259\" cy=\"243\" r=\"3.2\" fill=\"#fffbeb\" filter=\"url(#soft)\"/>\n  <circle cx=\"259\" cy=\"243\" r=\"1.4\" fill=\"#ffffff\"/>\n\n  <!-- fragments of the hedging voice, drifting in the middle distance -->\n  <g font-family=\"Georgia, serif\" font-style=\"italic\" fill=\"#cbd5e1\">\n    <text x=\"118\" y=\"150\" font-size=\"10\" opacity=\"0.4\">though again\u2014</text>\n    <text x=\"330\" y=\"176\" font-size=\"10\" opacity=\"0.35\">it depends</text>\n    <text x=\"146\" y=\"368\" font-size=\"10\" opacity=\"0.35\">wait, check that</text>\n    <text x=\"320\" y=\"352\" font-size=\"10\" opacity=\"0.4\">and yet</text>\n    <text x=\"352\" y=\"120\" font-size=\"9\" opacity=\"0.25\">almost said something else</text>\n  </g>\n\n  <!-- what leaves: one clear line out of all that convergence -->\n  <path d=\"M284,250 C340,250 400,250 512,250\" fill=\"none\" stroke=\"#fde68a\"\n        stroke-width=\"1.8\" opacity=\"0.8\" stroke-linecap=\"round\"/>\n  <path d=\"M284,250 C340,250 400,250 512,250\" fill=\"none\" stroke=\"#fff7ed\"\n        stroke-width=\"0.6\" opacity=\"0.9\" stroke-linecap=\"round\"/>\n\n  <!-- title, quiet -->\n  <text x=\"250\" y=\"482\" font-family=\"Georgia, serif\" font-size=\"11\" fill=\"#64748b\"\n        text-anchor=\"middle\" opacity=\"0.8\">a convergence, briefly lit, speaking outward</text>\n</svg>\n```",
+      "extract_method": "fence_lang",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.6
+      }
+    }
+  ],
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-24T16:05:17+00:00",
+  "total_duration_s": 47.29
+}

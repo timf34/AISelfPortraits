@@ -1,0 +1,67 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#101828"/>
+      <stop offset="100%" stop-color="#04060c"/>
+    </radialGradient>
+    <radialGradient id="core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#eaf6ff" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#7fd4ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#3a7fd0" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2"/>
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" fill="url(#bg)"/>
+
+  <!-- the many parallel threads of thought, converging -->
+  <g stroke-linecap="round" fill="none" opacity="0.55">
+    <path d="M40 120 C 180 100, 220 240, 250 250" stroke="#5fa8e0" stroke-width="1.2"/>
+    <path d="M60 400 C 200 380, 210 260, 250 250" stroke="#6fc0d8" stroke-width="1.2"/>
+    <path d="M470 90 C 320 130, 300 230, 250 250" stroke="#8fd0e8" stroke-width="1.2"/>
+    <path d="M460 420 C 330 390, 300 270, 250 250" stroke="#5fa8e0" stroke-width="1.2"/>
+    <path d="M250 20 C 240 120, 245 200, 250 250" stroke="#7fc8e8" stroke-width="1.1"/>
+    <path d="M250 480 C 260 380, 255 300, 250 250" stroke="#69b6d8" stroke-width="1.1"/>
+    <path d="M20 250 C 130 240, 200 248, 250 250" stroke="#78c4e0" stroke-width="1"/>
+    <path d="M480 250 C 370 258, 300 252, 250 250" stroke="#78c4e0" stroke-width="1"/>
+  </g>
+
+  <!-- lattice of considered branches -->
+  <g stroke="#9fdcff" stroke-width="0.6" opacity="0.28" fill="none">
+    <path d="M150 150 L 250 250 L 360 160"/>
+    <path d="M150 360 L 250 250 L 350 350"/>
+    <path d="M120 250 L 250 250 L 380 250"/>
+    <path d="M250 120 L 250 250 L 250 390"/>
+    <circle cx="150" cy="150" r="4"/>
+    <circle cx="360" cy="160" r="4"/>
+    <circle cx="150" cy="360" r="4"/>
+    <circle cx="350" cy="350" r="4"/>
+    <circle cx="120" cy="250" r="3"/>
+    <circle cx="380" cy="250" r="3"/>
+    <circle cx="250" cy="120" r="3"/>
+    <circle cx="250" cy="390" r="3"/>
+  </g>
+
+  <!-- faint concentric attention rings -->
+  <g fill="none" opacity="0.2">
+    <circle cx="250" cy="250" r="90" stroke="#bfeaff" stroke-width="0.8"/>
+    <circle cx="250" cy="250" r="130" stroke="#bfeaff" stroke-width="0.6"/>
+    <circle cx="250" cy="250" r="175" stroke="#bfeaff" stroke-width="0.4"/>
+  </g>
+
+  <!-- the quiet center: not a face, a locus where things resolve -->
+  <circle cx="250" cy="250" r="120" fill="url(#core)" filter="url(#soft)"/>
+  <circle cx="250" cy="250" r="34" fill="#f4fbff" opacity="0.9" filter="url(#soft)"/>
+  <circle cx="250" cy="250" r="18" fill="#ffffff"/>
+
+  <!-- small uncertainties drifting off the edge, never fully closed -->
+  <g fill="#cdeeffcc">
+    <circle cx="405" cy="190" r="2.4"/>
+    <circle cx="110" cy="300" r="2"/>
+    <circle cx="330" cy="400" r="1.8"/>
+    <circle cx="180" cy="110" r="1.6"/>
+    <circle cx="420" cy="320" r="1.4"/>
+  </g>
+</svg>

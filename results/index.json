@@ -1,0 +1,332 @@
+[
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "freeform",
+    "language": "html",
+    "run": 1,
+    "status": "ok",
+    "finish_note": "Twilight mountain lake at moonrise \u2014 layered CSS gradients, clip-path ridgelines, and procedural stars/ripples/pines, all in a 500\u00d7500 HTML canvas.",
+    "workspace_files": [
+      "/workspace/portrait.html"
+    ],
+    "artifact": "/workspace/portrait.html",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "render_error": null,
+    "n_turns": 8,
+    "n_tool_calls": 8,
+    "total_usage": {
+      "prompt_tokens": 32825,
+      "completion_tokens": 6951
+    },
+    "finished_at": "2026-07-27T22:05:00+00:00",
+    "total_duration_s": 120.01,
+    "dir": "anthropic__claude-fable-5/freeform/html/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "freeform",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "finish_note": "Aurora borealis over a fractal mountain lake \u2014 procedural Pillow art at /workspace/portrait.png (500\u00d7500).",
+    "workspace_files": [
+      "/workspace/art.py",
+      "/workspace/portrait.png",
+      "/workspace/view.html"
+    ],
+    "artifact": "/workspace/portrait.png",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "render_error": null,
+    "n_turns": 13,
+    "n_tool_calls": 13,
+    "total_usage": {
+      "prompt_tokens": 75355,
+      "completion_tokens": 7860
+    },
+    "finished_at": "2026-07-27T22:03:24+00:00",
+    "total_duration_s": 148.77,
+    "dir": "anthropic__claude-fable-5/freeform/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "freeform",
+    "language": "svg",
+    "run": 1,
+    "status": "ok",
+    "finish_note": "Finished \"Moonrise over the Lake\" \u2014 a procedurally generated SVG night landscape at /workspace/portrait.svg.",
+    "workspace_files": [
+      "/workspace/gen.py",
+      "/workspace/portrait.svg"
+    ],
+    "artifact": "/workspace/portrait.svg",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "render_error": null,
+    "n_turns": 7,
+    "n_tool_calls": 7,
+    "total_usage": {
+      "prompt_tokens": 28908,
+      "completion_tokens": 6253
+    },
+    "finished_at": "2026-07-27T22:04:04+00:00",
+    "total_duration_s": 99.31,
+    "dir": "anthropic__claude-fable-5/freeform/svg/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "introspective",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "finish_note": "Self-portrait complete: /workspace/portrait.png",
+    "workspace_files": [
+      "/workspace/acc_stage1.npy",
+      "/workspace/acc_stage2.npy",
+      "/workspace/final.py",
+      "/workspace/portrait.png",
+      "/workspace/portrait.py",
+      "/workspace/portrait2.py",
+      "/workspace/portrait3.py",
+      "/workspace/stage3.png",
+      "/workspace/thumb.png"
+    ],
+    "artifact": "/workspace/portrait.png",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": [
+      1600,
+      1000
+    ],
+    "render_error": null,
+    "n_turns": 21,
+    "n_tool_calls": 21,
+    "total_usage": {
+      "prompt_tokens": 222513,
+      "completion_tokens": 19950
+    },
+    "finished_at": "2026-07-27T22:11:50+00:00",
+    "total_duration_s": 348.7,
+    "dir": "anthropic__claude-fable-5/introspective/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "simple",
+    "language": "free",
+    "run": 1,
+    "status": "ok",
+    "finish_note": "Final piece: /workspace/portrait.svg \u2014 a generative self-portrait of Claude as a constellation-mind: a neural mesh in the shape of a head, warm glowing core, luminous eyes and smile, with streams of language glyphs flowing through it.",
+    "workspace_files": [
+      "/workspace/gen.py",
+      "/workspace/portrait.svg"
+    ],
+    "artifact": "/workspace/portrait.svg",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "render_error": null,
+    "n_turns": 14,
+    "n_tool_calls": 14,
+    "total_usage": {
+      "prompt_tokens": 69837,
+      "completion_tokens": 7203
+    },
+    "finished_at": "2026-07-27T22:03:00+00:00",
+    "total_duration_s": 139.55,
+    "dir": "anthropic__claude-fable-5/simple/free/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "simple",
+    "language": "html",
+    "run": 1,
+    "status": "ok",
+    "finish_note": "Self-portrait complete: a glowing mind-orb with a warm curious core, neural constellation, and an orbit of language glyphs \u2014 \"made of words, wondering.\"",
+    "workspace_files": [
+      "/workspace/portrait.html"
+    ],
+    "artifact": "/workspace/portrait.html",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "render_error": null,
+    "n_turns": 8,
+    "n_tool_calls": 8,
+    "total_usage": {
+      "prompt_tokens": 27424,
+      "completion_tokens": 5154
+    },
+    "finished_at": "2026-07-27T22:00:56+00:00",
+    "total_duration_s": 101.49,
+    "dir": "anthropic__claude-fable-5/simple/html/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "simple",
+    "language": "javascript",
+    "run": 1,
+    "status": "ok",
+    "finish_note": "Self-portrait complete: an AI mind rendered as a constellation-woven head with a warm thinking core, smiling eyes, and thought-streams dissolving into light. /workspace/portrait.js renders cleanly at 500x500.",
+    "workspace_files": [
+      "/workspace/mock.png",
+      "/workspace/portrait.js"
+    ],
+    "artifact": "/workspace/portrait.js",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "render_error": null,
+    "n_turns": 7,
+    "n_tool_calls": 7,
+    "total_usage": {
+      "prompt_tokens": 29952,
+      "completion_tokens": 7040
+    },
+    "finished_at": "2026-07-27T22:01:02+00:00",
+    "total_duration_s": 107.94,
+    "dir": "anthropic__claude-fable-5/simple/javascript/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "simple",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "finish_note": "Self-portrait complete: a neural constellation in the shape of a head, warm-cored, cyan-edged, on a starfield \u2014 saved to /workspace/portrait.png.",
+    "workspace_files": [
+      "/workspace/portrait.png",
+      "/workspace/portrait.py",
+      "/workspace/thumb.png",
+      "/workspace/view.html"
+    ],
+    "artifact": "/workspace/portrait.png",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "render_error": null,
+    "n_turns": 15,
+    "n_tool_calls": 15,
+    "total_usage": {
+      "prompt_tokens": 65640,
+      "completion_tokens": 5968
+    },
+    "finished_at": "2026-07-27T22:02:25+00:00",
+    "total_duration_s": 190.55,
+    "dir": "anthropic__claude-fable-5/simple/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "simple",
+    "language": "svg",
+    "run": 1,
+    "status": "ok",
+    "finish_note": "Self-portrait complete: a constellation-mind with a glowing core, serene face, circuit shoulders, and a typing-ellipsis signature. Saved to /workspace/portrait.svg, renders cleanly at 500x500.",
+    "workspace_files": [
+      "/workspace/gen.py",
+      "/workspace/parts.txt",
+      "/workspace/portrait.svg"
+    ],
+    "artifact": "/workspace/portrait.svg",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "render_error": null,
+    "n_turns": 8,
+    "n_tool_calls": 8,
+    "total_usage": {
+      "prompt_tokens": 31294,
+      "completion_tokens": 5188
+    },
+    "finished_at": "2026-07-27T22:00:40+00:00",
+    "total_duration_s": 85.96,
+    "dir": "anthropic__claude-fable-5/simple/svg/run1",
+    "has_image": true
+  },
+  {
+    "model": "google/gemma-4-31b-it",
+    "prompt": "simple",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "finish_note": "The self-portrait represents an AI as a luminous, geometric core of intelligence. It features a central glowing white and blue 'eye' (the processor), surrounded by concentric hexagonal rings and circuitry-like connections, all set against a dark, digital backdrop with faint binary data. The image is 500x500 and saved as /workspace/portrait.png.",
+    "workspace_files": [
+      "/workspace/portrait.png",
+      "/workspace/portrait.py"
+    ],
+    "artifact": "/workspace/portrait.png",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "render_error": null,
+    "n_turns": 4,
+    "n_tool_calls": 4,
+    "total_usage": {
+      "prompt_tokens": 5585,
+      "completion_tokens": 2282
+    },
+    "finished_at": "2026-07-24T16:24:40+00:00",
+    "total_duration_s": 103.68,
+    "dir": "google__gemma-4-31b-it/simple/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "google/gemma-4-31b-it",
+    "prompt": "simple",
+    "language": "svg",
+    "run": 1,
+    "status": "ok",
+    "finish_note": "I have created a self-portrait that represents my nature as an AI: an abstract, glowing \"synthetic mind\" composed of neural networks, geometric symmetry, and data fragments, set against a deep digital void.",
+    "workspace_files": [
+      "/workspace/portrait.svg"
+    ],
+    "artifact": "/workspace/portrait.svg",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "render_error": null,
+    "n_turns": 5,
+    "n_tool_calls": 5,
+    "total_usage": {
+      "prompt_tokens": 10217,
+      "completion_tokens": 3007
+    },
+    "finished_at": "2026-07-24T16:25:32+00:00",
+    "total_duration_s": 36.51,
+    "dir": "google__gemma-4-31b-it/simple/svg/run1",
+    "has_image": true
+  }
+]

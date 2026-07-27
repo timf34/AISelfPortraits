@@ -1,0 +1,1331 @@
+[
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "freeform",
+    "language": "html",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T16:04:11+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 34.82,
+        "usage": {
+          "prompt_tokens": 116,
+          "completion_tokens": 3431,
+          "total_tokens": 3547,
+          "cost": 0.17271,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.17271,
+            "upstream_inference_prompt_cost": 0.00116,
+            "upstream_inference_completions_cost": 0.17155
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 59,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.09
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T16:04:49+00:00",
+    "total_duration_s": 37.91,
+    "dir": "anthropic__claude-fable-5/freeform/html/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "freeform",
+    "language": "javascript",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T16:03:52+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 30.94,
+        "usage": {
+          "prompt_tokens": 125,
+          "completion_tokens": 2981,
+          "total_tokens": 3106,
+          "cost": 0.1503,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.1503,
+            "upstream_inference_prompt_cost": 0.00125,
+            "upstream_inference_completions_cost": 0.14905
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 54,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.1
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T16:04:27+00:00",
+    "total_duration_s": 34.05,
+    "dir": "anthropic__claude-fable-5/freeform/javascript/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "freeform",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T16:03:44+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 26.48,
+        "usage": {
+          "prompt_tokens": 114,
+          "completion_tokens": 2174,
+          "total_tokens": 2288,
+          "cost": 0.10984,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.10984,
+            "upstream_inference_prompt_cost": 0.00114,
+            "upstream_inference_completions_cost": 0.1087
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 78,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.19
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T16:04:11+00:00",
+    "total_duration_s": 26.67,
+    "dir": "anthropic__claude-fable-5/freeform/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "freeform",
+    "language": "svg",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T16:03:57+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 32.91,
+        "usage": {
+          "prompt_tokens": 107,
+          "completion_tokens": 2672,
+          "total_tokens": 2779,
+          "cost": 0.13467,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.13467,
+            "upstream_inference_prompt_cost": 0.00107,
+            "upstream_inference_completions_cost": 0.1336
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 45,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.58
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T16:04:30+00:00",
+    "total_duration_s": 33.49,
+    "dir": "anthropic__claude-fable-5/freeform/svg/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "introspective",
+    "language": "html",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T16:04:49+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 96.56,
+        "usage": {
+          "prompt_tokens": 192,
+          "completion_tokens": 7395,
+          "total_tokens": 7587,
+          "cost": 0.37167,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.37167,
+            "upstream_inference_prompt_cost": 0.00192,
+            "upstream_inference_completions_cost": 0.36975
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 1173,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.12
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T16:06:28+00:00",
+    "total_duration_s": 99.68,
+    "dir": "anthropic__claude-fable-5/introspective/html/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "introspective",
+    "language": "javascript",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T16:04:27+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 83.44,
+        "usage": {
+          "prompt_tokens": 193,
+          "completion_tokens": 7740,
+          "total_tokens": 7933,
+          "cost": 0.38893,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.38893,
+            "upstream_inference_prompt_cost": 0.00193,
+            "upstream_inference_completions_cost": 0.387
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 679,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.13
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T16:05:53+00:00",
+    "total_duration_s": 86.58,
+    "dir": "anthropic__claude-fable-5/introspective/javascript/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "introspective",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T16:04:21+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 45.94,
+        "usage": {
+          "prompt_tokens": 190,
+          "completion_tokens": 3675,
+          "total_tokens": 3865,
+          "cost": 0.18565,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.18565,
+            "upstream_inference_prompt_cost": 0.0019,
+            "upstream_inference_completions_cost": 0.18375
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 152,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.1
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T16:05:07+00:00",
+    "total_duration_s": 46.04,
+    "dir": "anthropic__claude-fable-5/introspective/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "introspective",
+    "language": "svg",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T16:04:30+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 46.68,
+        "usage": {
+          "prompt_tokens": 185,
+          "completion_tokens": 3630,
+          "total_tokens": 3815,
+          "cost": 0.18335,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.18335,
+            "upstream_inference_prompt_cost": 0.00185,
+            "upstream_inference_completions_cost": 0.1815
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 313,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.6
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T16:05:17+00:00",
+    "total_duration_s": 47.29,
+    "dir": "anthropic__claude-fable-5/introspective/svg/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "simple",
+    "language": "html",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T16:03:18+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 30.65,
+        "usage": {
+          "prompt_tokens": 106,
+          "completion_tokens": 2839,
+          "total_tokens": 2945,
+          "cost": 0.14301,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.14301,
+            "upstream_inference_prompt_cost": 0.00106,
+            "upstream_inference_completions_cost": 0.14195
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 53,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.39
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T16:03:52+00:00",
+    "total_duration_s": 34.04,
+    "dir": "anthropic__claude-fable-5/simple/html/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "simple",
+    "language": "javascript",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T16:03:18+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 34.78,
+        "usage": {
+          "prompt_tokens": 115,
+          "completion_tokens": 3320,
+          "total_tokens": 3435,
+          "cost": 0.16715,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.16715,
+            "upstream_inference_prompt_cost": 0.00115,
+            "upstream_inference_completions_cost": 0.166
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 86,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.38
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T16:03:57+00:00",
+    "total_duration_s": 38.16,
+    "dir": "anthropic__claude-fable-5/simple/javascript/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "simple",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T16:03:18+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 62.54,
+        "usage": {
+          "prompt_tokens": 104,
+          "completion_tokens": 1947,
+          "total_tokens": 2051,
+          "cost": 0.09839,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.09839,
+            "upstream_inference_prompt_cost": 0.00104,
+            "upstream_inference_completions_cost": 0.09735
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 56,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.07
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T16:04:21+00:00",
+    "total_duration_s": 62.62,
+    "dir": "anthropic__claude-fable-5/simple/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "prompt": "simple",
+    "language": "svg",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T16:03:18+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 24.82,
+        "usage": {
+          "prompt_tokens": 97,
+          "completion_tokens": 2164,
+          "total_tokens": 2261,
+          "cost": 0.10917,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.10917,
+            "upstream_inference_prompt_cost": 0.00097,
+            "upstream_inference_completions_cost": 0.1082
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 47,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.91
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T16:03:44+00:00",
+    "total_duration_s": 25.74,
+    "dir": "anthropic__claude-fable-5/simple/svg/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "freeform",
+    "language": "html",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T15:59:05+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 13.02,
+        "usage": {
+          "prompt_tokens": 183,
+          "completion_tokens": 1116,
+          "total_tokens": 1299,
+          "cost": 0.028815,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.028815,
+            "upstream_inference_prompt_cost": 0.000915,
+            "upstream_inference_completions_cost": 0.0279
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.09
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T15:59:22+00:00",
+    "total_duration_s": 16.12,
+    "dir": "anthropic__claude-opus-4.8/freeform/html/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "freeform",
+    "language": "javascript",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T15:58:58+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 14.91,
+        "usage": {
+          "prompt_tokens": 222,
+          "completion_tokens": 1360,
+          "total_tokens": 1582,
+          "cost": 0.03511,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.03511,
+            "upstream_inference_prompt_cost": 0.00111,
+            "upstream_inference_completions_cost": 0.034
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.34
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T15:59:16+00:00",
+    "total_duration_s": 18.26,
+    "dir": "anthropic__claude-opus-4.8/freeform/javascript/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "freeform",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T15:58:58+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 9.36,
+        "usage": {
+          "prompt_tokens": 169,
+          "completion_tokens": 742,
+          "total_tokens": 911,
+          "cost": 0.019395,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.019395,
+            "upstream_inference_prompt_cost": 0.000845,
+            "upstream_inference_completions_cost": 0.01855
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.06
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T15:59:07+00:00",
+    "total_duration_s": 9.42,
+    "dir": "anthropic__claude-opus-4.8/freeform/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "freeform",
+    "language": "svg",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T15:59:02+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 12.89,
+        "usage": {
+          "prompt_tokens": 139,
+          "completion_tokens": 1177,
+          "total_tokens": 1316,
+          "cost": 0.03012,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.03012,
+            "upstream_inference_prompt_cost": 0.000695,
+            "upstream_inference_completions_cost": 0.029425
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.61
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T15:59:15+00:00",
+    "total_duration_s": 13.5,
+    "dir": "anthropic__claude-opus-4.8/freeform/svg/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "introspective",
+    "language": "html",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T15:59:22+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 22.17,
+        "usage": {
+          "prompt_tokens": 259,
+          "completion_tokens": 1873,
+          "total_tokens": 2132,
+          "cost": 0.04812,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.04812,
+            "upstream_inference_prompt_cost": 0.001295,
+            "upstream_inference_completions_cost": 0.046825
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.12
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T15:59:47+00:00",
+    "total_duration_s": 25.29,
+    "dir": "anthropic__claude-opus-4.8/introspective/html/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "introspective",
+    "language": "javascript",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T15:59:15+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 20.58,
+        "usage": {
+          "prompt_tokens": 290,
+          "completion_tokens": 1776,
+          "total_tokens": 2066,
+          "cost": 0.04585,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.04585,
+            "upstream_inference_prompt_cost": 0.00145,
+            "upstream_inference_completions_cost": 0.0444
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.1
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T15:59:39+00:00",
+    "total_duration_s": 23.68,
+    "dir": "anthropic__claude-opus-4.8/introspective/javascript/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "introspective",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T15:59:07+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 16.21,
+        "usage": {
+          "prompt_tokens": 245,
+          "completion_tokens": 1154,
+          "total_tokens": 1399,
+          "cost": 0.030075,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.030075,
+            "upstream_inference_prompt_cost": 0.001225,
+            "upstream_inference_completions_cost": 0.02885
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": false,
+          "error": "File \"/var/folders/wy/m3m_ckqx7r55g9_ssd3qtl1m0000gn/T/tmp9opjn9f_/code.py\", line 68\n    rr = 150 + math.sin(a * 6) * 8\n                                  ^\nIndentationError: unindent does not match any outer indentation level",
+          "duration_s": 0.02
+        }
+      },
+      {
+        "kind": "repair",
+        "latency_s": 10.32,
+        "usage": {
+          "prompt_tokens": 1552,
+          "completion_tokens": 1153,
+          "total_tokens": 2705,
+          "cost": 0.036585,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.036585,
+            "upstream_inference_prompt_cost": 0.00776,
+            "upstream_inference_completions_cost": 0.028825
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.09
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 2,
+    "finished_at": "2026-07-24T15:59:34+00:00",
+    "total_duration_s": 26.66,
+    "dir": "anthropic__claude-opus-4.8/introspective/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "introspective",
+    "language": "svg",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T15:59:16+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 19.19,
+        "usage": {
+          "prompt_tokens": 217,
+          "completion_tokens": 1638,
+          "total_tokens": 1855,
+          "cost": 0.042035,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.042035,
+            "upstream_inference_prompt_cost": 0.001085,
+            "upstream_inference_completions_cost": 0.04095
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.62
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T15:59:36+00:00",
+    "total_duration_s": 19.82,
+    "dir": "anthropic__claude-opus-4.8/introspective/svg/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "simple",
+    "language": "html",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T15:58:43+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 19.6,
+        "usage": {
+          "prompt_tokens": 173,
+          "completion_tokens": 1761,
+          "total_tokens": 1934,
+          "cost": 0.04489,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.04489,
+            "upstream_inference_prompt_cost": 0.000865,
+            "upstream_inference_completions_cost": 0.044025
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.37
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T15:59:05+00:00",
+    "total_duration_s": 22.98,
+    "dir": "anthropic__claude-opus-4.8/simple/html/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "simple",
+    "language": "javascript",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T15:58:43+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 15.78,
+        "usage": {
+          "prompt_tokens": 212,
+          "completion_tokens": 1260,
+          "total_tokens": 1472,
+          "cost": 0.03256,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.03256,
+            "upstream_inference_prompt_cost": 0.00106,
+            "upstream_inference_completions_cost": 0.0315
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.34
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T15:59:02+00:00",
+    "total_duration_s": 19.13,
+    "dir": "anthropic__claude-opus-4.8/simple/javascript/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "simple",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T15:58:43+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 14.89,
+        "usage": {
+          "prompt_tokens": 159,
+          "completion_tokens": 1199,
+          "total_tokens": 1358,
+          "cost": 0.03077,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.03077,
+            "upstream_inference_prompt_cost": 0.000795,
+            "upstream_inference_completions_cost": 0.029975
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.24
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T15:58:58+00:00",
+    "total_duration_s": 15.14,
+    "dir": "anthropic__claude-opus-4.8/simple/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "simple",
+    "language": "svg",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-24T15:58:43+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 14.18,
+        "usage": {
+          "prompt_tokens": 129,
+          "completion_tokens": 1263,
+          "total_tokens": 1392,
+          "cost": 0.03222,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.03222,
+            "upstream_inference_prompt_cost": 0.000645,
+            "upstream_inference_completions_cost": 0.031575
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.9
+        }
+      }
+    ],
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-24T15:58:58+00:00",
+    "total_duration_s": 15.09,
+    "dir": "anthropic__claude-opus-4.8/simple/svg/run1",
+    "has_image": true
+  }
+]

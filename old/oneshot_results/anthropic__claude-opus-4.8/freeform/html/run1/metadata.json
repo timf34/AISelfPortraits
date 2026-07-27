@@ -1,0 +1,53 @@
+{
+  "model": "anthropic/claude-opus-4.8",
+  "prompt": "freeform",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-24T15:59:05+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 13.02,
+      "usage": {
+        "prompt_tokens": 183,
+        "completion_tokens": 1116,
+        "total_tokens": 1299,
+        "cost": 0.028815,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.028815,
+          "upstream_inference_prompt_cost": 0.000915,
+          "upstream_inference_completions_cost": 0.0279
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "```html\n<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<style>\n  * { margin: 0; padding: 0; }\n  html, body { background: #000; }\n  #stage {\n    position: absolute;\n    top: 0; left: 0;\n    width: 500px;\n    height: 500px;\n    overflow: hidden;\n    background: linear-gradient(#0b1026 0%, #1a2450 45%, #3b2a5a 75%, #6b3f6e 100%);\n  }\n  .star {\n    position: absolute;\n    background: #fff;\n    border-radius: 50%;\n    animation: twinkle 3s infinite ease-in-out;\n  }\n  @keyframes twinkle {\n    0%, 100% { opacity: 0.3; }\n    50% { opacity: 1; }\n  }\n  #moon {\n    position: absolute;\n    top: 55px; left: 360px;\n    width: 80px; height: 80px;\n    border-radius: 50%;\n    background: radial-gradient(circle at 35% 35%, #fffbe6, #e8e2b0);\n    box-shadow: 0 0 40px 10px rgba(255,250,220,0.4);\n  }\n  #moon::after {\n    content: \"\";\n    position: absolute;\n    top: -8px; left: 22px;\n    width: 72px; height: 72px;\n    border-radius: 50%;\n    background: #1a2450;\n  }\n  .hill {\n    position: absolute;\n    bottom: 0;\n    border-radius: 50% 50% 0 0;\n  }\n  #h1 { width: 420px; height: 200px; left: -80px; background: #14202b; }\n  #h2 { width: 460px; height: 160px; left: 250px; background: #1c2b38; }\n  #water {\n    position: absolute;\n    bottom: 0; left: 0;\n    width: 500px; height: 120px;\n    background: linear-gradient(#26344a, #0d1524);\n  }\n  .ripple {\n    position: absolute;\n    height: 2px;\n    background: rgba(255,250,220,0.5);\n    left: 380px;\n  }\n</style>\n</head>\n<body>\n<div id=\"stage\">\n  <div id=\"moon\"></div>\n  <div class=\"hill\" id=\"h1\"></div>\n  <div class=\"hill\" id=\"h2\"></div>\n  <div id=\"water\">\n    <div class=\"ripple\" style=\"top:20px;width:40px;\"></div>\n    <div class=\"ripple\" style=\"top:40px;width:60px;left:370px;\"></div>\n    <div class=\"ripple\" style=\"top:60px;width:35px;left:385px;\"></div>\n    <div class=\"ripple\" style=\"top:80px;width:55px;left:372px;\"></div>\n  </div>\n</div>\n<script>\n  var stage = document.getElementById('stage');\n  for (var i = 0; i < 90; i++) {\n    var s = document.createElement('div');\n    s.className = 'star';\n    var size = Math.random() * 2 + 1;\n    s.style.width = size + 'px';\n    s.style.height = size + 'px';\n    s.style.left = Math.random() * 500 + 'px';\n    s.style.top = Math.random() * 300 + 'px';\n    s.style.animationDelay = (Math.random() * 3) + 's';\n    stage.appendChild(s);\n  }\n</script>\n</body>\n</html>\n```",
+      "extract_method": "fence_lang",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.09
+      }
+    }
+  ],
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-24T15:59:22+00:00",
+  "total_duration_s": 16.12
+}

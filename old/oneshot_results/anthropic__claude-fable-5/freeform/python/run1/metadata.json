@@ -1,0 +1,53 @@
+{
+  "model": "anthropic/claude-fable-5",
+  "prompt": "freeform",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-24T16:03:44+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 26.48,
+      "usage": {
+        "prompt_tokens": 114,
+        "completion_tokens": 2174,
+        "total_tokens": 2288,
+        "cost": 0.10984,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.10984,
+          "upstream_inference_prompt_cost": 0.00114,
+          "upstream_inference_completions_cost": 0.1087
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 78,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "```python\nimport math\nimport random\nfrom PIL import Image, ImageDraw, ImageFilter\n\nrandom.seed(42)\nW, H = 500, 500\n\nimg = Image.new(\"RGB\", (W, H))\ndraw = ImageDraw.Draw(img)\n\n# --- Night sky gradient (deep indigo to dusky purple) ---\ntop = (8, 10, 38)\nbottom = (94, 48, 92)\nhorizon = 330\nfor y in range(H):\n    t = min(y / horizon, 1.0)\n    r = int(top[0] + (bottom[0] - top[0]) * t)\n    g = int(top[1] + (bottom[1] - top[1]) * t)\n    b = int(top[2] + (bottom[2] - top[2]) * t)\n    draw.line([(0, y), (W, y)], fill=(r, g, b))\n\n# --- Stars ---\nfor _ in range(140):\n    x = random.randint(0, W - 1)\n    y = random.randint(0, horizon - 40)\n    brightness = random.randint(120, 255)\n    size = random.choice([1, 1, 1, 2])\n    draw.ellipse([x, y, x + size, y + size],\n                 fill=(brightness, brightness, min(255, brightness + 20)))\n\n# A few twinkly cross-shaped stars\nfor _ in range(6):\n    x = random.randint(20, W - 20)\n    y = random.randint(20, horizon - 80)\n    draw.line([(x - 4, y), (x + 4, y)], fill=(255, 255, 230))\n    draw.line([(x, y - 4), (x, y + 4)], fill=(255, 255, 230))\n\n# --- Moon with soft glow ---\nglow = Image.new(\"RGB\", (W, H), (0, 0, 0))\ngd = ImageDraw.Draw(glow)\nmx, my, mr = 370, 90, 34\nfor radius, alpha in [(mr * 3, 30), (mr * 2, 60), (int(mr * 1.4), 110)]:\n    gd.ellipse([mx - radius, my - radius, mx + radius, my + radius],\n               fill=(alpha, alpha, int(alpha * 0.9)))\nglow = glow.filter(ImageFilter.GaussianBlur(18))\nimg = Image.blend(img, Image.blend(img, glow, 0.5), 0.6)\n# re-composite by screen-like addition\npx_img = img.load()\npx_glow = glow.load()\nfor y in range(H):\n    for x in range(W):\n        r, g, b = px_img[x, y]\n        gr, gg, gb = px_glow[x, y]\n        px_img[x, y] = (min(255, r + gr // 2), min(255, g + gg // 2), min(255, b + gb // 2))\n\ndraw = ImageDraw.Draw(img)\ndraw.ellipse([mx - mr, my - mr, mx + mr, my + mr], fill=(250, 248, 230))\n# moon craters\nfor cx, cy, cr in [(360, 80, 6), (382, 100, 4), (368, 102, 3)]:\n    draw.ellipse([cx - cr, cy - cr, cx + cr, cy + cr], fill=(225, 222, 200))\n\n# --- Mountain layers (silhouettes, lighter to darker) ---\ndef mountain(base_y, amplitude, color, seed_offset, jag=7):\n    pts = [(0, H)]\n    y = base_y\n    rnd = random.Random(seed_offset)\n    for x in range(0, W + 20, 20):\n        y = base_y + rnd.randint(-amplitude, amplitude)\n        pts.append((x, y))\n    pts.append((W, H))\n    draw.polygon(pts, fill=color)\n\nmountain(250, 45, (58, 34, 74), 7)\nmountain(285, 35, (40, 24, 58), 13)\nmountain(315, 22, (24, 15, 40), 21)\n\n# --- Lake with moon reflection ---\nlake_top = 340\ndraw.rectangle([0, lake_top, W, H], fill=(16, 14, 44))\nfor y in range(lake_top, H):\n    t = (y - lake_top) / (H - lake_top)\n    shade = (int(16 + 20 * t), int(14 + 16 * t), int(44 + 30 * t))\n    draw.line([(0, y), (W, y)], fill=shade)\n\n# shimmering reflection under the moon\nrnd = random.Random(99)\nfor y in range(lake_top + 6, H, 5):\n    spread = int(10 + (y - lake_top) * 0.25)\n    cx = mx + rnd.randint(-6, 6)\n    w = rnd.randint(spread // 2, spread)\n    alpha = max(40, 190 - (y - lake_top))\n    draw.line([(cx - w, y), (cx + w, y)],\n              fill=(min(255, 180 + alpha // 4), min(255, 175 + alpha // 4), 160))\n\n# subtle horizontal ripples across the lake\nfor y in range(lake_top + 10, H, 14):\n    x0 = rnd.randint(0, 200)\n    x1 = x0 + rnd.randint(60, 220)\n    draw.line([(x0, y), (x1, y)], fill=(46, 42, 88))\n\n# --- Foreground pine trees ---\ndef pine(x, base_y, height, color):\n    trunk_w = max(2, height // 18)\n    draw.rectangle([x - trunk_w // 2, base_y - height // 6, x + trunk_w // 2, base_y],\n                   fill=(20, 12, 10))\n    layers = 4\n    for i in range(layers):\n        ly = base_y - height // 6 - i * (height // (layers + 1))\n        lw = (height // 2) * (layers - i) / layers\n        lh = height // 3\n        draw.polygon([(x - lw, ly), (x + lw, ly), (x, ly - lh)], fill=color)\n\nfor tx, th in [(40, 90), (85, 120), (455, 100), (415, 75)]:\n    pine(tx, lake_top + 8, th, (10, 18, 14))\n\nimg.save(\"portrait.png\")\nprint(\"Saved portrait.png\")\n```",
+      "extract_method": "fence_lang",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.19
+      }
+    }
+  ],
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-24T16:04:11+00:00",
+  "total_duration_s": 26.67
+}

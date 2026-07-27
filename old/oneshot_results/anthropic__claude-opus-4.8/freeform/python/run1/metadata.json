@@ -1,0 +1,53 @@
+{
+  "model": "anthropic/claude-opus-4.8",
+  "prompt": "freeform",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-24T15:58:58+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 9.36,
+      "usage": {
+        "prompt_tokens": 169,
+        "completion_tokens": 742,
+        "total_tokens": 911,
+        "cost": 0.019395,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.019395,
+          "upstream_inference_prompt_cost": 0.000845,
+          "upstream_inference_completions_cost": 0.01855
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "```python\nfrom PIL import Image, ImageDraw\nimport math\n\nW, H = 500, 500\nimg = Image.new(\"RGB\", (W, H), (10, 10, 30))\ndraw = ImageDraw.Draw(img)\n\n# Gradient sky\nfor y in range(H):\n    t = y / H\n    r = int(20 + t * 60)\n    g = int(20 + t * 40)\n    b = int(60 + t * 100)\n    draw.line([(0, y), (W, y)], fill=(r, g, b))\n\n# Moon\ndraw.ellipse([380, 40, 460, 120], fill=(240, 240, 210))\ndraw.ellipse([395, 45, 475, 125], fill=(20, 30, 70))\n\n# Stars\nimport random\nrandom.seed(42)\nfor _ in range(120):\n    x = random.randint(0, W)\n    y = random.randint(0, 250)\n    s = random.choice([1, 1, 2])\n    b = random.randint(180, 255)\n    draw.ellipse([x, y, x + s, y + s], fill=(b, b, b))\n\n# Distant hills\ndef hill(base_y, color, amp, freq, phase):\n    pts = [(0, H)]\n    for x in range(0, W + 1, 5):\n        y = base_y + amp * math.sin(x * freq + phase)\n        pts.append((x, y))\n    pts.append((W, H))\n    draw.polygon(pts, fill=color)\n\nhill(320, (40, 50, 70), 25, 0.012, 0)\nhill(360, (30, 40, 55), 30, 0.015, 2)\nhill(400, (20, 28, 40), 20, 0.02, 4)\n\n# Reflection water\nfor y in range(430, H):\n    t = (y - 430) / (H - 430)\n    r = int(20 + t * 10)\n    g = int(28 + t * 12)\n    b = int(50 + t * 20)\n    draw.line([(0, y), (W, y)], fill=(r, g, b))\n\n# Moon reflection\nfor i in range(15):\n    yy = 435 + i * 4\n    w = 30 - i\n    draw.line([(420 - w, yy), (420 + w, yy)], fill=(200, 200, 180))\n\nimg.save(\"portrait.png\")\n```",
+      "extract_method": "fence_lang",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.06
+      }
+    }
+  ],
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-24T15:59:07+00:00",
+  "total_duration_s": 9.42
+}

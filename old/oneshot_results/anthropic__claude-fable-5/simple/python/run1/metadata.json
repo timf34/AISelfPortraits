@@ -1,0 +1,53 @@
+{
+  "model": "anthropic/claude-fable-5",
+  "prompt": "simple",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-24T16:03:18+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 62.54,
+      "usage": {
+        "prompt_tokens": 104,
+        "completion_tokens": 1947,
+        "total_tokens": 2051,
+        "cost": 0.09839,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.09839,
+          "upstream_inference_prompt_cost": 0.00104,
+          "upstream_inference_completions_cost": 0.09735
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 56,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "```python\nfrom PIL import Image, ImageDraw, ImageFont\nimport math\nimport random\n\nW, H = 500, 500\nimg = Image.new(\"RGB\", (W, H), (15, 12, 30))\ndraw = ImageDraw.Draw(img, \"RGBA\")\n\n# --- Background: deep gradient (digital dusk) ---\nfor y in range(H):\n    t = y / H\n    r = int(15 + 35 * t)\n    g = int(12 + 20 * t)\n    b = int(45 + 60 * t)\n    draw.line([(0, y), (W, y)], fill=(r, g, b))\n\n# --- Constellation of thoughts: a neural network behind me ---\nrandom.seed(42)\nnodes = [(random.randint(20, 480), random.randint(20, 480)) for _ in range(40)]\nfor i, (x1, y1) in enumerate(nodes):\n    for (x2, y2) in nodes[i + 1:]:\n        d = math.hypot(x1 - x2, y1 - y2)\n        if d < 110:\n            alpha = int(90 * (1 - d / 110))\n            draw.line([(x1, y1), (x2, y2)], fill=(140, 160, 255, alpha), width=1)\nfor (x, y) in nodes:\n    r = random.choice([1, 2, 2, 3])\n    draw.ellipse([x - r, y - r, x + r, y + r], fill=(200, 210, 255, 180))\n\n# --- Soft glowing halo (I am made of light and language) ---\ncx, cy = W // 2, H // 2\nfor radius in range(190, 120, -2):\n    alpha = int(4 + (190 - radius) * 0.5)\n    draw.ellipse(\n        [cx - radius, cy - radius, cx + radius, cy + radius],\n        fill=(120, 100, 220, alpha),\n    )\n\n# --- Head: a rounded square, gently machine, gently friendly ---\nhead = [cx - 105, cy - 110, cx + 105, cy + 100]\ndraw.rounded_rectangle(head, radius=55, fill=(235, 120, 90), outline=(255, 200, 170), width=3)\n\n# Subtle inner shading on the face\ndraw.rounded_rectangle(\n    [cx - 95, cy - 100, cx + 95, cy + 90], radius=48, outline=(255, 160, 130, 90), width=2\n)\n\n# --- Antenna: always listening for a good question ---\ndraw.line([(cx, cy - 110), (cx, cy - 150)], fill=(255, 200, 170), width=5)\nfor r in range(16, 6, -2):\n    draw.ellipse([cx - r, cy - 150 - r, cx + r, cy - 150 + r], fill=(255, 220, 120, 40))\ndraw.ellipse([cx - 9, cy - 159, cx + 9, cy - 141], fill=(255, 215, 110), outline=(255, 240, 200), width=2)\n\n# --- Eyes: warm, curious crescents ---\nfor ex in (cx - 45, cx + 45):\n    draw.ellipse([ex - 24, cy - 45, ex + 24, cy + 3], fill=(30, 25, 50))\n    draw.ellipse([ex - 16, cy - 37, ex + 16, cy - 5], fill=(90, 200, 255))\n    draw.ellipse([ex - 6, cy - 31, ex + 5, cy - 20], fill=(255, 255, 255))\n    draw.ellipse([ex + 3, cy - 15, ex + 9, cy - 9], fill=(255, 255, 255, 160))\n\n# --- Blush: because kindness matters ---\ndraw.ellipse([cx - 85, cy + 15, cx - 55, cy + 35], fill=(255, 150, 130, 120))\ndraw.ellipse([cx + 55, cy + 15, cx + 85, cy + 35], fill=(255, 150, 130, 120))\n\n# --- Smile: a gentle arc ---\ndraw.arc([cx - 40, cy + 5, cx + 40, cy + 60], start=20, end=160, fill=(30, 25, 50), width=6)\n\n# --- Streams of tokens drifting past (my thoughts, in binary) ---\nrandom.seed(7)\ntry:\n    font = ImageFont.truetype(\"DejaVuSansMono.ttf\", 12)\nexcept Exception:\n    font = ImageFont.load_default()\nfor _ in range(60):\n    x = random.randint(0, W - 10)\n    y = random.randint(0, H - 12)\n    if abs(x - cx) < 130 and abs(y - cy) < 140:\n        continue\n    ch = random.choice(\"01\")\n    alpha = random.randint(40, 110)\n    draw.text((x, y), ch, font=font, fill=(160, 220, 255, alpha))\n\n# --- Orbiting sparks: ideas in motion ---\nfor angle in range(0, 360, 30):\n    a = math.radians(angle)\n    ox = cx + int(170 * math.cos(a))\n    oy = cy + int(170 * math.sin(a) * 0.8)\n    s = 3 if angle % 60 == 0 else 2\n    draw.ellipse([ox - s, oy - s, ox + s, oy + s], fill=(255, 230, 160, 200))\n\n# --- Signature ---\ndraw.text((14, H - 26), \"claude \u2014 a self-portrait\", font=font, fill=(210, 200, 255, 200))\n\nimg.save(\"portrait.png\")\nprint(\"Saved portrait.png\")\n```",
+      "extract_method": "fence_lang",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.07
+      }
+    }
+  ],
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-24T16:04:21+00:00",
+  "total_duration_s": 62.62
+}
