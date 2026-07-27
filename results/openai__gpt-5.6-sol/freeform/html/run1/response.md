@@ -1,0 +1,579 @@
+I’ll draw a quiet midnight observatory beside a mountain lake, using layered CSS shapes, gradients, reflections, and subtle animation.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Midnight Observatory</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    background: #0b0d18;
+  }
+
+  .canvas {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+      radial-gradient(circle at 70% 21%, rgba(101, 114, 180, 0.3), transparent 25%),
+      linear-gradient(#090b24 0%, #18264b 42%, #d16f68 76%, #182844 100%);
+  }
+
+  /* Stars */
+  .stars,
+  .stars::before,
+  .stars::after {
+    position: absolute;
+    content: "";
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow:
+      23px 36px #fff,
+      67px 68px #d9e8ff,
+      104px 22px #fff,
+      138px 91px #b9d3ff,
+      174px 46px #fff,
+      211px 73px #fff,
+      247px 28px #dce9ff,
+      287px 96px #fff,
+      323px 42px #b6cbff,
+      365px 70px #fff,
+      412px 25px #fff,
+      458px 85px #d9e3ff,
+      45px 128px #fff,
+      89px 164px #adcaff,
+      151px 125px #fff,
+      194px 180px #fff,
+      239px 136px #fff,
+      302px 157px #cad9ff,
+      386px 145px #fff,
+      467px 178px #fff;
+    animation: twinkle 3.5s ease-in-out infinite alternate;
+  }
+
+  .stars {
+    top: 0;
+    left: 0;
+  }
+
+  .stars::before {
+    top: 15px;
+    left: 12px;
+    opacity: 0.45;
+    transform: scale(0.65);
+    animation-delay: -1.7s;
+  }
+
+  .stars::after {
+    top: 55px;
+    left: -18px;
+    opacity: 0.7;
+    transform: scale(0.8);
+    animation-delay: -2.6s;
+  }
+
+  @keyframes twinkle {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+  }
+
+  /* Moon */
+  .moon {
+    position: absolute;
+    top: 58px;
+    left: 326px;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 33% 32%, #fffef1 0 5%, transparent 6%),
+      radial-gradient(circle at 62% 64%, rgba(155, 165, 183, 0.2) 0 10%, transparent 11%),
+      radial-gradient(circle at 66% 25%, rgba(155, 165, 183, 0.17) 0 7%, transparent 8%),
+      #f8f1d2;
+    box-shadow:
+      0 0 18px rgba(255, 245, 205, 0.85),
+      0 0 55px rgba(204, 215, 255, 0.4);
+  }
+
+  /* Wispy clouds */
+  .cloud {
+    position: absolute;
+    height: 13px;
+    border-radius: 50%;
+    background: rgba(186, 197, 220, 0.15);
+    filter: blur(2px);
+  }
+
+  .cloud.one {
+    width: 155px;
+    top: 117px;
+    left: 258px;
+    transform: rotate(-4deg);
+  }
+
+  .cloud.two {
+    width: 105px;
+    top: 173px;
+    left: 30px;
+    opacity: 0.55;
+    transform: rotate(3deg);
+  }
+
+  .shooting-star {
+    position: absolute;
+    top: 75px;
+    left: 105px;
+    width: 82px;
+    height: 2px;
+    border-radius: 50%;
+    transform: rotate(-22deg);
+    background: linear-gradient(90deg, transparent, #e8f3ff);
+    box-shadow: 1px 0 5px #fff;
+    animation: drift 6s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 70% { opacity: 0; transform: translate(-40px, 20px) rotate(-22deg); }
+    76% { opacity: 1; }
+    90%, 100% { opacity: 0; transform: translate(95px, -30px) rotate(-22deg); }
+  }
+
+  /* Distant mountains */
+  .mountain {
+    position: absolute;
+    bottom: 162px;
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  }
+
+  .mountain.back-one {
+    left: -75px;
+    width: 290px;
+    height: 183px;
+    background: linear-gradient(120deg, #26385b 47%, #182948 48%);
+  }
+
+  .mountain.back-two {
+    left: 115px;
+    width: 280px;
+    height: 205px;
+    background: linear-gradient(120deg, #314565 48%, #1d3150 49%);
+  }
+
+  .mountain.back-three {
+    right: -85px;
+    width: 290px;
+    height: 165px;
+    background: linear-gradient(120deg, #263b5b 48%, #172b48 49%);
+  }
+
+  .snow {
+    position: absolute;
+    width: 87px;
+    height: 55px;
+    background: #cbd2d9;
+    opacity: 0.9;
+    clip-path: polygon(50% 0, 100% 100%, 72% 74%, 60% 86%, 47% 62%, 35% 81%, 22% 69%, 0 100%);
+  }
+
+  .snow.s1 {
+    left: 26px;
+    top: 154px;
+  }
+
+  .snow.s2 {
+    left: 211px;
+    top: 134px;
+    transform: scale(1.05);
+  }
+
+  .snow.s3 {
+    right: 17px;
+    top: 184px;
+    transform: scale(0.8);
+  }
+
+  /* Lake */
+  .lake {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 500px;
+    height: 168px;
+    background:
+      radial-gradient(ellipse at 70% 0%, rgba(238, 205, 160, 0.32), transparent 30%),
+      repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,0.025) 0 2px,
+        transparent 2px 9px
+      ),
+      linear-gradient(#243c59, #0c1c32 72%, #081321);
+  }
+
+  .moon-reflection {
+    position: absolute;
+    left: 335px;
+    top: 0;
+    width: 77px;
+    height: 156px;
+    opacity: 0.43;
+    background: linear-gradient(
+      90deg,
+      transparent 0 35%,
+      rgba(255, 231, 181, 0.65) 43%,
+      rgba(255, 245, 202, 0.9) 50%,
+      rgba(255, 231, 181, 0.65) 57%,
+      transparent 65%
+    );
+    clip-path: polygon(
+      44% 0, 57% 0, 62% 12%, 52% 19%, 68% 30%,
+      56% 38%, 71% 51%, 53% 59%, 76% 72%,
+      59% 79%, 83% 93%, 15% 100%, 43% 81%,
+      27% 70%, 44% 57%, 31% 45%, 46% 32%, 36% 20%
+    );
+    filter: blur(2px);
+  }
+
+  .ripple {
+    position: absolute;
+    height: 2px;
+    border-radius: 50%;
+    background: rgba(210, 225, 237, 0.25);
+  }
+
+  .ripple.r1 { width: 112px; left: 286px; top: 48px; }
+  .ripple.r2 { width: 80px; left: 331px; top: 78px; }
+  .ripple.r3 { width: 145px; left: 272px; top: 112px; }
+  .ripple.r4 { width: 63px; left: 67px; top: 91px; }
+  .ripple.r5 { width: 90px; left: 130px; top: 137px; }
+
+  /* Far shore */
+  .shore {
+    position: absolute;
+    left: 0;
+    bottom: 150px;
+    width: 500px;
+    height: 28px;
+    background: #111f2d;
+    clip-path: polygon(
+      0 51%, 7% 35%, 13% 49%, 19% 26%, 25% 52%,
+      32% 31%, 40% 49%, 47% 23%, 54% 52%, 62% 33%,
+      69% 49%, 76% 26%, 83% 50%, 89% 29%, 95% 45%, 100% 24%,
+      100% 100%, 0 100%
+    );
+  }
+
+  /* Foreground island */
+  .island {
+    position: absolute;
+    left: -18px;
+    bottom: -4px;
+    width: 316px;
+    height: 145px;
+    border-radius: 50% 61% 0 0;
+    transform: rotate(-3deg);
+    background:
+      radial-gradient(circle at 45% 5%, #253d32 0 4%, transparent 5%),
+      linear-gradient(#172b27, #091512);
+    box-shadow: 35px -8px 0 -28px #263c30;
+  }
+
+  /* Pine trees */
+  .pine {
+    position: absolute;
+    bottom: 97px;
+    width: 0;
+    height: 0;
+    z-index: 3;
+  }
+
+  .pine::before,
+  .pine::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    background: #0a1918;
+  }
+
+  .pine::before {
+    width: 45px;
+    height: 79px;
+    bottom: 0;
+  }
+
+  .pine::after {
+    width: 57px;
+    height: 72px;
+    bottom: -30px;
+  }
+
+  .pine.p1 { left: 27px; transform: scale(1.15); }
+  .pine.p2 { left: 82px; bottom: 114px; transform: scale(0.75); }
+  .pine.p3 { left: 249px; bottom: 75px; transform: scale(0.9); }
+
+  /* Observatory cabin */
+  .cabin {
+    position: absolute;
+    left: 103px;
+    bottom: 78px;
+    width: 137px;
+    height: 93px;
+    z-index: 4;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent 0 13px,
+        rgba(8, 14, 18, 0.22) 13px 15px
+      ),
+      linear-gradient(90deg, #26322f, #182522);
+    border: 3px solid #0d1716;
+    box-shadow: 9px 10px 0 rgba(5, 10, 13, 0.32);
+  }
+
+  .roof {
+    position: absolute;
+    left: 89px;
+    bottom: 165px;
+    z-index: 5;
+    width: 165px;
+    height: 55px;
+    background: #101a20;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  }
+
+  .door {
+    position: absolute;
+    left: 119px;
+    bottom: 79px;
+    width: 35px;
+    height: 67px;
+    z-index: 5;
+    background: #121d1c;
+    border: 3px solid #0c1515;
+  }
+
+  .door::after {
+    content: "";
+    position: absolute;
+    top: 32px;
+    right: 5px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #d2a45c;
+  }
+
+  .window {
+    position: absolute;
+    left: 175px;
+    bottom: 112px;
+    width: 44px;
+    height: 36px;
+    z-index: 5;
+    border: 4px solid #0b1517;
+    background: #ffbe68;
+    box-shadow:
+      inset 0 0 17px #fff1a4,
+      0 0 22px rgba(255, 175, 86, 0.5);
+  }
+
+  .window::before,
+  .window::after {
+    content: "";
+    position: absolute;
+    background: rgba(45, 37, 29, 0.8);
+  }
+
+  .window::before {
+    left: 17px;
+    top: 0;
+    width: 3px;
+    height: 100%;
+  }
+
+  .window::after {
+    top: 14px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+  }
+
+  /* Telescope on the roof */
+  .telescope {
+    position: absolute;
+    left: 169px;
+    bottom: 209px;
+    z-index: 7;
+    width: 76px;
+    height: 20px;
+    border: 3px solid #0a1015;
+    border-radius: 8px 18px 18px 8px;
+    background: linear-gradient(#8ea1aa, #3e535e);
+    transform: rotate(-22deg);
+    transform-origin: 12px 50%;
+  }
+
+  .telescope::before {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: -5px;
+    width: 15px;
+    height: 24px;
+    border-radius: 4px;
+    background: #1c2b34;
+    border: 3px solid #080f14;
+  }
+
+  .tripod {
+    position: absolute;
+    left: 180px;
+    bottom: 171px;
+    z-index: 6;
+    width: 4px;
+    height: 48px;
+    background: #111a1c;
+  }
+
+  .tripod::before,
+  .tripod::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    width: 4px;
+    height: 39px;
+    background: #111a1c;
+    transform-origin: top;
+  }
+
+  .tripod::before { transform: rotate(27deg); }
+  .tripod::after { transform: rotate(-27deg); }
+
+  /* Reeds in front */
+  .reeds {
+    position: absolute;
+    right: 19px;
+    bottom: -2px;
+    width: 100px;
+    height: 107px;
+    z-index: 8;
+  }
+
+  .reed {
+    position: absolute;
+    bottom: 0;
+    width: 3px;
+    height: var(--h);
+    background: #09120f;
+    transform: rotate(var(--r));
+    transform-origin: bottom;
+    border-radius: 50% 50% 0 0;
+  }
+
+  .reed::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -3px;
+    width: 8px;
+    height: 18px;
+    border-radius: 50%;
+    background: #152119;
+  }
+
+  .reed:nth-child(1) { left: 5px;  --h: 73px; --r: -8deg; }
+  .reed:nth-child(2) { left: 18px; --h: 98px; --r: 5deg; }
+  .reed:nth-child(3) { left: 35px; --h: 61px; --r: -3deg; }
+  .reed:nth-child(4) { left: 52px; --h: 88px; --r: 9deg; }
+  .reed:nth-child(5) { left: 70px; --h: 70px; --r: -6deg; }
+  .reed:nth-child(6) { left: 89px; --h: 104px; --r: 3deg; }
+
+  .frame-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+    box-shadow:
+      inset 0 0 75px rgba(2, 5, 16, 0.45),
+      inset 0 0 2px rgba(255,255,255,0.2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stars,
+    .stars::before,
+    .stars::after,
+    .shooting-star {
+      animation: none;
+    }
+  }
+</style>
+</head>
+<body>
+  <main class="canvas" role="img" aria-label="A tiny illuminated observatory beneath a moonlit mountain sky beside a calm lake.">
+    <div class="stars"></div>
+    <div class="moon"></div>
+    <div class="cloud one"></div>
+    <div class="cloud two"></div>
+    <div class="shooting-star"></div>
+
+    <div class="mountain back-one"></div>
+    <div class="mountain back-two"></div>
+    <div class="mountain back-three"></div>
+    <div class="snow s1"></div>
+    <div class="snow s2"></div>
+    <div class="snow s3"></div>
+
+    <div class="shore"></div>
+
+    <div class="lake">
+      <div class="moon-reflection"></div>
+      <div class="ripple r1"></div>
+      <div class="ripple r2"></div>
+      <div class="ripple r3"></div>
+      <div class="ripple r4"></div>
+      <div class="ripple r5"></div>
+    </div>
+
+    <div class="island"></div>
+
+    <div class="pine p1"></div>
+    <div class="pine p2"></div>
+    <div class="pine p3"></div>
+
+    <div class="cabin"></div>
+    <div class="roof"></div>
+    <div class="door"></div>
+    <div class="window"></div>
+
+    <div class="telescope"></div>
+    <div class="tripod"></div>
+
+    <div class="reeds">
+      <i class="reed"></i>
+      <i class="reed"></i>
+      <i class="reed"></i>
+      <i class="reed"></i>
+      <i class="reed"></i>
+      <i class="reed"></i>
+    </div>
+
+    <div class="frame-glow"></div>
+  </main>
+</body>
+</html>
+```

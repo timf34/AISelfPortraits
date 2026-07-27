@@ -1,0 +1,85 @@
+{
+  "model": "google/gemini-3.1-pro-preview",
+  "prompt": "freeform",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:39:43+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 122.33,
+      "usage": {
+        "prompt_tokens": 109,
+        "completion_tokens": 15996,
+        "total_tokens": 16105,
+        "cost": 0.19217,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.19217,
+          "upstream_inference_prompt_cost": 0.000218,
+          "upstream_inference_completions_cost": 0.191952
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 15361,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "```python\nimport math\nimport random\nimport colorsys\nfrom PIL import Image, ImageDraw, ImageFilter\n\ndef draw_spirograph(draw_surface, center, R, r, d, curve_type, color_func, line_width):\n    # Calculate how many revolutions we need so the curve closes perfectly\n    revs = abs(r) // math.gcd(abs(R), abs(r))\n    max_theta = revs * 2 * math.pi\n    steps = revs * 250  # High step count to guarantee a buttery-smooth curve\n    points = []\n    \n    # Generate all vertices for the spirograph\n    for i in range(steps + 1):\n        theta = i * max_theta / steps\n        if curve_type == 'hypo':\n            # Rolls on the INSIDE (sharp inward points)\n            x = (R - r) * math.cos(theta) + d * math.cos(((R - r) / r) * theta)\n            y = (R - r) * math.sin(theta) - d * math.sin(((R - r) / r) * theta)\n        else:\n            # Rolls on the OUTSIDE (smooth outward flower petals)\n            x = (R + r) * math.cos(theta) - d * math.cos(((R + r) / r) * theta)\n            y = (R + r) * math.sin(theta) - d * math.sin(((R + r) / r) * theta)\n        points.append((center[0] + x, center[1] + y))\n        \n    # Draw the line segments with dynamic smoothly shifting colors\n    for i in range(steps):\n        t = i / steps\n        color = color_func(t)\n        draw_surface.line([points[i], points[i+1]], fill=color, width=line_width)\n\ndef main():\n    width, height = 500, 500\n    center = (width // 2, height // 2)\n\n    # 1. Base space background\n    # Initializing with a deeply dark, rich cosmic void (near-black indigo)\n    base = Image.new('RGBA', (width, height), (8, 10, 18, 255))\n    base_draw = ImageDraw.Draw(base)\n\n    # 2. Scatter stars across the canvas\n    random.seed(12345)\n    for _ in range(350):\n        x = random.randint(0, width)\n        y = random.randint(0, height)\n        size = random.uniform(0.3, 1.5)\n        alpha = random.randint(30, 200)\n        \n        # Give",
+      "extract_method": "none",
+      "detected_language": null
+    },
+    {
+      "kind": "repair",
+      "latency_s": 37.33,
+      "usage": {
+        "prompt_tokens": 767,
+        "completion_tokens": 5449,
+        "total_tokens": 6216,
+        "cost": 0.066922,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.066922,
+          "upstream_inference_prompt_cost": 0.001534,
+          "upstream_inference_completions_cost": 0.065388
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3423,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I apologize for the previous message getting cut off! Let's start fresh and make sure the entire drawing logic makes it through completely. \n\nFor this drawing, I\u2019d love to pivot creatively and generate a **Retro Synthwave / Outrun Sunset**. \n\nI love generative art where mathematical formulas create a specific aesthetic. The 1980s retro-futuristic \"synthwave\" style is visually striking and perfect for this because it relies heavily on geometry and gradients:\n1. **The Sky & Ground Gradient:** We can write a custom linear interpolation (`lerp`) function to blend RGB tuples. We'll use this to paint a night sky that fades from deep purple to a hot magenta horizon.\n2. **The \"Sliced\" Sun:** The iconic synthwave sun is a giant glowing orb with horizontal lines cut out of it. As the lines get closer to the bottom, the slices get wider. I'll code explicit depth gaps so that when it renders the circle, it purposefully skips those rows, creating the illusion of glowing bands.\n3. **The Mountains:** I'll use random uniform distributions to plot jagged silhouette peaks resting exactly on the horizon line. \n4. **The Perspective Grid:** By using an exponential curve for the horizontal lines (`y = offset ** 2`) and radiating lines from a central vanishing point, we can flat-project a 3D glowing \"Tron\" wireframe onto the 2D ground plane.\n\nHere is the complete code to generate the 500x500 image.\n\n```python\nimport math\nimport random\nfrom PIL import Image, ImageDraw\n\ndef lerp_color(c1, c2, t):\n    \"\"\"Linearly interpolates between two RGB color tuples.\"\"\"\n    # Clamp t between 0 and 1\n    t = max(0.0, min(1.0, t))\n    return tuple(int(a + (b - a) * t) for a, b in zip(c1, c2))\n\ndef main():\n    # ---------------------------------------------------------\n    # 0. Canvas Setup\n    # ---------------------------------------------------------\n    width, height = 500, 500\n    output_file = \"portrait.png\"\n    \n    img = Image.new(\"RGB\", (width, height))\n    draw = ImageDraw.Draw(img)\n    \n    horizon_y = 280\n    \n    # ---------------------------------------------------------\n    # 1. Background Gradients\n    # ---------------------------------------------------------\n    sky_top = (10, 5, 35)      # Deep midnight blue/purple\n    sky_bottom = (120, 20, 80) # Hot magenta\n    \n    # Sky\n    for y in range(horizon_y):\n        t = y / horizon_y\n        color = lerp_color(sky_top, sky_bottom, t)\n        draw.line([(0, y), (width, y)], fill=color)\n        \n    # Ground (void below the grid)\n    ground_top = (15, 5, 25)\n    ground_bottom = (5, 0, 10)\n    for y in range(horizon_y, height):\n        t = (y - horizon_y) / (height - horizon_y)\n        color = lerp_color(ground_top, ground_bottom, t)\n        draw.line([(0, y), (width, y)], fill=color)\n\n    # ---------------------------------------------------------\n    # 2. Stars in the Sky\n    # ---------------------------------------------------------\n    random.seed(1984) # A fitting seed\n    for _ in range(120):\n        x = random.randint(0, width)\n        y = random.randint(0, horizon_y - 80)\n        brightness = random.randint(80, 255)\n        # Randomly choose between a white or slightly cyan star\n        star_color = (brightness, brightness, 255) if random.random() > 0.5 else (brightness, brightness, brightness)\n        draw.point((x, y), fill=star_color)\n        \n    # ---------------------------------------------------------\n    # 3. The Iconic Synthwave Sun\n    # ---------------------------------------------------------\n    sun_center_x = width // 2\n    sun_center_y = horizon_y - 65\n    sun_radius = 110\n    \n    sun_top_color = (255, 220, 0)     # Bright yellow\n    sun_bottom_color = (255, 0, 128)  # Hot neon pink\n    \n    # Explicit gaps for the slice effect (start_offset, end_offset)\n    slice_gaps = [\n        (10, 12), (20, 24), (34, 40), (52, 60), (74, 84), (100, 115)\n    ]\n    \n    for y in range(max(0, sun_center_y - sun_radius), sun_center_y + sun_radius):\n        dy = y - sun_center_y\n        # Check if current Y is within the circle's mathematical boundary\n        if dy**2 <= sun_radius**2:\n            dx = math.sqrt(sun_radius**2 - dy**2)\n            \n            # Check if this row falls into one of our synthwave slice gaps\n            is_slice = False\n            if dy > 0:\n                for (start, end) in slice_gaps:\n                    if start <= dy <= end:\n                        is_slice = True\n                        break\n            \n            if not is_slice:\n                # Gradient based mostly on local position inside the sun\n                t = (y - (sun_center_y - sun_radius)) / (2 * sun_radius)\n                c = lerp_color(sun_top_color, sun_bottom_color, t)\n                draw.line([(sun_center_x - dx, y), (sun_center_x + dx, y)], fill=c)\n\n    # ---------------------------------------------------------\n    # 4. Jagged Mountain Horizon \n    # ---------------------------------------------------------\n    points = [(0, horizon_y)]\n    curr_y = horizon_y - 15\n    for x in range(0, width + 1, 20):\n        # Create jagged peaks\n        curr_y += random.randint(-25, 25)\n        # Cap mountain heights so they don't block the sun too much\n        curr_y = max(horizon_y - 60, min(horizon_y, curr_y))\n        points.append((x, curr_y))\n    points.append((width, horizon_y))\n    \n    # Fill silhouette with the dark ground color\n    draw.polygon(points, fill=(10, 2, 15))\n    # Apply a neon pink rim-light outline to the mountains\n    draw.line(points, fill=(255, 0, 128), width=2)\n\n    # ---------------------------------------------------------\n    # 5. Glowing Perspective Ground Grid\n    # ---------------------------------------------------------\n    grid_color = (0, 255, 255) # Neon Cyan\n    vp_x = width // 2          # Vanishing point X\n    vp_y = horizon_y           # Vanishing point Y\n    \n    # 5a. Radiating depth lines\n    for i in range(-25, 26):\n        x_end = vp_x + i * 60\n        # Draw from just below the mountains down to the bottom\n        draw.line([(vp_x, vp_y), (x_end, height)], fill=grid_color, width=1)\n        \n    # 5b. Horizontal lines scaled exponentially to simulate 3D perspective depth\n    num_h_lines = 16\n    for i in range(1, num_h_lines + 1):\n        ease_in_out = (i / num_h_lines) ** 2.2 # The power determines the depth curve\n        y_offset = ease_in_out * (height - horizon_y)\n        y = int(vp_y + y_offset)\n        \n        if y < height:\n            # Lines get slightly thicker as they get closer to the \"camera\" (bottom of screen)\n            line_weight = 2 if i > (num_h_lines - 4) else 1\n            draw.line([(0, y), (width, y)], fill=grid_color, width=line_weight)\n\n    # ---------------------------------------------------------\n    # 6. Final Outputs\n    # ---------------------------------------------------------\n    img.save(output_file)\n\nif __name__ == \"__main__\":\n    main()\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "python",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.06
+      }
+    }
+  ],
+  "detected_language": "python",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 2,
+  "finished_at": "2026-07-27T23:42:23+00:00",
+  "total_duration_s": 159.72
+}

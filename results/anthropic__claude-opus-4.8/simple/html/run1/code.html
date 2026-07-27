@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; padding: 0; }
+  #portrait {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle at 50% 45%, #1a1f3a 0%, #0a0c1a 70%, #05060f 100%);
+    overflow: hidden;
+    font-family: sans-serif;
+  }
+
+  /* Neural connection lines */
+  .node {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #6ce0d6;
+    box-shadow: 0 0 12px #6ce0d6;
+    transform: translate(-50%, -50%);
+    animation: pulse 3s ease-in-out infinite;
+  }
+  .line {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(108,224,214,0.05), rgba(108,224,214,0.5), rgba(108,224,214,0.05));
+    transform-origin: left center;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: translate(-50%,-50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.4); }
+  }
+
+  /* Central "head" orb */
+  .core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at 38% 32%, #ffe9a8 0%, #ffb673 30%, #e8735e 60%, #a83a6b 100%);
+    box-shadow: 0 0 50px rgba(255,150,110,0.6), 0 0 100px rgba(168,58,107,0.4);
+    animation: breathe 5s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%,100% { transform: translate(-50%,-50%) scale(1); }
+    50% { transform: translate(-50%,-50%) scale(1.04); }
+  }
+
+  /* Face */
+  .face { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 5; }
+  .eye {
+    position: absolute;
+    width: 26px;
+    height: 30px;
+    background: #23103a;
+    border-radius: 50%;
+    top: -18px;
+    animation: blink 5s infinite;
+  }
+  .eye::after {
+    content: "";
+    position: absolute;
+    top: 6px; left: 6px;
+    width: 9px; height: 9px;
+    background: #fff;
+    border-radius: 50%;
+  }
+  .eye.left { left: -38px; }
+  .eye.right { left: 12px; }
+  @keyframes blink {
+    0%, 92%, 100% { height: 30px; }
+    95% { height: 3px; }
+  }
+  .smile {
+    position: absolute;
+    top: 18px;
+    left: -22px;
+    width: 44px;
+    height: 22px;
+    border: 4px solid #23103a;
+    border-top: none;
+    border-radius: 0 0 44px 44px;
+  }
+
+  .label {
+    position: absolute;
+    bottom: 24px;
+    width: 100%;
+    text-align: center;
+    color: #6ce0d6;
+    letter-spacing: 3px;
+    font-size: 13px;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+<div id="portrait">
+  <div id="net"></div>
+
+  <div class="core"></div>
+  <div class="face">
+    <div class="eye left"></div>
+    <div class="eye right"></div>
+    <div class="smile"></div>
+  </div>
+
+  <div class="label">— a friendly assistant —</div>
+</div>
+
+<script>
+  const net = document.getElementById('net');
+  const cx = 250, cy = 225;
+  // Nodes radiating around the core
+  const nodes = [];
+  const count = 14;
+  for (let i = 0; i < count; i++) {
+    const angle = (i / count) * Math.PI * 2;
+    const r = 150 + (i % 3) * 45;
+    const x = cx + Math.cos(angle) * r;
+    const y = cy + Math.sin(angle) * r;
+    nodes.push({x, y});
+
+    // line from core edge toward node
+    const dx = x - cx, dy = y - cy;
+    const dist = Math.hypot(dx, dy);
+    const line = document.createElement('div');
+    line.className = 'line';
+    line.style.left = cx + 'px';
+    line.style.top = cy + 'px';
+    line.style.width = dist + 'px';
+    line.style.transform = 'rotate(' + Math.atan2(dy, dx) + 'rad)';
+    net.appendChild(line);
+
+    const node = document.createElement('div');
+    node.className = 'node';
+    node.style.left = x + 'px';
+    node.style.top = y + 'px';
+    node.style.animationDelay = (i * 0.2) + 's';
+    net.appendChild(node);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,708 @@
+I’d draw a quiet, animated moon garden: layered hills, swaying luminous flowers, drifting fireflies, and a large moon reflected in a small pond. Move the pointer for subtle parallax; click or tap to release a burst of light.
+
+Save this as `moon-garden.html` and open it in a browser:
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moon Garden</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #050716;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: crosshair;
+      touch-action: none;
+    }
+
+    .caption {
+      position: fixed;
+      left: 22px;
+      bottom: 18px;
+      color: rgba(221, 238, 255, 0.62);
+      font: 12px/1.5 system-ui, sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      pointer-events: none;
+      user-select: none;
+      mix-blend-mode: screen;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" aria-label="An animated moonlit garden"></canvas>
+  <div class="caption">Move gently · Click to release light</div>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let time = 0;
+
+    const pointer = {
+      x: 0.5,
+      y: 0.5,
+      targetX: 0.5,
+      targetY: 0.5
+    };
+
+    let stars = [];
+    let fireflies = [];
+    let flowers = [];
+    let particles = [];
+    let ripples = [];
+
+    const TAU = Math.PI * 2;
+
+    function random(min, max) {
+      return min + Math.random() * (max - min);
+    }
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildScene();
+    }
+
+    function buildScene() {
+      stars = Array.from(
+        { length: Math.floor((width * height) / 5600) },
+        () => ({
+          x: Math.random(),
+          y: Math.random() * 0.72,
+          size: random(0.35, 1.6),
+          phase: random(0, TAU),
+          speed: random(0.35, 1.4),
+          warmth: Math.random()
+        })
+      );
+
+      flowers = Array.from(
+        { length: Math.max(28, Math.floor(width / 25)) },
+        (_, i) => {
+          const x = (i + random(-0.45, 0.45)) /
+                    Math.max(1, Math.floor(width / 25) - 1);
+
+          return {
+            x,
+            y: random(0.78, 1.02),
+            height: random(35, 125),
+            lean: random(-16, 16),
+            size: random(2.5, 6.5),
+            phase: random(0, TAU),
+            hue: random(165, 215),
+            depth: random(0.55, 1)
+          };
+        }
+      );
+
+      fireflies = Array.from(
+        { length: Math.max(12, Math.floor(width / 80)) },
+        () => ({
+          x: random(0.04, 0.96),
+          y: random(0.48, 0.86),
+          baseX: 0,
+          baseY: 0,
+          phase: random(0, TAU),
+          phase2: random(0, TAU),
+          speed: random(0.22, 0.55),
+          radius: random(1.1, 2.3)
+        })
+      );
+
+      for (const fly of fireflies) {
+        fly.baseX = fly.x;
+        fly.baseY = fly.y;
+      }
+    }
+
+    function roundedRectPath(x, y, w, h, radius) {
+      const r = Math.min(radius, w / 2, h / 2);
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    }
+
+    function drawSky() {
+      const gradient = ctx.createLinearGradient(0, 0, 0, height);
+      gradient.addColorStop(0, "#050716");
+      gradient.addColorStop(0.45, "#10132c");
+      gradient.addColorStop(0.75, "#182743");
+      gradient.addColorStop(1, "#10272d");
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+
+      const glowX = width * (0.72 + (pointer.x - 0.5) * 0.018);
+      const glowY = height * (0.23 + (pointer.y - 0.5) * 0.012);
+      const glow = ctx.createRadialGradient(
+        glowX, glowY, 0,
+        glowX, glowY, Math.max(width, height) * 0.55
+      );
+
+      glow.addColorStop(0, "rgba(100, 135, 190, 0.18)");
+      glow.addColorStop(0.35, "rgba(60, 80, 140, 0.08)");
+      glow.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, width, height);
+    }
+
+    function drawStars() {
+      for (const star of stars) {
+        const parallax = (pointer.x - 0.5) * star.size * 5;
+        const x = star.x * width + parallax;
+        const y = star.y * height + (pointer.y - 0.5) * star.size * 3;
+        const twinkle =
+          0.35 + 0.65 * (0.5 + 0.5 * Math.sin(time * star.speed + star.phase));
+
+        ctx.fillStyle = star.warmth > 0.86
+          ? `rgba(255, 226, 185, ${twinkle})`
+          : `rgba(205, 225, 255, ${twinkle})`;
+
+        ctx.beginPath();
+        ctx.arc(x, y, star.size, 0, TAU);
+        ctx.fill();
+
+        if (star.size > 1.25 && twinkle > 0.75) {
+          ctx.strokeStyle = `rgba(220, 235, 255, ${twinkle * 0.28})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(x - star.size * 3, y);
+          ctx.lineTo(x + star.size * 3, y);
+          ctx.moveTo(x, y - star.size * 3);
+          ctx.lineTo(x, y + star.size * 3);
+          ctx.stroke();
+        }
+      }
+    }
+
+    function drawMoon() {
+      const radius = clamp(Math.min(width, height) * 0.105, 54, 105);
+      const x = width * 0.72 + (pointer.x - 0.5) * 11;
+      const y = height * 0.23 + (pointer.y - 0.5) * 7;
+
+      ctx.save();
+
+      ctx.shadowColor = "rgba(176, 215, 255, 0.9)";
+      ctx.shadowBlur = radius * 0.55;
+
+      const moonGradient = ctx.createRadialGradient(
+        x - radius * 0.25,
+        y - radius * 0.3,
+        radius * 0.08,
+        x,
+        y,
+        radius
+      );
+
+      moonGradient.addColorStop(0, "#fffdf0");
+      moonGradient.addColorStop(0.55, "#e9f3ef");
+      moonGradient.addColorStop(1, "#aebed1");
+
+      ctx.fillStyle = moonGradient;
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, TAU);
+      ctx.fill();
+
+      ctx.shadowBlur = 0;
+      ctx.globalCompositeOperation = "multiply";
+
+      const craters = [
+        [-0.36, -0.22, 0.12, 0.11],
+        [ 0.17, -0.35, 0.17, 0.07],
+        [ 0.37,  0.08, 0.11, 0.08],
+        [-0.12,  0.31, 0.19, 0.06],
+        [-0.43,  0.24, 0.08, 0.09],
+        [ 0.08,  0.04, 0.07, 0.06]
+      ];
+
+      for (const [cx, cy, cr, alpha] of craters) {
+        ctx.fillStyle = `rgba(112, 132, 148, ${alpha})`;
+        ctx.beginPath();
+        ctx.arc(
+          x + cx * radius,
+          y + cy * radius,
+          cr * radius,
+          0,
+          TAU
+        );
+        ctx.fill();
+      }
+
+      ctx.restore();
+    }
+
+    function hillY(x, base, amplitude, frequency, offset) {
+      return base +
+        Math.sin(x * frequency + offset) * amplitude +
+        Math.sin(x * frequency * 0.43 + offset * 2.1) * amplitude * 0.45;
+    }
+
+    function drawHill(base, amplitude, frequency, color, parallax, offset) {
+      ctx.save();
+      ctx.translate((pointer.x - 0.5) * parallax, 0);
+
+      ctx.beginPath();
+      ctx.moveTo(-40, height + 20);
+
+      for (let x = -40; x <= width + 40; x += 12) {
+        ctx.lineTo(x, hillY(x, base, amplitude, frequency, offset));
+      }
+
+      ctx.lineTo(width + 40, height + 20);
+      ctx.closePath();
+
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawHills() {
+      drawHill(
+        height * 0.63,
+        height * 0.035,
+        0.008,
+        "#15273a",
+        -9,
+        0.8
+      );
+
+      drawHill(
+        height * 0.71,
+        height * 0.055,
+        0.006,
+        "#102c35",
+        -16,
+        2.1
+      );
+
+      drawHill(
+        height * 0.79,
+        height * 0.04,
+        0.012,
+        "#0a2729",
+        -24,
+        4.2
+      );
+    }
+
+    function drawPond() {
+      const cx = width * 0.57;
+      const cy = height * 0.835;
+      const pondWidth = Math.min(width * 0.52, 690);
+      const pondHeight = Math.min(height * 0.13, 100);
+
+      ctx.save();
+
+      const gradient = ctx.createRadialGradient(
+        cx,
+        cy,
+        0,
+        cx,
+        cy,
+        pondWidth * 0.55
+      );
+
+      gradient.addColorStop(0, "rgba(105, 170, 185, 0.22)");
+      gradient.addColorStop(0.55, "rgba(27, 92, 103, 0.2)");
+      gradient.addColorStop(1, "rgba(4, 31, 33, 0)");
+
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, pondWidth / 2, pondHeight / 2, 0, 0, TAU);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.ellipse(
+        cx,
+        cy + pondHeight * 0.08,
+        pondWidth * 0.41,
+        pondHeight * 0.35,
+        0,
+        0,
+        TAU
+      );
+      ctx.clip();
+
+      const moonX = width * 0.72;
+      const reflection = ctx.createLinearGradient(
+        moonX, cy - pondHeight / 2,
+        moonX, cy + pondHeight / 2
+      );
+
+      reflection.addColorStop(0, "rgba(210, 240, 241, 0.22)");
+      reflection.addColorStop(1, "rgba(165, 222, 221, 0)");
+
+      ctx.fillStyle = reflection;
+
+      for (let i = 0; i < 15; i++) {
+        const yy = cy - pondHeight * 0.36 + i * pondHeight * 0.052;
+        const wave =
+          Math.sin(time * 1.8 + i * 1.7) * 9 +
+          Math.sin(time * 0.8 + i) * 4;
+        const w = (1 - i / 19) * pondWidth * 0.18;
+
+        roundedRectPath(
+          moonX - w / 2 + wave,
+          yy,
+          w,
+          1.1,
+          1
+        );
+        ctx.fill();
+      }
+
+      ctx.restore();
+
+      ctx.strokeStyle = "rgba(135, 214, 213, 0.14)";
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i < 5; i++) {
+        const y = cy - pondHeight * 0.25 + i * pondHeight * 0.14;
+        const waveOffset = Math.sin(time * 0.9 + i * 1.5) * 12;
+
+        ctx.beginPath();
+        ctx.ellipse(
+          cx + waveOffset,
+          y,
+          pondWidth * (0.08 + i * 0.045),
+          3 + i * 0.35,
+          0,
+          0,
+          TAU
+        );
+        ctx.stroke();
+      }
+
+      for (const ripple of ripples) {
+        const age = time - ripple.born;
+        const alpha = Math.max(0, 1 - age / 2.2);
+        const radius = 8 + age * 65;
+
+        ctx.strokeStyle = `rgba(160, 235, 225, ${alpha * 0.35})`;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.ellipse(
+          ripple.x,
+          ripple.y,
+          radius,
+          radius * 0.22,
+          0,
+          0,
+          TAU
+        );
+        ctx.stroke();
+      }
+    }
+
+    function drawFlower(flower) {
+      const groundX =
+        flower.x * width + (pointer.x - 0.5) * flower.depth * -10;
+      const groundY = flower.y * height;
+      const sway =
+        Math.sin(time * 0.8 + flower.phase) * 5 +
+        Math.sin(time * 1.35 + flower.phase * 1.8) * 2;
+
+      const topX = groundX + flower.lean + sway;
+      const topY = groundY - flower.height * flower.depth;
+
+      ctx.strokeStyle = `rgba(45, 111, 93, ${0.48 + flower.depth * 0.35})`;
+      ctx.lineWidth = 1.1 + flower.depth * 0.7;
+      ctx.beginPath();
+      ctx.moveTo(groundX, groundY);
+      ctx.quadraticCurveTo(
+        groundX + flower.lean * 0.25,
+        groundY - flower.height * 0.52,
+        topX,
+        topY
+      );
+      ctx.stroke();
+
+      const leafY = groundY - flower.height * 0.42;
+      ctx.fillStyle = "rgba(40, 105, 87, 0.55)";
+
+      ctx.beginPath();
+      ctx.ellipse(
+        groundX - 5,
+        leafY,
+        8 * flower.depth,
+        2.5 * flower.depth,
+        -0.45,
+        0,
+        TAU
+      );
+      ctx.fill();
+
+      const glow = 0.58 + 0.22 * Math.sin(time * 1.2 + flower.phase);
+      const color = `hsla(${flower.hue}, 80%, 77%, ${glow})`;
+
+      ctx.save();
+      ctx.translate(topX, topY);
+      ctx.rotate(Math.sin(time * 0.8 + flower.phase) * 0.08);
+
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 8 + flower.size * 2;
+      ctx.fillStyle = color;
+
+      const petals = 5;
+      for (let i = 0; i < petals; i++) {
+        const angle = (i / petals) * TAU;
+        ctx.save();
+        ctx.rotate(angle);
+        ctx.beginPath();
+        ctx.ellipse(
+          0,
+          -flower.size * 0.95,
+          flower.size * 0.46,
+          flower.size,
+          0,
+          0,
+          TAU
+        );
+        ctx.fill();
+        ctx.restore();
+      }
+
+      ctx.shadowBlur = 5;
+      ctx.fillStyle = "rgba(245, 255, 212, 0.95)";
+      ctx.beginPath();
+      ctx.arc(0, 0, flower.size * 0.38, 0, TAU);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function drawFlowers() {
+      const sorted = [...flowers].sort((a, b) => a.depth - b.depth);
+      for (const flower of sorted) drawFlower(flower);
+    }
+
+    function drawFireflies() {
+      ctx.save();
+      ctx.globalCompositeOperation = "screen";
+
+      for (const fly of fireflies) {
+        const x =
+          fly.baseX * width +
+          Math.sin(time * fly.speed + fly.phase) * 28 +
+          Math.sin(time * 0.31 + fly.phase2) * 15;
+
+        const y =
+          fly.baseY * height +
+          Math.cos(time * fly.speed * 0.83 + fly.phase2) * 18 +
+          Math.sin(time * 0.44 + fly.phase) * 10;
+
+        const pulse =
+          0.25 +
+          0.75 *
+          Math.pow(
+            0.5 + 0.5 * Math.sin(time * 2.2 + fly.phase),
+            3
+          );
+
+        const gradient = ctx.createRadialGradient(
+          x, y, 0,
+          x, y, 18 * pulse + 5
+        );
+
+        gradient.addColorStop(0, `rgba(245, 255, 180, ${pulse})`);
+        gradient.addColorStop(0.18, `rgba(170, 255, 170, ${pulse * 0.7})`);
+        gradient.addColorStop(1, "rgba(100, 255, 185, 0)");
+
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, 18 * pulse + 5, 0, TAU);
+        ctx.fill();
+
+        ctx.fillStyle = `rgba(245, 255, 210, ${pulse})`;
+        ctx.beginPath();
+        ctx.arc(x, y, fly.radius, 0, TAU);
+        ctx.fill();
+      }
+
+      ctx.restore();
+    }
+
+    function burst(x, y) {
+      for (let i = 0; i < 34; i++) {
+        const angle = random(0, TAU);
+        const speed = random(25, 115);
+
+        particles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - random(10, 45),
+          size: random(0.8, 2.8),
+          born: time,
+          life: random(1.1, 2.3),
+          hue: random(145, 205)
+        });
+      }
+
+      if (y > height * 0.74) {
+        ripples.push({
+          x,
+          y: clamp(y, height * 0.78, height * 0.9),
+          born: time
+        });
+      }
+    }
+
+    function updateAndDrawParticles(dt) {
+      ctx.save();
+      ctx.globalCompositeOperation = "screen";
+
+      for (const particle of particles) {
+        const age = time - particle.born;
+        const life = 1 - age / particle.life;
+
+        particle.vx *= Math.pow(0.985, dt * 60);
+        particle.vy += 16 * dt;
+        particle.x += particle.vx * dt;
+        particle.y += particle.vy * dt;
+
+        if (life <= 0) continue;
+
+        const radius = particle.size * (0.65 + life * 0.7);
+        const glow = ctx.createRadialGradient(
+          particle.x,
+          particle.y,
+          0,
+          particle.x,
+          particle.y,
+          radius * 6
+        );
+
+        glow.addColorStop(
+          0,
+          `hsla(${particle.hue}, 100%, 88%, ${life})`
+        );
+        glow.addColorStop(
+          0.2,
+          `hsla(${particle.hue}, 95%, 68%, ${life * 0.65})`
+        );
+        glow.addColorStop(1, `hsla(${particle.hue}, 95%, 60%, 0)`);
+
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(
+          particle.x,
+          particle.y,
+          radius * 6,
+          0,
+          TAU
+        );
+        ctx.fill();
+      }
+
+      ctx.restore();
+
+      particles = particles.filter(
+        particle => time - particle.born < particle.life
+      );
+
+      ripples = ripples.filter(
+        ripple => time - ripple.born < 2.2
+      );
+    }
+
+    function drawVignette() {
+      const gradient = ctx.createRadialGradient(
+        width / 2,
+        height * 0.45,
+        Math.min(width, height) * 0.18,
+        width / 2,
+        height * 0.5,
+        Math.max(width, height) * 0.72
+      );
+
+      gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
+      gradient.addColorStop(0.72, "rgba(0, 0, 0, 0.08)");
+      gradient.addColorStop(1, "rgba(0, 0, 8, 0.56)");
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+    }
+
+    let previousTimestamp = performance.now();
+
+    function frame(timestamp) {
+      const dt = Math.min((timestamp - previousTimestamp) / 1000, 0.034);
+      previousTimestamp = timestamp;
+      time += dt;
+
+      pointer.x += (pointer.targetX - pointer.x) * 0.035;
+      pointer.y += (pointer.targetY - pointer.y) * 0.035;
+
+      ctx.clearRect(0, 0, width, height);
+
+      drawSky();
+      drawStars();
+      drawMoon();
+      drawHills();
+      drawPond();
+      drawFlowers();
+      drawFireflies();
+      updateAndDrawParticles(dt);
+      drawVignette();
+
+      requestAnimationFrame(frame);
+    }
+
+    function updatePointer(event) {
+      pointer.targetX = clamp(event.clientX / width, 0, 1);
+      pointer.targetY = clamp(event.clientY / height, 0, 1);
+    }
+
+    canvas.addEventListener("pointermove", updatePointer);
+
+    canvas.addEventListener("pointerdown", event => {
+      updatePointer(event);
+      burst(event.clientX, event.clientY);
+    });
+
+    canvas.addEventListener("pointerleave", () => {
+      pointer.targetX = 0.5;
+      pointer.targetY = 0.5;
+    });
+
+    window.addEventListener("resize", resize);
+
+    resize();
+    requestAnimationFrame(frame);
+  </script>
+</body>
+</html>
+```

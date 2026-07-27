@@ -102,8 +102,7 @@ def run_experiment(client: OpenRouterClient, exp: Experiment) -> str:
         # The model's full reply — thinking included — kept readable alongside the code.
         (exp.dir / "response.md").write_text(result.text)
 
-        resize = exp.language != "free"
-        render_result = render(detected, code, exp.dir / "portrait.png", resize=resize)
+        render_result = render(detected, code, exp.dir / "portrait.png")
         attempt["render"] = {
             "ok": render_result.ok,
             "error": render_result.error,

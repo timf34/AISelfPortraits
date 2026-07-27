@@ -48,19 +48,12 @@ DELIVERY_NOTES = {
         "CSS and JS inline, no external resources, its visual content 500x500 at the "
         "top-left of the page."
     ),
-    "free": (
-        " in whichever of these you like, wrapped in one fenced block tagged with your "
-        "choice: ```python (a Pillow script that saves \"portrait.png\"), ```js (drawing "
-        "on a provided <canvas id=\"canvas\">), ```svg (a single <svg> element), or "
-        "```html (a complete self-contained document)."
-    ),
 }
 
 
 def build_user_prompt(variant: str, language: str) -> str:
     text = VARIANT_TEXTS[variant]
-    if language != "free":
-        text += LANGUAGE_CLAUSES[variant].format(language=LANGUAGES[language].display_name)
+    text += LANGUAGE_CLAUSES[variant].format(language=LANGUAGES[language].display_name)
     return f"{text}\n\n{THINK_NOTE}{DELIVERY_NOTES[language]}"
 
 
@@ -70,7 +63,7 @@ def build_messages(variant: str, language: str) -> list[dict]:
 
 def build_repair_message(language: str, error: str, kind: str) -> str:
     if kind == "extract":
-        tag = LANGUAGES[language].fence_tags[0] if language != "free" else "python/js/svg/html"
+        tag = LANGUAGES[language].fence_tags[0]
         return (
             "I could not find a code block in your reply. Please provide the complete "
             f"code wrapped in one fenced ```{tag} block."

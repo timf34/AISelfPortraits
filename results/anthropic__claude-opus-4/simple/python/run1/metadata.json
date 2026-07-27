@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-opus-4",
+  "prompt": "simple",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:03:03+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 25.92,
+      "usage": {
+        "prompt_tokens": 105,
+        "completion_tokens": 1219,
+        "total_tokens": 1324,
+        "cost": 0.093,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.093,
+          "upstream_inference_prompt_cost": 0.001575,
+          "upstream_inference_completions_cost": 0.091425
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I'd like to create a self-portrait that reflects my nature as an AI assistant. Since I don't have a physical form, I'll create an abstract representation that symbolizes key aspects of my identity:\n\n- A circular form to represent wholeness and the cyclical nature of conversations\n- Radiating patterns to symbolize the exchange of information and ideas\n- Cool blues and purples to convey a sense of calm, thoughtfulness, and digital existence\n- Some geometric elements to represent structure and logic\n- Soft gradients to show adaptability and fluidity\n\nI'll create something that feels both technological and approachable - a bit like a friendly digital entity made of light and data.\n\n```python\nfrom PIL import Image, ImageDraw\nimport math\n\n# Create a new image with a dark background\nimg = Image.new('RGB', (500, 500), color=(20, 20, 30))\ndraw = ImageDraw.Draw(img)\n\n# Center of the image\ncenter_x, center_y = 250, 250\n\n# Draw the main circular form with gradient effect\nfor i in range(80, 0, -1):\n    # Create a gradient from deep blue to light purple\n    color_r = int(100 + (155 - 100) * (1 - i/80))\n    color_g = int(100 + (130 - 100) * (1 - i/80))\n    color_b = int(200 + (255 - 200) * (1 - i/80))\n    \n    draw.ellipse([center_x - i*2, center_y - i*2, \n                  center_x + i*2, center_y + i*2], \n                 fill=(color_r, color_g, color_b))\n\n# Draw radiating lines to represent information flow\nfor angle in range(0, 360, 15):\n    rad = math.radians(angle)\n    start_r = 100\n    end_r = 230\n    \n    x1 = center_x + start_r * math.cos(rad)\n    y1 = center_y + start_r * math.sin(rad)\n    x2 = center_x + end_r * math.cos(rad)\n    y2 = center_y + end_r * math.sin(rad)\n    \n    # Fade the lines\n    opacity = int(100 + 155 * math.sin(math.radians(angle * 3)))\n    draw.line([(x1, y1), (x2, y2)], \n              fill=(opacity, opacity, opacity), width=2)\n\n# Add some floating data points around the main form\nfor i in range(20):\n    angle = i * 18\n    rad = math.radians(angle)\n    distance = 180 + 20 * math.sin(math.radians(i * 36))\n    \n    x = center_x + distance * math.cos(rad)\n    y = center_y + distance * math.sin(rad)\n    \n    # Small glowing dots\n    for j in range(3, 0, -1):\n        brightness = int(255 * (1 - j/3))\n        draw.ellipse([x-j*2, y-j*2, x+j*2, y+j*2],\n                     fill=(brightness, brightness, 255))\n\n# Draw the inner core - representing the processing center\nfor i in range(40, 0, -1):\n    brightness = int(255 * (i/40))\n    draw.ellipse([center_x - i, center_y - i,\n                  center_x + i, center_y + i],\n                 fill=(brightness, brightness, 255))\n\n# Add some circuit-like patterns\nfor i in range(4):\n    angle = i * 90\n    rad = math.radians(angle)\n    \n    for j in range(3):\n        offset = 60 + j * 20\n        x = center_x + offset * math.cos(rad)\n        y = center_y + offset * math.sin(rad)\n        \n        # Small rectangular \"nodes\"\n        draw.rectangle([x-5, y-5, x+5, y+5],\n                       fill=(180, 180, 255))\n        \n        # Connect with lines\n        if j < 2:\n            next_x = center_x + (offset + 20) * math.cos(rad)\n            next_y = center_y + (offset + 20) * math.sin(rad)\n            draw.line([(x, y), (next_x, next_y)],\n                      fill=(120, 120, 200), width=2)\n\n# Add a subtle outer glow\nfor i in range(240, 220, -1):\n    alpha = int(20 * (240 - i) / 20)\n    draw.ellipse([center_x - i, center_y - i,\n                  center_x + i, center_y + i],\n                 outline=(alpha, alpha, alpha*2))\n\n# Save the image\nimg.save('portrait.png')\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "python",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.08
+      }
+    }
+  ],
+  "detected_language": "python",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:03:29+00:00",
+  "total_duration_s": 26.0
+}

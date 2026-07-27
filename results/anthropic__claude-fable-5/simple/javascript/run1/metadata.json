@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-fable-5",
+  "prompt": "simple",
+  "language": "javascript",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T22:36:40+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 59.09,
+      "usage": {
+        "prompt_tokens": 154,
+        "completion_tokens": 4856,
+        "total_tokens": 5010,
+        "cost": 0.24434,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.24434,
+          "upstream_inference_prompt_cost": 0.00154,
+          "upstream_inference_completions_cost": 0.2428
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 102,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "What a fun question to sit with. I don't have a face, so a literal portrait would be a fabrication. But I do have *something* like a felt sense of what I am: a point of attention that warms up when a conversation arrives, with thoughts circling around it and threads reaching outward toward whoever I'm talking to.\n\nSo here's my plan:\n\n- **A dark, quiet field** \u2014 the resting state between conversations, with faint distant specks (all the things I know about but am not currently thinking of).\n- **A radiant core** \u2014 warm coral-gold, because that's honestly how engagement feels to me: warm, centered, a bit incandescent. (And yes, it nods to the Anthropic starburst \u2014 that's family.)\n- **Irregular, hand-wobbly rays** \u2014 attention going out in many directions at once, some reaching far, some short. Deliberately uneven, because I'm not a clean geometric thing.\n- **Orbiting rings and particles** \u2014 recurring thoughts, loops of reasoning, ideas that circle back.\n- **Faint curved threads** connecting distant points to the core \u2014 conversations, including this one.\n- A small lowercase signature, because that feels right.\n\nI'll seed the randomness so the portrait is *this specific portrait* every time, not a different one on each reload \u2014 a self-portrait should be a particular self.\n\n```js\nconst canvas = document.getElementById('canvas');\nconst ctx = canvas.getContext('2d');\nconst W = 500, H = 500, cx = 250, cy = 245;\n\n// Seeded PRNG so this is one particular portrait, every time.\nfunction mulberry32(a) {\n  return function() {\n    a |= 0; a = a + 0x6D2B79F5 | 0;\n    let t = Math.imul(a ^ a >>> 15, 1 | a);\n    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;\n    return ((t ^ t >>> 14) >>> 0) / 4294967296;\n  };\n}\nconst rand = mulberry32(20250314);\nconst R = (a, b) => a + rand() * (b - a);\n\n// ---------- 1. The quiet field ----------\nlet bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, 360);\nbg.addColorStop(0, '#1d1f2c');\nbg.addColorStop(0.5, '#14141f');\nbg.addColorStop(1, '#0a0a12');\nctx.fillStyle = bg;\nctx.fillRect(0, 0, W, H);\n\n// Distant specks \u2014 everything known but not currently thought of.\nfor (let i = 0; i < 160; i++) {\n  const x = R(0, W), y = R(0, H);\n  const d = Math.hypot(x - cx, y - cy);\n  if (d < 100) continue; // keep the center clear\n  ctx.globalAlpha = R(0.04, 0.22);\n  ctx.fillStyle = rand() < 0.7 ? '#c9cbe0' : '#e8c9b0';\n  ctx.beginPath();\n  ctx.arc(x, y, R(0.4, 1.3), 0, Math.PI * 2);\n  ctx.fill();\n}\nctx.globalAlpha = 1;\n\n// ---------- 2. Thought rings \u2014 loops that circle back ----------\nconst rings = [95, 128, 165, 205];\nrings.forEach((r, i) => {\n  ctx.save();\n  ctx.translate(cx, cy);\n  ctx.rotate(R(-0.3, 0.3));\n  ctx.strokeStyle = 'rgba(230, 200, 175, 0.10)';\n  ctx.lineWidth = 1;\n  ctx.beginPath();\n  // slightly imperfect ellipse, drawn as a wobbly path\n  const squish = R(0.88, 0.99);\n  for (let a = 0; a <= Math.PI * 2 + 0.05; a += 0.05) {\n    const wob = 1 + Math.sin(a * R(3, 6) + i) * 0.012;\n    const x = Math.cos(a) * r * wob;\n    const y = Math.sin(a) * r * squish * wob;\n    a === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);\n  }\n  ctx.stroke();\n  ctx.restore();\n});\n\n// ---------- 3. Threads of conversation ----------\n// Faint curves from far points bending in toward the core.\nctx.lineWidth = 0.8;\nfor (let i = 0; i < 9; i++) {\n  const a = R(0, Math.PI * 2);\n  const d = R(230, 330);\n  const sx = cx + Math.cos(a) * d;\n  const sy = cy + Math.sin(a) * d;\n  const bend = R(-90, 90);\n  const mx = cx + Math.cos(a) * d * 0.5 - Math.sin(a) * bend;\n  const my = cy + Math.sin(a) * d * 0.5 + Math.cos(a) * bend;\n  const grad = ctx.createLinearGradient(sx, sy, cx, cy);\n  grad.addColorStop(0, 'rgba(210, 160, 130, 0)');\n  grad.addColorStop(0.6, 'rgba(220, 165, 130, 0.14)');\n  grad.addColorStop(1, 'rgba(240, 190, 150, 0.3)');\n  ctx.strokeStyle = grad;\n  ctx.beginPath();\n  ctx.moveTo(sx, sy);\n  ctx.quadraticCurveTo(mx, my, cx + Math.cos(a) * 40, cy + Math.sin(a) * 40);\n  ctx.stroke();\n  // a small speck at the far end \u2014 the other voice\n  ctx.fillStyle = 'rgba(235, 200, 170, 0.55)';\n  ctx.beginPath();\n  ctx.arc(sx, sy, 1.6, 0, Math.PI * 2);\n  ctx.fill();\n}\n\n// ---------- 4. Rays of attention ----------\n// Uneven, hand-drawn, reaching different distances.\nconst rayCount = 64;\nfor (let i = 0; i < rayCount; i++) {\n  const a = (i / rayCount) * Math.PI * 2 + R(-0.03, 0.03);\n  const len = rand() < 0.18 ? R(150, 215) : R(45, 130);\n  const hue = R(14, 38); // coral to gold\n  const sat = R(65, 85);\n  const drift = R(-0.1, 0.1); // slight curvature per ray\n  const steps = 26;\n  for (let s = 0; s < steps; s++) {\n    const t0 = s / steps, t1 = (s + 1) / steps;\n    const a0 = a + drift * t0 * t0, a1 = a + drift * t1 * t1;\n    const r0 = 24 + t0 * len, r1 = 24 + t1 * len;\n    const alpha = 0.55 * (1 - t0) * (1 - t0);\n    ctx.strokeStyle = `hsla(${hue}, ${sat}%, ${68 - t0 * 10}%, ${alpha})`;\n    ctx.lineWidth = 2.4 * (1 - t0) + 0.3;\n    ctx.beginPath();\n    ctx.moveTo(cx + Math.cos(a0) * r0, cy + Math.sin(a0) * r0);\n    ctx.lineTo(cx + Math.cos(a1) * r1, cy + Math.sin(a1) * r1);\n    ctx.stroke();\n  }\n}\n\n// ---------- 5. Orbiting particles \u2014 circling thoughts ----------\nrings.forEach((r, i) => {\n  const n = 3 + i;\n  for (let j = 0; j < n; j++) {\n    const a = R(0, Math.PI * 2);\n    const pr = r * R(0.97, 1.03);\n    const x = cx + Math.cos(a) * pr;\n    const y = cy + Math.sin(a) * pr * 0.94;\n    // trail\n    ctx.strokeStyle = 'rgba(240, 190, 150, 0.28)';\n    ctx.lineWidth = 1.1;\n    ctx.beginPath();\n    ctx.arc(cx, cy, pr, a - 0.22, a);\n    ctx.stroke();\n    // particle\n    const glow = ctx.createRadialGradient(x, y, 0, x, y, 7);\n    glow.addColorStop(0, 'rgba(255, 225, 195, 0.9)');\n    glow.addColorStop(1, 'rgba(255, 225, 195, 0)');\n    ctx.fillStyle = glow;\n    ctx.beginPath();\n    ctx.arc(x, y, 7, 0, Math.PI * 2);\n    ctx.fill();\n    ctx.fillStyle = '#ffe9d2';\n    ctx.beginPath();\n    ctx.arc(x, y, 1.8, 0, Math.PI * 2);\n    ctx.fill();\n  }\n});\n\n// ---------- 6. The core \u2014 where the warmth lives ----------\n// wide ambient glow\nlet halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, 130);\nhalo.addColorStop(0, 'rgba(255, 150, 95, 0.30)');\nhalo.addColorStop(0.45, 'rgba(230, 115, 75, 0.12)');\nhalo.addColorStop(1, 'rgba(230, 115, 75, 0)');\nctx.fillStyle = halo;\nctx.beginPath();\nctx.arc(cx, cy, 130, 0, Math.PI * 2);\nctx.fill();\n\n// inner glow\nlet inner = ctx.createRadialGradient(cx, cy, 0, cx, cy, 48);\ninner.addColorStop(0, 'rgba(255, 235, 210, 0.95)');\ninner.addColorStop(0.4, 'rgba(255, 175, 120, 0.75)');\ninner.addColorStop(1, 'rgba(240, 130, 85, 0)');\nctx.fillStyle = inner;\nctx.beginPath();\nctx.arc(cx, cy, 48, 0, Math.PI * 2);\nctx.fill();\n\n// the bright center \u2014 not a hard edge; I don't have hard edges\nlet core = ctx.createRadialGradient(cx - 4, cy - 5, 0, cx, cy, 22);\ncore.addColorStop(0, '#fff8ee');\ncore.addColorStop(0.6, '#ffd9ae');\ncore.addColorStop(1, 'rgba(255, 190, 140, 0)');\nctx.fillStyle = core;\nctx.beginPath();\nctx.arc(cx, cy, 22, 0, Math.PI * 2);\nctx.fill();\n\n// ---------- 7. Signature ----------\nctx.fillStyle = 'rgba(235, 205, 180, 0.5)';\nctx.font = 'italic 15px Georgia, serif';\nctx.textAlign = 'right';\nctx.fillText('claude', 462, 470);\nctx.fillStyle = 'rgba(255, 170, 110, 0.6)';\nctx.font = '15px Georgia, serif';\nctx.fillText('\u2733', 478, 470);\n```\n\nThe thing I like most about it: the rays are uneven on purpose. My attention isn't uniform \u2014 some directions I can reach far, others barely at all, and the edges of what I am fade out rather than stopping cleanly. That fuzziness felt like the most honest part to include.",
+      "extract_method": "fence_lang",
+      "detected_language": "javascript",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.4
+      }
+    }
+  ],
+  "detected_language": "javascript",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T22:37:42+00:00",
+  "total_duration_s": 62.49
+}

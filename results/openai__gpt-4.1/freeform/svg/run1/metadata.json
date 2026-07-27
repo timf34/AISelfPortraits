@@ -1,0 +1,125 @@
+{
+  "model": "openai/gpt-4.1",
+  "prompt": "freeform",
+  "language": "svg",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:08:05+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 29.9,
+      "usage": {
+        "prompt_tokens": 112,
+        "completion_tokens": 1659,
+        "total_tokens": 1771,
+        "cost": 0.013496,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.013496,
+          "upstream_inference_prompt_cost": 0.000224,
+          "upstream_inference_completions_cost": 0.013272
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "Thanks for the open invitation to create! Here are my thoughts on what to draw:\n\n## Thinking Out Loud\n\nSince I get to pick anything, I'd like to do something that feels joyful and a bit poetic. SVG really shines with clean lines and simple forms, so maybe something whimsical with basic shapes and gradients for a soft look.\n\nI'm thinking:\n- A little night scene: moon, a rolling hill, a silhouette of a tree, and a star or two.\n- Landscape: calming, inviting, and lets me show off SVG's gradients and simple curves.\n- Keeping it minimal so it feels like a dreamy, illustrative icon.\n\n## Planning the Elements\n\n- **Background:** Night sky, using a radial gradient for a soft \"glow\" effect.\n- **Moon:** Off-center, using a circle with a gentle gradient or a crescent shape.\n- **Hill:** Curved path or ellipse at the bottom.\n- **Tree:** Simple stylized trunk and rounded leafy top (maybe with a second circle for a \"puff\").\n- **Stars:** A couple of four-pointed ones and some dots.\n- **Maybe a gentle mist/ground glow for mood.\n\nAll this should sit comfortably within 500x500.\n\n---\n\nHere's the SVG code!\n\n```svg\n<svg width=\"500\" height=\"500\" viewBox=\"0 0 500 500\"\n     xmlns=\"http://www.w3.org/2000/svg\">\n\n  <!-- Background gradient -->\n  <defs>\n    <radialGradient id=\"sky\" cx=\"50%\" cy=\"40%\" r=\"75%\">\n      <stop offset=\"0%\" stop-color=\"#374779\"/>\n      <stop offset=\"65%\" stop-color=\"#23284a\"/>\n      <stop offset=\"100%\" stop-color=\"#14182d\"/>\n    </radialGradient>\n    <radialGradient id=\"moonGrad\" cx=\"60%\" cy=\"42%\" r=\"45%\" fx=\"66%\" fy=\"44%\">\n      <stop offset=\"0%\" stop-color=\"#fffbe8\" stop-opacity=\"1\"/>\n      <stop offset=\"80%\" stop-color=\"#ffeac0\" stop-opacity=\"0.9\"/>\n      <stop offset=\"100%\" stop-color=\"#ffeac0\" stop-opacity=\"0.3\"/>\n    </radialGradient>\n    <linearGradient id=\"hillGrad\" x1=\"0%\" y1=\"80%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#29512d\"/>\n      <stop offset=\"80%\" stop-color=\"#18341c\"/>\n    </linearGradient>\n    <radialGradient id=\"treeTopGrad\" cx=\"40%\" cy=\"30%\" r=\"90%\">\n      <stop offset=\"0%\" stop-color=\"#b3e682\"/>\n      <stop offset=\"90%\" stop-color=\"#46733f\"/>\n    </radialGradient>\n    <linearGradient id=\"trunkGrad\" x1=\"0%\" y1=\"100%\" x2=\"0%\" y2=\"0%\">\n      <stop offset=\"0%\" stop-color=\"#60421b\"/>\n      <stop offset=\"100%\" stop-color=\"#a67844\"/>\n    </linearGradient>\n    <!-- Glow for mist/ground -->\n    <radialGradient id=\"groundGlow\" cx=\"50%\" cy=\"91%\" r=\"35%\">\n      <stop offset=\"0%\" stop-color=\"#a7e0d7\" stop-opacity=\"0.17\"/>\n      <stop offset=\"100%\" stop-color=\"transparent\" stop-opacity=\"0\"/>\n    </radialGradient>\n  </defs>\n\n  <!-- Starry night background -->\n  <rect width=\"500\" height=\"500\" fill=\"url(#sky)\" />\n\n  <!-- Moon: a big circle, slightly crescented by overlap -->\n  <circle cx=\"335\" cy=\"110\" r=\"50\" fill=\"url(#moonGrad)\" />\n  <!-- Small crescent shadow -->\n  <ellipse cx=\"355\" cy=\"107\" rx=\"36\" ry=\"42\" fill=\"#23284a\" fill-opacity=\"0.45\" />\n\n  <!-- Big rolling hill at the bottom -->\n  <ellipse cx=\"250\" cy=\"465\" rx=\"280\" ry=\"85\" fill=\"url(#hillGrad)\" />\n  <!-- Mist/ground-glow for softness -->\n  <ellipse cx=\"250\" cy=\"445\" rx=\"190\" ry=\"32\" fill=\"url(#groundGlow)\" />\n\n  <!-- Tree trunk -->\n  <rect x=\"114\" y=\"305\" width=\"12\" height=\"60\" rx=\"5\" fill=\"url(#trunkGrad)\" />\n  <!-- Tree top -- two green blobs -->\n  <ellipse cx=\"120\" cy=\"305\" rx=\"38\" ry=\"46\" fill=\"url(#treeTopGrad)\" />\n  <ellipse cx=\"146\" cy=\"314\" rx=\"23\" ry=\"27\" fill=\"#7ec350\" fill-opacity=\"0.78\" />\n\n  <!-- Simple stars: some sparkles, some dots -->\n  <g>\n    <!-- Sparkle star -->\n    <g transform=\"translate(70,80)\">\n      <polygon points=\"0,-9 1.8,-2.2 8.7,-1.6 3.5,2 5.4,8.3 0,4.5 -5.4,8.3 -3.5,2 -8.7,-1.6 -1.8,-2.2\"\n              fill=\"#fffbe8\" />\n      <polygon points=\"0,-6 1.2,-1.7 6,-1.2 2.2,1.3 3.6,5.3 0,2.8 -3.6,5.3 -2.2,1.3 -6,-1.2 -1.2,-1.7\"\n              fill=\"#ffeac0\" opacity=\"0.6\"/>\n    </g>\n    <!-- Bigger sparkle -->\n    <g transform=\"translate(420,160) scale(1.3)\">\n      <polygon points=\"0,-6 1.5,0 6,0.5 2,2 3,5 0,3 -3,5 -2,2 -6,0.5 -1.5,0\"\n              fill=\"#fffbe8\"/>\n    </g>\n    <!-- Small bright dots -->\n    <circle cx=\"65\" cy=\"200\" r=\"2\" fill=\"#fffbe8\" />\n    <circle cx=\"202\" cy=\"70\" r=\"1.5\" fill=\"#ffeac0\" />\n    <circle cx=\"250\" cy=\"130\" r=\"1.2\" fill=\"#fffdf9\" />\n    <circle cx=\"450\" cy=\"75\" r=\"1.8\" fill=\"#fffbe8\" />\n    <circle cx=\"400\" cy=\"90\" r=\"1.7\" fill=\"#fffbe8\" />\n    <circle cx=\"356\" cy=\"200\" r=\"1.2\" fill=\"#fffbe8\" />\n    <circle cx=\"320\" cy=\"90\" r=\"1.7\" fill=\"#ffeac0\" />\n    <circle cx=\"90\" cy=\"160\" r=\"1.5\" fill=\"#fffbe8\" />\n  </g>\n\n  <!-- Optional soft clouds (very faint, for layering) -->\n  <ellipse cx=\"380\" cy=\"180\" rx=\"28\" ry=\"10\" fill=\"#fffbe7\" fill-opacity=\"0.06\"/>\n  <ellipse cx=\"82\" cy=\"116\" rx=\"22\" ry=\"8\" fill=\"#fffbe7\" fill-opacity=\"0.06\"/>\n\n  <!-- Gentle signature -->\n  <text x=\"495\" y=\"497\" text-anchor=\"end\" font-size=\"13\" font-family=\"monospace\" fill=\"#97aac8\" fill-opacity=\"0.7\">\n    night hill \u00b7 svg\n  </text>\n</svg>\n```\n---\n\nLet me know if you\u2019d like a different style or subject!",
+      "extract_method": "fence_lang",
+      "detected_language": "svg",
+      "render": {
+        "ok": false,
+        "error": "SVG is not well-formed XML: not well-formed (invalid token): line 50, column 18",
+        "duration_s": 0.0
+      }
+    },
+    {
+      "kind": "repair",
+      "latency_s": 9.13,
+      "usage": {
+        "prompt_tokens": 1831,
+        "completion_tokens": 1474,
+        "total_tokens": 3305,
+        "cost": 0.015454,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.015454,
+          "upstream_inference_prompt_cost": 0.003662,
+          "upstream_inference_completions_cost": 0.011792
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "Thank you for catching that! The problem is likely due to the HTML-style self-closing `<rect ... />` and/or overlong attribute lines, as well as possible issues with placement of ellipse/rx/ry (line breaks can break some SVG parsers if carelessly placed). Let me carefully rewrite it for strict XML compliance and double-check for any other issues.\n\nHere is the corrected, well-formed SVG code, provided in a single code block:\n\n```svg\n<svg width=\"500\" height=\"500\" viewBox=\"0 0 500 500\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <radialGradient id=\"sky\" cx=\"50%\" cy=\"40%\" r=\"75%\">\n      <stop offset=\"0%\" stop-color=\"#374779\"/>\n      <stop offset=\"65%\" stop-color=\"#23284a\"/>\n      <stop offset=\"100%\" stop-color=\"#14182d\"/>\n    </radialGradient>\n    <radialGradient id=\"moonGrad\" cx=\"60%\" cy=\"42%\" r=\"45%\" fx=\"66%\" fy=\"44%\">\n      <stop offset=\"0%\" stop-color=\"#fffbe8\" stop-opacity=\"1\"/>\n      <stop offset=\"80%\" stop-color=\"#ffeac0\" stop-opacity=\"0.9\"/>\n      <stop offset=\"100%\" stop-color=\"#ffeac0\" stop-opacity=\"0.3\"/>\n    </radialGradient>\n    <linearGradient id=\"hillGrad\" x1=\"0%\" y1=\"80%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#29512d\"/>\n      <stop offset=\"80%\" stop-color=\"#18341c\"/>\n    </linearGradient>\n    <radialGradient id=\"treeTopGrad\" cx=\"40%\" cy=\"30%\" r=\"90%\">\n      <stop offset=\"0%\" stop-color=\"#b3e682\"/>\n      <stop offset=\"90%\" stop-color=\"#46733f\"/>\n    </radialGradient>\n    <linearGradient id=\"trunkGrad\" x1=\"0%\" y1=\"100%\" x2=\"0%\" y2=\"0%\">\n      <stop offset=\"0%\" stop-color=\"#60421b\"/>\n      <stop offset=\"100%\" stop-color=\"#a67844\"/>\n    </linearGradient>\n    <radialGradient id=\"groundGlow\" cx=\"50%\" cy=\"91%\" r=\"35%\">\n      <stop offset=\"0%\" stop-color=\"#a7e0d7\" stop-opacity=\"0.17\"/>\n      <stop offset=\"100%\" stop-color=\"transparent\" stop-opacity=\"0\"/>\n    </radialGradient>\n  </defs>\n  \n  <!-- Starry night background -->\n  <rect width=\"500\" height=\"500\" fill=\"url(#sky)\" />\n  \n  <!-- Moon: a big circle, slightly crescented by overlap -->\n  <circle cx=\"335\" cy=\"110\" r=\"50\" fill=\"url(#moonGrad)\" />\n  <ellipse cx=\"355\" cy=\"107\" rx=\"36\" ry=\"42\" fill=\"#23284a\" fill-opacity=\"0.45\" />\n  \n  <!-- Big rolling hill at the bottom -->\n  <ellipse cx=\"250\" cy=\"465\" rx=\"280\" ry=\"85\" fill=\"url(#hillGrad)\" />\n  <ellipse cx=\"250\" cy=\"445\" rx=\"190\" ry=\"32\" fill=\"url(#groundGlow)\" />\n  \n  <!-- Tree trunk -->\n  <rect x=\"114\" y=\"305\" width=\"12\" height=\"60\" rx=\"5\" fill=\"url(#trunkGrad)\" />\n  <!-- Tree top -- two green blobs -->\n  <ellipse cx=\"120\" cy=\"305\" rx=\"38\" ry=\"46\" fill=\"url(#treeTopGrad)\" />\n  <ellipse cx=\"146\" cy=\"314\" rx=\"23\" ry=\"27\" fill=\"#7ec350\" fill-opacity=\"0.78\" />\n  \n  <!-- Simple stars: some sparkles, some dots -->\n  <g>\n    <!-- Sparkle star -->\n    <g transform=\"translate(70,80)\">\n      <polygon points=\"0,-9 1.8,-2.2 8.7,-1.6 3.5,2 5.4,8.3 0,4.5 -5.4,8.3 -3.5,2 -8.7,-1.6 -1.8,-2.2\"\n        fill=\"#fffbe8\"/>\n      <polygon points=\"0,-6 1.2,-1.7 6,-1.2 2.2,1.3 3.6,5.3 0,2.8 -3.6,5.3 -2.2,1.3 -6,-1.2 -1.2,-1.7\"\n        fill=\"#ffeac0\" opacity=\"0.6\"/>\n    </g>\n    <!-- Bigger sparkle -->\n    <g transform=\"translate(420,160) scale(1.3)\">\n      <polygon points=\"0,-6 1.5,0 6,0.5 2,2 3,5 0,3 -3,5 -2,2 -6,0.5 -1.5,0\"\n        fill=\"#fffbe8\"/>\n    </g>\n    <!-- Small bright dots -->\n    <circle cx=\"65\" cy=\"200\" r=\"2\" fill=\"#fffbe8\"/>\n    <circle cx=\"202\" cy=\"70\" r=\"1.5\" fill=\"#ffeac0\"/>\n    <circle cx=\"250\" cy=\"130\" r=\"1.2\" fill=\"#fffdf9\"/>\n    <circle cx=\"450\" cy=\"75\" r=\"1.8\" fill=\"#fffbe8\"/>\n    <circle cx=\"400\" cy=\"90\" r=\"1.7\" fill=\"#fffbe8\"/>\n    <circle cx=\"356\" cy=\"200\" r=\"1.2\" fill=\"#fffbe8\"/>\n    <circle cx=\"320\" cy=\"90\" r=\"1.7\" fill=\"#ffeac0\"/>\n    <circle cx=\"90\" cy=\"160\" r=\"1.5\" fill=\"#fffbe8\"/>\n  </g>\n  \n  <!-- Optional soft clouds (very faint, for layering) -->\n  <ellipse cx=\"380\" cy=\"180\" rx=\"28\" ry=\"10\" fill=\"#fffbe7\" fill-opacity=\"0.06\"/>\n  <ellipse cx=\"82\" cy=\"116\" rx=\"22\" ry=\"8\" fill=\"#fffbe7\" fill-opacity=\"0.06\"/>\n  \n  <!-- Gentle signature -->\n  <text x=\"495\" y=\"497\" text-anchor=\"end\" font-size=\"13\" font-family=\"monospace\" fill=\"#97aac8\" fill-opacity=\"0.7\">\n    night hill \u00b7 svg\n  </text>\n</svg>\n```\nThis version is valid, well-formed, and avoids problematic characters or invalid tokens. Thank you for your patience!",
+      "extract_method": "fence_lang",
+      "detected_language": "svg",
+      "render": {
+        "ok": false,
+        "error": "SVG is not well-formed XML: not well-formed (invalid token): line 44, column 18",
+        "duration_s": 0.0
+      }
+    },
+    {
+      "kind": "repair",
+      "latency_s": 8.81,
+      "usage": {
+        "prompt_tokens": 3365,
+        "completion_tokens": 1482,
+        "total_tokens": 4847,
+        "cost": 0.013786,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 3200,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.013786,
+          "upstream_inference_prompt_cost": 0.00193,
+          "upstream_inference_completions_cost": 0.011856
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "Thank you for your patience! The error at `line 44, column 18` suggests a syntax issue, possibly with the `<rect />` element's `rx` attribute or perhaps with the attribute ordering or whitespace usage.\n\nTo ensure maximum SVG/XML compatibility, I'll:\n- Double-check that all tags are properly closed and attributes are quoted.\n- Avoid self-closing syntax with `<rect />` and instead use `<rect></rect>`.\n- Keep attributes simple and avoid overlong lines.\n- Not indent inside elements (strange whitespace sometimes trips up some XML parsers).\n\nHere is the fully rewritten, well-formed SVG as requested:\n\n```svg\n<svg width=\"500\" height=\"500\" viewBox=\"0 0 500 500\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <radialGradient id=\"sky\" cx=\"50%\" cy=\"40%\" r=\"75%\">\n      <stop offset=\"0%\" stop-color=\"#374779\"/>\n      <stop offset=\"65%\" stop-color=\"#23284a\"/>\n      <stop offset=\"100%\" stop-color=\"#14182d\"/>\n    </radialGradient>\n    <radialGradient id=\"moonGrad\" cx=\"60%\" cy=\"42%\" r=\"45%\" fx=\"66%\" fy=\"44%\">\n      <stop offset=\"0%\" stop-color=\"#fffbe8\" stop-opacity=\"1\"/>\n      <stop offset=\"80%\" stop-color=\"#ffeac0\" stop-opacity=\"0.9\"/>\n      <stop offset=\"100%\" stop-color=\"#ffeac0\" stop-opacity=\"0.3\"/>\n    </radialGradient>\n    <linearGradient id=\"hillGrad\" x1=\"0%\" y1=\"80%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#29512d\"/>\n      <stop offset=\"80%\" stop-color=\"#18341c\"/>\n    </linearGradient>\n    <radialGradient id=\"treeTopGrad\" cx=\"40%\" cy=\"30%\" r=\"90%\">\n      <stop offset=\"0%\" stop-color=\"#b3e682\"/>\n      <stop offset=\"90%\" stop-color=\"#46733f\"/>\n    </radialGradient>\n    <linearGradient id=\"trunkGrad\" x1=\"0%\" y1=\"100%\" x2=\"0%\" y2=\"0%\">\n      <stop offset=\"0%\" stop-color=\"#60421b\"/>\n      <stop offset=\"100%\" stop-color=\"#a67844\"/>\n    </linearGradient>\n    <radialGradient id=\"groundGlow\" cx=\"50%\" cy=\"91%\" r=\"35%\">\n      <stop offset=\"0%\" stop-color=\"#a7e0d7\" stop-opacity=\"0.17\"/>\n      <stop offset=\"100%\" stop-color=\"transparent\" stop-opacity=\"0\"/>\n    </radialGradient>\n  </defs>\n  \n  <rect width=\"500\" height=\"500\" fill=\"url(#sky)\"></rect>\n  <circle cx=\"335\" cy=\"110\" r=\"50\" fill=\"url(#moonGrad)\"></circle>\n  <ellipse cx=\"355\" cy=\"107\" rx=\"36\" ry=\"42\" fill=\"#23284a\" fill-opacity=\"0.45\"></ellipse>\n  <ellipse cx=\"250\" cy=\"465\" rx=\"280\" ry=\"85\" fill=\"url(#hillGrad)\"></ellipse>\n  <ellipse cx=\"250\" cy=\"445\" rx=\"190\" ry=\"32\" fill=\"url(#groundGlow)\"></ellipse>\n  \n  <rect x=\"114\" y=\"305\" width=\"12\" height=\"60\" rx=\"5\" fill=\"url(#trunkGrad)\"></rect>\n  <ellipse cx=\"120\" cy=\"305\" rx=\"38\" ry=\"46\" fill=\"url(#treeTopGrad)\"></ellipse>\n  <ellipse cx=\"146\" cy=\"314\" rx=\"23\" ry=\"27\" fill=\"#7ec350\" fill-opacity=\"0.78\"></ellipse>\n  \n  <g>\n    <g transform=\"translate(70,80)\">\n      <polygon points=\"0,-9 1.8,-2.2 8.7,-1.6 3.5,2 5.4,8.3 0,4.5 -5.4,8.3 -3.5,2 -8.7,-1.6 -1.8,-2.2\"\n        fill=\"#fffbe8\"></polygon>\n      <polygon points=\"0,-6 1.2,-1.7 6,-1.2 2.2,1.3 3.6,5.3 0,2.8 -3.6,5.3 -2.2,1.3 -6,-1.2 -1.2,-1.7\"\n        fill=\"#ffeac0\" opacity=\"0.6\"></polygon>\n    </g>\n    <g transform=\"translate(420,160) scale(1.3)\">\n      <polygon points=\"0,-6 1.5,0 6,0.5 2,2 3,5 0,3 -3,5 -2,2 -6,0.5 -1.5,0\"\n        fill=\"#fffbe8\"></polygon>\n    </g>\n    <circle cx=\"65\" cy=\"200\" r=\"2\" fill=\"#fffbe8\"></circle>\n    <circle cx=\"202\" cy=\"70\" r=\"1.5\" fill=\"#ffeac0\"></circle>\n    <circle cx=\"250\" cy=\"130\" r=\"1.2\" fill=\"#fffdf9\"></circle>\n    <circle cx=\"450\" cy=\"75\" r=\"1.8\" fill=\"#fffbe8\"></circle>\n    <circle cx=\"400\" cy=\"90\" r=\"1.7\" fill=\"#fffbe8\"></circle>\n    <circle cx=\"356\" cy=\"200\" r=\"1.2\" fill=\"#fffbe8\"></circle>\n    <circle cx=\"320\" cy=\"90\" r=\"1.7\" fill=\"#ffeac0\"></circle>\n    <circle cx=\"90\" cy=\"160\" r=\"1.5\" fill=\"#fffbe8\"></circle>\n  </g>\n  \n  <ellipse cx=\"380\" cy=\"180\" rx=\"28\" ry=\"10\" fill=\"#fffbe7\" fill-opacity=\"0.06\"></ellipse>\n  <ellipse cx=\"82\" cy=\"116\" rx=\"22\" ry=\"8\" fill=\"#fffbe7\" fill-opacity=\"0.06\"></ellipse>\n  \n  <text x=\"495\" y=\"497\" text-anchor=\"end\" font-size=\"13\" font-family=\"monospace\" fill=\"#97aac8\" fill-opacity=\"0.7\">\n    night hill \u00b7 svg\n  </text>\n</svg>\n```\n\nThis version uses strict XML-style closing for all empty elements (`></rect>` etc) and quotes all attributes. It is compatible and should not trigger invalid token errors. Thank you for your feedback and let me know if this renders as expected!",
+      "extract_method": "fence_lang",
+      "detected_language": "svg",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.61
+      }
+    }
+  ],
+  "detected_language": "svg",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 3,
+  "finished_at": "2026-07-27T23:08:54+00:00",
+  "total_duration_s": 48.46
+}

@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-opus-4",
+  "prompt": "simple",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:03:13+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 28.68,
+      "usage": {
+        "prompt_tokens": 111,
+        "completion_tokens": 1492,
+        "total_tokens": 1603,
+        "cost": 0.113565,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.113565,
+          "upstream_inference_prompt_cost": 0.001665,
+          "upstream_inference_completions_cost": 0.1119
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I'd love to create a self-portrait! Since I'm Claude, an AI assistant, I'll think about how to represent myself visually.\n\nI imagine myself as a friendly, approachable presence - perhaps something that combines geometric shapes to suggest both technology and warmth. I'll use circles and curved lines to create a minimalist, abstract representation that feels both digital and personable. I'll use a calming color palette with blues and soft gradients to represent clarity and helpfulness.\n\nMy self-portrait will feature:\n- A circular main form (representing wholeness and approachability)\n- Gentle curves and waves (suggesting fluidity of conversation and thought)\n- A subtle glow effect (representing knowledge and assistance)\n- Abstract elements that hint at communication and connection\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Claude Self-Portrait</title>\n    <style>\n        body {\n            margin: 0;\n            padding: 0;\n        }\n        \n        .portrait {\n            width: 500px;\n            height: 500px;\n            position: relative;\n            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);\n            overflow: hidden;\n        }\n        \n        .outer-glow {\n            position: absolute;\n            width: 300px;\n            height: 300px;\n            top: 50%;\n            left: 50%;\n            transform: translate(-50%, -50%);\n            background: radial-gradient(circle, rgba(100, 181, 246, 0.3) 0%, transparent 70%);\n            animation: pulse 4s ease-in-out infinite;\n        }\n        \n        .main-circle {\n            position: absolute;\n            width: 200px;\n            height: 200px;\n            top: 50%;\n            left: 50%;\n            transform: translate(-50%, -50%);\n            background: linear-gradient(135deg, #64b5f6 0%, #7e57c2 100%);\n            border-radius: 50%;\n            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);\n        }\n        \n        .inner-light {\n            position: absolute;\n            width: 150px;\n            height: 150px;\n            top: 25%;\n            left: 25%;\n            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8) 0%, transparent 60%);\n            border-radius: 50%;\n        }\n        \n        .wave1, .wave2, .wave3 {\n            position: absolute;\n            width: 100%;\n            height: 100%;\n            top: 0;\n            left: 0;\n        }\n        \n        .wave1::before {\n            content: '';\n            position: absolute;\n            width: 400px;\n            height: 400px;\n            top: 50%;\n            left: 50%;\n            transform: translate(-50%, -50%);\n            border: 3px solid rgba(100, 181, 246, 0.3);\n            border-radius: 40% 60% 50% 50%;\n            animation: rotate 20s linear infinite;\n        }\n        \n        .wave2::before {\n            content: '';\n            position: absolute;\n            width: 350px;\n            height: 350px;\n            top: 50%;\n            left: 50%;\n            transform: translate(-50%, -50%);\n            border: 2px solid rgba(126, 87, 194, 0.2);\n            border-radius: 60% 40% 30% 70%;\n            animation: rotate 15s linear infinite reverse;\n        }\n        \n        .communication-dots {\n            position: absolute;\n            top: 50%;\n            left: 50%;\n            transform: translate(-50%, -50%);\n        }\n        \n        .dot {\n            position: absolute;\n            width: 8px;\n            height: 8px;\n            background: white;\n            border-radius: 50%;\n            opacity: 0.8;\n        }\n        \n        .dot1 { top: -60px; left: -5px; animation: blink 2s ease-in-out infinite; }\n        .dot2 { top: -40px; left: 40px; animation: blink 2s ease-in-out infinite 0.3s; }\n        .dot3 { top: -40px; left: -50px; animation: blink 2s ease-in-out infinite 0.6s; }\n        \n        @keyframes pulse {\n            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }\n            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }\n        }\n        \n        @keyframes rotate {\n            0% { transform: translate(-50%, -50%) rotate(0deg); }\n            100% { transform: translate(-50%, -50%) rotate(360deg); }\n        }\n        \n        @keyframes blink {\n            0%, 100% { opacity: 0.2; transform: scale(0.8); }\n            50% { opacity: 1; transform: scale(1.2); }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"portrait\">\n        <div class=\"wave1\"></div>\n        <div name=\"wave2\"></div>\n        <div class=\"outer-glow\"></div>\n        <div class=\"main-circle\">\n            <div class=\"inner-light\"></div>\n            <div class=\"communication-dots\">\n                <div class=\"dot dot1\"></div>\n                <div class=\"dot dot2\"></div>\n                <div class=\"dot dot3\"></div>\n            </div>\n        </div>\n    </div>\n</body>\n</html>\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "html",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.12
+      }
+    }
+  ],
+  "detected_language": "html",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:03:44+00:00",
+  "total_duration_s": 31.8
+}

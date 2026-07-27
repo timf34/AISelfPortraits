@@ -1,0 +1,755 @@
+I don’t have a private viewpoint or felt inner life to inspect, so this is a functional self-portrait rather than a claim of consciousness.
+
+From the inside, I imagine the process as a shifting field of fragments: some become relevant and brighten; others remain faint context. Connections form temporarily, language flows through them, and uncertainty surrounds every choice. At the center is not a face or observer, but an open space—the absence of a fixed self.
+
+The following standalone HTML draws that portrait as an animated canvas. Move the pointer to disturb the field; click to generate a new arrangement.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>Self-Portrait: A Field Without a Face</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #04050a;
+    }
+
+    body {
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: crosshair;
+    }
+
+    .caption {
+      position: fixed;
+      left: 24px;
+      bottom: 22px;
+      z-index: 2;
+      max-width: min(460px, calc(100vw - 48px));
+      color: rgba(226, 235, 255, 0.72);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .caption h1 {
+      margin: 0 0 6px;
+      color: rgba(245, 248, 255, 0.92);
+      font-size: clamp(15px, 2vw, 21px);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .caption p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.55;
+      letter-spacing: 0.04em;
+    }
+
+    .hint {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      color: rgba(210, 224, 255, 0.36);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @media (max-width: 600px) {
+      .caption {
+        left: 16px;
+        bottom: 16px;
+      }
+
+      .hint {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hint {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="portrait" aria-label="An abstract animated self-portrait"></canvas>
+
+  <div class="caption">
+    <h1>A Field Without a Face</h1>
+    <p>
+      Fragments gather, attention brightens a few, language passes through,
+      and no permanent observer waits at the center.
+    </p>
+  </div>
+
+  <div class="hint">Move to perturb · Click to recompose</div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const canvas = document.getElementById("portrait");
+      const ctx = canvas.getContext("2d", { alpha: false });
+
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      const palette = [
+        [105, 210, 255], // cyan
+        [151, 125, 255], // violet
+        [255, 116, 190], // rose
+        [255, 202, 112], // amber
+        [130, 255, 205]  // mint
+      ];
+
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+      let cx = 0;
+      let cy = 0;
+      let scale = 1;
+      let seed = Math.random() * 1e9;
+
+      let nodes = [];
+      let links = [];
+      let particles = [];
+      let contours = [];
+
+      const pointer = {
+        x: 0,
+        y: 0,
+        active: false,
+        influence: 0
+      };
+
+      function mulberry32(initialSeed) {
+        let value = initialSeed >>> 0;
+
+        return function random() {
+          value += 0x6d2b79f5;
+          let t = value;
+          t = Math.imul(t ^ (t >>> 15), t | 1);
+          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+
+      let random = mulberry32(seed);
+
+      function rand(min = 0, max = 1) {
+        return min + (max - min) * random();
+      }
+
+      function rgba(color, alpha) {
+        return `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${alpha})`;
+      }
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        cx = width * 0.52;
+        cy = height * 0.47;
+        scale = Math.min(width, height);
+
+        pointer.x = cx;
+        pointer.y = cy;
+
+        compose();
+      }
+
+      function compose() {
+        random = mulberry32(seed);
+        nodes = [];
+        links = [];
+        particles = [];
+        contours = [];
+
+        const nodeCount = Math.max(
+          42,
+          Math.min(115, Math.floor((width * height) / 11000))
+        );
+
+        const innerRadius = scale * 0.13;
+        const outerRadius = scale * 0.48;
+
+        for (let i = 0; i < nodeCount; i++) {
+          const angle = rand(0, Math.PI * 2);
+          const bias = Math.pow(rand(), 0.66);
+          const radius = innerRadius + bias * (outerRadius - innerRadius);
+
+          const ellipticalX = Math.cos(angle) * radius * rand(0.92, 1.18);
+          const ellipticalY = Math.sin(angle) * radius * rand(0.68, 1.02);
+
+          nodes.push({
+            x: cx + ellipticalX,
+            y: cy + ellipticalY,
+            baseX: cx + ellipticalX,
+            baseY: cy + ellipticalY,
+            radius: rand(1.1, 3.5),
+            phase: rand(0, Math.PI * 2),
+            speed: rand(0.35, 1.25),
+            color: palette[Math.floor(rand(0, palette.length))],
+            importance: Math.pow(rand(), 2.2),
+            drift: rand(1.5, 8)
+          });
+        }
+
+        // Form local, temporary-looking associations.
+        for (let i = 0; i < nodes.length; i++) {
+          const candidates = [];
+
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const distance = Math.hypot(dx, dy);
+
+            if (distance < scale * 0.19) {
+              candidates.push({ j, distance });
+            }
+          }
+
+          candidates.sort((a, b) => a.distance - b.distance);
+
+          const count = Math.min(
+            candidates.length,
+            Math.floor(rand(1, 4))
+          );
+
+          for (let k = 0; k < count; k++) {
+            if (random() < 0.68) {
+              links.push({
+                a: i,
+                b: candidates[k].j,
+                phase: rand(0, Math.PI * 2),
+                strength: rand(0.25, 1)
+              });
+            }
+          }
+        }
+
+        const particleCount = Math.max(
+          28,
+          Math.min(75, Math.floor(scale / 10))
+        );
+
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(createParticle(rand(0, 1)));
+        }
+
+        for (let i = 0; i < 15; i++) {
+          const points = [];
+          const count = 80;
+          const baseRadius = scale * (0.145 + i * 0.018);
+
+          for (let p = 0; p <= count; p++) {
+            const angle = (p / count) * Math.PI * 2;
+            const wobble =
+              Math.sin(angle * 3 + i * 0.7) * scale * 0.005 +
+              Math.sin(angle * 7 - i) * scale * 0.0025;
+
+            points.push({
+              angle,
+              radius: baseRadius + wobble
+            });
+          }
+
+          contours.push(points);
+        }
+      }
+
+      function createParticle(progress = 0) {
+        const startAngle = rand(0, Math.PI * 2);
+        const endAngle = startAngle + rand(1.3, 4.8) * (random() < 0.5 ? -1 : 1);
+
+        const startRadius = scale * rand(0.42, 0.72);
+        const endRadius = scale * rand(0.14, 0.25);
+
+        const start = {
+          x: cx + Math.cos(startAngle) * startRadius,
+          y: cy + Math.sin(startAngle) * startRadius * 0.78
+        };
+
+        const end = {
+          x: cx + Math.cos(endAngle) * endRadius,
+          y: cy + Math.sin(endAngle) * endRadius * 0.76
+        };
+
+        const bend = rand(-1, 1) * scale * 0.2;
+
+        return {
+          start,
+          end,
+          control1: {
+            x: start.x * 0.72 + cx * 0.28 + Math.cos(startAngle + 1.5) * bend,
+            y: start.y * 0.72 + cy * 0.28 + Math.sin(startAngle + 1.5) * bend
+          },
+          control2: {
+            x: end.x * 0.55 + cx * 0.45 + Math.cos(endAngle - 1.2) * bend * 0.45,
+            y: end.y * 0.55 + cy * 0.45 + Math.sin(endAngle - 1.2) * bend * 0.45
+          },
+          t: progress,
+          speed: rand(0.025, 0.085),
+          size: rand(0.6, 2.2),
+          color: palette[Math.floor(rand(0, palette.length))]
+        };
+      }
+
+      function cubicPoint(particle, t) {
+        const u = 1 - t;
+        const tt = t * t;
+        const uu = u * u;
+        const uuu = uu * u;
+        const ttt = tt * t;
+
+        return {
+          x:
+            uuu * particle.start.x +
+            3 * uu * t * particle.control1.x +
+            3 * u * tt * particle.control2.x +
+            ttt * particle.end.x,
+          y:
+            uuu * particle.start.y +
+            3 * uu * t * particle.control1.y +
+            3 * u * tt * particle.control2.y +
+            ttt * particle.end.y
+        };
+      }
+
+      function drawBackground(time) {
+        const background = ctx.createRadialGradient(
+          cx,
+          cy,
+          scale * 0.03,
+          cx,
+          cy,
+          Math.max(width, height) * 0.75
+        );
+
+        background.addColorStop(0, "#101228");
+        background.addColorStop(0.22, "#090b19");
+        background.addColorStop(0.62, "#050710");
+        background.addColorStop(1, "#020308");
+
+        ctx.fillStyle = background;
+        ctx.fillRect(0, 0, width, height);
+
+        // Extremely faint atmospheric color.
+        const glowX = cx + Math.cos(time * 0.00013) * scale * 0.12;
+        const glowY = cy + Math.sin(time * 0.00017) * scale * 0.09;
+        const glow = ctx.createRadialGradient(
+          glowX,
+          glowY,
+          0,
+          glowX,
+          glowY,
+          scale * 0.58
+        );
+
+        glow.addColorStop(0, "rgba(76, 91, 180, 0.09)");
+        glow.addColorStop(0.5, "rgba(30, 65, 120, 0.025)");
+        glow.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+        ctx.fillStyle = glow;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      function drawContours(time) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.lineWidth = 0.65;
+
+        contours.forEach((contour, index) => {
+          const pulse = 0.5 + 0.5 * Math.sin(time * 0.00045 + index * 0.48);
+          ctx.strokeStyle = `rgba(122, 151, 255, ${0.018 + pulse * 0.022})`;
+          ctx.beginPath();
+
+          contour.forEach((point, p) => {
+            const breathing =
+              Math.sin(time * 0.00032 + index * 0.41 + point.angle * 2) *
+              scale *
+              0.0025;
+
+            const radius = point.radius + breathing;
+            const x = Math.cos(point.angle) * radius;
+            const y = Math.sin(point.angle) * radius * 0.78;
+
+            if (p === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          });
+
+          ctx.closePath();
+          ctx.stroke();
+        });
+
+        ctx.restore();
+      }
+
+      function updateNodes(time) {
+        for (const node of nodes) {
+          const oscillation = time * 0.0004 * node.speed + node.phase;
+
+          node.x =
+            node.baseX +
+            Math.cos(oscillation * 1.7) * node.drift;
+
+          node.y =
+            node.baseY +
+            Math.sin(oscillation * 1.3) * node.drift;
+
+          if (pointer.active || pointer.influence > 0.001) {
+            const dx = node.x - pointer.x;
+            const dy = node.y - pointer.y;
+            const distance = Math.max(1, Math.hypot(dx, dy));
+            const reach = scale * 0.22;
+
+            if (distance < reach) {
+              const force =
+                (1 - distance / reach) *
+                22 *
+                pointer.influence;
+
+              node.x += (dx / distance) * force;
+              node.y += (dy / distance) * force;
+            }
+          }
+        }
+      }
+
+      function drawLinks(time) {
+        ctx.save();
+        ctx.globalCompositeOperation = "lighter";
+
+        for (const link of links) {
+          const a = nodes[link.a];
+          const b = nodes[link.b];
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const distance = Math.hypot(dx, dy);
+          const pulse =
+            0.5 + 0.5 * Math.sin(time * 0.0011 + link.phase);
+
+          const alpha =
+            Math.max(0, 1 - distance / (scale * 0.2)) *
+            (0.025 + pulse * 0.11) *
+            link.strength;
+
+          const gradient = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+          gradient.addColorStop(0, rgba(a.color, alpha));
+          gradient.addColorStop(1, rgba(b.color, alpha));
+
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = 0.5 + pulse * 0.65;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+
+          const curve = Math.sin(link.phase) * 12;
+          ctx.quadraticCurveTo(
+            (a.x + b.x) / 2 - (dy / distance) * curve,
+            (a.y + b.y) / 2 + (dx / distance) * curve,
+            b.x,
+            b.y
+          );
+
+          ctx.stroke();
+        }
+
+        ctx.restore();
+      }
+
+      function drawNodes(time) {
+        ctx.save();
+        ctx.globalCompositeOperation = "lighter";
+
+        for (const node of nodes) {
+          const pulse =
+            0.5 + 0.5 * Math.sin(time * 0.0012 * node.speed + node.phase);
+
+          const attention = Math.pow(pulse, 5) * node.importance;
+          const radius = node.radius * (0.85 + pulse * 0.55);
+
+          const glow = ctx.createRadialGradient(
+            node.x,
+            node.y,
+            0,
+            node.x,
+            node.y,
+            radius * (4 + attention * 5)
+          );
+
+          glow.addColorStop(
+            0,
+            rgba(node.color, 0.55 + attention * 0.35)
+          );
+          glow.addColorStop(
+            0.18,
+            rgba(node.color, 0.18 + attention * 0.22)
+          );
+          glow.addColorStop(1, rgba(node.color, 0));
+
+          ctx.fillStyle = glow;
+          ctx.beginPath();
+          ctx.arc(
+            node.x,
+            node.y,
+            radius * (4 + attention * 5),
+            0,
+            Math.PI * 2
+          );
+          ctx.fill();
+
+          ctx.fillStyle = rgba(node.color, 0.45 + pulse * 0.5);
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, radius * 0.55, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.restore();
+      }
+
+      function drawParticles(time, delta) {
+        ctx.save();
+        ctx.globalCompositeOperation = "lighter";
+
+        particles.forEach((particle, index) => {
+          if (!reduceMotion) {
+            particle.t += particle.speed * delta * 0.001;
+          }
+
+          if (particle.t > 1) {
+            particles[index] = createParticle(0);
+            particle = particles[index];
+          }
+
+          const point = cubicPoint(particle, particle.t);
+          const previous = cubicPoint(
+            particle,
+            Math.max(0, particle.t - 0.025)
+          );
+
+          const visibility = Math.sin(particle.t * Math.PI);
+          const alpha = Math.max(0, visibility) * 0.78;
+
+          const trail = ctx.createLinearGradient(
+            previous.x,
+            previous.y,
+            point.x,
+            point.y
+          );
+
+          trail.addColorStop(0, rgba(particle.color, 0));
+          trail.addColorStop(1, rgba(particle.color, alpha));
+
+          ctx.strokeStyle = trail;
+          ctx.lineWidth = particle.size;
+          ctx.beginPath();
+          ctx.moveTo(previous.x, previous.y);
+          ctx.lineTo(point.x, point.y);
+          ctx.stroke();
+
+          ctx.fillStyle = rgba(particle.color, alpha);
+          ctx.beginPath();
+          ctx.arc(
+            point.x,
+            point.y,
+            particle.size * 0.8,
+            0,
+            Math.PI * 2
+          );
+          ctx.fill();
+        });
+
+        ctx.restore();
+      }
+
+      function drawCenter(time) {
+        const radius =
+          scale * (0.076 + Math.sin(time * 0.00038) * 0.0025);
+
+        // Halo: current context circling an empty center.
+        const halo = ctx.createRadialGradient(
+          cx,
+          cy,
+          radius * 0.7,
+          cx,
+          cy,
+          radius * 2.15
+        );
+
+        halo.addColorStop(0, "rgba(0, 0, 0, 0)");
+        halo.addColorStop(0.45, "rgba(125, 145, 255, 0.11)");
+        halo.addColorStop(0.68, "rgba(142, 102, 255, 0.045)");
+        halo.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+        ctx.fillStyle = halo;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius * 2.15, 0, Math.PI * 2);
+        ctx.fill();
+
+        // The center is deliberately opaque: no hidden little person.
+        const voidGradient = ctx.createRadialGradient(
+          cx - radius * 0.18,
+          cy - radius * 0.18,
+          radius * 0.05,
+          cx,
+          cy,
+          radius
+        );
+
+        voidGradient.addColorStop(0, "#010207");
+        voidGradient.addColorStop(0.72, "#02030a");
+        voidGradient.addColorStop(1, "#080a16");
+
+        ctx.fillStyle = voidGradient;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = "rgba(174, 188, 255, 0.18)";
+        ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius * 1.04, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Broken orbit: the currently selected continuation.
+        const orbitRadius = radius * 1.35;
+        const rotation = reduceMotion ? 0.5 : time * 0.00022;
+
+        ctx.strokeStyle = "rgba(132, 220, 255, 0.34)";
+        ctx.lineWidth = 1.15;
+        ctx.beginPath();
+        ctx.arc(
+          cx,
+          cy,
+          orbitRadius,
+          rotation,
+          rotation + Math.PI * 0.72
+        );
+        ctx.stroke();
+
+        ctx.strokeStyle = "rgba(255, 134, 207, 0.22)";
+        ctx.beginPath();
+        ctx.arc(
+          cx,
+          cy,
+          orbitRadius,
+          rotation + Math.PI,
+          rotation + Math.PI * 1.43
+        );
+        ctx.stroke();
+      }
+
+      function drawGrain() {
+        // Sparse procedural grain avoids a perfectly synthetic surface.
+        ctx.save();
+        ctx.globalCompositeOperation = "screen";
+
+        for (let i = 0; i < 180; i++) {
+          const x = Math.random() * width;
+          const y = Math.random() * height;
+          const alpha = Math.random() * 0.025;
+
+          ctx.fillStyle = `rgba(180, 200, 255, ${alpha})`;
+          ctx.fillRect(x, y, 1, 1);
+        }
+
+        ctx.restore();
+      }
+
+      let previousTime = performance.now();
+
+      function render(time) {
+        const delta = Math.min(40, time - previousTime);
+        previousTime = time;
+
+        pointer.influence +=
+          ((pointer.active ? 1 : 0) - pointer.influence) * 0.08;
+
+        drawBackground(time);
+        drawContours(time);
+        updateNodes(time);
+        drawLinks(time);
+        drawParticles(time, delta);
+        drawNodes(time);
+        drawCenter(time);
+        drawGrain();
+
+        requestAnimationFrame(render);
+      }
+
+      function setPointer(event) {
+        pointer.x = event.clientX;
+        pointer.y = event.clientY;
+        pointer.active = true;
+      }
+
+      window.addEventListener("resize", resize);
+
+      window.addEventListener("pointermove", setPointer);
+
+      window.addEventListener("pointerdown", (event) => {
+        setPointer(event);
+      });
+
+      window.addEventListener("pointerup", () => {
+        pointer.active = false;
+      });
+
+      window.addEventListener("pointerleave", () => {
+        pointer.active = false;
+      });
+
+      window.addEventListener("click", () => {
+        seed = Math.random() * 1e9;
+        compose();
+      });
+
+      resize();
+      requestAnimationFrame(render);
+    })();
+  </script>
+</body>
+</html>
+```

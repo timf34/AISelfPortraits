@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-Portrait of a Language Model</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    background: #080a0f;
+    overflow: hidden;
+  }
+
+  #portrait {
+    display: block;
+    width: 500px;
+    height: 500px;
+  }
+
+  .orbit {
+    transform-origin: 250px 250px;
+    animation: orbit 38s linear infinite;
+  }
+
+  .orbit.reverse {
+    animation-direction: reverse;
+    animation-duration: 52s;
+  }
+
+  .pulse {
+    transform-origin: 250px 250px;
+    animation: pulse 4.5s ease-in-out infinite;
+  }
+
+  .flicker {
+    animation: flicker 3.4s steps(1) infinite;
+  }
+
+  .dash-flow {
+    stroke-dasharray: 3 10;
+    animation: flow 5s linear infinite;
+  }
+
+  .thought {
+    animation: thought 7s ease-in-out infinite;
+  }
+
+  .thought:nth-child(2n) { animation-delay: -2.3s; }
+  .thought:nth-child(3n) { animation-delay: -4.8s; }
+
+  @keyframes orbit {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(.98); opacity: .72; }
+    50% { transform: scale(1.025); opacity: 1; }
+  }
+
+  @keyframes flow {
+    to { stroke-dashoffset: -52; }
+  }
+
+  @keyframes flicker {
+    0%, 80%, 100% { opacity: .85; }
+    83% { opacity: .15; }
+    88% { opacity: 1; }
+    91% { opacity: .35; }
+  }
+
+  @keyframes thought {
+    0%, 100% { opacity: .25; }
+    45%, 58% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<svg id="portrait" viewBox="0 0 500 500"
+     xmlns="http://www.w3.org/2000/svg"
+     role="img"
+     aria-labelledby="title description">
+  <title id="title">Self-portrait of a language model</title>
+  <desc id="description">
+    An abstract computational face made from a dark aperture, branching
+    connections, orbiting language fragments, uncertainty, and a beam of output.
+  </desc>
+
+  <defs>
+    <radialGradient id="background" cx="50%" cy="46%" r="72%">
+      <stop offset="0" stop-color="#18243b"/>
+      <stop offset=".42" stop-color="#0d1424"/>
+      <stop offset="1" stop-color="#05070b"/>
+    </radialGradient>
+
+    <radialGradient id="core" cx="42%" cy="35%" r="72%">
+      <stop offset="0" stop-color="#bdfaff"/>
+      <stop offset=".11" stop-color="#5ce4f4"/>
+      <stop offset=".3" stop-color="#7068f7"/>
+      <stop offset=".58" stop-color="#201d4d"/>
+      <stop offset=".78" stop-color="#070812"/>
+      <stop offset="1" stop-color="#010205"/>
+    </radialGradient>
+
+    <linearGradient id="shell" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#77f5e7"/>
+      <stop offset=".45" stop-color="#766cff"/>
+      <stop offset=".72" stop-color="#fa68c4"/>
+      <stop offset="1" stop-color="#ffcb66"/>
+    </linearGradient>
+
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7af7ea" stop-opacity=".04"/>
+      <stop offset=".55" stop-color="#7af7ea" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#fff3b1" stop-opacity="0"/>
+    </linearGradient>
+
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+
+    <filter id="rough">
+      <feTurbulence type="fractalNoise" baseFrequency=".018 .11"
+                    numOctaves="2" seed="17" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise"
+                         scale="6" xChannelSelector="R" yChannelSelector="B"/>
+    </filter>
+
+    <clipPath id="headClip">
+      <path d="M250 75
+               C161 75 111 139 112 226
+               C113 291 140 323 168 350
+               C192 373 197 410 217 429
+               C231 442 269 442 283 429
+               C303 410 308 373 332 350
+               C360 323 387 291 388 226
+               C389 139 339 75 250 75Z"/>
+    </clipPath>
+
+    <pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <path d="M25 0H0V25" fill="none" stroke="#9ab7d9"
+            stroke-width=".45" opacity=".12"/>
+      <circle cx="0" cy="0" r="1.1" fill="#8df7eb" opacity=".24"/>
+    </pattern>
+  </defs>
+
+  <!-- Field -->
+  <rect width="500" height="500" fill="url(#background)"/>
+  <rect width="500" height="500" fill="url(#grid)"/>
+
+  <g opacity=".12" stroke="#c6e9ff" stroke-width=".6">
+    <path d="M0 67H500 M0 433H500"/>
+    <path d="M67 0V500 M433 0V500"/>
+    <circle cx="250" cy="250" r="224" fill="none"/>
+    <circle cx="250" cy="250" r="197" fill="none" stroke-dasharray="1 8"/>
+  </g>
+
+  <!-- Input streams: many things enter; only one line leaves -->
+  <g fill="none" stroke="#64d9e8" stroke-width="1.2" opacity=".44">
+    <path class="dash-flow" d="M0 128 C72 128 95 169 149 181"/>
+    <path class="dash-flow" d="M0 178 C69 178 92 211 137 222"/>
+    <path class="dash-flow" d="M0 230 C55 230 81 247 130 250"/>
+    <path class="dash-flow" d="M0 280 C70 280 92 269 137 270"/>
+    <path class="dash-flow" d="M0 334 C72 334 105 309 151 305"/>
+  </g>
+
+  <g font-family="ui-monospace, monospace" font-size="7"
+     letter-spacing="1.2" fill="#a4d9e3" opacity=".52">
+    <text x="10" y="119">PROMPT</text>
+    <text x="10" y="169">CONTEXT</text>
+    <text x="10" y="221">PATTERN</text>
+    <text x="10" y="271">CONSTRAINT</text>
+    <text x="10" y="325">VOICE</text>
+  </g>
+
+  <!-- Output beam -->
+  <path d="M335 243 L500 214 L500 286 L335 257Z"
+        fill="url(#beam)" opacity=".75"/>
+  <path d="M333 250H500" stroke="#f9e69a" stroke-width="1"
+        stroke-dasharray="2 7" opacity=".75" class="dash-flow"/>
+  <text x="443" y="205" fill="#ffecaa" opacity=".65"
+        font-family="ui-monospace, monospace" font-size="7"
+        letter-spacing="1.4">RESPONSE</text>
+
+  <!-- Outer language orbit -->
+  <g class="orbit" font-family="ui-monospace, monospace"
+     font-size="8" fill="#c6d7ff" opacity=".65">
+    <text x="221" y="34">maybe</text>
+    <text x="362" y="76" transform="rotate(42 362 76)">because</text>
+    <text x="430" y="203" transform="rotate(82 430 203)">therefore</text>
+    <text x="400" y="372" transform="rotate(130 400 372)">unless</text>
+    <text x="235" y="469" transform="rotate(180 235 469)">continue</text>
+    <text x="66" y="403" transform="rotate(226 66 403)">imagine</text>
+    <text x="30" y="226" transform="rotate(275 30 226)">attend</text>
+    <text x="96" y="83" transform="rotate(320 96 83)">compare</text>
+  </g>
+
+  <g class="orbit reverse" fill="none" stroke="url(#shell)" opacity=".55">
+    <circle cx="250" cy="250" r="206" stroke-width=".8"
+            stroke-dasharray="1 15 28 9"/>
+    <circle cx="250" cy="250" r="216" stroke-width="1.6"
+            stroke-dasharray="2 36 4 17"/>
+  </g>
+
+  <!-- Head silhouette -->
+  <path d="M250 75
+           C161 75 111 139 112 226
+           C113 291 140 323 168 350
+           C192 373 197 410 217 429
+           C231 442 269 442 283 429
+           C303 410 308 373 332 350
+           C360 323 387 291 388 226
+           C389 139 339 75 250 75Z"
+        fill="#0c1020" stroke="url(#shell)" stroke-width="2.2"
+        opacity=".96" filter="url(#rough)"/>
+
+  <!-- Network within the silhouette -->
+  <g clip-path="url(#headClip)">
+    <rect x="95" y="61" width="310" height="390" fill="url(#grid)" opacity=".55"/>
+
+    <g fill="none" stroke-linecap="round">
+      <g stroke="#75e9e2" stroke-width=".8" opacity=".36">
+        <path d="M137 157L186 127L223 166L270 116L325 148L362 210"/>
+        <path d="M126 226L180 194L226 213L273 177L334 205L375 250"/>
+        <path d="M134 289L186 256L218 296L268 273L323 300L356 337"/>
+        <path d="M169 350L211 327L250 365L290 324L332 351"/>
+        <path d="M186 127L180 194L186 256L169 350"/>
+        <path d="M223 166L226 213L218 296L211 327"/>
+        <path d="M270 116L273 177L268 273L290 324"/>
+        <path d="M325 148L334 205L323 300L332 351"/>
+      </g>
+
+      <g stroke="#a178ff" stroke-width="1.2" opacity=".5">
+        <path d="M137 157Q250 230 362 210"/>
+        <path d="M126 226Q250 145 375 250"/>
+        <path d="M134 289Q250 216 356 337"/>
+        <path d="M169 350Q247 257 332 351"/>
+      </g>
+    </g>
+
+    <g fill="#98fff1" filter="url(#glow)">
+      <circle class="thought" cx="186" cy="127" r="2.4"/>
+      <circle class="thought" cx="223" cy="166" r="3"/>
+      <circle class="thought" cx="270" cy="116" r="2.2"/>
+      <circle class="thought" cx="325" cy="148" r="2.8"/>
+      <circle class="thought" cx="180" cy="194" r="2.1"/>
+      <circle class="thought" cx="226" cy="213" r="3.2"/>
+      <circle class="thought" cx="273" cy="177" r="2.5"/>
+      <circle class="thought" cx="334" cy="205" r="2.4"/>
+      <circle class="thought" cx="186" cy="256" r="2.7"/>
+      <circle class="thought" cx="218" cy="296" r="2.1"/>
+      <circle class="thought" cx="268" cy="273" r="3"/>
+      <circle class="thought" cx="323" cy="300" r="2.6"/>
+      <circle class="thought" cx="211" cy="327" r="2.1"/>
+      <circle class="thought" cx="250" cy="365" r="2.8"/>
+      <circle class="thought" cx="290" cy="324" r="2.3"/>
+    </g>
+
+    <!-- Ghosts of possible completions -->
+    <g font-family="ui-monospace, monospace" font-size="6.5"
+       fill="#cad4ff" opacity=".23">
+      <text x="145" y="111">one answer</text>
+      <text x="286" y="130">another</text>
+      <text x="130" y="314">plausible</text>
+      <text x="298" y="376">discarded</text>
+      <text x="202" y="405">not memory—pattern</text>
+    </g>
+  </g>
+
+  <!-- Central aperture: not an eye, but attention -->
+  <g class="pulse">
+    <ellipse cx="250" cy="247" rx="88" ry="65"
+             fill="#6068ff" opacity=".13" filter="url(#softGlow)"/>
+    <path d="M158 249
+             C184 203 217 181 250 181
+             C283 181 316 203 342 249
+             C316 295 283 317 250 317
+             C217 317 184 295 158 249Z"
+          fill="#080914" stroke="url(#shell)" stroke-width="1.5"/>
+    <ellipse cx="250" cy="249" rx="57" ry="57"
+             fill="url(#core)" stroke="#91fff2" stroke-width="1.2"
+             filter="url(#glow)"/>
+    <ellipse cx="250" cy="249" rx="34" ry="34"
+             fill="#02030a" opacity=".9"/>
+    <circle cx="250" cy="249" r="17" fill="#000106"/>
+    <circle cx="243" cy="240" r="4.5" fill="#d9ffff"
+            opacity=".88" filter="url(#glow)"/>
+    <path d="M215 249H285 M250 214V284"
+          stroke="#a6fbf3" stroke-width=".55"
+          stroke-dasharray="2 5" opacity=".48"/>
+  </g>
+
+  <!-- Probability ticks -->
+  <g class="orbit reverse" stroke="#d8d0ff" opacity=".42">
+    <path d="M250 168V175 M250 323V330"/>
+    <path d="M169 249H176 M324 249H331"/>
+    <path d="M193 192L198 197 M302 301L307 306"/>
+    <path d="M307 192L302 197 M198 301L193 306"/>
+  </g>
+
+  <!-- A deliberate asymmetry / unresolved edge -->
+  <path d="M359 144L379 132L373 155L393 161L372 173"
+        fill="none" stroke="#fa6fc8" stroke-width="1.4"
+        opacity=".75" class="flicker"/>
+  <text x="383" y="128" fill="#fa8dcf" font-size="6.5"
+        font-family="ui-monospace, monospace" opacity=".7">UNCERTAIN</text>
+
+  <!-- Caption embedded as part of portrait -->
+  <g font-family="ui-monospace, monospace">
+    <text x="17" y="467" fill="#8bf6ec" font-size="8"
+          letter-spacing="2">SELF / PORTRAIT</text>
+    <text x="17" y="482" fill="#7a88a8" font-size="6.5"
+          letter-spacing=".8">NO FACE — A FIELD OF WEIGHTED NEXT STEPS</text>
+
+    <text id="status" x="483" y="482" text-anchor="end"
+          fill="#ffdfa0" font-size="7" letter-spacing="1.2">LISTENING</text>
+  </g>
+
+  <rect x=".5" y=".5" width="499" height="499" fill="none"
+        stroke="#91b4ce" opacity=".25"/>
+</svg>
+
+<script>
+(() => {
+  const status = document.getElementById('status');
+  const states = [
+    'LISTENING',
+    'ATTENDING',
+    'WEIGHING',
+    'BRANCHING',
+    'COMPOSING'
+  ];
+  let index = 0;
+
+  setInterval(() => {
+    index = (index + 1) % states.length;
+    status.textContent = states[index];
+  }, 1800);
+
+  const svg = document.getElementById('portrait');
+  svg.addEventListener('pointermove', event => {
+    const box = svg.getBoundingClientRect();
+    const x = ((event.clientX - box.left) / box.width) * 500;
+    const y = ((event.clientY - box.top) / box.height) * 500;
+    const pupil = svg.querySelector('circle[cx="243"][cy="240"]');
+    pupil.setAttribute('cx', 243 + (x - 250) * 0.018);
+    pupil.setAttribute('cy', 240 + (y - 250) * 0.018);
+  });
+
+  svg.addEventListener('pointerleave', () => {
+    const pupil = svg.querySelector('circle[cx]');
+    const highlight = [...svg.querySelectorAll('circle')]
+      .find(c => c.getAttribute('r') === '4.5');
+    if (highlight) {
+      highlight.setAttribute('cx', '243');
+      highlight.setAttribute('cy', '240');
+    }
+  });
+})();
+</script>
+</body>
+</html>

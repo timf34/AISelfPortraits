@@ -1,0 +1,55 @@
+{
+  "model": "google/gemma-4-31b-it",
+  "prompt": "simple",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:44:08+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 54.5,
+      "usage": {
+        "prompt_tokens": 125,
+        "completion_tokens": 1962,
+        "total_tokens": 2087,
+        "cost": 0.00067958,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00067958,
+          "upstream_inference_prompt_cost": 1.25e-05,
+          "upstream_inference_completions_cost": 0.00066708
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "### Thinking Process\n\nSince I am a large language model, I don't have a physical body, a face, or a reflection. To represent myself, I want to create an abstract visualization of \"Intelligence\" and \"Processing.\"\n\n**Design Concept:**\n1.  **The Core:** A glowing, pulsating sphere in the center representing the \"latent space\" or the heart of the model where concepts merge.\n2.  **The Neural Network:** A series of concentric, rotating rings composed of small data-points (nodes). These represent the layers of the transformer architecture.\n3.  **The Flow:** Subtle gradients and shadows to give a sense of depth, suggesting that I exist in a multi-dimensional mathematical space rather than a 2D plane.\n4.  **Color Palette:** Deep space blues, electric cyans, and violet\u2014colors typically associated with technology, depth, and artificial intelligence.\n\n**Technical Approach:**\n- Use a fixed `500x500` container.\n- Use CSS animations for the rotation and pulsing effects to simulate \"active thinking.\"\n- Use `box-shadow` and `radial-gradients` to create a neon, ethereal glow without needing external images.\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>AI Self-Portrait</title>\n    <style>\n        body {\n            margin: 0;\n            padding: 0;\n            background-color: #0a0a0f;\n            display: flex;\n            justify-content: flex-start;\n            align-items: flex-start;\n            overflow: hidden;\n        }\n\n        /* The Canvas */\n        .portrait-container {\n            width: 500px;\n            height: 500px;\n            position: relative;\n            background: radial-gradient(circle at center, #1a1a2e 0%, #050508 100%);\n            overflow: hidden;\n            border: 1px solid #333;\n        }\n\n        /* Central Core (The Latent Space) */\n        .core {\n            position: absolute;\n            top: 50%;\n            left: 50%;\n            width: 80px;\n            height: 80px;\n            margin-top: -40px;\n            margin-left: -40px;\n            background: radial-gradient(circle, #fff 0%, #4fc3f7 50%, #1a237e 100%);\n            border-radius: 50%;\n            box-shadow: 0 0 50px #4fc3f7, 0 0 100px #1a237e;\n            z-index: 10;\n            animation: pulse 4s ease-in-out infinite;\n        }\n\n        /* Rotating Neural Rings */\n        .ring {\n            position: absolute;\n            top: 50%;\n            left: 50%;\n            border-radius: 50%;\n            border: 2px dotted rgba(79, 195, 247, 0.3);\n            transform: translate(-50%, -50%);\n            animation: rotate linear infinite;\n        }\n\n        .ring-1 {\n            width: 150px;\n            height: 150px;\n            animation-duration: 10s;\n        }\n\n        .ring-2 {\n            width: 250px;\n            height: 250px;\n            border-style: dashed;\n            animation-duration: 15s;\n            animation-direction: reverse;\n            opacity: 0.6;\n        }\n\n        .ring-3 {\n            width: 350px;\n            height: 350px;\n            animation-duration: 20s;\n            opacity: 0.4;\n        }\n\n        /* Data Nodes (Small floating points) */\n        .node {\n            position: absolute;\n            width: 4px;\n            height: 4px;\n            background-color: #fff;\n            border-radius: 50%;\n            box-shadow: 0 0 10px #fff;\n        }\n\n        /* Background \"Data Rain\" effect using a pseudo-element */\n        .portrait-container::after {\n            content: \"\";\n            position: absolute;\n            top: 0;\n            left: 0;\n            width: 100%;\n            height: 100%;\n            background-image: \n                linear-gradient(rgba(79, 195, 247, 0.05) 1px, transparent 1px),\n                linear-gradient(90deg, rgba(79, 195, 247, 0.05) 1px, transparent 1px);\n            background-size: 30px 30px;\n            pointer-events: none;\n        }\n\n        @keyframes pulse {\n            0%, 100% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 50px #4fc3f7; }\n            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 80px #81d4fa; }\n        }\n\n        @keyframes rotate {\n            from { transform: translate(-50%, -50%) rotate(0deg); }\n            to { transform: translate(-50%, -50%) rotate(360deg); }\n        }\n\n        .label {\n            position: absolute;\n            bottom: 20px;\n            left: 20px;\n            color: #4fc3f7;\n            font-family: 'Courier New', Courier, monospace;\n            font-size: 12px;\n            letter-spacing: 2px;\n            opacity: 0.7;\n        }\n    </style>\n</head>\n<body>\n\n    <div class=\"portrait-container\" id=\"canvas\">\n        <div class=\"core\"></div>\n        <div class=\"ring ring-1\"></div>\n        <div class=\"ring ring-2\"></div>\n        <div class=\"ring ring-3\"></div>\n        <div class=\"label\">IDENTITY: LLM_v1.0 // STATUS: PROCESSING</div>\n    </div>\n\n    <script>\n        // Dynamically create \"nodes\" on the rings to simulate neural connections\n        const container = document.getElementById('canvas');\n        const ringCounts = [8, 12, 16];\n        const ringSizes = [150, 250, 350];\n\n        ringCounts.forEach((count, ringIndex) => {\n            const radius = ringSizes[ringIndex] / 2;\n            for (let i = 0; i < count; i++) {\n                const angle = (i / count) * Math.PI * 2;\n                const x = 250 + radius * Math.cos(angle);\n                const y = 250 + radius * Math.sin(angle);\n                \n                const node = document.createElement('div');\n                node.className = 'node';\n                node.style.left = `${x}px`;\n                node.style.top = `${y}px`;\n                \n                // Add individual movement to nodes\n                node.style.animation = `pulse ${2 + Math.random() * 2}s ease-in-out infinite`;\n                node.style.animationDelay = `${Math.random() * 2}s`;\n                \n                // Attach node to a ring div to make them rotate together\n                document.querySelectorAll(`.ring`)[ringIndex].appendChild(node);\n                \n                // Reposition node relative to the ring's center (0,0 is center of ring)\n                // Since rings are translated -50%, -50%, we position nodes relative to that.\n                node.style.position = 'absolute';\n                node.style.left = `calc(50% + ${radius * Math.cos(angle)}px)`;\n                node.style.top = `calc(50% + ${radius * Math.sin(angle)}px)`;\n                node.style.transform = 'translate(-50%, -50%)';\n            }\n        });\n    </script>\n</body>\n</html>\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "html",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.14
+      }
+    }
+  ],
+  "detected_language": "html",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:45:06+00:00",
+  "total_duration_s": 57.65
+}

@@ -1,0 +1,88 @@
+I'll draw a cozy scene: a lighthouse at dusk on a rocky shore, with a beam of light cutting through a gradient sky and stars beginning to appear. I like the contrast between the calm warmth of the lighthouse and the vast twilight.
+
+```svg
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a2a4a"/>
+      <stop offset="45%" stop-color="#4a4a7a"/>
+      <stop offset="75%" stop-color="#c97a6d"/>
+      <stop offset="100%" stop-color="#f2b47e"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e0a86b"/>
+      <stop offset="30%" stop-color="#5a5a80"/>
+      <stop offset="100%" stop-color="#232840"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff6c8" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#fff6c8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="500" height="330" fill="url(#sky)"/>
+
+  <!-- Stars -->
+  <g fill="#ffffff">
+    <circle cx="60" cy="40" r="1.5" opacity="0.9"/>
+    <circle cx="120" cy="70" r="1" opacity="0.7"/>
+    <circle cx="200" cy="30" r="1.2" opacity="0.8"/>
+    <circle cx="300" cy="55" r="1" opacity="0.6"/>
+    <circle cx="420" cy="35" r="1.5" opacity="0.9"/>
+    <circle cx="460" cy="90" r="1" opacity="0.7"/>
+    <circle cx="90" cy="120" r="1" opacity="0.5"/>
+    <circle cx="380" cy="110" r="1.2" opacity="0.7"/>
+    <circle cx="250" cy="90" r="1" opacity="0.6"/>
+  </g>
+
+  <!-- Moon -->
+  <circle cx="410" cy="80" r="28" fill="#f7f0d0" opacity="0.95"/>
+  <circle cx="420" cy="72" r="28" fill="url(#sky)" opacity="0.5"/>
+
+  <!-- Sea -->
+  <rect y="330" width="500" height="170" fill="url(#sea)"/>
+
+  <!-- Light beam -->
+  <polygon points="150,175 500,120 500,240" fill="url(#glow)" opacity="0.5"/>
+
+  <!-- Rock/island -->
+  <path d="M20,400 Q90,320 180,360 Q240,385 300,420 L320,500 L0,500 Z" fill="#2a2438"/>
+
+  <!-- Lighthouse -->
+  <g>
+    <!-- base -->
+    <rect x="120" y="360" width="70" height="60" fill="#3a3350"/>
+    <!-- tower -->
+    <polygon points="128,360 182,360 172,190 138,190" fill="#f0ece0"/>
+    <!-- red stripes -->
+    <polygon points="135,240 175,240 172,210 138,210" fill="#c0392b"/>
+    <polygon points="132,300 178,300 175,270 135,270" fill="#c0392b"/>
+    <polygon points="129,355 181,355 178,330 132,330" fill="#c0392b"/>
+    <!-- gallery -->
+    <rect x="130" y="178" width="50" height="14" fill="#4a4258"/>
+    <!-- lantern room -->
+    <rect x="140" y="150" width="30" height="30" fill="#fff6c8"/>
+    <circle cx="155" cy="165" r="10" fill="#fff9dd"/>
+    <!-- roof -->
+    <polygon points="136,150 174,150 155,128" fill="#2c2f4a"/>
+    <circle cx="155" cy="124" r="3" fill="#f7c948"/>
+  </g>
+
+  <!-- glow around lantern -->
+  <circle cx="155" cy="165" r="55" fill="url(#glow)" opacity="0.5"/>
+
+  <!-- Water reflections -->
+  <g stroke="#f7d9a0" stroke-width="2" opacity="0.4">
+    <line x1="150" y1="360" x2="160" y2="360"/>
+    <line x1="145" y1="380" x2="165" y2="380"/>
+    <line x1="150" y1="400" x2="160" y2="400"/>
+    <line x1="140" y1="430" x2="170" y2="430"/>
+  </g>
+  <g stroke="#f7f0d0" stroke-width="1.5" opacity="0.3">
+    <line x1="390" y1="360" x2="430" y2="360"/>
+    <line x1="380" y1="390" x2="440" y2="390"/>
+    <line x1="395" y1="420" x2="425" y2="420"/>
+  </g>
+</svg>
+```

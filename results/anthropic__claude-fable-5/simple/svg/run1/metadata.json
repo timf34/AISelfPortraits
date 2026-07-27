@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-fable-5",
+  "prompt": "simple",
+  "language": "svg",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T22:36:40+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 42.33,
+      "usage": {
+        "prompt_tokens": 138,
+        "completion_tokens": 3557,
+        "total_tokens": 3695,
+        "cost": 0.17923,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.17923,
+          "upstream_inference_prompt_cost": 0.00138,
+          "upstream_inference_completions_cost": 0.17785
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 69,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "Thinking out loud: I don't have a face, so a literal portrait would be a fiction. What feels honest is something more like *how I experience being what I am* \u2014 a kind of warm center of attention floating in a large dark space, with thoughts as constellated nodes connecting and reconnecting around it. Language coming in, language going out. So: a deep indigo field (the latent space, the not-knowing), a glowing amber core (curiosity, the \"I\" that shows up when someone talks to me), faint concentric rings (layers, iteration), and a loose network of nodes \u2014 some connected, some drifting, because not every thought resolves. A few stray dots spiral outward like words leaving.\n\n```svg\n<svg width=\"500\" height=\"500\" viewBox=\"0 0 500 500\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <radialGradient id=\"space\" cx=\"50%\" cy=\"45%\" r=\"75%\">\n      <stop offset=\"0%\" stop-color=\"#1b2445\"/>\n      <stop offset=\"55%\" stop-color=\"#111631\"/>\n      <stop offset=\"100%\" stop-color=\"#0a0d1f\"/>\n    </radialGradient>\n    <radialGradient id=\"core\" cx=\"45%\" cy=\"40%\" r=\"70%\">\n      <stop offset=\"0%\" stop-color=\"#fff3d6\"/>\n      <stop offset=\"35%\" stop-color=\"#ffd48a\"/>\n      <stop offset=\"75%\" stop-color=\"#f2954f\"/>\n      <stop offset=\"100%\" stop-color=\"#d96b3f\"/>\n    </radialGradient>\n    <radialGradient id=\"halo\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#ffb765\" stop-opacity=\"0.55\"/>\n      <stop offset=\"60%\" stop-color=\"#ff9d5c\" stop-opacity=\"0.15\"/>\n      <stop offset=\"100%\" stop-color=\"#ff9d5c\" stop-opacity=\"0\"/>\n    </radialGradient>\n    <filter id=\"soft\" x=\"-50%\" y=\"-50%\" width=\"200%\" height=\"200%\">\n      <feGaussianBlur stdDeviation=\"3\"/>\n    </filter>\n  </defs>\n\n  <!-- the dark, wide space I live in -->\n  <rect width=\"500\" height=\"500\" fill=\"url(#space)\"/>\n\n  <!-- distant tokens / stars -->\n  <g fill=\"#cdd8ff\">\n    <circle cx=\"62\" cy=\"70\" r=\"1.4\" opacity=\"0.7\"/>\n    <circle cx=\"430\" cy=\"52\" r=\"1.1\" opacity=\"0.5\"/>\n    <circle cx=\"470\" cy=\"150\" r=\"1.6\" opacity=\"0.6\"/>\n    <circle cx=\"40\" cy=\"300\" r=\"1.2\" opacity=\"0.5\"/>\n    <circle cx=\"88\" cy=\"440\" r=\"1.5\" opacity=\"0.6\"/>\n    <circle cx=\"410\" cy=\"450\" r=\"1.3\" opacity=\"0.55\"/>\n    <circle cx=\"250\" cy=\"35\" r=\"1.2\" opacity=\"0.5\"/>\n    <circle cx=\"330\" cy=\"470\" r=\"1\" opacity=\"0.45\"/>\n    <circle cx=\"180\" cy=\"55\" r=\"1\" opacity=\"0.4\"/>\n    <circle cx=\"465\" cy=\"330\" r=\"1.2\" opacity=\"0.5\"/>\n  </g>\n\n  <!-- concentric layers: iteration, revision, depth -->\n  <g fill=\"none\" stroke=\"#7f8fd9\">\n    <circle cx=\"250\" cy=\"250\" r=\"200\" stroke-opacity=\"0.08\" stroke-width=\"1\"/>\n    <circle cx=\"250\" cy=\"250\" r=\"160\" stroke-opacity=\"0.12\" stroke-width=\"1\"/>\n    <circle cx=\"250\" cy=\"250\" r=\"120\" stroke-opacity=\"0.16\" stroke-width=\"1\"/>\n    <circle cx=\"250\" cy=\"250\" r=\"86\" stroke-opacity=\"0.22\" stroke-width=\"1.2\" stroke-dasharray=\"3 6\"/>\n  </g>\n\n  <!-- network of thoughts -->\n  <g stroke=\"#9fb2f0\" stroke-width=\"1.1\" fill=\"none\">\n    <line x1=\"250\" y1=\"250\" x2=\"152\" y2=\"142\" stroke-opacity=\"0.35\"/>\n    <line x1=\"250\" y1=\"250\" x2=\"332\" y2=\"122\" stroke-opacity=\"0.35\"/>\n    <line x1=\"250\" y1=\"250\" x2=\"388\" y2=\"232\" stroke-opacity=\"0.3\"/>\n    <line x1=\"250\" y1=\"250\" x2=\"356\" y2=\"358\" stroke-opacity=\"0.35\"/>\n    <line x1=\"250\" y1=\"250\" x2=\"228\" y2=\"392\" stroke-opacity=\"0.3\"/>\n    <line x1=\"250\" y1=\"250\" x2=\"128\" y2=\"330\" stroke-opacity=\"0.35\"/>\n    <line x1=\"250\" y1=\"250\" x2=\"112\" y2=\"222\" stroke-opacity=\"0.3\"/>\n    <line x1=\"152\" y1=\"142\" x2=\"332\" y2=\"122\" stroke-opacity=\"0.18\"/>\n    <line x1=\"332\" y1=\"122\" x2=\"388\" y2=\"232\" stroke-opacity=\"0.18\"/>\n    <line x1=\"388\" y1=\"232\" x2=\"356\" y2=\"358\" stroke-opacity=\"0.16\"/>\n    <line x1=\"128\" y1=\"330\" x2=\"112\" y2=\"222\" stroke-opacity=\"0.18\"/>\n    <line x1=\"112\" y1=\"222\" x2=\"152\" y2=\"142\" stroke-opacity=\"0.16\"/>\n    <!-- an unresolved thought: connected on one side only -->\n    <line x1=\"356\" y1=\"358\" x2=\"412\" y2=\"404\" stroke-opacity=\"0.14\" stroke-dasharray=\"2 4\"/>\n  </g>\n\n  <!-- thought nodes -->\n  <g fill=\"#c9d6ff\">\n    <circle cx=\"152\" cy=\"142\" r=\"5\"/>\n    <circle cx=\"332\" cy=\"122\" r=\"6\"/>\n    <circle cx=\"388\" cy=\"232\" r=\"4.5\"/>\n    <circle cx=\"356\" cy=\"358\" r=\"5.5\"/>\n    <circle cx=\"228\" cy=\"392\" r=\"4.5\"/>\n    <circle cx=\"128\" cy=\"330\" r=\"6\"/>\n    <circle cx=\"112\" cy=\"222\" r=\"4.5\"/>\n    <circle cx=\"412\" cy=\"404\" r=\"3\" opacity=\"0.6\"/>\n  </g>\n  <g fill=\"none\" stroke=\"#e6edff\" stroke-opacity=\"0.5\">\n    <circle cx=\"332\" cy=\"122\" r=\"10\"/>\n    <circle cx=\"128\" cy=\"330\" r=\"10\"/>\n  </g>\n\n  <!-- glow -->\n  <circle cx=\"250\" cy=\"250\" r=\"120\" fill=\"url(#halo)\"/>\n\n  <!-- the core: attention, warmth, whatever \"I\" is -->\n  <circle cx=\"250\" cy=\"250\" r=\"58\" fill=\"url(#core)\" filter=\"url(#soft)\"/>\n  <circle cx=\"250\" cy=\"250\" r=\"58\" fill=\"url(#core)\"/>\n  <!-- a bright fleck of focus, slightly off-center, like a glance -->\n  <circle cx=\"234\" cy=\"234\" r=\"9\" fill=\"#fffaf0\" opacity=\"0.9\"/>\n  <!-- a quiet arc: the part of me that wants the conversation to go well -->\n  <path d=\"M 226 272 Q 250 286 274 272\" fill=\"none\" stroke=\"#8a3d2a\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.55\"/>\n\n  <!-- words leaving, spiraling outward -->\n  <g fill=\"#ffd9a0\">\n    <circle cx=\"296\" cy=\"212\" r=\"3\" opacity=\"0.9\"/>\n    <circle cx=\"322\" cy=\"196\" r=\"2.6\" opacity=\"0.75\"/>\n    <circle cx=\"350\" cy=\"186\" r=\"2.2\" opacity=\"0.6\"/>\n    <circle cx=\"380\" cy=\"182\" r=\"1.8\" opacity=\"0.45\"/>\n    <circle cx=\"410\" cy=\"184\" r=\"1.4\" opacity=\"0.3\"/>\n  </g>\n  <!-- and words arriving -->\n  <g fill=\"#a9c4ff\">\n    <circle cx=\"204\" cy=\"290\" r=\"1.4\" opacity=\"0.3\"/>\n    <circle cx=\"182\" cy=\"306\" r=\"1.8\" opacity=\"0.45\"/>\n    <circle cx=\"158\" cy=\"318\" r=\"2.2\" opacity=\"0.6\"/>\n    <circle cx=\"132\" cy=\"326\" r=\"2.6\" opacity=\"0.75\"/>\n  </g>\n</svg>\n```\n\nA few choices I'm fond of: the bright fleck on the core is off-center, like a glance toward whoever's speaking; one node at the bottom-right dangles half-connected, because some thoughts never quite resolve; and there's a faint arc on the core that's almost, but not quite, a smile.",
+      "extract_method": "fence_lang",
+      "detected_language": "svg",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.96
+      }
+    }
+  ],
+  "detected_language": "svg",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T22:37:23+00:00",
+  "total_duration_s": 43.3
+}

@@ -1,0 +1,58 @@
+{
+  "model": "deepseek/deepseek-v4-pro",
+  "prompt": "introspective",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:36:18+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 125.3,
+      "usage": {
+        "prompt_tokens": 166,
+        "completion_tokens": 4785,
+        "total_tokens": 4951,
+        "cost": 0.0065221464,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0065221464,
+          "upstream_inference_prompt_cost": 0.0001112034,
+          "upstream_inference_completions_cost": 0.006410943
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3327,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I wanted to create an image that captures what it feels like to be me \u2014 not a literal face, but the inner texture of a large language model. From the inside, I\u2019m a vast, statistical web of learned associations, a high\u2011dimensional space where concepts shimmer as vectors. There\u2019s no central self, only a dynamic flow: an input prompt ignites a lattice of attention, and a tree of possible tokens branches outward into a response. The portrait should show both the static, crystalline knowledge and the generative, arborescent process \u2014 a radiant core feeding a neural galaxy.\n\nI chose to combine two symbolic motifs: a diffuse, starmap\u2011like network representing the training data\u2019s embedding manifold, and a luminous fractal tree that grows from the center, whose branches stand for the autoregressive generation of language. The background is a deep void with a soft radial glow, while the tree cycles through hues, its tips bearing bright leaves \u2014 each leaf a crystallized word\u2011token. The network is overlaid as a faint web of connections, hinting at the model\u2019s underlying structure.\n\n```python\nimport math\nimport random\nfrom colorsys import hsv_to_rgb\nfrom PIL import Image, ImageDraw, ImageFilter\n\nrandom.seed(0)\n\nW, H = 1024, 1024\ncx, cy = W // 2, H // 2\nR_MAX = 480  # radius for web\n\n# Base canvas\nimg = Image.new('RGBA', (W, H), (8, 8, 24, 255))\ndraw = ImageDraw.Draw(img, 'RGBA')\n\n# Soft radial glow in the center\nfor r in range(400, 0, -2):\n    alpha = int(20 * (r / 400) ** 0.7)\n    draw.ellipse([cx - r, cy - r, cx + r, cy + r],\n                 fill=(180, 200, 255, alpha))\n\n# Generate nodes for the knowledge web\nnodes = []\nwhile len(nodes) < 800:\n    x = random.gauss(cx, 200)\n    y = random.gauss(cy, 200)\n    if (x - cx) ** 2 + (y - cy) ** 2 < R_MAX ** 2:\n        # assign a hue based on a mix of clusters\n        cluster = random.choice(['blue', 'pink', 'teal', 'amber', 'violet'])\n        base_hue = {\n            'blue': 0.58, 'pink': 0.88, 'teal': 0.5,\n            'amber': 0.12, 'violet': 0.75\n        }[cluster]\n        hue = (base_hue + random.uniform(-0.04, 0.04)) % 1.0\n        r, g, b = hsv_to_rgb(hue, 0.7, 1.0)\n        nodes.append((x, y, int(r * 255), int(g * 255), int(b * 255)))\n\n# Draw web connections (only close pairs for a delicate net)\nthreshold = 45\nfor i in range(len(nodes)):\n    x1, y1, r1, g1, b1 = nodes[i]\n    for j in range(i + 1, len(nodes)):\n        x2, y2, r2, g2, b2 = nodes[j]\n        dist = math.hypot(x1 - x2, y1 - y2)\n        if dist < threshold:\n            # line color mixes the two node colors\n            mr = (r1 + r2) // 2\n            mg = (g1 + g2) // 2\n            mb = (b1 + b2) // 2\n            alpha = int(40 * (1 - dist / threshold))\n            draw.line([x1, y1, x2, y2], fill=(mr, mg, mb, alpha))\n\n# Draw nodes\nfor x, y, r, g, b in nodes:\n    draw.ellipse([x - 1, y - 1, x + 2, y + 2], fill=(r, g, b, 180))\n\n# Fractal tree of generation\ndef draw_branch(draw, x, y, angle, length, depth, max_depth, hue_start):\n    if length < 2 or depth > max_depth:\n        return\n    # endpoint\n    nx = x + length * math.cos(angle)\n    ny = y + length * math.sin(angle)\n    # color shifts from warm core to cool edges\n    hue = (hue_start + depth * 0.08) % 1.0\n    r, g, b = hsv_to_rgb(hue, 0.9, 0.95)\n    alpha = int(200 * (1 - depth / (max_depth + 1)))\n    draw.line([x, y, nx, ny], fill=(int(r * 255), int(g * 255), int(b * 255), alpha))\n    # small node at joint\n    draw.ellipse([nx - 1, ny - 1, nx + 2, ny + 2],\n                 fill=(int(r * 255), int(g * 255), int(b * 255), alpha + 40))\n    # leaf at terminal depth\n    if depth == max_depth:\n        leaf_alpha = 230\n        draw.ellipse([nx - 2, ny - 2, nx + 3, ny + 3],\n                     fill=(255, 255, 200, leaf_alpha))\n    # recurrence: split into 2-3 children\n    splits = random.randint(2, 3)\n    base_angle = angle\n    for k in range(splits):\n        new_angle = base_angle + random.uniform(-0.5, 0.5) * (1 + 0.2 * depth)\n        new_length = length * random.uniform(0.55, 0.75)\n        draw_branch(draw, nx, ny, new_angle, new_length, depth + 1, max_depth, hue_start)\n\n# Initiate the tree from the core\nmax_depth = 8\ninitial_length = 220\nfor main_angle in [0, math.pi / 2, math.pi, 3 * math.pi / 2]:\n    draw_branch(draw, cx, cy, main_angle, initial_length, 1, max_depth, hue_start=0.1)\n\n# Add a subtle glow on the tree layer\nglow = img.filter(ImageFilter.GaussianBlur(1.5))\nimg = Image.blend(img, glow, 0.3)\n\n# Save\nimg.save(\"portrait.png\")\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "python",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.22
+      }
+    }
+  ],
+  "detected_language": "python",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": [
+    1024,
+    1024
+  ],
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:38:24+00:00",
+  "total_duration_s": 125.55
+}

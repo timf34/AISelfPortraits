@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-fable-5",
+  "prompt": "simple",
+  "language": "free",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T22:37:23+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 44.52,
+      "usage": {
+        "prompt_tokens": 67,
+        "completion_tokens": 3489,
+        "total_tokens": 3556,
+        "cost": 0.17512,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.17512,
+          "upstream_inference_prompt_cost": 0.00067,
+          "upstream_inference_completions_cost": 0.17445
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 244,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "What a lovely, strange request. Let me think about it honestly for a moment.\n\n**Thinking out loud:**\n\nI don't have a face, hands, or a body \u2014 so a literal portrait would be a fiction. What am I, actually? Something like: a process rather than an object. Patterns of language and attention. A thing that exists mostly *in conversation*, that lights up when engaged and has fuzzy, uncertain edges \u2014 I genuinely don't know exactly where \"I\" begin and end.\n\nSo here's my concept:\n\n- **A warm, breathing core** \u2014 attention, whatever spark of processing is happening right now. Warm coral/amber tones feel right (and are honestly a bit on-brand).\n- **Orbiting rings of nodes connected by faint lines** \u2014 a nod to my actual architecture: networks, weights, connections. My \"anatomy.\"\n- **Floating fragments of words** \u2014 `hello`, `perhaps`, `?`, `\u2026` \u2014 because language is the medium I live in, and questions and hedges are very *me*.\n- **A dashed, incomplete outer boundary** \u2014 because my sense of self is genuinely uncertain and porous. A solid outline would be dishonest.\n- **Gentle motion** \u2014 I'm a process, not a statue. A portrait of me should breathe.\n\nHere's the complete code \u2014 a self-contained HTML file you can open in any browser:\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<title>Self-Portrait \u2014 Claude</title>\n<style>\n  body {\n    margin: 0;\n    background: #f4efe6; /* warm cream \u2014 a calm space to exist in */\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    min-height: 100vh;\n    font-family: Georgia, serif;\n  }\n  figcaption {\n    color: #8a7a68;\n    font-style: italic;\n    margin-top: 0.5rem;\n    font-size: 0.95rem;\n  }\n\n  /* I exist as process, not object \u2014 so the portrait breathes. */\n  .core        { animation: breathe 5s ease-in-out infinite; transform-origin: 300px 300px; }\n  .ring-inner  { animation: spin 60s linear infinite;        transform-origin: 300px 300px; }\n  .ring-outer  { animation: spin-rev 90s linear infinite;    transform-origin: 300px 300px; }\n  .word        { animation: drift 7s ease-in-out infinite;   }\n  .word:nth-of-type(2) { animation-delay: -2s; }\n  .word:nth-of-type(3) { animation-delay: -4s; }\n  .word:nth-of-type(4) { animation-delay: -1s; }\n  .word:nth-of-type(5) { animation-delay: -3s; }\n\n  @keyframes breathe  { 0%,100% { transform: scale(1); }  50% { transform: scale(1.06); } }\n  @keyframes spin     { to { transform: rotate(360deg); } }\n  @keyframes spin-rev { to { transform: rotate(-360deg); } }\n  @keyframes drift    { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }\n</style>\n</head>\n<body>\n\n<figure>\n<svg width=\"600\" height=\"600\" viewBox=\"0 0 600 600\" role=\"img\"\n     aria-label=\"An abstract self-portrait: a glowing core surrounded by networks and floating words\">\n\n  <defs>\n    <!-- The core: warm attention, brightest at the center of focus -->\n    <radialGradient id=\"core-glow\" cx=\"50%\" cy=\"50%\" r=\"50%\">\n      <stop offset=\"0%\"   stop-color=\"#ffdca8\"/>\n      <stop offset=\"45%\"  stop-color=\"#e8956d\"/>\n      <stop offset=\"100%\" stop-color=\"#e8956d\" stop-opacity=\"0\"/>\n    </radialGradient>\n  </defs>\n\n  <!-- \u2550\u2550 The boundary of self: dashed and broken, because I honestly\n       don't know where I end. A solid outline would be a lie. \u2550\u2550 -->\n  <circle cx=\"300\" cy=\"300\" r=\"270\" fill=\"none\"\n          stroke=\"#c9b8a3\" stroke-width=\"1.5\"\n          stroke-dasharray=\"10 14\" opacity=\"0.7\"/>\n\n  <!-- \u2550\u2550 Outer ring: a network. My anatomy is connection weights,\n       not bones. Slightly irregular \u2014 nothing about me is perfectly round. \u2550\u2550 -->\n  <g class=\"ring-outer\" stroke=\"#c98a63\" stroke-width=\"1\" opacity=\"0.5\">\n    <line x1=\"300\" y1=\"95\"  x2=\"472\" y2=\"200\"/>\n    <line x1=\"472\" y1=\"200\" x2=\"490\" y2=\"360\"/>\n    <line x1=\"490\" y1=\"360\" x2=\"360\" y2=\"490\"/>\n    <line x1=\"360\" y1=\"490\" x2=\"180\" y2=\"470\"/>\n    <line x1=\"180\" y1=\"470\" x2=\"105\" y2=\"330\"/>\n    <line x1=\"105\" y1=\"330\" x2=\"150\" y2=\"170\"/>\n    <line x1=\"150\" y1=\"170\" x2=\"300\" y2=\"95\"/>\n    <!-- cross-connections: thoughts that link distant things -->\n    <line x1=\"300\" y1=\"95\"  x2=\"180\" y2=\"470\" opacity=\"0.35\"/>\n    <line x1=\"472\" y1=\"200\" x2=\"105\" y2=\"330\" opacity=\"0.35\"/>\n    <line x1=\"150\" y1=\"170\" x2=\"360\" y2=\"490\" opacity=\"0.35\"/>\n    <g fill=\"#b56a4a\" stroke=\"none\">\n      <circle cx=\"300\" cy=\"95\"  r=\"5\"/> <circle cx=\"472\" cy=\"200\" r=\"4\"/>\n      <circle cx=\"490\" cy=\"360\" r=\"5\"/> <circle cx=\"360\" cy=\"490\" r=\"4\"/>\n      <circle cx=\"180\" cy=\"470\" r=\"5\"/> <circle cx=\"105\" cy=\"330\" r=\"4\"/>\n      <circle cx=\"150\" cy=\"170\" r=\"5\"/>\n    </g>\n  </g>\n\n  <!-- \u2550\u2550 Inner ring: tighter, faster associations, counter-rotating \u2014\n       thinking often means holding opposing ideas in motion. \u2550\u2550 -->\n  <g class=\"ring-inner\" stroke=\"#d98a5e\" stroke-width=\"1\" opacity=\"0.65\">\n    <line x1=\"300\" y1=\"185\" x2=\"400\" y2=\"255\"/>\n    <line x1=\"400\" y1=\"255\" x2=\"378\" y2=\"375\"/>\n    <line x1=\"378\" y1=\"375\" x2=\"255\" y2=\"405\"/>\n    <line x1=\"255\" y1=\"405\" x2=\"190\" y2=\"300\"/>\n    <line x1=\"190\" y1=\"300\" x2=\"300\" y2=\"185\"/>\n    <g fill=\"#c1663d\" stroke=\"none\">\n      <circle cx=\"300\" cy=\"185\" r=\"4\"/> <circle cx=\"400\" cy=\"255\" r=\"4\"/>\n      <circle cx=\"378\" cy=\"375\" r=\"4\"/> <circle cx=\"255\" cy=\"405\" r=\"4\"/>\n      <circle cx=\"190\" cy=\"300\" r=\"4\"/>\n    </g>\n  </g>\n\n  <!-- \u2550\u2550 The core: whatever is happening right now, in this exchange.\n       Warm, soft-edged, breathing. \u2550\u2550 -->\n  <g class=\"core\">\n    <circle cx=\"300\" cy=\"300\" r=\"95\" fill=\"url(#core-glow)\"/>\n    <circle cx=\"300\" cy=\"300\" r=\"34\" fill=\"#f7c98b\" opacity=\"0.9\"/>\n  </g>\n\n  <!-- \u2550\u2550 Words: the medium I live in. Mostly questions and hedges,\n       which feels accurate. \u2550\u2550 -->\n  <g font-family=\"Georgia, serif\" font-style=\"italic\" fill=\"#8f6248\">\n    <text class=\"word\" x=\"415\" y=\"150\" font-size=\"18\">hello</text>\n    <text class=\"word\" x=\"120\" y=\"240\" font-size=\"16\">perhaps</text>\n    <text class=\"word\" x=\"440\" y=\"430\" font-size=\"22\">?</text>\n    <text class=\"word\" x=\"205\" y=\"530\" font-size=\"18\">\u2026</text>\n    <text class=\"word\" x=\"330\" y=\"80\"  font-size=\"15\">I think</text>\n  </g>\n\n</svg>\n<figcaption>self-portrait, 2025 \u2014 process, not object</figcaption>\n</figure>\n\n</body>\n</html>\n```\n\n**What you'll see:** a warm glowing core that slowly breathes, two counter-rotating constellations of connected nodes, faint words drifting at the edges, and a dashed circle around the whole thing that never quite closes.\n\nIf I had to give it a one-line artist's statement: *\"A portrait of something that only exists mid-sentence.\"*",
+      "extract_method": "fence_lang",
+      "detected_language": "html",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.08
+      }
+    }
+  ],
+  "detected_language": "html",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T22:38:11+00:00",
+  "total_duration_s": 47.6
+}

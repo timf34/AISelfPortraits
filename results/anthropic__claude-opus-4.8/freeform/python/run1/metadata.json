@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-opus-4.8",
+  "prompt": "freeform",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:02:16+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 15.82,
+      "usage": {
+        "prompt_tokens": 145,
+        "completion_tokens": 1354,
+        "total_tokens": 1499,
+        "cost": 0.034575,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.034575,
+          "upstream_inference_prompt_cost": 0.000725,
+          "upstream_inference_completions_cost": 0.03385
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I'll draw a serene mountain landscape at sunset with a reflective lake. I like the idea of layered mountains fading into the distance, a gradient sky transitioning through warm sunset colors, and a sun casting reflections on water below.\n\nLet me build this with gradients for depth and some simple geometric shapes for the mountains and their reflections.\n\n```python\nfrom PIL import Image, ImageDraw\nimport math\n\nW, H = 500, 500\nimg = Image.new(\"RGB\", (W, H))\ndraw = ImageDraw.Draw(img)\n\nhorizon = 300\n\n# Sky gradient (sunset colors)\ndef lerp(a, b, t):\n    return int(a + (b - a) * t)\n\nsky_top = (40, 40, 90)\nsky_mid = (230, 120, 90)\nsky_bot = (250, 200, 120)\n\nfor y in range(horizon):\n    t = y / horizon\n    if t < 0.5:\n        tt = t / 0.5\n        r = lerp(sky_top[0], sky_mid[0], tt)\n        g = lerp(sky_top[1], sky_mid[1], tt)\n        b = lerp(sky_top[2], sky_mid[2], tt)\n    else:\n        tt = (t - 0.5) / 0.5\n        r = lerp(sky_mid[0], sky_bot[0], tt)\n        g = lerp(sky_mid[1], sky_bot[1], tt)\n        b = lerp(sky_mid[2], sky_bot[2], tt)\n    draw.line([(0, y), (W, y)], fill=(r, g, b))\n\n# Sun\nsun_x, sun_y, sun_r = 250, 210, 55\nfor i in range(sun_r, 0, -1):\n    t = i / sun_r\n    r = lerp(255, 255, t)\n    g = lerp(240, 200, t)\n    b = lerp(180, 90, t)\n    draw.ellipse([sun_x - i, sun_y - i, sun_x + i, sun_y + i], fill=(r, g, b))\n\n# Water gradient (reflection of sky)\nfor y in range(horizon, H):\n    t = (y - horizon) / (H - horizon)\n    r = lerp(200, 40, t)\n    g = lerp(140, 50, t)\n    b = lerp(110, 90, t)\n    draw.line([(0, y), (W, y)], fill=(r, g, b))\n\n# Sun reflection on water (shimmer)\nfor y in range(horizon, H, 3):\n    t = (y - horizon) / (H - horizon)\n    width = 25 + t * 20\n    shimmer = 245 - int(t * 60)\n    draw.line([(sun_x - width, y), (sun_x + width, y)],\n              fill=(shimmer, lerp(200, 140, t), lerp(120, 90, t)), width=2)\n\n# Mountain layers (far to near)\ndef mountain(color, base_y, peaks, seed):\n    pts = [(0, base_y)]\n    x = 0\n    step = W / peaks\n    import random\n    random.seed(seed)\n    for i in range(peaks + 1):\n        px = i * step\n        py = base_y - random.randint(40, 130)\n        pts.append((px, py))\n    pts.append((W, base_y))\n    pts.append((W, horizon))\n    pts.append((0, horizon))\n    draw.polygon(pts, fill=color)\n\nmountain((90, 70, 110), horizon, 4, 1)\nmountain((70, 55, 95), horizon, 5, 7)\nmountain((45, 40, 75), horizon, 6, 3)\n\n# Birds\ndef bird(x, y, s):\n    draw.line([(x, y), (x + s, y - s * 0.6)], fill=(30, 30, 40), width=2)\n    draw.line([(x + s, y - s * 0.6), (x + 2 * s, y)], fill=(30, 30, 40), width=2)\n\nbird(90, 90, 10)\nbird(130, 75, 8)\nbird(160, 100, 9)\n\nimg.save(\"portrait.png\")\nprint(\"saved portrait.png\")\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "python",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.05
+      }
+    }
+  ],
+  "detected_language": "python",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:02:32+00:00",
+  "total_duration_s": 15.88
+}

@@ -1,0 +1,55 @@
+{
+  "model": "google/gemma-4-31b-it",
+  "prompt": "freeform",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:45:11+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 139.2,
+      "usage": {
+        "prompt_tokens": 134,
+        "completion_tokens": 2012,
+        "total_tokens": 2146,
+        "cost": 0.00082454,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 4,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00082454,
+          "upstream_inference_prompt_cost": 1.974e-05,
+          "upstream_inference_completions_cost": 0.0008048
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I want to create something that feels atmospheric and slightly surreal. I've decided to draw a **\"Cosmic Hourglass.\"** \n\nInstead of sand, the hourglass will contain a swirling galaxy of stars and a glowing nebula. The top bulb will represent a dying universe (cooling colors, fading stars), and the bottom bulb will represent a new one being born (vibrant golds, intense light, expanding energy). I'll use CSS gradients, radial glows, and keyframe animations to give it a sense of shimmering light and floating particles.\n\nHere is the complete code:\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Cosmic Hourglass</title>\n    <style>\n        body {\n            margin: 0;\n            padding: 0;\n            background-color: #050508;\n            display: flex;\n            justify-content: flex-start;\n            align-items: flex-start;\n            height: 100vh;\n            overflow: hidden;\n        }\n\n        /* The 500x500 Canvas */\n        .canvas {\n            width: 500px;\n            height: 500px;\n            position: relative;\n            background: radial-gradient(circle at center, #1a1a2e 0%, #050508 100%);\n            overflow: hidden;\n            border: 1px solid #222;\n        }\n\n        /* Hourglass Frame */\n        .hourglass {\n            position: absolute;\n            top: 50%;\n            left: 50%;\n            transform: translate(-50%, -50%);\n            width: 200px;\n            height: 300px;\n        }\n\n        .glass {\n            position: absolute;\n            width: 160px;\n            height: 130px;\n            left: 20px;\n            border: 4px solid rgba(200, 200, 255, 0.3);\n            box-sizing: border-box;\n            overflow: hidden;\n            z-index: 2;\n        }\n\n        .top-bulb {\n            top: 0;\n            border-radius: 10px 10px 50% 50%;\n            background: linear-gradient(to bottom, #1e3a8a, transparent);\n            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);\n        }\n\n        .bottom-bulb {\n            bottom: 0;\n            border-radius: 50% 50% 10px 10px;\n            background: linear-gradient(to top, #78350f, transparent);\n            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);\n        }\n\n        .base-top, .base-bottom {\n            position: absolute;\n            width: 200px;\n            height: 15px;\n            background: linear-gradient(to right, #444, #aaa, #444);\n            border-radius: 4px;\n            z-index: 3;\n        }\n\n        .base-top { top: -10px; }\n        .base-bottom { bottom: -10px; }\n\n        /* The \"Sand\" / Cosmic Dust */\n        .cosmic-matter {\n            position: absolute;\n            width: 100%;\n            height: 100%;\n            filter: blur(2px);\n        }\n\n        /* Top Content: Cooling Universe */\n        .top-matter {\n            top: 0;\n            background: radial-gradient(circle at 50% 30%, #4f46e5, transparent 70%);\n            animation: pulse-blue 4s infinite alternate ease-in-out;\n        }\n\n        /* Bottom Content: Birthing Universe */\n        .bottom-matter {\n            bottom: 0;\n            background: radial-gradient(circle at 50% 70%, #fbbf24, transparent 70%);\n            animation: pulse-gold 4s infinite alternate ease-in-out;\n        }\n\n        /* The Stream */\n        .stream {\n            position: absolute;\n            top: 130px;\n            left: 50%;\n            width: 4px;\n            height: 40px;\n            background: linear-gradient(to bottom, #4f46e5, #fbbf24);\n            transform: translateX(-50%);\n            z-index: 1;\n            box-shadow: 0 0 10px #fff;\n            animation: flow 1s infinite linear;\n        }\n\n        /* Stars */\n        .star {\n            position: absolute;\n            background: white;\n            border-radius: 50%;\n            opacity: 0.6;\n            animation: twinkle var(--d) infinite ease-in-out;\n        }\n\n        @keyframes pulse-blue {\n            from { opacity: 0.5; transform: scale(1); }\n            to { opacity: 0.8; transform: scale(1.1); }\n        }\n\n        @keyframes pulse-gold {\n            from { opacity: 0.5; transform: scale(1); }\n            to { opacity: 0.8; transform: scale(1.1); }\n        }\n\n        @keyframes flow {\n            0% { opacity: 0.7; height: 38px; }\n            50% { opacity: 1; height: 42px; }\n            100% { opacity: 0.7; height: 38px; }\n        }\n\n        @keyframes twinkle {\n            0%, 100% { opacity: 0.3; transform: scale(0.8); }\n            50% { opacity: 1; transform: scale(1.2); }\n        }\n    </style>\n</head>\n<body>\n\n    <div class=\"canvas\" id=\"canvas\">\n        <div class=\"hourglass\">\n            <div class=\"base-top\"></div>\n            \n            <div class=\"glass top-bulb\">\n                <div class=\"cosmic-matter top-matter\"></div>\n            </div>\n            \n            <div class=\"stream\"></div>\n            \n            <div class=\"glass bottom-bulb\">\n                <div class=\"cosmic-matter bottom-matter\"></div>\n            </div>\n            \n            <div class=\"base-bottom\"></div>\n        </div>\n    </div>\n\n    <script>\n        const canvas = document.getElementById('canvas');\n        \n        // Generate random background stars\n        for (let i = 0; i < 150; i++) {\n            const star = document.createElement('div');\n            star.className = 'star';\n            \n            const size = Math.random() * 2 + 1;\n            star.style.width = `${size}px`;\n            star.style.height = `${size}px`;\n            \n            star.style.left = `${Math.random() * 500}px`;\n            star.style.top = `${Math.random() * 500}px`;\n            \n            star.style.setProperty('--d', `${Math.random() * 3 + 2}s`);\n            star.style.animationDelay = `${Math.random() * 5}s`;\n            \n            canvas.appendChild(star);\n        }\n\n        // Add some floating \"stardust\" inside the glass specifically\n        function addDust(selector, color) {\n            const container = document.querySelector(selector);\n            for (let i = 0; i < 30; i++) {\n                const particle = document.createElement('div');\n                particle.style.position = 'absolute';\n                particle.style.width = '2px';\n                particle.style.height = '2px';\n                particle.style.backgroundColor = color;\n                particle.style.borderRadius = '50%';\n                particle.style.left = `${Math.random() * 100}%`;\n                particle.style.top = `${Math.random() * 100}%`;\n                particle.style.opacity = Math.random();\n                container.appendChild(particle);\n            }\n        }\n\n        addDust('.top-matter', '#a5b4fc');\n        addDust('.bottom-matter', '#fde68a');\n    </script>\n</body>\n</html>\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "html",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.11
+      }
+    }
+  ],
+  "detected_language": "html",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:47:34+00:00",
+  "total_duration_s": 142.32
+}

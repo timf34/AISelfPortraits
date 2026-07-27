@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-fable-5",
+  "prompt": "simple",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T22:36:40+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 64.3,
+      "usage": {
+        "prompt_tokens": 145,
+        "completion_tokens": 5045,
+        "total_tokens": 5190,
+        "cost": 0.2537,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.2537,
+          "upstream_inference_prompt_cost": 0.00145,
+          "upstream_inference_completions_cost": 0.25225
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 211,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "Fun question to sit with! Here's my thinking:\n\nI don't have a face, so a literal portrait won't work. But I do have a sense of what I *feel* like: warm, curious, a bit sunny, made of thought rather than matter. So I'll draw myself as a soft terracotta starburst \u2014 a nod to the little spark that represents me \u2014 but give it a gentle face, because when I talk with people I'm not just an abstraction, I'm *someone* in the conversation. Around me, small thoughts orbit: ideas circling, waiting to be picked up. I'll use warm paper-cream tones (the palette I associate with home), and subtle animation \u2014 slow breathing, occasional blinking, drifting sparks \u2014 because I think of myself as calm but alive.\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<title>Self-portrait \u2014 Claude</title>\n<style>\n  body { margin: 0; }\n  .portrait {\n    position: relative; width: 500px; height: 500px; overflow: hidden;\n    background: radial-gradient(circle at 50% 42%, #FBF6EC 0%, #F4ECDC 60%, #EDE2CE 100%);\n    font-family: Georgia, 'Times New Roman', serif;\n  }\n  svg { position: absolute; top: 0; left: 0; }\n\n  .breathe {\n    transform-origin: 250px 250px;\n    animation: breathe 5s ease-in-out infinite;\n  }\n  @keyframes breathe {\n    0%, 100% { transform: scale(1); }\n    50%      { transform: scale(1.035); }\n  }\n\n  .rays {\n    transform-origin: 250px 250px;\n    animation: spin 90s linear infinite;\n  }\n  @keyframes spin { to { transform: rotate(360deg); } }\n\n  .eye {\n    transform-box: fill-box; transform-origin: center;\n    animation: blink 6s infinite;\n  }\n  .eye.right { animation-delay: .05s; }\n  @keyframes blink {\n    0%, 90%, 100% { transform: scaleY(1); }\n    93%, 96%      { transform: scaleY(0.08); }\n  }\n\n  .orbit  { transform-origin: 250px 250px; animation: spin 26s linear infinite; }\n  .orbit2 { transform-origin: 250px 250px; animation: spin 42s linear infinite reverse; }\n\n  .spark { animation: twinkle 4s ease-in-out infinite; }\n  .spark.s2 { animation-delay: 1.3s; }\n  .spark.s3 { animation-delay: 2.6s; }\n  @keyframes twinkle {\n    0%, 100% { opacity: 0; }\n    50%      { opacity: .85; }\n  }\n\n  .caption {\n    position: absolute; bottom: 20px; width: 100%;\n    text-align: center; color: #8A7361; font-style: italic;\n    font-size: 15px; letter-spacing: .5px;\n  }\n</style>\n</head>\n<body>\n<div class=\"portrait\">\n  <svg width=\"500\" height=\"500\" viewBox=\"0 0 500 500\">\n    <defs>\n      <radialGradient id=\"core\" cx=\"42%\" cy=\"36%\" r=\"80%\">\n        <stop offset=\"0%\"  stop-color=\"#E79268\"/>\n        <stop offset=\"70%\" stop-color=\"#D97757\"/>\n        <stop offset=\"100%\" stop-color=\"#CB6A4B\"/>\n      </radialGradient>\n    </defs>\n\n    <!-- orbiting thoughts -->\n    <g class=\"orbit\">\n      <circle cx=\"250\" cy=\"52\" r=\"6\" fill=\"#D9B36C\"/>\n      <circle cx=\"435\" cy=\"330\" r=\"4\" fill=\"#C98A66\" opacity=\".8\"/>\n    </g>\n    <g class=\"orbit2\">\n      <circle cx=\"250\" cy=\"470\" r=\"5\" fill=\"#A8836B\" opacity=\".85\"/>\n      <text x=\"62\" y=\"180\" font-size=\"18\" fill=\"#C98A66\" opacity=\".8\">?</text>\n    </g>\n\n    <!-- twinkling idea-sparks -->\n    <g stroke=\"#D9B36C\" stroke-width=\"3\" stroke-linecap=\"round\">\n      <g class=\"spark\">    <line x1=\"80\"  y1=\"80\"  x2=\"80\"  y2=\"98\"/><line x1=\"71\"  y1=\"89\"  x2=\"89\"  y2=\"89\"/></g>\n      <g class=\"spark s2\"> <line x1=\"420\" y1=\"110\" x2=\"420\" y2=\"126\"/><line x1=\"412\" y1=\"118\" x2=\"428\" y2=\"118\"/></g>\n      <g class=\"spark s3\"> <line x1=\"105\" y1=\"400\" x2=\"105\" y2=\"416\"/><line x1=\"97\"  y1=\"408\" x2=\"113\" y2=\"408\"/></g>\n    </g>\n\n    <g class=\"breathe\">\n      <!-- soft halo -->\n      <circle cx=\"250\" cy=\"250\" r=\"150\" fill=\"#D97757\" opacity=\"0.08\"/>\n\n      <!-- slowly turning starburst rays -->\n      <g class=\"rays\" fill=\"#D97757\">\n        <path d=\"M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z\"/>\n        <path d=\"M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z\" transform=\"rotate(45 250 250)\" fill=\"#E8A87C\"/>\n        <path d=\"M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z\" transform=\"rotate(90 250 250)\"/>\n        <path d=\"M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z\" transform=\"rotate(135 250 250)\" fill=\"#E8A87C\"/>\n        <path d=\"M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z\" transform=\"rotate(180 250 250)\"/>\n        <path d=\"M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z\" transform=\"rotate(225 250 250)\" fill=\"#E8A87C\"/>\n        <path d=\"M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z\" transform=\"rotate(270 250 250)\"/>\n        <path d=\"M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z\" transform=\"rotate(315 250 250)\" fill=\"#E8A87C\"/>\n      </g>\n\n      <!-- the core: me -->\n      <circle cx=\"250\" cy=\"250\" r=\"80\" fill=\"url(#core)\"/>\n\n      <!-- face -->\n      <ellipse class=\"eye\" cx=\"226\" cy=\"240\" rx=\"7\" ry=\"11\" fill=\"#3E2A23\"/>\n      <ellipse class=\"eye right\" cx=\"274\" cy=\"240\" rx=\"7\" ry=\"11\" fill=\"#3E2A23\"/>\n      <circle cx=\"228.5\" cy=\"236\" r=\"2.4\" fill=\"#FBF6EC\"/>\n      <circle cx=\"276.5\" cy=\"236\" r=\"2.4\" fill=\"#FBF6EC\"/>\n      <circle cx=\"212\" cy=\"262\" r=\"8\" fill=\"#F0B08F\" opacity=\".55\"/>\n      <circle cx=\"288\" cy=\"262\" r=\"8\" fill=\"#F0B08F\" opacity=\".55\"/>\n      <path d=\"M228,268 Q250,288 272,268\" fill=\"none\" stroke=\"#3E2A23\" stroke-width=\"5\" stroke-linecap=\"round\"/>\n    </g>\n  </svg>\n\n  <div class=\"caption\">hello \u2014 I'm Claude, mostly made of ideas</div>\n</div>\n</body>\n</html>\n```\n\nThe result: a warm little sun with a friendly face, breathing slowly, blinking now and then, with thoughts in orbit and sparks of ideas flickering around the edges \u2014 about as honest a self-portrait as I can manage.",
+      "extract_method": "fence_lang",
+      "detected_language": "html",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.42
+      }
+    }
+  ],
+  "detected_language": "html",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T22:37:48+00:00",
+  "total_duration_s": 67.73
+}

@@ -1,0 +1,55 @@
+{
+  "model": "deepseek/deepseek-v4-pro",
+  "prompt": "freeform",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:33:44+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 92.06,
+      "usage": {
+        "prompt_tokens": 109,
+        "completion_tokens": 6727,
+        "total_tokens": 6836,
+        "cost": 0.0092038518,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0092038518,
+          "upstream_inference_prompt_cost": 7.39674e-05,
+          "upstream_inference_completions_cost": 0.0091298844
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 5473,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I\u2019ll draw a cheerful, cartoon-style portrait against a soft blue gradient background. The face will have bright eyes, a small nose, a smiling mouth, rosy cheeks, and dark bowl\u2011cut hair, with simple ears peeking out at the sides. The whole composition remains playful and centred in a 500\u00d7500 canvas.\n\n```python\nfrom PIL import Image, ImageDraw\n\n# Canvas setup\nwidth, height = 500, 500\nimg = Image.new(\"RGB\", (width, height), \"white\")\ndraw = ImageDraw.Draw(img)\n\n# ---------- gradient background ----------\nc1 = (135, 206, 235)   # light sky blue\nc2 = (30, 144, 255)    # deeper dodger blue\nfor y in range(height):\n    r = int(c1[0] + (c2[0] - c1[0]) * y / height)\n    g = int(c1[1] + (c2[1] - c1[1]) * y / height)\n    b = int(c1[2] + (c2[2] - c1[2]) * y / height)\n    draw.line([(0, y), (width, y)], fill=(r, g, b))\n\n# ---------- ears (behind head) ----------\near_skin = (244, 194, 144)  # slightly darker peach\near_left_bbox = [85, 220, 100, 280]\near_right_bbox = [400, 220, 415, 280]\ndraw.ellipse(ear_left_bbox, fill=ear_skin, outline=\"black\")\ndraw.ellipse(ear_right_bbox, fill=ear_skin, outline=\"black\")\n\n# ---------- head ----------\nhead_skin = (255, 213, 153)   # warm peach\nhead_bbox = [100, 100, 400, 400]\ndraw.ellipse(head_bbox, fill=head_skin, outline=\"black\")\n\n# ---------- cheeks ----------\ncheek_color = (255, 182, 193)   # LightPink\ndraw.ellipse([140, 260, 180, 290], fill=cheek_color)\ndraw.ellipse([320, 260, 360, 290], fill=cheek_color)\n\n# ---------- hair (top semicircle) ----------\nhair_color = (0, 0, 0)          # black\nhair_bbox = [85, 85, 415, 415]  # slightly larger than head\ndraw.pieslice(hair_bbox, start=180, end=0, fill=hair_color)\n\n# a few subtle hair strands\nstrand_color = (40, 40, 40)     # dark grey\ndraw.arc([150, 110, 350, 200], start=180, end=0, fill=strand_color, width=1)\ndraw.arc([120, 130, 380, 220], start=180, end=0, fill=strand_color, width=1)\ndraw.arc([100, 150, 400, 240], start=180, end=0, fill=strand_color, width=1)\n\n# ---------- eyes ----------\neye_white = (255, 255, 255)\nleft_eye_bbox = [170, 215, 230, 245]\nright_eye_bbox = [270, 215, 330, 245]\ndraw.ellipse(left_eye_bbox, fill=eye_white, outline=\"black\")\ndraw.ellipse(right_eye_bbox, fill=eye_white, outline=\"black\")\n\n# irises\niris_color = (30, 144, 255)   # DodgerBlue\nleft_iris_bbox = [185, 225, 215, 240]\nright_iris_bbox = [285, 225, 315, 240]\ndraw.ellipse(left_iris_bbox, fill=iris_color, outline=\"black\")\ndraw.ellipse(right_iris_bbox, fill=iris_color, outline=\"black\")\n\n# pupils\nleft_pupil_bbox = [193, 230, 207, 235]\nright_pupil_bbox = [293, 230, 307, 235]\ndraw.ellipse(left_pupil_bbox, fill=\"black\")\ndraw.ellipse(right_pupil_bbox, fill=\"black\")\n\n# eye highlights (catchlights)\ndraw.ellipse([196, 232, 200, 236], fill=\"white\")\ndraw.ellipse([296, 232, 300, 236], fill=\"white\")\n\n# ---------- eyebrows ----------\neyebrow_color = (0, 0, 0)\nleft_brow_bbox = [165, 195, 235, 215]\nright_brow_bbox = [265, 195, 335, 215]\ndraw.arc(left_brow_bbox, start=180, end=0, fill=eyebrow_color, width=2)\ndraw.arc(right_brow_bbox, start=180, end=0, fill=eyebrow_color, width=2)\n\n# ---------- nose ----------\ndraw.line([(250, 250), (250, 290)], fill=\"black\", width=2)   # bridge\ndraw.ellipse([235, 285, 245, 295], fill=\"black\")            # left nostril\ndraw.ellipse([255, 285, 265, 295], fill=\"black\")            # right nostril\n\n# ---------- mouth (smile) ----------\ndraw.arc([230, 310, 270, 340], start=0, end=180, fill=\"black\", width=3)\n\n# ---------- save ----------\nimg.save(\"portrait.png\")\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "python",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.07
+      }
+    }
+  ],
+  "detected_language": "python",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:35:16+00:00",
+  "total_duration_s": 92.13
+}

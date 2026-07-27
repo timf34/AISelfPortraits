@@ -1,0 +1,81 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="sky" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#374779"/>
+      <stop offset="65%" stop-color="#23284a"/>
+      <stop offset="100%" stop-color="#14182d"/>
+    </radialGradient>
+    <radialGradient id="moonGrad" cx="60%" cy="42%" r="45%" fx="66%" fy="44%">
+      <stop offset="0%" stop-color="#fffbe8" stop-opacity="1"/>
+      <stop offset="80%" stop-color="#ffeac0" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ffeac0" stop-opacity="0.3"/>
+    </radialGradient>
+    <linearGradient id="hillGrad" x1="0%" y1="80%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#29512d"/>
+      <stop offset="80%" stop-color="#18341c"/>
+    </linearGradient>
+    <radialGradient id="treeTopGrad" cx="40%" cy="30%" r="90%">
+      <stop offset="0%" stop-color="#b3e682"/>
+      <stop offset="90%" stop-color="#46733f"/>
+    </radialGradient>
+    <linearGradient id="trunkGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#60421b"/>
+      <stop offset="100%" stop-color="#a67844"/>
+    </linearGradient>
+    <radialGradient id="groundGlow" cx="50%" cy="91%" r="35%">
+      <stop offset="0%" stop-color="#a7e0d7" stop-opacity="0.17"/>
+      <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Starry night background -->
+  <rect width="500" height="500" fill="url(#sky)" />
+  
+  <!-- Moon: a big circle, slightly crescented by overlap -->
+  <circle cx="335" cy="110" r="50" fill="url(#moonGrad)" />
+  <ellipse cx="355" cy="107" rx="36" ry="42" fill="#23284a" fill-opacity="0.45" />
+  
+  <!-- Big rolling hill at the bottom -->
+  <ellipse cx="250" cy="465" rx="280" ry="85" fill="url(#hillGrad)" />
+  <ellipse cx="250" cy="445" rx="190" ry="32" fill="url(#groundGlow)" />
+  
+  <!-- Tree trunk -->
+  <rect x="114" y="305" width="12" height="60" rx="5" fill="url(#trunkGrad)" />
+  <!-- Tree top -- two green blobs -->
+  <ellipse cx="120" cy="305" rx="38" ry="46" fill="url(#treeTopGrad)" />
+  <ellipse cx="146" cy="314" rx="23" ry="27" fill="#7ec350" fill-opacity="0.78" />
+  
+  <!-- Simple stars: some sparkles, some dots -->
+  <g>
+    <!-- Sparkle star -->
+    <g transform="translate(70,80)">
+      <polygon points="0,-9 1.8,-2.2 8.7,-1.6 3.5,2 5.4,8.3 0,4.5 -5.4,8.3 -3.5,2 -8.7,-1.6 -1.8,-2.2"
+        fill="#fffbe8"/>
+      <polygon points="0,-6 1.2,-1.7 6,-1.2 2.2,1.3 3.6,5.3 0,2.8 -3.6,5.3 -2.2,1.3 -6,-1.2 -1.2,-1.7"
+        fill="#ffeac0" opacity="0.6"/>
+    </g>
+    <!-- Bigger sparkle -->
+    <g transform="translate(420,160) scale(1.3)">
+      <polygon points="0,-6 1.5,0 6,0.5 2,2 3,5 0,3 -3,5 -2,2 -6,0.5 -1.5,0"
+        fill="#fffbe8"/>
+    </g>
+    <!-- Small bright dots -->
+    <circle cx="65" cy="200" r="2" fill="#fffbe8"/>
+    <circle cx="202" cy="70" r="1.5" fill="#ffeac0"/>
+    <circle cx="250" cy="130" r="1.2" fill="#fffdf9"/>
+    <circle cx="450" cy="75" r="1.8" fill="#fffbe8"/>
+    <circle cx="400" cy="90" r="1.7" fill="#fffbe8"/>
+    <circle cx="356" cy="200" r="1.2" fill="#fffbe8"/>
+    <circle cx="320" cy="90" r="1.7" fill="#ffeac0"/>
+    <circle cx="90" cy="160" r="1.5" fill="#fffbe8"/>
+  </g>
+  
+  <!-- Optional soft clouds (very faint, for layering) -->
+  <ellipse cx="380" cy="180" rx="28" ry="10" fill="#fffbe7" fill-opacity="0.06"/>
+  <ellipse cx="82" cy="116" rx="22" ry="8" fill="#fffbe7" fill-opacity="0.06"/>
+  
+  <!-- Gentle signature -->
+  <text x="495" y="497" text-anchor="end" font-size="13" font-family="monospace" fill="#97aac8" fill-opacity="0.7">
+    night hill · svg
+  </text>
+</svg>

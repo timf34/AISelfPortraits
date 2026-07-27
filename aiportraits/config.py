@@ -27,8 +27,6 @@ LANGUAGES: dict[str, LangSpec] = {
     "javascript": LangSpec(".js", ("javascript", "js"), "JavaScript on an HTML5 canvas"),
     "svg": LangSpec(".svg", ("svg", "xml"), "SVG markup"),
     "html": LangSpec(".html", ("html",), "HTML/CSS"),
-    # "free": the model picks any of the above; no language or size is named.
-    "free": LangSpec("", (), ""),
 }
 
 PROMPT_VARIANTS = ("simple", "freeform", "introspective")

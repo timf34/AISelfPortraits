@@ -1,0 +1,247 @@
+I’ll draw a tiny moonlit observatory perched on a floating island, surrounded by stars and drifting clouds.
+
+```svg
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#090b2d"/>
+      <stop offset="0.55" stop-color="#24265c"/>
+      <stop offset="1" stop-color="#705681"/>
+    </linearGradient>
+
+    <radialGradient id="moonGlow">
+      <stop offset="0" stop-color="#fffde8" stop-opacity="0.85"/>
+      <stop offset="0.35" stop-color="#fff3bd" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#fff3bd" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="islandTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6fa56b"/>
+      <stop offset="1" stop-color="#32524a"/>
+    </linearGradient>
+
+    <linearGradient id="rock" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#504861"/>
+      <stop offset="0.5" stop-color="#302d46"/>
+      <stop offset="1" stop-color="#181a30"/>
+    </linearGradient>
+
+    <linearGradient id="dome" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c8d4e6"/>
+      <stop offset="0.45" stop-color="#7c86a3"/>
+      <stop offset="1" stop-color="#363d5c"/>
+    </linearGradient>
+
+    <linearGradient id="telescope" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d8e1ed"/>
+      <stop offset="1" stop-color="#67718f"/>
+    </linearGradient>
+
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+
+    <filter id="smallGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#08091c" flood-opacity="0.55"/>
+    </filter>
+
+    <clipPath id="frame">
+      <rect width="500" height="500" rx="22"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <!-- Night sky -->
+    <rect width="500" height="500" fill="url(#sky)"/>
+
+    <!-- Subtle atmospheric bands -->
+    <path d="M0 175 C90 142 173 184 260 158 C348 131 418 145 500 112 L500 240 C400 260 323 221 232 244 C140 267 75 236 0 260Z"
+          fill="#7674a6" opacity="0.08"/>
+    <path d="M0 282 C86 250 150 292 238 266 C331 238 421 264 500 226 L500 348 C411 366 343 333 252 354 C154 376 79 347 0 371Z"
+          fill="#d4a1ba" opacity="0.06"/>
+
+    <!-- Moon glow and moon -->
+    <circle cx="384" cy="112" r="105" fill="url(#moonGlow)"/>
+    <circle cx="384" cy="112" r="51" fill="#fff8d8"/>
+    <circle cx="368" cy="96" r="10" fill="#eadfbf" opacity="0.55"/>
+    <circle cx="403" cy="128" r="8" fill="#e8dcba" opacity="0.45"/>
+    <circle cx="397" cy="87" r="5" fill="#e8dcba" opacity="0.38"/>
+    <circle cx="356" cy="122" r="6" fill="#e8dcba" opacity="0.34"/>
+
+    <!-- Stars -->
+    <g fill="#fff8dc">
+      <circle cx="55" cy="74" r="2"/>
+      <circle cx="91" cy="137" r="1.4"/>
+      <circle cx="134" cy="53" r="1.7"/>
+      <circle cx="191" cy="103" r="1.2"/>
+      <circle cx="239" cy="55" r="2.1"/>
+      <circle cx="292" cy="127" r="1.3"/>
+      <circle cx="324" cy="48" r="1.1"/>
+      <circle cx="454" cy="58" r="1.8"/>
+      <circle cx="470" cy="166" r="1.3"/>
+      <circle cx="34" cy="201" r="1.2"/>
+      <circle cx="151" cy="174" r="1.5"/>
+      <circle cx="261" cy="190" r="1.4"/>
+    </g>
+
+    <g fill="#cfe8ff" opacity="0.9">
+      <path d="M72 105 l2.2 6.3 6.3 2.2-6.3 2.2-2.2 6.3-2.2-6.3-6.3-2.2 6.3-2.2Z"/>
+      <path d="M217 145 l1.5 4.5 4.5 1.5-4.5 1.5-1.5 4.5-1.5-4.5-4.5-1.5 4.5-1.5Z"/>
+      <path d="M445 210 l1.7 5 5 1.7-5 1.7-1.7 5-1.7-5-5-1.7 5-1.7Z"/>
+    </g>
+
+    <!-- Shooting star -->
+    <g opacity="0.8">
+      <path d="M103 181 L178 126" stroke="#fff7d5" stroke-width="2" stroke-linecap="round"/>
+      <path d="M114 178 L180 129" stroke="#b9d9ff" stroke-width="7" stroke-linecap="round" opacity="0.12"/>
+      <circle cx="180" cy="127" r="3.5" fill="#fff"/>
+    </g>
+
+    <!-- Distant clouds -->
+    <g fill="#cbc6dc" opacity="0.18">
+      <path d="M-28 244 C-5 219 22 225 31 242 C50 220 88 231 91 254 C115 251 126 264 127 278 L-28 278Z"/>
+      <path d="M369 234 C386 214 410 220 417 235 C436 216 467 227 469 246 C490 240 510 256 512 271 L369 271Z"/>
+    </g>
+
+    <!-- Floating island shadow -->
+    <ellipse cx="251" cy="437" rx="102" ry="17" fill="#08091b" opacity="0.28" filter="url(#softGlow)"/>
+
+    <!-- Island -->
+    <g filter="url(#shadow)">
+      <path d="M118 322
+               C137 298 177 288 221 291
+               C273 277 339 286 379 313
+               C370 337 344 351 320 359
+               L287 430
+               L264 453
+               L244 421
+               L221 446
+               L202 399
+               L174 417
+               L158 363
+               C140 353 124 340 118 322Z"
+            fill="url(#rock)"/>
+
+      <!-- Rock facets -->
+      <path d="M158 344 L202 356 L202 399 L174 417Z" fill="#423b55"/>
+      <path d="M202 356 L246 348 L244 421 L221 446 L202 399Z" fill="#29283e"/>
+      <path d="M246 348 L300 352 L287 430 L264 453 L244 421Z" fill="#393348"/>
+      <path d="M300 352 L344 338 L320 359 L287 430Z" fill="#22243a"/>
+      <path d="M173 362 L183 383 L163 373Z" fill="#777087" opacity="0.35"/>
+      <path d="M256 370 L271 404 L251 392Z" fill="#777087" opacity="0.25"/>
+      <path d="M306 365 L296 397 L289 375Z" fill="#777087" opacity="0.2"/>
+
+      <!-- Grassy top -->
+      <path d="M117 320
+               C137 292 178 284 221 289
+               C268 274 338 283 381 311
+               C365 333 330 344 286 345
+               C235 350 180 345 143 334
+               C129 330 121 325 117 320Z"
+            fill="url(#islandTop)"/>
+
+      <path d="M122 317 C172 334 225 324 262 325 C308 326 342 320 375 307"
+            fill="none" stroke="#98be79" stroke-width="5" opacity="0.6"/>
+    </g>
+
+    <!-- Path -->
+    <path d="M230 337 C234 319 246 310 260 305 C274 300 283 291 286 282"
+          fill="none" stroke="#b59a77" stroke-width="13" stroke-linecap="round" opacity="0.85"/>
+    <path d="M231 337 C238 320 247 313 263 307"
+          fill="none" stroke="#d3bb91" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
+
+    <!-- Observatory building -->
+    <g filter="url(#shadow)">
+      <rect x="221" y="247" width="104" height="78" rx="7" fill="#ddd5c7"/>
+      <path d="M221 262 H325 V278 H221Z" fill="#b9afab" opacity="0.65"/>
+      <path d="M221 304 H325 V325 H221Z" fill="#a49aa1" opacity="0.5"/>
+
+      <!-- Brick hints -->
+      <g stroke="#8b8190" stroke-width="2" opacity="0.25">
+        <path d="M226 272 H245 M256 272 H280 M291 272 H318"/>
+        <path d="M230 288 H259 M270 288 H299 M307 288 H320"/>
+        <path d="M225 307 H250 M261 307 H288 M298 307 H320"/>
+      </g>
+
+      <!-- Door -->
+      <path d="M268 325 V288 Q268 278 278 278 Q288 278 288 288 V325Z" fill="#38364d"/>
+      <path d="M274 325 V289 Q274 284 279 284 Q284 284 284 289 V325Z" fill="#4c4a61"/>
+      <circle cx="281" cy="305" r="1.8" fill="#e7c672"/>
+
+      <!-- Lit window -->
+      <rect x="233" y="279" width="23" height="22" rx="2" fill="#443e58"/>
+      <rect x="236" y="282" width="17" height="16" fill="#ffd985"/>
+      <path d="M244.5 282 V298 M236 290 H253" stroke="#8a674f" stroke-width="2"/>
+      <rect x="231" y="301" width="27" height="3" rx="1.5" fill="#746c7c"/>
+
+      <!-- Dome -->
+      <path d="M214 247 A59 59 0 0 1 332 247Z" fill="url(#dome)"/>
+      <path d="M272 188 A59 59 0 0 1 292 247 H268Z" fill="#252b48"/>
+      <path d="M270 188 L271 247" stroke="#edf2f7" stroke-width="3" opacity="0.55"/>
+      <path d="M217 239 Q272 221 329 239" fill="none" stroke="#ecf0f4" stroke-width="3" opacity="0.25"/>
+      <rect x="210" y="243" width="126" height="10" rx="4" fill="#626b84"/>
+      <rect x="214" y="243" width="118" height="3" rx="1.5" fill="#cbd3df" opacity="0.7"/>
+
+      <!-- Telescope -->
+      <g transform="rotate(-28 285 207)">
+        <rect x="277" y="157" width="17" height="78" rx="6" fill="url(#telescope)"/>
+        <rect x="274" y="151" width="23" height="16" rx="5" fill="#292f4c"/>
+        <rect x="276" y="151" width="19" height="5" rx="2.5" fill="#a9b8cb"/>
+        <rect x="280" y="223" width="11" height="15" rx="3" fill="#454d68"/>
+      </g>
+    </g>
+
+    <!-- Grass tufts -->
+    <g fill="none" stroke="#9bc37c" stroke-width="2.5" stroke-linecap="round">
+      <path d="M151 325 Q147 314 150 307 M151 325 Q158 314 159 307 M151 325 Q153 312 151 303"/>
+      <path d="M344 322 Q340 311 343 304 M344 322 Q351 312 352 306"/>
+      <path d="M193 338 Q188 328 190 321 M193 338 Q199 328 201 321"/>
+    </g>
+
+    <!-- Foreground clouds -->
+    <g fill="#eee9f2">
+      <path d="M-42 403
+               C-20 374 12 378 26 398
+               C43 365 88 365 105 395
+               C129 380 163 393 166 422
+               C187 423 198 438 196 455
+               H-42Z" opacity="0.74"/>
+      <path d="M330 430
+               C343 406 371 403 386 421
+               C401 393 441 394 454 421
+               C478 407 511 426 514 452
+               V500 H320
+               C315 468 319 445 330 430Z" opacity="0.68"/>
+    </g>
+
+    <!-- Tiny hanging roots -->
+    <g stroke="#6e6a70" stroke-width="2" stroke-linecap="round" opacity="0.6">
+      <path d="M194 393 Q188 419 194 429"/>
+      <path d="M321 355 Q326 378 319 391"/>
+      <path d="M160 359 Q151 382 157 395"/>
+    </g>
+
+    <!-- Fireflies -->
+    <g fill="#ffe98d">
+      <circle cx="126" cy="305" r="2.3"/>
+      <circle cx="366" cy="291" r="2"/>
+      <circle cx="350" cy="347" r="1.7"/>
+      <circle cx="184" cy="291" r="1.8"/>
+    </g>
+    <g fill="#ffe98d" opacity="0.38" filter="url(#smallGlow)">
+      <circle cx="126" cy="305" r="7"/>
+      <circle cx="366" cy="291" r="6"/>
+      <circle cx="350" cy="347" r="5"/>
+      <circle cx="184" cy="291" r="5"/>
+    </g>
+
+    <!-- Border -->
+    <rect x="7" y="7" width="486" height="486" rx="18"
+          fill="none" stroke="#ffffff" stroke-opacity="0.13" stroke-width="2"/>
+  </g>
+</svg>
+```

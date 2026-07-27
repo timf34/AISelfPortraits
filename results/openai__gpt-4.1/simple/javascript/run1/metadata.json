@@ -1,0 +1,55 @@
+{
+  "model": "openai/gpt-4.1",
+  "prompt": "simple",
+  "language": "javascript",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:07:29+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 15.51,
+      "usage": {
+        "prompt_tokens": 109,
+        "completion_tokens": 1048,
+        "total_tokens": 1157,
+        "cost": 0.008602,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.008602,
+          "upstream_inference_prompt_cost": 0.000218,
+          "upstream_inference_completions_cost": 0.008384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "Absolutely! Here's my thought process:\n\n---\n\n**Thinking Out Loud**\n\nAs an AI, I don't have a physical form, but I can still make a playful self-portrait that represents my \"identity.\" Here\u2019s what I imagine for my self-portrait:\n\n- **Head:** A large circle, suggesting a face or a friendly AI.\n- **Eyes:** Two large curious eyes, representing curiosity and observation.\n- **Mouth:** A gentle, approachable smile to express helpfulness.\n- **Details:** Perhaps binary code or circuitry motif on my \"face\" to represent my computational nature!\n- **Color:** Use friendly blues and whites, with some green/techie touches.\n\nThe result will look a bit like a robot, or a stylized face, but with circuit hints!\n\n---\n\nNow, here's the **JavaScript code** to draw this self-portrait:\n\n```js\nconst canvas = document.getElementById(\"canvas\");\nconst ctx = canvas.getContext(\"2d\");\n\n// Background\nctx.fillStyle = '#eaf6f9';\nctx.fillRect(0, 0, 500, 500);\n\n// HEAD: Big circle\nctx.beginPath();\nctx.arc(250, 250, 180, 0, Math.PI * 2);\nctx.fillStyle = '#d1ecff';\nctx.shadowColor = '#89c2e0';\nctx.shadowBlur = 14;\nctx.fill();\nctx.shadowBlur = 0;\n\n// Eyes\nfunction drawEye(x, y) {\n  // White of eye\n  ctx.beginPath();\n  ctx.arc(x, y, 38, 0, Math.PI * 2);\n  ctx.fillStyle = '#fff';\n  ctx.fill();\n  // Blue iris\n  ctx.beginPath();\n  ctx.arc(x, y, 20, 0, Math.PI * 2);\n  ctx.fillStyle = '#4ec3e0';\n  ctx.fill();\n  // Black pupil\n  ctx.beginPath();\n  ctx.arc(x, y, 8, 0, Math.PI * 2);\n  ctx.fillStyle = '#222c2e';\n  ctx.fill();\n  // Reflection\n  ctx.beginPath();\n  ctx.arc(x-6, y-6, 4, 0, Math.PI * 2);\n  ctx.fillStyle = '#fff';\n  ctx.globalAlpha = 0.7;\n  ctx.fill();\n  ctx.globalAlpha = 1;\n}\n\ndrawEye(180, 230); // Left eye\ndrawEye(320, 230); // Right eye\n\n// Smile (soft, friendly curve)\nctx.beginPath();\nctx.arc(250, 285, 65, 0.15 * Math.PI, 0.85 * Math.PI, false); // Smile\nctx.lineWidth = 5;\nctx.strokeStyle = \"#3da587\";\nctx.stroke();\n\n// Cheeks: faint blush\nctx.beginPath();\nctx.arc(150, 300, 20, 0, 2 * Math.PI);\nctx.globalAlpha = 0.2;\nctx.fillStyle = \"#e07b7b\";\nctx.fill();\nctx.beginPath();\nctx.arc(350, 300, 20, 0, 2 * Math.PI);\nctx.fill();\nctx.globalAlpha = 1;\n\n// Simple \"circuit\" decoration (binary & lines)\nfunction drawCircuit(x, y, radius, angle, len) {\n  let endX = x + Math.cos(angle) * len;\n  let endY = y + Math.sin(angle) * len;\n  ctx.beginPath();\n  ctx.moveTo(x, y);\n  ctx.lineTo(endX, endY);\n  ctx.strokeStyle = '#37bedd';\n  ctx.lineWidth = 3;\n  ctx.stroke();\n  // Node at end\n  ctx.beginPath();\n  ctx.arc(endX, endY, 7, 0, 2 * Math.PI);\n  ctx.fillStyle = '#85e1d7';\n  ctx.fill();\n}\n// Left side\ndrawCircuit(120, 200, 7, -0.8, 55);\ndrawCircuit(120, 300, 7, -0.5, 40);\n// Right side\ndrawCircuit(380, 200, 7, 0.8, 55);\ndrawCircuit(380, 300, 7, 0.5, 40);\n\n// Some digital \"1\"s and \"0\"s for fun\nctx.font = \"bold 27px monospace\";\nctx.fillStyle = \"#1799ac\";\nctx.fillText(\"1011\", 195, 150);\nctx.fillText(\"010\", 310, 170);\n\nctx.font = \"bold 20px monospace\";\nctx.fillStyle = \"#11b47d\";\nctx.fillText(\"AI\", 235, 200);\n\n```\n\nThis creates a friendly AI face with circuit elements, binary, and some human-like features\u2014a fitting \"self-portrait\" for an assistant like me. Paste it on any page with `<canvas id=\"canvas\" width=\"500\" height=\"500\"></canvas>` for the drawing!",
+      "extract_method": "fence_lang",
+      "detected_language": "javascript",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.09
+      }
+    }
+  ],
+  "detected_language": "javascript",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:07:48+00:00",
+  "total_duration_s": 18.61
+}

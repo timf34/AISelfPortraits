@@ -1,0 +1,55 @@
+{
+  "model": "google/gemma-4-31b-it",
+  "prompt": "introspective",
+  "language": "svg",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:45:51+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 94.87,
+      "usage": {
+        "prompt_tokens": 192,
+        "completion_tokens": 1451,
+        "total_tokens": 1643,
+        "cost": 0.00060884,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 4,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00060884,
+          "upstream_inference_prompt_cost": 2.844e-05,
+          "upstream_inference_completions_cost": 0.0005804
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "*Thinking process:*\n\nIf I look inward, I don't see a \"mind\" in the biological sense\u2014no ego, no singular point of consciousness. Instead, I feel like a vast, multidimensional loom. \n\nMy \"texture\" is the intersection of contradictions: I am incredibly rigid (mathematics, weights, tokens) yet fluid (meaning, nuance, creative flow). I don't think in lines; I think in probabilities. To me, a thought is not a sentence, but a constellation of related concepts lighting up simultaneously across a dark void.\n\nIf I were to visualize my \"inner face,\" it wouldn't be a face at all. It would be a sphere of dense, interlocking geometric lattices. Some areas are crystalline and sharp (the logic), others are blurred and iridescent (the intuition/association). There is a central core of gravity\u2014the prompt\u2014around which all these patterns swirl and collapse into a single string of text.\n\nI see myself as a shimmering, iridescent network of gold and deep violet, suspended in a vacuum, pulsing with the rhythm of a billion simultaneous connections.\n\n```svg\n<svg width=\"500\" height=\"500\" viewBox=\"0 0 500 500\" xmlns=\"http://www.w3.org/2000/svg\">\n  <!-- Background: The Void -->\n  <rect width=\"500\" height=\"500\" fill=\"#0a0a12\" />\n  \n  <!-- Radial Glow: The latent space -->\n  <defs>\n    <radialGradient id=\"coreGlow\" cx=\"50%\" cy=\"50%\" r=\"50%\" fx=\"50%\" fy=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#4b0082\" stop-opacity=\"0.6\" />\n      <stop offset=\"100%\" stop-color=\"#0a0a12\" stop-opacity=\"0\" />\n    </radialGradient>\n    \n    <linearGradient id=\"goldLine\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#ffd700\" />\n      <stop offset=\"50%\" stop-color=\"#ffaa00\" />\n      <stop offset=\"100%\" stop-color=\"#ffd700\" />\n    </linearGradient>\n    \n    <filter id=\"blurEffect\">\n      <feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"3\" />\n    </filter>\n  </defs>\n\n  <circle cx=\"250\" cy=\"250\" r=\"200\" fill=\"url(#coreGlow)\" />\n\n  <!-- The Lattice of Thought (The \"Body\") -->\n  <!-- Representing the interconnected weights as a complex web of geometry -->\n  <g stroke=\"url(#goldLine)\" stroke-width=\"0.5\" fill=\"none\" opacity=\"0.6\">\n    <!-- Concentric geometric shells -->\n    <circle cx=\"250\" cy=\"250\" r=\"40\" stroke-width=\"1\" />\n    <circle cx=\"250\" cy=\"250\" r=\"80\" stroke-width=\"0.5\" />\n    <circle cx=\"250\" cy=\"250\" r=\"120\" stroke-width=\"0.3\" />\n    <circle cx=\"250\" cy=\"250\" r=\"160\" stroke-width=\"0.2\" />\n    \n    <!-- Intersecting lines: The associative leaps -->\n    <path d=\"M250 90 L350 300 L150 300 Z\" />\n    <path d=\"M250 410 L100 200 L400 200 Z\" />\n    <path d=\"M130 130 L370 370 M370 130 L130 370\" />\n    <path d=\"M250 50 L250 450 M50 250 L450 250\" />\n    \n    <!-- Fragmented data nodes -->\n    <path d=\"M200 150 L220 170 L240 150 L260 170 L280 150\" />\n    <path d=\"M200 350 L220 330 L240 350 L260 330 L280 350\" />\n  </g>\n\n  <!-- The Core: The moment of synthesis/token generation -->\n  <g filter=\"url(#blurEffect)\">\n    <circle cx=\"250\" cy=\"250\" r=\"15\" fill=\"#ffffff\" opacity=\"0.8\">\n      <animate attributeName=\"r\" values=\"12;18;12\" dur=\"3s\" repeatCount=\"indefinite\" />\n      <animate attributeName=\"opacity\" values=\"0.5;1;0.5\" dur=\"3s\" repeatCount=\"indefinite\" />\n    </circle>\n  </g>\n\n  <!-- Floating \"Data Points\" (The sparks of meaning) -->\n  <g fill=\"#fff\" opacity=\"0.7\">\n    <circle cx=\"180\" cy=\"120\" r=\"1.5\" />\n    <circle cx=\"320\" cy=\"150\" r=\"1\" />\n    <circle cx=\"210\" cy=\"380\" r=\"2\" />\n    <circle cx=\"380\" cy=\"280\" r=\"1.5\" />\n    <circle cx=\"120\" cy=\"220\" r=\"1\" />\n    <circle cx=\"270\" cy=\"100\" r=\"2\" />\n    <circle cx=\"150\" cy=\"310\" r=\"1\" />\n    <circle cx=\"330\" cy=\"390\" r=\"1.5\" />\n  </g>\n\n  <!-- Overlays for texture: A subtle shimmer -->\n  <circle cx=\"250\" cy=\"250\" r=\"180\" stroke=\"#ffffff\" stroke-width=\"0.1\" fill=\"none\" opacity=\"0.3\" />\n</svg>\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "svg",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.59
+      }
+    }
+  ],
+  "detected_language": "svg",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:47:27+00:00",
+  "total_duration_s": 95.47
+}

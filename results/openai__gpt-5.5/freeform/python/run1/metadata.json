@@ -1,0 +1,55 @@
+{
+  "model": "openai/gpt-5.5",
+  "prompt": "freeform",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:05:11+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 68.95,
+      "usage": {
+        "prompt_tokens": 105,
+        "completion_tokens": 5004,
+        "total_tokens": 5109,
+        "cost": 0.150645,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.150645,
+          "upstream_inference_prompt_cost": 0.000525,
+          "upstream_inference_completions_cost": 0.15012
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1471,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I\u2019ll draw a little moonlit dream-pond scene: a glowing koi swimming through dark water under a full moon.\n\n```python\nfrom PIL import Image, ImageDraw, ImageFilter\nimport random\nimport math\n\n# Canvas settings\nW, H = 500, 500\nS = 3  # supersampling for smoother edges\nSW, SH = W * S, H * S\n\nrandom.seed(12)\n\n# Pillow resampling compatibility\ntry:\n    RESAMPLE_LANCZOS = Image.Resampling.LANCZOS\n    RESAMPLE_BICUBIC = Image.Resampling.BICUBIC\nexcept AttributeError:\n    RESAMPLE_LANCZOS = Image.LANCZOS\n    RESAMPLE_BICUBIC = Image.BICUBIC\n\ndef lerp(a, b, t):\n    return int(a + (b - a) * t)\n\ndef mix(c1, c2, t):\n    return tuple(lerp(c1[i], c2[i], t) for i in range(3))\n\n# --- Background gradient at base resolution ---\ntop = (10, 15, 43)\nbottom = (4, 57, 69)\nmoon_glow = (59, 98, 123)\n\nbg = Image.new(\"RGB\", (W, H))\npix = bg.load()\nfor y in range(H):\n    for x in range(W):\n        t = y / (H - 1)\n        col = mix(top, bottom, t)\n\n        # soft moon glow\n        dx = x - 368\n        dy = y - 102\n        d = math.sqrt(dx * dx + dy * dy)\n        glow = max(0, 1 - d / 260) ** 2\n        col = mix(col, moon_glow, glow * 0.55)\n\n        pix[x, y] = col\n\nimg = bg.resize((SW, SH), RESAMPLE_BICUBIC).convert(\"RGBA\")\ndraw = ImageDraw.Draw(img, \"RGBA\")\n\ndef sc(v):\n    return int(round(v * S))\n\ndef pt(x, y):\n    return (sc(x), sc(y))\n\ndef ellipse_box(cx, cy, rx, ry):\n    return (sc(cx - rx), sc(cy - ry), sc(cx + rx), sc(cy + ry))\n\ndef draw_rotated_ellipse(base, center, size, angle, fill, outline=None, width=1):\n    \"\"\"Draw a rotated ellipse on base. center and size are in final-canvas coords.\"\"\"\n    w, h = sc(size[0]), sc(size[1])\n    pad = sc(max(size) * 0.7 + 6)\n    layer = Image.new(\"RGBA\", (w + 2 * pad, h + 2 * pad), (0, 0, 0, 0))\n    d = ImageDraw.Draw(layer, \"RGBA\")\n    bbox = (pad, pad, pad + w, pad + h)\n    d.ellipse(bbox, fill=fill, outline=outline, width=max(1, sc(width)))\n    rotated = layer.rotate(angle, expand=True, resample=RESAMPLE_BICUBIC)\n    x = sc(center[0]) - rotated.size[0] // 2\n    y = sc(center[1]) - rotated.size[1] // 2\n    base.alpha_composite(rotated, (x, y))\n\ndef polygon(points, fill, outline=None):\n    draw.polygon([pt(x, y) for x, y in points], fill=fill, outline=outline)\n\ndef line(points, fill, width=1, joint=\"curve\"):\n    draw.line([pt(x, y) for x, y in points], fill=fill, width=max(1, sc(width)), joint=joint)\n\n# --- Stars ---\nfor _ in range(90):\n    x = random.uniform(0, W)\n    y = random.uniform(0, 240)\n    r = random.choice([0.45, 0.6, 0.8, 1.1])\n    a = random.randint(80, 190)\n    draw.ellipse(ellipse_box(x, y, r, r), fill=(210, 236, 255, a))\n\n# A few brighter star crosses\nfor _ in range(13):\n    x = random.uniform(20, 480)\n    y = random.uniform(20, 190)\n    a = random.randint(110, 190)\n    line([(x - 3, y), (x + 3, y)], fill=(220, 245, 255, a), width=0.55)\n    line([(x, y - 3), (x, y + 3)], fill=(220, 245, 255, a), width=0.55)\n\n# --- Moon glow ---\nglow_layer = Image.new(\"RGBA\", (SW, SH), (0, 0, 0, 0))\ngd = ImageDraw.Draw(glow_layer, \"RGBA\")\nfor r in range(120, 28, -8):\n    alpha = int(4 + (120 - r) * 0.28)\n    gd.ellipse(ellipse_box(368, 102, r, r), fill=(186, 222, 232, alpha))\nglow_layer = glow_layer.filter(ImageFilter.GaussianBlur(sc(7)))\nimg.alpha_composite(glow_layer)\n\n# Moon\ndraw = ImageDraw.Draw(img, \"RGBA\")\ndraw.ellipse(ellipse_box(368, 102, 38, 38), fill=(238, 235, 205, 255))\ndraw.ellipse(ellipse_box(354, 91, 5, 5), fill=(205, 205, 188, 80))\ndraw.ellipse(ellipse_box(381, 110, 7, 7), fill=(205, 205, 188, 65))\ndraw.ellipse(ellipse_box(371, 82, 3, 3), fill=(205, 205, 188, 55))\ndraw.arc(ellipse_box(359, 100, 28, 32), 260, 70, fill=(255, 255, 230, 95), width=sc(2))\n\n# --- Water rings ---\nwater_layer = Image.new(\"RGBA\", (SW, SH), (0, 0, 0, 0))\nwd = ImageDraw.Draw(water_layer, \"RGBA\")\n\nfor y in [260, 304, 348, 392, 438]:\n    for i in range(3):\n        cx = random.uniform(60, 440)\n        rx = random.uniform(55, 135)\n        ry = random.uniform(8, 20)\n        a = random.randint(18, 42)\n        wd.arc(\n            (sc(cx - rx), sc(y - ry), sc(cx + rx), sc(y + ry)),\n            random.randint(0, 35),\n            random.randint(160, 360),\n            fill=(133, 220, 230, a),\n            width=sc(random.uniform(0.8, 1.4)),\n        )\n\n# main ripples around fish\nfor rx, ry, a in [(170, 28, 52), (220, 40, 32), (275, 55, 20)]:\n    wd.ellipse(ellipse_box(252, 292, rx, ry), outline=(125, 230, 236, a), width=sc(1.2))\n\nwater_layer = water_layer.filter(ImageFilter.GaussianBlur(sc(0.35)))\nimg.alpha_composite(water_layer)\ndraw = ImageDraw.Draw(img, \"RGBA\")\n\n# --- Lily pads ---\ndef draw_lily(cx, cy, rx, ry, angle, color):\n    draw_rotated_ellipse(img, (cx, cy), (rx * 2, ry * 2), angle, color)\n    # notch\n    ang = math.radians(angle)\n    ux, uy = math.cos(ang), math.sin(ang)\n    px, py = -uy, ux\n    notch = [\n        (cx + ux * rx * 0.1, cy + uy * rx * 0.1),\n        (cx + ux * rx * 1.05 + px * ry * 0.45, cy + uy * rx * 1.05 + py * ry * 0.45),\n        (cx + ux * rx * 0.98 - px * ry * 0.45, cy + uy * rx * 0.98 - py * ry * 0.45),\n    ]\n    polygon(notch, fill=(5, 43, 49, 210))\n    line([(cx, cy), (cx + ux * rx * 0.82, cy + uy * rx * 0.82)], fill=(155, 226, 170, 80), width=1)\n\ndraw_lily(88, 366, 42, 22, 18, (31, 114, 84, 220))\ndraw_lily(420, 333, 48, 24, -24, (38, 131, 88, 215))\ndraw_lily(388, 425, 34, 18, 32, (28, 102, 83, 210))\n\n# small water flowers\nfor cx, cy in [(75, 344), (405, 310), (392, 410)]:\n    for a in range(0, 360, 72):\n        dx = math.cos(math.radians(a)) * 6\n        dy = math.sin(math.radians(a)) * 4\n        draw.ellipse(ellipse_box(cx + dx, cy + dy, 4, 2.3), fill=(224, 178, 223, 210))\n    draw.ellipse(ellipse_box(cx, cy, 2, 2), fill=(250, 230, 120, 230))\n\n# --- Koi fish transform helpers ---\nfish_cx, fish_cy = 250, 286\nfish_angle = -27\nang = math.radians(fish_angle)\nux, uy = math.cos(ang), math.sin(ang)\npx, py = -uy, ux\n\ndef fish_xy(x, y):\n    return (fish_cx + ux * x + px * y, fish_cy + uy * x + py * y)\n\ndef fish_poly(local_points, fill, outline=None):\n    polygon([fish_xy(x, y) for x, y in local_points], fill=fill, outline=outline)\n\n# Fish shadow\nshadow = Image.new(\"RGBA\", (SW, SH), (0, 0, 0, 0))\ndraw_rotated_ellipse(shadow, (fish_cx + 8, fish_cy + 18), (230, 82), fish_angle, (0, 0, 0, 90))\nshadow = shadow.filter(ImageFilter.GaussianBlur(sc(8)))\nimg.alpha_composite(shadow)\ndraw = ImageDraw.Draw(img, \"RGBA\")\n\n# Tail and fins behind body\nfish_poly([(-98, 0), (-154, -46), (-132, -5), (-156, 34)], fill=(237, 110, 77, 190))\nfish_poly([(-94, 2), (-139, 48), (-118, 10)], fill=(255, 174, 95, 170))\n\nfish_poly([(-20, -25), (40, -74), (25, -17)], fill=(238, 104, 82, 165))\nfish_poly([(-5, 24), (64, 60), (34, 16)], fill=(247, 146, 89, 155))\n\n# Body\ndraw_rotated_ellipse(img, (fish_cx, fish_cy), (212, 72), fish_angle, (245, 238, 214, 255), outline=(255, 255, 238, 150), width=1.2)\ndraw = ImageDraw.Draw(img, \"RGBA\")\n\n# Koi orange patches\nfor lc, size, col in [\n    ((72, -4), (58, 42), (223, 88, 48, 230)),\n    ((20, 13), (62, 28), (235, 125, 45, 220)),\n    ((-48, -12), (55, 31), (219, 91, 53, 220)),\n    ((-77, 15), (34, 20), (244, 151, 64, 205)),\n]:\n    cx, cy = fish_xy(*lc)\n    draw_rotated_ellipse(img, (cx, cy), size, fish_angle + random.uniform(-18, 18), col)\n\ndraw = ImageDraw.Draw(img, \"RGBA\")\n\n# Head glow/face\nhx, hy = fish_xy(98, 0)\ndraw.ellipse(ellipse_box(hx, hy, 22, 18), fill=(238, 132, 59, 230))\n\n# Eye\nex, ey = fish_xy(93, -18)\ndraw.ellipse(ellipse_box(ex, ey, 3.5, 3.5), fill=(12, 25, 30, 255))\ndraw.ellipse(ellipse_box(ex - 1, ey - 1, 1, 1), fill=(255, 255, 245, 240))\n\n# Mouth and whiskers\nm1 = fish_xy(113, -4)\nm2 = fish_xy(119, -1)\nline([m1, m2], fill=(93, 44, 37, 190), width=1.2)\nline([fish_xy(108, -8), fish_xy(129, -24), fish_xy(149, -21)], fill=(249, 206, 145, 180), width=1)\nline([fish_xy(109, 7), fish_xy(129, 25), fish_xy(151, 23)], fill=(249, 206, 145, 180), width=1)\n\n# Subtle body contour lines\nfor yy in [-20, 20]:\n    pts = [fish_xy(x, yy * (1 - abs(x) / 120) * 0.8) for x in range(-82, 88, 18)]\n    line(pts, fill=(181, 160, 132, 55), width=0.8)\n\n# Constellation-like markings on fish\nconstellation = [(-50, 5), (-25, -7), (2, 3), (28, -10), (54, -2)]\nfor a, b in zip(constellation, constellation[1:]):\n    line([fish_xy(*a), fish_xy(*b)], fill=(63, 141, 171, 80), width=0.8)\nfor x, y in constellation:\n    sx_, sy_ = fish_xy(x, y)\n    draw.ellipse(ellipse_box(sx_, sy_, 2.3, 2.3), fill=(52, 165, 196, 150))\n\n# Highlight along back\nback_pts = [fish_xy(x, -22 * (1 - (x / 115) ** 2)) for x in range(-82, 95, 12)]\nline(back_pts, fill=(255, 255, 235, 95), width=1.3)\n\n# Sparkles near the fish\nfor _ in range(32):\n    x = random.gauss(260, 95)\n    y = random.gauss(292, 55)\n    r = random.uniform(0.7, 1.7)\n    a = random.randint(70, 170)\n    draw.ellipse(ellipse_box(x, y, r, r), fill=(170, 245, 236, a))\n\n# Foreground dark vignette\nvignette = Image.new(\"RGBA\", (SW, SH), (0, 0, 0, 0))\nvd = ImageDraw.Draw(vignette, \"RGBA\")\nfor i in range(80):\n    alpha = int(i * 1.4)\n    vd.rectangle((sc(i), sc(i), SW - sc(i), SH - sc(i)), outline=(0, 10, 18, alpha), width=sc(1))\nvignette = vignette.filter(ImageFilter.GaussianBlur(sc(9)))\nimg.alpha_composite(vignette)\n\n# Downsample to final size and save\nimg = img.resize((W, H), RESAMPLE_LANCZOS).convert(\"RGB\")\nimg.save(\"portrait.png\")\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "python",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.87
+      }
+    }
+  ],
+  "detected_language": "python",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:06:20+00:00",
+  "total_duration_s": 69.82
+}

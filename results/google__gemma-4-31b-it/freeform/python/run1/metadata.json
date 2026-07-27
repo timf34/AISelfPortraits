@@ -1,0 +1,55 @@
+{
+  "model": "google/gemma-4-31b-it",
+  "prompt": "freeform",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:44:18+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 22.68,
+      "usage": {
+        "prompt_tokens": 121,
+        "completion_tokens": 1079,
+        "total_tokens": 1200,
+        "cost": 0.00037896,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00037896,
+          "upstream_inference_prompt_cost": 1.21e-05,
+          "upstream_inference_completions_cost": 0.00036686
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I want to create something that feels atmospheric and slightly surreal\u2014a \"Cosmic Solitude\" scene. \n\nI'll visualize a deep indigo and violet gradient sky to represent a nebula, scattered with tiny white stars of varying sizes. In the center, I'll place a perfectly spherical, glowing gold planet or moon, casting a soft radial gradient light around it. To add a sense of scale and loneliness, I'll draw a small, dark silhouette of a jagged asteroid or a tiny floating island in the foreground.\n\nThe contrast between the deep coldness of the space background and the warm glow of the central sphere should create a focal point that draws the eye.\n\n```python\nfrom PIL import Image, ImageDraw, ImageFilter\n\ndef draw_cosmic_scene():\n    # Create a 500x500 canvas\n    width, height = 500, 500\n    image = Image.new(\"RGB\", (width, height), (0, 0, 0))\n    draw = ImageDraw.Draw(image)\n\n    # 1. Draw a radial gradient for the nebula background\n    # We simulate this by drawing concentric circles with decreasing opacity/brightness\n    for r in range(400, 0, -1):\n        # Transition from deep indigo to deep violet/black\n        color = (int(10 * (1 - r/400)), int(15 * (1 - r/400)), int(40 * (1 - r/400)))\n        # To make it look more like a nebula, we'll use a larger radius and soft edges\n        # but for a simple PIL script, we will fill the background with a base color first\n        pass\n    \n    # Base Background: Deep Indigo\n    draw.rectangle([0, 0, width, height], fill=(15, 10, 35))\n\n    # 2. Add a glow effect for the central planet\n    # We draw several overlapping circles with decreasing opacity (simulated by blending)\n    glow_image = Image.new(\"RGB\", (width, height), (0, 0, 0))\n    glow_draw = ImageDraw.Draw(glow_image)\n    center = (width // 2, height // 2)\n    \n    for r in range(150, 0, -5):\n        # Warm golden glow fading out\n        alpha = 1.0 - (r / 150)\n        color = (int(255 * alpha * 0.4), int(200 * alpha * 0.3), int(100 * alpha * 0.1))\n        glow_draw.ellipse([center[0]-r, center[1]-r, center[0]+r, center[1]+r], fill=color)\n    \n    image = Image.blend(image, glow_image, 0.6)\n    draw = ImageDraw.Draw(image)\n\n    # 3. Draw the Central Planet\n    planet_radius = 60\n    planet_box = [center[0]-planet_radius, center[1]-planet_radius, center[0]+planet_radius, center[1]+planet_radius]\n    draw.ellipse(planet_box, fill=(255, 220, 100)) # Bright Golden Yellow\n\n    # 4. Add stars (random white dots)\n    import random\n    for _ in range(100):\n        x = random.randint(0, width)\n        y = random.randint(0, height)\n        size = random.randint(1, 2)\n        draw.ellipse([x, y, x+size, y+size], fill=(255, 255, 255))\n\n    # 5. Draw a foreground silhouette (an asteroid/floating rock)\n    # A series of overlapping dark circles to create an irregular organic shape\n    rock_points = [\n        (100, 400, 40),\n        (130, 420, 30),\n        (160, 390, 50),\n        (200, 430, 40),\n        (240, 410, 30),\n    ]\n    for rx, ry, rr in rock_points:\n        draw.ellipse([rx-rr, ry-rr, rx+rr, ry+rr], fill=(5, 5, 15))\n\n    # Final touch: Slight blur to the background elements to make it feel more \"dreamy\"\n    # We will just save it as is to maintain the sharp stars.\n    \n    image.save(\"portrait.png\")\n\nif __name__ == \"__main__\":\n    draw_cosmic_scene()\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "python",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.06
+      }
+    }
+  ],
+  "detected_language": "python",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:44:40+00:00",
+  "total_duration_s": 22.74
+}

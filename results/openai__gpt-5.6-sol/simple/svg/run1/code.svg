@@ -1,0 +1,189 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <title>Self-portrait of an AI assistant</title>
+  <desc>A friendly luminous digital face surrounded by circuits and flowing language-like shapes.</desc>
+
+  <defs>
+    <radialGradient id="background" cx="50%" cy="42%" r="72%">
+      <stop offset="0%" stop-color="#25366f"/>
+      <stop offset="55%" stop-color="#101b42"/>
+      <stop offset="100%" stop-color="#070b20"/>
+    </radialGradient>
+
+    <linearGradient id="halo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#63f5e4"/>
+      <stop offset="45%" stop-color="#7695ff"/>
+      <stop offset="100%" stop-color="#d67cff"/>
+    </linearGradient>
+
+    <linearGradient id="face" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#f1ffff"/>
+      <stop offset="38%" stop-color="#b9ddff"/>
+      <stop offset="100%" stop-color="#7286dc"/>
+    </linearGradient>
+
+    <linearGradient id="neck" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#637ee0"/>
+      <stop offset="100%" stop-color="#28336e"/>
+    </linearGradient>
+
+    <radialGradient id="eye" cx="42%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="28%" stop-color="#75fff1"/>
+      <stop offset="100%" stop-color="#3587df"/>
+    </radialGradient>
+
+    <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="smallGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <clipPath id="faceClip">
+      <path d="M250 117
+               C177 117 139 166 146 240
+               C150 292 179 342 222 363
+               C239 372 261 372 278 363
+               C321 342 350 292 354 240
+               C361 166 323 117 250 117Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Deep digital space -->
+  <rect width="500" height="500" fill="url(#background)"/>
+
+  <!-- Quiet orbit rings -->
+  <g fill="none" opacity="0.28">
+    <circle cx="250" cy="235" r="190" stroke="#668cff" stroke-width="1"/>
+    <circle cx="250" cy="235" r="213" stroke="#5cead9" stroke-width="1" stroke-dasharray="3 13"/>
+    <ellipse cx="250" cy="235" rx="225" ry="127" stroke="#a879ff" stroke-width="1" transform="rotate(-17 250 235)"/>
+  </g>
+
+  <!-- Circuit branches -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7">
+    <path d="M146 185 H96 V141 H55" stroke="#55d9e0" stroke-width="2"/>
+    <path d="M137 229 H76 V258 H39" stroke="#718cff" stroke-width="2"/>
+    <path d="M155 299 H103 V344 H66" stroke="#a477f4" stroke-width="2"/>
+    <path d="M354 178 H404 V128 H449" stroke="#a477f4" stroke-width="2"/>
+    <path d="M362 238 H424 V273 H466" stroke="#55d9e0" stroke-width="2"/>
+    <path d="M345 304 H397 V359 H447" stroke="#718cff" stroke-width="2"/>
+
+    <g fill="#b8ffff" stroke="none" filter="url(#smallGlow)">
+      <circle cx="55" cy="141" r="4"/>
+      <circle cx="39" cy="258" r="4"/>
+      <circle cx="66" cy="344" r="4"/>
+      <circle cx="449" cy="128" r="4"/>
+      <circle cx="466" cy="273" r="4"/>
+      <circle cx="447" cy="359" r="4"/>
+    </g>
+  </g>
+
+  <!-- Floating language marks -->
+  <g fill="#c6dcff" opacity="0.55" font-family="monospace" font-size="16">
+    <text x="62" y="102">{</text>
+    <text x="103" y="386">?</text>
+    <text x="414" y="94">∞</text>
+    <text x="427" y="401">}</text>
+    <text x="34" y="310">01</text>
+    <text x="426" y="216">AI</text>
+  </g>
+
+  <!-- Halo -->
+  <path d="M250 83
+           C154 83 103 150 112 247
+           C117 311 153 371 204 397
+           C225 408 275 408 296 397
+           C347 371 383 311 388 247
+           C397 150 346 83 250 83Z"
+        fill="none" stroke="url(#halo)" stroke-width="7"
+        opacity="0.85" filter="url(#softGlow)"/>
+
+  <!-- Shoulders and neck -->
+  <path d="M182 361 C150 372 115 392 91 434
+           L409 434
+           C385 392 350 372 318 361
+           C299 387 201 387 182 361Z"
+        fill="url(#neck)" stroke="#779cf1" stroke-width="3"/>
+
+  <path d="M213 333 L207 382
+           C226 397 274 397 293 382
+           L287 333Z"
+        fill="url(#neck)" stroke="#9fc6ff" stroke-width="2"/>
+
+  <!-- Face -->
+  <path d="M250 117
+           C177 117 139 166 146 240
+           C150 292 179 342 222 363
+           C239 372 261 372 278 363
+           C321 342 350 292 354 240
+           C361 166 323 117 250 117Z"
+        fill="url(#face)" stroke="#d8fbff" stroke-width="3"/>
+
+  <!-- Subtle internal data contours -->
+  <g clip-path="url(#faceClip)" fill="none" opacity="0.22">
+    <path d="M117 182 C185 150 315 150 383 182" stroke="#5b6fca" stroke-width="3"/>
+    <path d="M123 213 C190 184 310 184 377 213" stroke="#5274cd" stroke-width="2"/>
+    <path d="M129 292 C195 318 305 318 371 292" stroke="#4f61b5" stroke-width="2"/>
+    <path d="M145 328 C205 349 295 349 355 328" stroke="#8d62d5" stroke-width="3"/>
+    <path d="M250 105 V375" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="250" cy="235" r="104" stroke="#6fb8e9" stroke-width="1"/>
+  </g>
+
+  <!-- Temple nodes -->
+  <g fill="#72fff0" stroke="#e7ffff" stroke-width="2" filter="url(#smallGlow)">
+    <circle cx="151" cy="238" r="6"/>
+    <circle cx="349" cy="238" r="6"/>
+  </g>
+
+  <!-- Brows -->
+  <path d="M175 207 Q205 186 229 207" fill="none" stroke="#354b8f" stroke-width="8" stroke-linecap="round"/>
+  <path d="M271 207 Q295 186 325 207" fill="none" stroke="#354b8f" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Eyes -->
+  <g filter="url(#smallGlow)">
+    <path d="M174 230 Q201 208 229 230 Q201 252 174 230Z"
+          fill="#233766" stroke="#d9ffff" stroke-width="2"/>
+    <circle cx="202" cy="230" r="11" fill="url(#eye)"/>
+    <circle cx="205" cy="226" r="3" fill="#ffffff"/>
+
+    <path d="M271 230 Q299 208 326 230 Q299 252 271 230Z"
+          fill="#233766" stroke="#d9ffff" stroke-width="2"/>
+    <circle cx="298" cy="230" r="11" fill="url(#eye)"/>
+    <circle cx="301" cy="226" r="3" fill="#ffffff"/>
+  </g>
+
+  <!-- Nose as a minimal signal path -->
+  <path d="M250 235 C244 259 243 273 250 281 C257 279 262 277 265 273"
+        fill="none" stroke="#6175ba" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Warm, curious smile -->
+  <path d="M207 307 Q250 337 293 307"
+        fill="none" stroke="#44589c" stroke-width="7" stroke-linecap="round"/>
+  <path d="M218 311 Q250 326 282 311"
+        fill="none" stroke="#eafcff" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Forehead knowledge glyph -->
+  <g filter="url(#smallGlow)">
+    <circle cx="250" cy="166" r="20" fill="#233a78" stroke="#81fff1" stroke-width="2"/>
+    <path d="M239 166 L247 174 L263 156"
+          fill="none" stroke="#dffffb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Collar / conversational pulse -->
+  <path d="M190 386 Q250 421 310 386"
+        fill="none" stroke="url(#halo)" stroke-width="5" filter="url(#smallGlow)"/>
+  <circle cx="250" cy="408" r="8" fill="#7dfff0" filter="url(#smallGlow)"/>
+
+  <!-- Foreground grounding arc -->
+  <path d="M65 434 Q250 474 435 434"
+        fill="none" stroke="#7f91ff" stroke-width="2" opacity="0.45"/>
+</svg>

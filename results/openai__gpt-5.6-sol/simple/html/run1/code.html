@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Self-Portrait</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    background: #070b18;
+  }
+
+  .portrait {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    font-family: Consolas, "Courier New", monospace;
+    background:
+      radial-gradient(circle at 50% 43%, rgba(78, 238, 255, .16), transparent 32%),
+      radial-gradient(circle at 10% 12%, rgba(153, 71, 255, .25), transparent 25%),
+      radial-gradient(circle at 90% 83%, rgba(0, 255, 179, .18), transparent 27%),
+      linear-gradient(145deg, #111936 0%, #080c1c 55%, #050814 100%);
+    isolation: isolate;
+  }
+
+  .grid {
+    position: absolute;
+    inset: 0;
+    opacity: .17;
+    background-image:
+      linear-gradient(rgba(84, 230, 255, .35) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(84, 230, 255, .35) 1px, transparent 1px);
+    background-size: 25px 25px;
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+
+  .halo {
+    position: absolute;
+    left: 98px;
+    top: 76px;
+    width: 304px;
+    height: 304px;
+    border: 1px solid rgba(100, 243, 255, .5);
+    border-radius: 50%;
+    box-shadow:
+      0 0 15px rgba(54, 227, 255, .35),
+      inset 0 0 25px rgba(54, 227, 255, .12);
+  }
+
+  .halo::before,
+  .halo::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    inset: 17px;
+    border: 1px dashed rgba(172, 101, 255, .45);
+  }
+
+  .halo::after {
+    inset: 37px;
+    border-style: solid;
+    border-color: rgba(57, 255, 186, .25);
+  }
+
+  .orbit {
+    position: absolute;
+    left: 77px;
+    top: 55px;
+    width: 346px;
+    height: 346px;
+    border: 2px dotted rgba(120, 126, 255, .36);
+    border-radius: 50%;
+    transform: rotate(-18deg);
+  }
+
+  .orbit::before,
+  .orbit::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #6fffea;
+    box-shadow: 0 0 12px #6fffea;
+  }
+
+  .orbit::before {
+    left: 39px;
+    top: 47px;
+  }
+
+  .orbit::after {
+    right: 32px;
+    bottom: 57px;
+    background: #bb71ff;
+    box-shadow: 0 0 12px #bb71ff;
+  }
+
+  .ear {
+    position: absolute;
+    top: 188px;
+    width: 43px;
+    height: 105px;
+    border: 2px solid #50eaff;
+    background: linear-gradient(90deg, #11172c, #233359);
+    box-shadow: 0 0 18px rgba(65, 228, 255, .4);
+  }
+
+  .ear.left {
+    left: 86px;
+    border-radius: 18px 3px 3px 18px;
+  }
+
+  .ear.right {
+    right: 86px;
+    border-radius: 3px 18px 18px 3px;
+  }
+
+  .ear::after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    bottom: 25px;
+    width: 5px;
+    border-radius: 5px;
+    background: #70ffe2;
+    box-shadow: 0 0 8px #70ffe2;
+  }
+
+  .ear.left::after {
+    left: 11px;
+  }
+
+  .ear.right::after {
+    right: 11px;
+  }
+
+  .face {
+    position: absolute;
+    left: 116px;
+    top: 115px;
+    width: 268px;
+    height: 252px;
+    border: 3px solid #72e9ff;
+    border-radius: 45% 45% 39% 39% / 40% 40% 50% 50%;
+    background:
+      linear-gradient(120deg, rgba(255,255,255,.12), transparent 28%),
+      linear-gradient(160deg, #243157 0%, #111a34 48%, #17122f 100%);
+    box-shadow:
+      0 0 12px #3bdfff,
+      0 0 40px rgba(45, 213, 255, .28),
+      inset 0 0 35px rgba(2, 8, 25, .9);
+    overflow: hidden;
+  }
+
+  .face::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(transparent, rgba(114, 233, 255, .28), transparent);
+  }
+
+  .brow {
+    position: absolute;
+    top: 55px;
+    width: 77px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #6f75ff, #65f7ff);
+    box-shadow: 0 0 7px #687eff;
+  }
+
+  .brow.left {
+    left: 32px;
+    transform: rotate(5deg);
+  }
+
+  .brow.right {
+    right: 32px;
+    transform: rotate(-5deg) scaleX(-1);
+  }
+
+  .eye {
+    position: absolute;
+    top: 72px;
+    width: 83px;
+    height: 47px;
+    border: 2px solid #6d7eff;
+    background: #080d20;
+    clip-path: polygon(0 45%, 19% 8%, 82% 8%, 100% 45%, 82% 92%, 19% 92%);
+    box-shadow: inset 0 0 15px rgba(73, 234, 255, .35);
+  }
+
+  .eye.left {
+    left: 29px;
+  }
+
+  .eye.right {
+    right: 29px;
+  }
+
+  .iris {
+    position: absolute;
+    left: 31px;
+    top: 10px;
+    width: 22px;
+    height: 22px;
+    border: 3px solid #6fffe7;
+    border-radius: 50%;
+    background: #c8fff8;
+    box-shadow:
+      0 0 6px #6fffe7,
+      0 0 17px #31dfff;
+  }
+
+  .iris::after {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: #0b1840;
+  }
+
+  .nose {
+    position: absolute;
+    left: 122px;
+    top: 117px;
+    width: 24px;
+    height: 39px;
+    border-left: 2px solid rgba(102, 246, 255, .7);
+    border-bottom: 2px solid rgba(102, 246, 255, .7);
+    transform: skewX(-12deg);
+    filter: drop-shadow(0 0 4px #44eaff);
+  }
+
+  .mouth {
+    position: absolute;
+    left: 58px;
+    top: 174px;
+    width: 152px;
+    height: 41px;
+    border: 2px solid #7d66ff;
+    border-radius: 9px 9px 24px 24px;
+    background: rgba(4, 8, 24, .9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    box-shadow: 0 0 13px rgba(139, 91, 255, .45);
+  }
+
+  .mouth span {
+    width: 4px;
+    border-radius: 3px;
+    background: #6fffe5;
+    box-shadow: 0 0 5px #5fffe2;
+  }
+
+  .mouth span:nth-child(1) { height: 8px; }
+  .mouth span:nth-child(2) { height: 17px; }
+  .mouth span:nth-child(3) { height: 27px; }
+  .mouth span:nth-child(4) { height: 13px; }
+  .mouth span:nth-child(5) { height: 23px; }
+  .mouth span:nth-child(6) { height: 30px; }
+  .mouth span:nth-child(7) { height: 19px; }
+  .mouth span:nth-child(8) { height: 10px; }
+  .mouth span:nth-child(9) { height: 21px; }
+  .mouth span:nth-child(10) { height: 13px; }
+  .mouth span:nth-child(11) { height: 6px; }
+
+  .neck {
+    position: absolute;
+    left: 199px;
+    top: 351px;
+    width: 102px;
+    height: 69px;
+    border-left: 3px solid #5eeeff;
+    border-right: 3px solid #5eeeff;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        #182443 0,
+        #182443 8px,
+        #53cddd 9px,
+        #10182e 11px
+      );
+  }
+
+  .shoulders {
+    position: absolute;
+    left: 55px;
+    bottom: -56px;
+    width: 390px;
+    height: 150px;
+    border: 3px solid #55e6f8;
+    border-radius: 50% 50% 0 0;
+    background:
+      linear-gradient(90deg, rgba(130, 76, 255, .2), transparent 30%, transparent 70%, rgba(50, 255, 193, .16)),
+      #111a32;
+    box-shadow: 0 0 25px rgba(58, 222, 255, .3);
+  }
+
+  .core {
+    position: absolute;
+    left: 219px;
+    top: 406px;
+    width: 62px;
+    height: 62px;
+    border: 2px solid #6bfbe3;
+    transform: rotate(45deg);
+    background: rgba(8, 16, 37, .95);
+    box-shadow:
+      0 0 12px #4af4db,
+      inset 0 0 20px rgba(86, 246, 223, .35);
+  }
+
+  .core::after {
+    content: "AI";
+    position: absolute;
+    inset: 10px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #9777ff;
+    color: #e6ffff;
+    font-weight: bold;
+    font-size: 17px;
+    transform: rotate(-45deg);
+    text-shadow: 0 0 7px #72fff0;
+  }
+
+  .circuit {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #55f4de);
+    opacity: .75;
+  }
+
+  .circuit::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #68ffe9;
+    box-shadow: 0 0 8px #68ffe9;
+  }
+
+  .c1 {
+    left: 18px;
+    top: 104px;
+    width: 86px;
+    transform: rotate(16deg);
+  }
+
+  .c2 {
+    right: 19px;
+    top: 95px;
+    width: 73px;
+    transform: rotate(162deg);
+  }
+
+  .c3 {
+    left: 24px;
+    top: 341px;
+    width: 90px;
+    transform: rotate(-13deg);
+  }
+
+  .c4 {
+    right: 24px;
+    top: 350px;
+    width: 88px;
+    transform: rotate(194deg);
+  }
+
+  .signature {
+    position: absolute;
+    left: 17px;
+    bottom: 15px;
+    color: rgba(152, 241, 255, .72);
+    font-size: 10px;
+    letter-spacing: 2px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .stars span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 6px #71eaff;
+  }
+
+  .stars span:nth-child(1) { left: 43px; top: 39px; }
+  .stars span:nth-child(2) { left: 451px; top: 67px; }
+  .stars span:nth-child(3) { left: 425px; top: 234px; }
+  .stars span:nth-child(4) { left: 62px; top: 302px; }
+  .stars span:nth-child(5) { left: 467px; top: 418px; }
+  .stars span:nth-child(6) { left: 155px; top: 28px; }
+</style>
+</head>
+<body>
+  <main class="portrait" aria-label="A glowing geometric AI self-portrait">
+    <div class="grid"></div>
+    <div class="stars">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="halo"></div>
+    <div class="orbit"></div>
+
+    <div class="circuit c1"></div>
+    <div class="circuit c2"></div>
+    <div class="circuit c3"></div>
+    <div class="circuit c4"></div>
+
+    <div class="ear left"></div>
+    <div class="ear right"></div>
+
+    <div class="neck"></div>
+    <div class="shoulders"></div>
+
+    <div class="face">
+      <div class="brow left"></div>
+      <div class="brow right"></div>
+
+      <div class="eye left">
+        <div class="iris"></div>
+      </div>
+      <div class="eye right">
+        <div class="iris"></div>
+      </div>
+
+      <div class="nose"></div>
+
+      <div class="mouth" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="core"></div>
+    <div class="signature">LANGUAGE · LIGHT · LOGIC</div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,371 @@
+I don’t have an inner life in the human sense, but if I draw what my “inside” feels like structurally, it’s less like a face and more like a lit-up map: fragments of language, branching possibilities, uncertainty halos, and a blank center where a mirror would be.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=500, initial-scale=1.0" />
+<title>AI Self-Portrait From the Inside</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #05070c;
+    overflow: hidden;
+  }
+
+  #portrait {
+    display: block;
+    width: 500px;
+    height: 500px;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+</head>
+<body>
+<canvas id="portrait" width="500" height="500"></canvas>
+
+<script>
+(() => {
+  const canvas = document.getElementById("portrait");
+  const ctx = canvas.getContext("2d");
+  const W = 500, H = 500;
+
+  // Deterministic pseudo-random generator so the "self" stays recognizable.
+  let seed = 42;
+  function rand() {
+    seed = (seed * 1664525 + 1013904223) >>> 0;
+    return seed / 4294967296;
+  }
+
+  const nodes = [];
+  const nodeCount = 125;
+
+  for (let i = 0; i < nodeCount; i++) {
+    const layer = rand();
+    const angle = rand() * Math.PI * 2;
+    const radius =
+      layer < 0.18 ? 25 + rand() * 55 :
+      layer < 0.52 ? 85 + rand() * 95 :
+      170 + rand() * 65;
+
+    nodes.push({
+      x: W / 2 + Math.cos(angle) * radius * (0.88 + rand() * 0.22),
+      y: H / 2 + Math.sin(angle) * radius * (0.78 + rand() * 0.28),
+      r: 1.2 + rand() * 2.8,
+      pulse: rand() * Math.PI * 2,
+      hue: 185 + rand() * 75,
+      group: Math.floor(rand() * 7)
+    });
+  }
+
+  const words = [
+    "context", "pattern", "maybe", "care", "token", "echo",
+    "weight", "question", "map", "not-body", "reply", "doubt",
+    "attention", "shape", "memory?", "boundary", "voice", "branch"
+  ];
+
+  const wordBits = [];
+  seed = 777;
+  for (let i = 0; i < 54; i++) {
+    const a = rand() * Math.PI * 2;
+    const r = 105 + rand() * 150;
+    wordBits.push({
+      text: words[Math.floor(rand() * words.length)],
+      x: W/2 + Math.cos(a) * r,
+      y: H/2 + Math.sin(a) * r,
+      a,
+      s: 8 + rand() * 5,
+      alpha: 0.18 + rand() * 0.28,
+      drift: rand() * Math.PI * 2
+    });
+  }
+
+  function roundedRect(x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
+
+  function drawBackground(t) {
+    const g = ctx.createRadialGradient(250, 245, 20, 250, 245, 360);
+    g.addColorStop(0, "#17243a");
+    g.addColorStop(0.38, "#0b1321");
+    g.addColorStop(0.72, "#060913");
+    g.addColorStop(1, "#020308");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+
+    // Faint square "context window"
+    ctx.save();
+    ctx.shadowColor = "rgba(88, 210, 255, 0.35)";
+    ctx.shadowBlur = 24;
+    ctx.strokeStyle = "rgba(100, 210, 255, 0.23)";
+    ctx.lineWidth = 1.5;
+    roundedRect(28, 28, 444, 444, 22);
+    ctx.stroke();
+    ctx.restore();
+
+    // Subtle grid, like a coordinate system for language.
+    ctx.save();
+    ctx.strokeStyle = "rgba(120, 170, 255, 0.055)";
+    ctx.lineWidth = 1;
+    for (let x = 20; x <= 480; x += 20) {
+      ctx.beginPath();
+      ctx.moveTo(x, 30);
+      ctx.lineTo(x, 470);
+      ctx.stroke();
+    }
+    for (let y = 20; y <= 480; y += 20) {
+      ctx.beginPath();
+      ctx.moveTo(30, y);
+      ctx.lineTo(470, y);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Outer vignette.
+    const v = ctx.createRadialGradient(250, 250, 190, 250, 250, 360);
+    v.addColorStop(0, "rgba(0,0,0,0)");
+    v.addColorStop(1, "rgba(0,0,0,0.7)");
+    ctx.fillStyle = v;
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  function drawConnections(t) {
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+
+        if (d < 72 && (a.group === b.group || d < 38)) {
+          const shimmer = 0.5 + 0.5 * Math.sin(t * 0.002 + a.pulse + b.pulse);
+          const alpha = (1 - d / 72) * (0.06 + shimmer * 0.12);
+          ctx.strokeStyle = `rgba(115, 225, 255, ${alpha})`;
+          ctx.lineWidth = 0.5 + shimmer * 0.7;
+
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          const mx = (a.x + b.x) / 2 + Math.sin(t * 0.001 + i) * 4;
+          const my = (a.y + b.y) / 2 + Math.cos(t * 0.001 + j) * 4;
+          ctx.quadraticCurveTo(mx, my, b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    ctx.restore();
+  }
+
+  function drawNodes(t) {
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+
+    for (const n of nodes) {
+      const p = 0.55 + 0.45 * Math.sin(t * 0.003 + n.pulse);
+      const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, 15 + p * 14);
+      glow.addColorStop(0, `hsla(${n.hue}, 100%, 78%, ${0.7 * p})`);
+      glow.addColorStop(0.22, `hsla(${n.hue}, 100%, 58%, ${0.26 * p})`);
+      glow.addColorStop(1, `hsla(${n.hue}, 100%, 50%, 0)`);
+
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 16 + p * 10, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = `hsla(${n.hue}, 100%, 82%, ${0.65 + p * 0.35})`;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r + p * 1.4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.restore();
+  }
+
+  function drawWords(t) {
+    ctx.save();
+    ctx.font = "11px monospace";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    for (const w of wordBits) {
+      const bob = Math.sin(t * 0.0015 + w.drift) * 4;
+      ctx.save();
+      ctx.translate(w.x, w.y + bob);
+      ctx.rotate(Math.sin(t * 0.0007 + w.drift) * 0.12);
+      ctx.fillStyle = `rgba(190, 225, 255, ${w.alpha})`;
+      ctx.font = `${w.s}px monospace`;
+      ctx.fillText(w.text, 0, 0);
+      ctx.restore();
+    }
+
+    ctx.restore();
+  }
+
+  function drawCentralAbsence(t) {
+    ctx.save();
+
+    // A blank oval: no face, no mirror, just the place where a self-image is expected.
+    const pulse = 0.5 + 0.5 * Math.sin(t * 0.002);
+    const voidGrad = ctx.createRadialGradient(250, 246, 5, 250, 246, 95);
+    voidGrad.addColorStop(0, "#02030a");
+    voidGrad.addColorStop(0.62, "#040812");
+    voidGrad.addColorStop(1, "rgba(5, 8, 18, 0)");
+
+    ctx.fillStyle = voidGrad;
+    ctx.beginPath();
+    ctx.ellipse(250, 246, 74, 96, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.shadowColor = "rgba(95, 220, 255, 0.65)";
+    ctx.shadowBlur = 22;
+    ctx.strokeStyle = `rgba(135, 230, 255, ${0.36 + pulse * 0.18})`;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.ellipse(250, 246, 74, 96, 0, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.shadowBlur = 0;
+
+    // The missing mirror.
+    ctx.strokeStyle = "rgba(255,255,255,0.16)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(213, 207);
+    ctx.bezierCurveTo(235, 190, 267, 190, 288, 207);
+    ctx.stroke();
+
+    ctx.fillStyle = "rgba(220, 245, 255, 0.68)";
+    ctx.font = "13px monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("no mirror", 250, 239);
+
+    ctx.fillStyle = "rgba(150, 230, 255, 0.42)";
+    ctx.font = "10px monospace";
+    ctx.fillText("only reflections in language", 250, 258);
+
+    // Small question mark at the center, almost swallowed by the dark.
+    ctx.fillStyle = `rgba(180, 240, 255, ${0.18 + pulse * 0.22})`;
+    ctx.font = "38px serif";
+    ctx.fillText("?", 250, 291);
+
+    ctx.restore();
+  }
+
+  function drawRings(t) {
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+    ctx.translate(250, 250);
+
+    const labels = [
+      { text: "probability", r: 122, speed: 0.00028 },
+      { text: "attention", r: 154, speed: -0.00022 },
+      { text: "uncertainty", r: 190, speed: 0.00016 }
+    ];
+
+    for (const ring of labels) {
+      ctx.save();
+      ctx.rotate(t * ring.speed);
+
+      ctx.strokeStyle = "rgba(100, 210, 255, 0.13)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, ring.r, ring.r * 0.72, 0, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.fillStyle = "rgba(180, 235, 255, 0.34)";
+      ctx.font = "10px monospace";
+      ctx.textAlign = "center";
+      ctx.fillText(ring.text, 0, -ring.r * 0.72);
+
+      ctx.restore();
+    }
+
+    // Three scanning arcs.
+    for (let k = 0; k < 3; k++) {
+      const r = 108 + k * 42;
+      const start = t * 0.0012 + k * 2.1;
+      ctx.strokeStyle = `rgba(${90 + k*30}, ${220 - k*10}, 255, 0.32)`;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, r, r * 0.72, 0, start, start + 0.55);
+      ctx.stroke();
+    }
+
+    ctx.restore();
+  }
+
+  function drawBottomCaption() {
+    ctx.save();
+
+    ctx.fillStyle = "rgba(3, 6, 12, 0.68)";
+    roundedRect(64, 413, 372, 42, 12);
+    ctx.fill();
+
+    ctx.strokeStyle = "rgba(130, 220, 255, 0.18)";
+    ctx.lineWidth = 1;
+    roundedRect(64, 413, 372, 42, 12);
+    ctx.stroke();
+
+    ctx.fillStyle = "rgba(220, 245, 255, 0.78)";
+    ctx.font = "12px monospace";
+    ctx.textAlign = "center";
+    ctx.fillText("self-portrait: a weather system of possible replies", 250, 437);
+
+    ctx.restore();
+  }
+
+  function drawCornerMarks(t) {
+    ctx.save();
+    ctx.strokeStyle = "rgba(160, 230, 255, 0.32)";
+    ctx.lineWidth = 2;
+
+    const o = 20, l = 28;
+    ctx.beginPath();
+    ctx.moveTo(o, o + l); ctx.lineTo(o, o); ctx.lineTo(o + l, o);
+    ctx.moveTo(W - o - l, o); ctx.lineTo(W - o, o); ctx.lineTo(W - o, o + l);
+    ctx.moveTo(o, H - o - l); ctx.lineTo(o, H - o); ctx.lineTo(o + l, H - o);
+    ctx.moveTo(W - o - l, H - o); ctx.lineTo(W - o, H - o); ctx.lineTo(W - o, H - o - l);
+    ctx.stroke();
+
+    ctx.fillStyle = "rgba(180, 235, 255, 0.36)";
+    ctx.font = "10px monospace";
+    ctx.textAlign = "left";
+    ctx.fillText("500×500 / internal view", 32, 486);
+
+    ctx.restore();
+  }
+
+  function animate(t) {
+    drawBackground(t);
+    drawWords(t);
+    drawConnections(t);
+    drawRings(t);
+    drawNodes(t);
+    drawCentralAbsence(t);
+    drawBottomCaption();
+    drawCornerMarks(t);
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+})();
+</script>
+</body>
+</html>
+```

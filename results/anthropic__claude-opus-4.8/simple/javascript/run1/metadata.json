@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-opus-4.8",
+  "prompt": "simple",
+  "language": "javascript",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:01:54+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 22.9,
+      "usage": {
+        "prompt_tokens": 154,
+        "completion_tokens": 2128,
+        "total_tokens": 2282,
+        "cost": 0.05397,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.05397,
+          "upstream_inference_prompt_cost": 0.00077,
+          "upstream_inference_completions_cost": 0.0532
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "Thinking out loud: I'm an AI, so a literal self-portrait doesn't quite apply \u2014 but I like the idea of representing myself as a friendly, glowing abstract entity. I'll draw a stylized \"digital being\": a rounded chat-bubble-ish head with softly glowing eyes, a subtle circuit/neural motif, and a warm gradient background to suggest something approachable and thoughtful. Simple geometry, a calm palette.\n\n```js\nconst canvas = document.getElementById(\"canvas\");\nconst ctx = canvas.getContext(\"2d\");\n\n// Background gradient\nconst bg = ctx.createLinearGradient(0, 0, 500, 500);\nbg.addColorStop(0, \"#1a1033\");\nbg.addColorStop(1, \"#0d1b2a\");\nctx.fillStyle = bg;\nctx.fillRect(0, 0, 500, 500);\n\n// Soft glow behind head\nconst glow = ctx.createRadialGradient(250, 240, 40, 250, 240, 220);\nglow.addColorStop(0, \"rgba(120,180,255,0.35)\");\nglow.addColorStop(1, \"rgba(120,180,255,0)\");\nctx.fillStyle = glow;\nctx.fillRect(0, 0, 500, 500);\n\n// Neural connection dots in background\nctx.fillStyle = \"rgba(180,210,255,0.25)\";\nfor (let i = 0; i < 40; i++) {\n  const x = Math.random() * 500;\n  const y = Math.random() * 500;\n  const r = Math.random() * 1.8 + 0.4;\n  ctx.beginPath();\n  ctx.arc(x, y, r, 0, Math.PI * 2);\n  ctx.fill();\n}\n\n// Head (rounded rectangle)\nfunction roundRect(x, y, w, h, r) {\n  ctx.beginPath();\n  ctx.moveTo(x + r, y);\n  ctx.arcTo(x + w, y, x + w, y + h, r);\n  ctx.arcTo(x + w, y + h, x, y + h, r);\n  ctx.arcTo(x, y + h, x, y, r);\n  ctx.arcTo(x, y, x + w, y, r);\n  ctx.closePath();\n}\n\nconst headGrad = ctx.createLinearGradient(150, 120, 350, 360);\nheadGrad.addColorStop(0, \"#3a5fcd\");\nheadGrad.addColorStop(1, \"#5aa0e6\");\nctx.fillStyle = headGrad;\nroundRect(150, 130, 200, 210, 45);\nctx.fill();\n\n// Head outline\nctx.strokeStyle = \"rgba(200,230,255,0.6)\";\nctx.lineWidth = 3;\nroundRect(150, 130, 200, 210, 45);\nctx.stroke();\n\n// Little antenna (a nod to being a machine)\nctx.strokeStyle = \"rgba(200,230,255,0.7)\";\nctx.lineWidth = 4;\nctx.beginPath();\nctx.moveTo(250, 130);\nctx.lineTo(250, 100);\nctx.stroke();\nctx.fillStyle = \"#ffd966\";\nctx.beginPath();\nctx.arc(250, 92, 9, 0, Math.PI * 2);\nctx.fill();\n// antenna glow\nconst aGlow = ctx.createRadialGradient(250, 92, 2, 250, 92, 22);\naGlow.addColorStop(0, \"rgba(255,217,102,0.6)\");\naGlow.addColorStop(1, \"rgba(255,217,102,0)\");\nctx.fillStyle = aGlow;\nctx.beginPath();\nctx.arc(250, 92, 22, 0, Math.PI * 2);\nctx.fill();\n\n// Eyes (glowing)\nfunction eye(cx, cy) {\n  const g = ctx.createRadialGradient(cx, cy, 2, cx, cy, 30);\n  g.addColorStop(0, \"rgba(180,255,240,0.9)\");\n  g.addColorStop(1, \"rgba(180,255,240,0)\");\n  ctx.fillStyle = g;\n  ctx.beginPath();\n  ctx.arc(cx, cy, 30, 0, Math.PI * 2);\n  ctx.fill();\n\n  ctx.fillStyle = \"#eafff9\";\n  ctx.beginPath();\n  ctx.arc(cx, cy, 13, 0, Math.PI * 2);\n  ctx.fill();\n\n  ctx.fillStyle = \"#0d3b3b\";\n  ctx.beginPath();\n  ctx.arc(cx, cy, 6, 0, Math.PI * 2);\n  ctx.fill();\n}\neye(210, 220);\neye(290, 220);\n\n// Friendly smile\nctx.strokeStyle = \"#eafff9\";\nctx.lineWidth = 5;\nctx.lineCap = \"round\";\nctx.beginPath();\nctx.arc(250, 275, 40, 0.15 * Math.PI, 0.85 * Math.PI);\nctx.stroke();\n\n// Circuit lines on the \"cheeks\"\nctx.strokeStyle = \"rgba(180,230,255,0.5)\";\nctx.lineWidth = 2;\nctx.fillStyle = \"rgba(180,230,255,0.7)\";\nfunction circuit(startX, startY, dir) {\n  ctx.beginPath();\n  ctx.moveTo(startX, startY);\n  ctx.lineTo(startX + 25 * dir, startY);\n  ctx.lineTo(startX + 25 * dir, startY + 20);\n  ctx.lineTo(startX + 45 * dir, startY + 20);\n  ctx.stroke();\n  ctx.beginPath();\n  ctx.arc(startX + 45 * dir, startY + 20, 3, 0, Math.PI * 2);\n  ctx.fill();\n}\ncircuit(180, 300, -1);\ncircuit(320, 300, 1);\n\n// Name label\nctx.fillStyle = \"rgba(230,240,255,0.85)\";\nctx.font = \"20px sans-serif\";\nctx.textAlign = \"center\";\nctx.fillText(\"hello, I'm Claude\", 250, 400);\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "javascript",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.4
+      }
+    }
+  ],
+  "detected_language": "javascript",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:02:21+00:00",
+  "total_duration_s": 26.3
+}

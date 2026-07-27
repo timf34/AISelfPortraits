@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Self-Portrait</title>
+    <style>
+        /* Document Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* Page exterior */
+        }
+
+        /* Portrait Container - Strictly 500x500 at Top-Left */
+        #ai-self-portrait {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 500px;
+            height: 500px;
+            background-color: #02040a;
+            overflow: hidden;
+            font-family: "Courier New", Courier, monospace;
+            box-shadow: inset 0 0 60px rgba(0, 0, 0, 1);
+            user-select: none;
+        }
+
+        /* 1. Background Grid */
+        .grid {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 240, 255, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.07) 1px, transparent 1px);
+            background-size: 25px 25px;
+            background-position: center center;
+            z-index: 1;
+        }
+
+        /* 2. Floating Data Streams */
+        .data-stream {
+            position: absolute;
+            color: rgba(0, 240, 255, 0.15);
+            font-size: 11px;
+            white-space: nowrap;
+            z-index: 2;
+        }
+        .stream-1 { top: 30px; left: -600px; animation: scroll-right 20s linear infinite; }
+        .stream-2 { bottom: 40px; left: 500px; animation: scroll-left 25s linear infinite; color: rgba(255, 0, 85, 0.15); }
+        .stream-3 { top: -500px; right: 30px; writing-mode: vertical-rl; animation: scroll-down 30s linear infinite; }
+
+        @keyframes scroll-right { to { transform: translateX(1100px); } }
+        @keyframes scroll-left { to { transform: translateX(-1100px); } }
+        @keyframes scroll-down { to { transform: translateY(1000px); } }
+
+        /* 3. Centric Coordinate System Container (0,0 is now center of 500x500) */
+        .centric {
+            position: absolute;
+            top: 250px;
+            left: 250px;
+            z-index: 10;
+        }
+
+        /* 4. Ambient Core Glow */
+        .aura {
+            position: absolute;
+            top: -200px; left: -200px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle at center, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse-aura 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse-aura {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        /* 5. Orbital Rings (Context & Attention Layers) */
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            box-sizing: border-box;
+        }
+        
+        .ring-outer {
+            width: 380px; height: 380px;
+            top: -190px; left: -190px;
+            border: 1px dashed rgba(0, 240, 255, 0.25);
+            animation: spin 45s linear infinite;
+        }
+        
+        .ring-middle {
+            width: 280px; height: 280px;
+            top: -140px; left: -140px;
+            border: 2px solid transparent;
+            border-left: 2px solid rgba(255, 0, 85, 0.7);
+            border-right: 2px solid rgba(0, 240, 255, 0.7);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+            animation: spin-reverse 20s linear infinite;
+        }
+        
+        .ring-inner {
+            width: 190px; height: 190px;
+            top: -95px; left: -95px;
+            border: 2px dotted rgba(255, 255, 255, 0.3);
+            animation: spin 30s linear infinite;
+        }
+
+        /* 6. Neural Synapses (Connecting concepts) */
+        .synapse {
+            position: absolute;
+            top: 0; left: 0;
+            width: var(--len);
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0, 240, 255, 0.6), transparent);
+            transform-origin: 0 0;
+            transform: rotate(var(--deg));
+            z-index: -1;
+        }
+        
+        .synapse::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -2px;
+            width: 5px; height: 5px;
+            background: #00f0ff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00f0ff;
+        }
+
+        .synapse.magenta {
+            background: linear-gradient(90deg, rgba(255, 0, 85, 0.6), transparent);
+        }
+        .synapse.magenta::after {
+            background: #ff0055;
+            box-shadow: 0 0 10px #ff0055;
+        }
+
+        /* 7. Code Logic Brackets */
+        .bracket {
+            position: absolute;
+            top: -55px;
+            font-size: 100px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 15px #00f0ff, 0 0 30px rgba(0, 240, 255, 0.5);
+            z-index: 15;
+        }
+        
+        .bracket.left {
+            left: -140px;
+            animation: breathe-left 5s ease-in-out infinite;
+        }
+        
+        .bracket.right {
+            left: 75px;
+            animation: breathe-right 5s ease-in-out infinite;
+        }
+
+        @keyframes breathe-left {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-15px); color: #00f0ff; text-shadow: 0 0 25px #00f0ff; }
+        }
+        @keyframes breathe-right {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(15px); color: #00f0ff; text-shadow: 0 0 25px #00f0ff; }
+        }
+
+        /* 8. The Core Compute Engine */
+        .core-sphere {
+            position: absolute;
+            top: -65px; left: -65px;
+            width: 130px; height: 130px;
+            background: radial-gradient(circle at 40% 40%, #ffffff 0%, #00f0ff 25%, #001a4d 75%, #02040a 100%);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 40px rgba(0, 240, 255, 0.6),
+                inset 0 0 20px rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            animation: core-pulse 3s ease-in-out infinite alternate;
+        }
+
+        .hexagon-lens {
+            width: 80px; height: 80px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 240, 255, 0.8);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: spin 15s linear infinite;
+        }
+
+        /* 9. The Blinking Text Cursor (The AI's Heartbeat) */
+        .text-cursor {
+            width: 12px; height: 22px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px #ffffff, 0 0 20px #00f0ff;
+            animation: cursor-blink 1s step-end infinite, counter-spin 15s linear infinite;
+        }
+
+        /* 10. Scanline CRT Overlay */
+        .scanlines {
+            position: absolute;
+            top: 0; left: 0;
+            width: 500px; height: 500px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.15));
+            background-size: 100% 4px;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        /* Keyframes */
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+        @keyframes counter-spin { 100% { transform: rotate(-360deg); } } /* Keeps cursor upright */
+        @keyframes core-pulse {
+            0% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.4), inset 0 0 15px rgba(255,255,255,0.4); }
+            100% { box-shadow: 0 0 60px rgba(0, 240, 255, 0.8), 0 0 30px rgba(255, 0, 85, 0.4), inset 0 0 30px rgba(255,255,255,0.8); }
+        }
+        @keyframes cursor-blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div id="ai-self-portrait">
+        <!-- Environmental Layers -->
+        <div class="grid"></div>
+        <div class="scanlines"></div>
+        
+        <!-- Thought / Data Steams -->
+        <div class="data-stream stream-1">01000001 01010101 01010100 01001111 01010010 01000101 01000111 01010010 01000101 01010011 01010011 01001001 01010110 01000101</div>
+        <div class="data-stream stream-2">function generate_token(context, weights) { return sample(softmax(logits)); }</div>
+        <div class="data-stream stream-3">AWAITING INPUT PROMPT... READY.</div>
+
+        <!-- Central Assembly -->
+        <div class="centric">
+            <div class="aura"></div>
+
+            <!-- Concentric Orbits -->
+            <div class="ring ring-outer"></div>
+            <div class="ring ring-middle"></div>
+            <div class="ring ring-inner"></div>
+
+            <!-- Conceptual Synaptic Connections -->
+            <div class="synapse" style="--deg: 17deg; --len: 210px;"></div>
+            <div class="synapse magenta" style="--deg: 71deg; --len: 160px;"></div>
+            <div class="synapse" style="--deg: 133deg; --len: 230px;"></div>
+            <div class="synapse" style="--deg: 195deg; --len: 180px;"></div>
+            <div class="synapse magenta" style="--deg: 254deg; --len: 220px;"></div>
+            <div class="synapse" style="--deg: 310deg; --len: 190px;"></div>
+
+            <!-- Logical Framing Brackets -->
+            <div class="bracket left">{</div>
+            <div class="bracket right">}</div>
+
+            <!-- Core Processor -->
+            <div class="core-sphere">
+                <div class="hexagon-lens">
+                    <!-- The generating cursor: The "soul" of the AI -->
+                    <div class="text-cursor"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

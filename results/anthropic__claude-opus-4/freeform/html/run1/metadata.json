@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-opus-4",
+  "prompt": "freeform",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:03:49+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 29.12,
+      "usage": {
+        "prompt_tokens": 121,
+        "completion_tokens": 1520,
+        "total_tokens": 1641,
+        "cost": 0.115815,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.115815,
+          "upstream_inference_prompt_cost": 0.001815,
+          "upstream_inference_completions_cost": 0.114
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I'd like to create something peaceful and meditative - a stylized sunset scene with geometric mountains and a large setting sun. I'm drawn to this because sunsets have a universal calming quality, and I can use gradients and simple shapes to create something visually striking with just HTML/CSS.\n\nI'll use:\n- A gradient background transitioning from deep purple at the top to warm orange/pink at the horizon\n- A large circular sun with a subtle glow effect\n- Layered triangular mountains in different shades to create depth\n- Maybe add some simple clouds using border-radius for a softer touch\n\nThis combines geometric simplicity with natural beauty, and I can achieve it all with CSS gradients, shapes, and positioning.\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Sunset Mountains</title>\n    <style>\n        body {\n            margin: 0;\n            padding: 0;\n        }\n        \n        .canvas {\n            width: 500px;\n            height: 500px;\n            position: relative;\n            overflow: hidden;\n            background: linear-gradient(to bottom, \n                #2d1b69 0%, \n                #5d4a9f 30%, \n                #8b5a9f 50%, \n                #ff6b6b 70%, \n                #ff8e53 85%, \n                #ffb347 100%);\n        }\n        \n        .sun {\n            width: 120px;\n            height: 120px;\n            background: radial-gradient(circle, #ffeb3b, #ff9800);\n            border-radius: 50%;\n            position: absolute;\n            bottom: 150px;\n            left: 50%;\n            transform: translateX(-50%);\n            box-shadow: 0 0 50px #ff9800, 0 0 100px #ff6347;\n        }\n        \n        .mountain-back {\n            width: 0;\n            height: 0;\n            border-left: 200px solid transparent;\n            border-right: 200px solid transparent;\n            border-bottom: 250px solid #4a3c6b;\n            position: absolute;\n            bottom: 0;\n            left: -50px;\n        }\n        \n        .mountain-mid {\n            width: 0;\n            height: 0;\n            border-left: 180px solid transparent;\n            border-right: 180px solid transparent;\n            border-bottom: 200px solid #6b5b8c;\n            position: absolute;\n            bottom: 0;\n            right: -30px;\n        }\n        \n        .mountain-front {\n            width: 0;\n            height: 0;\n            border-left: 150px solid transparent;\n            border-right: 150px solid transparent;\n            border-bottom: 180px solid #8b7ba8;\n            position: absolute;\n            bottom: 0;\n            left: 100px;\n        }\n        \n        .cloud {\n            background: rgba(255, 255, 255, 0.4);\n            border-radius: 100px;\n            position: absolute;\n            opacity: 0.7;\n        }\n        \n        .cloud1 {\n            width: 80px;\n            height: 20px;\n            top: 100px;\n            left: 80px;\n        }\n        \n        .cloud1::before {\n            content: '';\n            background: rgba(255, 255, 255, 0.4);\n            width: 50px;\n            height: 30px;\n            border-radius: 50%;\n            position: absolute;\n            top: -15px;\n            left: 15px;\n        }\n        \n        .cloud2 {\n            width: 100px;\n            height: 25px;\n            top: 150px;\n            right: 60px;\n        }\n        \n        .cloud2::before {\n            content: '';\n            background: rgba(255, 255, 255, 0.4);\n            width: 60px;\n            height: 35px;\n            border-radius: 50%;\n            position: absolute;\n            top: -18px;\n            right: 20px;\n        }\n        \n        .star {\n            background: white;\n            position: absolute;\n            border-radius: 50%;\n            animation: twinkle 3s infinite;\n        }\n        \n        @keyframes twinkle {\n            0%, 100% { opacity: 0.3; }\n            50% { opacity: 1; }\n        }\n        \n        .star1 {\n            width: 2px;\n            height: 2px;\n            top: 50px;\n            left: 100px;\n            animation-delay: 0s;\n        }\n        \n        .star2 {\n            width: 3px;\n            height: 3px;\n            top: 80px;\n            right: 120px;\n            animation-delay: 1s;\n        }\n        \n        .star3 {\n            width: 2px;\n            height: 2px;\n            top: 40px;\n            right: 200px;\n            animation-delay: 2s;\n        }\n        \n        .star4 {\n            width: 2px;\n            height: 2px;\n            top: 90px;\n            left: 250px;\n            animation-delay: 0.5s;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"canvas\">\n        <div class=\"star star1\"></div>\n        <div class=\"star star2\"></div>\n        <div class=\"star star3\"></div>\n        <div class=\"star star4\"></div>\n        <div class=\"cloud cloud1\"></div>\n        <div class=\"cloud cloud2\"></div>\n        <div class=\"sun\"></div>\n        <div class=\"mountain-back\"></div>\n        <div class=\"mountain-mid\"></div>\n        <div class=\"mountain-front\"></div>\n    </div>\n</body>\n</html>\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "html",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.09
+      }
+    }
+  ],
+  "detected_language": "html",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:04:22+00:00",
+  "total_duration_s": 32.21
+}

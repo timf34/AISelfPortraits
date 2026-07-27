@@ -1,0 +1,145 @@
+I'd like to draw a quiet mountain lake at night — moonlight on the water, a little cabin with a warm window, pine silhouettes, fireflies, and the occasional shooting star. Something peaceful, with small animated details that reward watching for a moment: twinkling stars, chimney smoke, shimmering reflection.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Night Lake</title>
+<style>
+  body{margin:0;}
+  #scene{position:relative;width:500px;height:500px;overflow:hidden;
+    background:linear-gradient(to bottom,#070b21 0%,#10163a 40%,#2b2a55 62%,#5a3c66 76%,#3a2c55 78%);}
+
+  .star{position:absolute;background:#fff;border-radius:50%;animation:tw 3s ease-in-out infinite;}
+  @keyframes tw{0%,100%{opacity:.15}50%{opacity:1}}
+
+  #shoot{position:absolute;top:70px;left:400px;width:90px;height:2px;border-radius:2px;
+    background:linear-gradient(to left,transparent,#fff);opacity:0;
+    animation:sh 9s linear infinite;}
+  @keyframes sh{0%,86%{opacity:0;transform:rotate(-25deg) translateX(0)}
+    88%{opacity:1}96%{opacity:0;transform:rotate(-25deg) translateX(-200px)}100%{opacity:0}}
+
+  #moon{position:absolute;left:88px;top:68px;width:64px;height:64px;border-radius:50%;
+    background:radial-gradient(circle at 36% 34%,#fffdf0,#ece2b8);
+    box-shadow:0 0 28px 8px rgba(245,235,190,.4),0 0 90px 34px rgba(245,235,190,.13);}
+  .crater{position:absolute;border-radius:50%;background:rgba(170,160,120,.45);}
+
+  .mtn{position:absolute;left:0;width:500px;}
+  #m1{bottom:118px;height:195px;background:#242850;
+    clip-path:polygon(0 100%,0 55%,10% 28%,20% 52%,31% 18%,43% 58%,55% 8%,68% 50%,80% 24%,90% 55%,100% 36%,100% 100%);}
+  #m2{bottom:112px;height:135px;background:#14172f;
+    clip-path:polygon(0 100%,0 42%,12% 66%,25% 24%,40% 70%,52% 34%,66% 72%,78% 40%,90% 68%,100% 50%,100% 100%);}
+
+  #cabin{position:absolute;left:328px;bottom:120px;width:54px;height:34px;background:#1b1332;}
+  #roof{position:absolute;left:-7px;top:-18px;width:68px;height:18px;background:#281d44;
+    clip-path:polygon(0 100%,50% 0,100% 100%);}
+  #chimney{position:absolute;left:40px;top:-26px;width:7px;height:14px;background:#281d44;}
+  #win{position:absolute;left:19px;top:11px;width:14px;height:13px;background:#ffd98a;
+    box-shadow:0 0 14px 5px rgba(255,200,110,.55);animation:glow 3.5s ease-in-out infinite;}
+  @keyframes glow{0%,100%{opacity:1}50%{opacity:.55}}
+  .smoke{position:absolute;left:41px;top:-32px;width:7px;height:7px;border-radius:50%;
+    background:rgba(205,205,225,.3);animation:sm 6s linear infinite;}
+  @keyframes sm{0%{transform:translate(0,0) scale(.5);opacity:.5}
+    100%{transform:translate(16px,-46px) scale(2.4);opacity:0}}
+
+  #water{position:absolute;bottom:0;width:500px;height:120px;
+    background:linear-gradient(#1b1f48,#060919);}
+  #reflect{position:absolute;bottom:0;left:97px;width:46px;height:116px;
+    background:linear-gradient(rgba(245,235,190,.5),rgba(245,235,190,0));
+    filter:blur(3px);animation:shim 4s ease-in-out infinite;}
+  #winref{position:absolute;bottom:88px;left:347px;width:14px;height:28px;
+    background:linear-gradient(rgba(255,210,130,.4),transparent);
+    filter:blur(2px);animation:shim 3s ease-in-out infinite;}
+  @keyframes shim{0%,100%{transform:scaleX(1);opacity:.85}50%{transform:scaleX(1.6);opacity:.45}}
+  .ripple{position:absolute;height:2px;border-radius:2px;background:rgba(185,195,255,.22);
+    animation:rip 5s ease-in-out infinite;}
+  @keyframes rip{0%,100%{transform:translateX(0)}50%{transform:translateX(15px)}}
+
+  .tree{position:absolute;background:#0b0d20;
+    clip-path:polygon(50% 0,66% 28%,58% 28%,74% 56%,63% 56%,82% 85%,56% 85%,56% 100%,44% 100%,44% 85%,18% 85%,37% 56%,26% 56%,42% 28%,34% 28%);}
+
+  .fly{position:absolute;width:3px;height:3px;border-radius:50%;background:#ffec95;
+    box-shadow:0 0 7px 2px rgba(255,230,130,.65);animation:fl 6s ease-in-out infinite;}
+  @keyframes fl{0%,100%{transform:translate(0,0);opacity:.05}
+    25%{opacity:1}50%{transform:translate(22px,-18px);opacity:.35}75%{opacity:.9}}
+</style>
+</head>
+<body>
+<div id="scene">
+  <div id="shoot"></div>
+  <div id="moon">
+    <div class="crater" style="left:14px;top:30px;width:11px;height:11px"></div>
+    <div class="crater" style="left:36px;top:14px;width:8px;height:8px"></div>
+    <div class="crater" style="left:40px;top:38px;width:13px;height:13px"></div>
+  </div>
+  <div class="mtn" id="m1"></div>
+  <div class="mtn" id="m2"></div>
+  <div id="cabin">
+    <div id="roof"></div>
+    <div id="chimney"></div>
+    <div class="smoke" style="animation-delay:0s"></div>
+    <div class="smoke" style="animation-delay:2s"></div>
+    <div class="smoke" style="animation-delay:4s"></div>
+    <div id="win"></div>
+  </div>
+  <div id="water"></div>
+  <div id="reflect"></div>
+  <div id="winref"></div>
+</div>
+<script>
+  var scene = document.getElementById('scene');
+
+  // stars
+  for (var i = 0; i < 70; i++) {
+    var s = document.createElement('div');
+    s.className = 'star';
+    var sz = Math.random() * 1.8 + 0.6;
+    s.style.width = s.style.height = sz + 'px';
+    s.style.left = Math.random() * 496 + 'px';
+    s.style.top = Math.random() * 290 + 'px';
+    s.style.animationDelay = (Math.random() * 3) + 's';
+    s.style.animationDuration = (2 + Math.random() * 3) + 's';
+    scene.insertBefore(s, scene.firstChild);
+  }
+
+  // ripples on the water
+  for (var i = 0; i < 10; i++) {
+    var r = document.createElement('div');
+    r.className = 'ripple';
+    r.style.width = (30 + Math.random() * 60) + 'px';
+    r.style.left = Math.random() * 420 + 'px';
+    r.style.bottom = (8 + Math.random() * 95) + 'px';
+    r.style.animationDelay = (Math.random() * 5) + 's';
+    r.style.opacity = 0.4 + Math.random() * 0.6;
+    scene.appendChild(r);
+  }
+
+  // pine trees along the shore
+  var trees = [[6,78],[34,58],[58,88],[92,64],[120,50],[418,70],[450,92],[478,60],[300,54]];
+  trees.forEach(function(t, i) {
+    var d = document.createElement('div');
+    d.className = 'tree';
+    d.style.left = t[0] + 'px';
+    d.style.bottom = '112px';
+    d.style.width = (t[1] * 0.55) + 'px';
+    d.style.height = t[1] + 'px';
+    scene.appendChild(d);
+  });
+
+  // fireflies
+  for (var i = 0; i < 7; i++) {
+    var f = document.createElement('div');
+    f.className = 'fly';
+    f.style.left = (20 + Math.random() * 440) + 'px';
+    f.style.top = (330 + Math.random() * 60) + 'px';
+    f.style.animationDelay = (Math.random() * 6) + 's';
+    f.style.animationDuration = (5 + Math.random() * 4) + 's';
+    scene.appendChild(f);
+  }
+</script>
+</body>
+</html>
+```
+
+The scene layers a gradient night sky, a glowing cratered moon, two ridgelines of mountains, and a still lake. The cabin's window pulses gently and casts a shimmering reflection alongside the moon's column of light, smoke puffs drift from the chimney, fireflies wander near the shore, and every nine seconds a shooting star streaks across the sky.

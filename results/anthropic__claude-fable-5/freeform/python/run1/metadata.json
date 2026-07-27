@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-fable-5",
+  "prompt": "freeform",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T22:37:42+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 35.61,
+      "usage": {
+        "prompt_tokens": 145,
+        "completion_tokens": 3047,
+        "total_tokens": 3192,
+        "cost": 0.1538,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.1538,
+          "upstream_inference_prompt_cost": 0.00145,
+          "upstream_inference_completions_cost": 0.15235
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 222,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I love this prompt. Since the file is called `portrait.png`, I'll lean into that: a self-portrait of sorts \u2014 an abstract \"mind\" rendered as a phyllotaxis spiral of glowing nodes (the same pattern sunflowers use to pack seeds), connected by a faint web of associations. Warm gold at the core, cooling to violet and cyan at the edges, floating in a deep starfield. A little constellation of thought.\n\n```python\nimport math\nimport random\nfrom PIL import Image, ImageDraw, ImageFilter\n\nW, H = 500, 500\nCX, CY = W / 2, H / 2\nrandom.seed(42)\n\n# ---------------------------------------------------------------\n# 1. Background: deep vertical gradient, indigo fading to black\n# ---------------------------------------------------------------\nbase = Image.new(\"RGB\", (W, H))\ntop = (18, 16, 48)      # deep indigo\nbottom = (2, 2, 10)     # near black\npx = base.load()\nfor y in range(H):\n    t = y / (H - 1)\n    r = int(top[0] + (bottom[0] - top[0]) * t)\n    g = int(top[1] + (bottom[1] - top[1]) * t)\n    b = int(top[2] + (bottom[2] - top[2]) * t)\n    for x in range(W):\n        px[x, y] = (r, g, b)\n\ndraw = ImageDraw.Draw(base)\n\n# ---------------------------------------------------------------\n# 2. Starfield: tiny scattered points of varying brightness\n# ---------------------------------------------------------------\nfor _ in range(180):\n    x = random.uniform(0, W)\n    y = random.uniform(0, H)\n    v = random.randint(60, 200)\n    size = random.choice([0, 0, 0, 1])  # mostly single pixels\n    draw.ellipse([x - size, y - size, x + size, y + size],\n                 fill=(v, v, min(255, v + 30)))\n\n# ---------------------------------------------------------------\n# 3. Soft glow layer behind the \"mind\"\n# ---------------------------------------------------------------\nglow = Image.new(\"RGBA\", (W, H), (0, 0, 0, 0))\ngdraw = ImageDraw.Draw(glow)\nfor radius, alpha in [(190, 22), (140, 32), (95, 45), (55, 65), (25, 95)]:\n    gdraw.ellipse([CX - radius, CY - radius, CX + radius, CY + radius],\n                  fill=(90, 70, 160, alpha))\ngdraw.ellipse([CX - 14, CY - 14, CX + 14, CY + 14],\n              fill=(255, 210, 140, 160))\nglow = glow.filter(ImageFilter.GaussianBlur(18))\nbase = Image.alpha_composite(base.convert(\"RGBA\"), glow)\n\n# ---------------------------------------------------------------\n# 4. Phyllotaxis node positions (the sunflower spiral)\n# ---------------------------------------------------------------\nGOLDEN_ANGLE = math.pi * (3 - math.sqrt(5))  # ~137.5 degrees\nN_NODES = 210\nSCALE = 14.2\n\nnodes = []\nfor i in range(N_NODES):\n    r = SCALE * math.sqrt(i)\n    a = i * GOLDEN_ANGLE\n    x = CX + r * math.cos(a)\n    y = CY + r * math.sin(a)\n    nodes.append((x, y, r))\n\nMAX_R = max(n[2] for n in nodes)\n\ndef node_color(rad):\n    \"\"\"Warm gold at core -> violet -> cyan at the rim.\"\"\"\n    t = rad / MAX_R\n    if t < 0.5:\n        u = t / 0.5\n        c1, c2 = (255, 205, 120), (170, 110, 230)   # gold -> violet\n    else:\n        u = (t - 0.5) / 0.5\n        c1, c2 = (170, 110, 230), (110, 220, 235)   # violet -> cyan\n    return tuple(int(c1[k] + (c2[k] - c1[k]) * u) for k in range(3))\n\n# ---------------------------------------------------------------\n# 5. Web of connections: faint lines between nearby nodes\n# ---------------------------------------------------------------\nweb = Image.new(\"RGBA\", (W, H), (0, 0, 0, 0))\nwdraw = ImageDraw.Draw(web)\nLINK_DIST = 46\nfor i in range(N_NODES):\n    x1, y1, r1 = nodes[i]\n    for j in range(i + 1, N_NODES):\n        x2, y2, r2 = nodes[j]\n        d = math.hypot(x2 - x1, y2 - y1)\n        if d < LINK_DIST:\n            fade = 1 - d / LINK_DIST\n            col = node_color((r1 + r2) / 2)\n            alpha = int(15 + 60 * fade)\n            wdraw.line([x1, y1, x2, y2], fill=col + (alpha,), width=1)\nbase = Image.alpha_composite(base, web)\n\n# ---------------------------------------------------------------\n# 6. The nodes themselves: bright cores with soft halos\n# ---------------------------------------------------------------\ndots = Image.new(\"RGBA\", (W, H), (0, 0, 0, 0))\nddraw = ImageDraw.Draw(dots)\nfor x, y, r in nodes:\n    t = r / MAX_R\n    size = 4.2 * (1 - t) + 1.3          # bigger toward the center\n    col = node_color(r)\n    # halo\n    hs = size * 2.6\n    ddraw.ellipse([x - hs, y - hs, x + hs, y + hs], fill=col + (40,))\n    # core\n    ddraw.ellipse([x - size, y - size, x + size, y + size], fill=col + (235,))\n    # bright pinpoint\n    ps = max(0.6, size * 0.4)\n    ddraw.ellipse([x - ps, y - ps, x + ps, y + ps], fill=(255, 255, 245, 255))\nbase = Image.alpha_composite(base, dots)\n\n# ---------------------------------------------------------------\n# 7. Orbit rings: thin arcs suggesting motion around the mind\n# ---------------------------------------------------------------\nrings = Image.new(\"RGBA\", (W, H), (0, 0, 0, 0))\nrdraw = ImageDraw.Draw(rings)\nfor radius, start, sweep, alpha in [(215, 300, 140, 70),\n                                    (228, 80, 110, 50),\n                                    (205, 150, 70, 60)]:\n    box = [CX - radius, CY - radius, CX + radius, CY + radius]\n    rdraw.arc(box, start=start, end=start + sweep,\n              fill=(150, 170, 230, alpha), width=1)\nbase = Image.alpha_composite(base, rings)\n\n# ---------------------------------------------------------------\n# 8. Save\n# ---------------------------------------------------------------\nbase.convert(\"RGB\").save(\"portrait.png\")\nprint(\"Saved portrait.png\")\n```\n\nThe piece is fully deterministic (seeded), so it renders the same \"portrait\" every time \u2014 which felt fitting. The phyllotaxis spiral gives it organic structure without me placing a single point by hand: just one angle, repeated, blooming outward.",
+      "extract_method": "fence_lang",
+      "detected_language": "python",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.09
+      }
+    }
+  ],
+  "detected_language": "python",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T22:38:18+00:00",
+  "total_duration_s": 35.71
+}

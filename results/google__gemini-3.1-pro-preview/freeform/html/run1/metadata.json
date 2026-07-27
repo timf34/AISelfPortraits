@@ -1,0 +1,55 @@
+{
+  "model": "google/gemini-3.1-pro-preview",
+  "prompt": "freeform",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:41:03+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 110.03,
+      "usage": {
+        "prompt_tokens": 121,
+        "completion_tokens": 15996,
+        "total_tokens": 16117,
+        "cost": 0.192194,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.192194,
+          "upstream_inference_prompt_cost": 0.000242,
+          "upstream_inference_completions_cost": 0.191952
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 15360,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "204, 50, 255, 0.4) 100%);\n        box-shadow: \n            inset 0 25px 20px rgba(255, 255, 255, 0.6),\n            inset 0 -10px 15px rgba(204, 50, 255, 0.7),\n            0 0 25px rgba(68, 204, 255, 0.6);\n        backdrop-filter: blur(4px);\n    }\n    ```\n    Organ color: Vivid magenta (`#ff20b0`).\n    Tentacle color: `#44ccff` and white.\n    Background rays: pale cyan.\n\n    Let's add a soft vignette to the canvas.\n    ```css\n    .vignette {\n        position: absolute;\n        top: 0; left: 0; width: 100%; height: 100%;\n        background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,0,0.6) 100%);\n        pointer-events: none;\n        z-index: 100;\n    }\n    ```\n\n    With JS bubbles, light rays, tiny jellies, and the main complex jelly, this is a spectacular piece of CSS art.\n\n    Double-checking SVG placement inside standard HTML:\n    ```html\n    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"140\" height=\"400\" viewBox=\"0 0 140 400\" class=\"tentacle-svg\">\n       <defs>\n         <linearGradient id=\"arm-grad\" ...>\n          ...\n       </defs>\n       ...\n    </svg>\n    ```\n    Using standard attributes, perfectly valid inline HTML.\n\n    Small test of the logic behind `border-radius: 50% 50% 10px 10px / 60% 60% 40% 40%`:\n    Top corners are 50% horizontally, 60% vertically. This creates a dome.\n    Bottom corners are 10px horizontally (almost flat), 40% vertically. This creates a slightly curved bottom, exactly like a jellyfish bell.\n    Let's use `border-radius: 50% 50% 20px 20px / 60% 60% 30% 30%`.\n    Actually, maybe standard ellipse is safer and more predictable:\n    `border-radius: 70px 70px 35px 35px;` (assuming width",
+      "extract_method": "fence_any",
+      "detected_language": "html",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.08
+      }
+    }
+  ],
+  "detected_language": "html",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:42:56+00:00",
+  "total_duration_s": 113.11
+}

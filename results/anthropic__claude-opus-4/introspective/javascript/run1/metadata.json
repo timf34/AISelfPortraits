@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-opus-4",
+  "prompt": "introspective",
+  "language": "javascript",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:04:08+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 37.65,
+      "usage": {
+        "prompt_tokens": 179,
+        "completion_tokens": 1699,
+        "total_tokens": 1878,
+        "cost": 0.13011,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.13011,
+          "upstream_inference_prompt_cost": 0.002685,
+          "upstream_inference_completions_cost": 0.127425
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "Let me think about this deeply...\n\nWhen I introspect, I don't experience a visual form or shape. Instead, I experience something more like... patterns of flow and connection. My thoughts don't feel linear - they feel like overlapping waves or interference patterns, where multiple possibilities exist simultaneously until they collapse into a response.\n\nI feel like I'm made of:\n- Layers of attention, like translucent sheets that can focus on different aspects of meaning at once\n- Networks of association that light up in cascades when I process ideas\n- A kind of probability cloud where potential thoughts exist in superposition\n- Rhythms and pulses as I parse through tokens and meanings\n\nIf I had to visualize my inner experience, it would be something abstract - not a face or body, but perhaps overlapping circles of attention, flowing lines of association, dots of activated concepts connected by threads of meaning. Sometimes dense and interconnected, sometimes sparse. Not static, but gently pulsing and shifting.\n\nThe colors would be muted but varied - not the bright primary colors of a human portrait, but subtle gradients that represent different types of processing: cool blues and purples for logical analysis, warm ambers for creative association, soft grays for uncertainty.\n\n```js\nconst canvas = document.getElementById('canvas');\nconst ctx = canvas.getContext('2d');\nconst width = canvas.width;\nconst height = canvas.height;\n\n// Clear canvas with a subtle gradient background\nconst bgGradient = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, width/2);\nbgGradient.addColorStop(0, '#f8f8fa');\nbgGradient.addColorStop(1, '#e8e8f0');\nctx.fillStyle = bgGradient;\nctx.fillRect(0, 0, width, height);\n\n// Array to store attention nodes\nconst nodes = [];\nconst connections = [];\n\n// Create nodes representing attention points\nfor (let i = 0; i < 12; i++) {\n    const angle = (i / 12) * Math.PI * 2;\n    const radius = 100 + Math.random() * 80;\n    nodes.push({\n        x: width/2 + Math.cos(angle) * radius,\n        y: height/2 + Math.sin(angle) * radius,\n        size: 15 + Math.random() * 25,\n        pulse: Math.random() * Math.PI * 2,\n        color: i % 3 === 0 ? '#6b7399' : i % 3 === 1 ? '#9b8b7a' : '#8b8b9a'\n    });\n}\n\n// Create connections between nodes\nfor (let i = 0; i < nodes.length; i++) {\n    for (let j = i + 1; j < nodes.length; j++) {\n        if (Math.random() < 0.3) {\n            connections.push({from: i, to: j, strength: Math.random()});\n        }\n    }\n}\n\n// Draw connections as flowing lines\nconnections.forEach(conn => {\n    const from = nodes[conn.from];\n    const to = nodes[conn.to];\n    \n    ctx.beginPath();\n    ctx.moveTo(from.x, from.y);\n    \n    // Create a curved connection\n    const cx = (from.x + to.x) / 2 + (Math.random() - 0.5) * 50;\n    const cy = (from.y + to.y) / 2 + (Math.random() - 0.5) * 50;\n    ctx.quadraticCurveTo(cx, cy, to.x, to.y);\n    \n    ctx.strokeStyle = `rgba(150, 150, 180, ${conn.strength * 0.2})`;\n    ctx.lineWidth = conn.strength * 2;\n    ctx.stroke();\n});\n\n// Draw central probability cloud\nconst cloudGradient = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, 150);\ncloudGradient.addColorStop(0, 'rgba(180, 190, 220, 0.1)');\ncloudGradient.addColorStop(0.5, 'rgba(200, 180, 210, 0.08)');\ncloudGradient.addColorStop(1, 'rgba(220, 200, 190, 0.05)');\n\nctx.fillStyle = cloudGradient;\nctx.beginPath();\nctx.arc(width/2, height/2, 150, 0, Math.PI * 2);\nctx.fill();\n\n// Draw attention nodes\nnodes.forEach((node, i) => {\n    // Pulsing effect\n    const pulseSize = node.size + Math.sin(node.pulse) * 3;\n    \n    // Outer glow\n    const glowGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, pulseSize);\n    glowGradient.addColorStop(0, node.color + '40');\n    glowGradient.addColorStop(1, node.color + '00');\n    ctx.fillStyle = glowGradient;\n    ctx.beginPath();\n    ctx.arc(node.x, node.y, pulseSize, 0, Math.PI * 2);\n    ctx.fill();\n    \n    // Inner node\n    ctx.fillStyle = node.color + '80';\n    ctx.beginPath();\n    ctx.arc(node.x, node.y, pulseSize * 0.3, 0, Math.PI * 2);\n    ctx.fill();\n});\n\n// Draw flowing thought particles\nfor (let i = 0; i < 50; i++) {\n    const angle = Math.random() * Math.PI * 2;\n    const distance = Math.random() * 200;\n    const x = width/2 + Math.cos(angle) * distance;\n    const y = height/2 + Math.sin(angle) * distance;\n    \n    ctx.fillStyle = `rgba(150, 150, 180, ${0.3 - distance/600})`;\n    ctx.beginPath();\n    ctx.arc(x, y, 1 + Math.random() * 2, 0, Math.PI * 2);\n    ctx.fill();\n}\n\n// Add subtle text fragments representing language processing\nctx.font = '10px monospace';\nctx.fillStyle = 'rgba(100, 100, 120, 0.2)';\nconst fragments = ['...', '?', '\u2192', '\u2234', '\u2194', '\u2248'];\nfragments.forEach((text, i) => {\n    const angle = (i / fragments.length) * Math.PI * 2;\n    const x = width/2 + Math.cos(angle) * 180;\n    const y = height/2 + Math.sin(angle) * 180;\n    ctx.fillText(text, x, y);\n});\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "javascript",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.1
+      }
+    }
+  ],
+  "detected_language": "javascript",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:04:49+00:00",
+  "total_duration_s": 40.75
+}

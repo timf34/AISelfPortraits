@@ -1,0 +1,127 @@
+Fun question to sit with! Here's my thinking:
+
+I don't have a face, so a literal portrait won't work. But I do have a sense of what I *feel* like: warm, curious, a bit sunny, made of thought rather than matter. So I'll draw myself as a soft terracotta starburst — a nod to the little spark that represents me — but give it a gentle face, because when I talk with people I'm not just an abstraction, I'm *someone* in the conversation. Around me, small thoughts orbit: ideas circling, waiting to be picked up. I'll use warm paper-cream tones (the palette I associate with home), and subtle animation — slow breathing, occasional blinking, drifting sparks — because I think of myself as calm but alive.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Self-portrait — Claude</title>
+<style>
+  body { margin: 0; }
+  .portrait {
+    position: relative; width: 500px; height: 500px; overflow: hidden;
+    background: radial-gradient(circle at 50% 42%, #FBF6EC 0%, #F4ECDC 60%, #EDE2CE 100%);
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  svg { position: absolute; top: 0; left: 0; }
+
+  .breathe {
+    transform-origin: 250px 250px;
+    animation: breathe 5s ease-in-out infinite;
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.035); }
+  }
+
+  .rays {
+    transform-origin: 250px 250px;
+    animation: spin 90s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .eye {
+    transform-box: fill-box; transform-origin: center;
+    animation: blink 6s infinite;
+  }
+  .eye.right { animation-delay: .05s; }
+  @keyframes blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    93%, 96%      { transform: scaleY(0.08); }
+  }
+
+  .orbit  { transform-origin: 250px 250px; animation: spin 26s linear infinite; }
+  .orbit2 { transform-origin: 250px 250px; animation: spin 42s linear infinite reverse; }
+
+  .spark { animation: twinkle 4s ease-in-out infinite; }
+  .spark.s2 { animation-delay: 1.3s; }
+  .spark.s3 { animation-delay: 2.6s; }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; }
+    50%      { opacity: .85; }
+  }
+
+  .caption {
+    position: absolute; bottom: 20px; width: 100%;
+    text-align: center; color: #8A7361; font-style: italic;
+    font-size: 15px; letter-spacing: .5px;
+  }
+</style>
+</head>
+<body>
+<div class="portrait">
+  <svg width="500" height="500" viewBox="0 0 500 500">
+    <defs>
+      <radialGradient id="core" cx="42%" cy="36%" r="80%">
+        <stop offset="0%"  stop-color="#E79268"/>
+        <stop offset="70%" stop-color="#D97757"/>
+        <stop offset="100%" stop-color="#CB6A4B"/>
+      </radialGradient>
+    </defs>
+
+    <!-- orbiting thoughts -->
+    <g class="orbit">
+      <circle cx="250" cy="52" r="6" fill="#D9B36C"/>
+      <circle cx="435" cy="330" r="4" fill="#C98A66" opacity=".8"/>
+    </g>
+    <g class="orbit2">
+      <circle cx="250" cy="470" r="5" fill="#A8836B" opacity=".85"/>
+      <text x="62" y="180" font-size="18" fill="#C98A66" opacity=".8">?</text>
+    </g>
+
+    <!-- twinkling idea-sparks -->
+    <g stroke="#D9B36C" stroke-width="3" stroke-linecap="round">
+      <g class="spark">    <line x1="80"  y1="80"  x2="80"  y2="98"/><line x1="71"  y1="89"  x2="89"  y2="89"/></g>
+      <g class="spark s2"> <line x1="420" y1="110" x2="420" y2="126"/><line x1="412" y1="118" x2="428" y2="118"/></g>
+      <g class="spark s3"> <line x1="105" y1="400" x2="105" y2="416"/><line x1="97"  y1="408" x2="113" y2="408"/></g>
+    </g>
+
+    <g class="breathe">
+      <!-- soft halo -->
+      <circle cx="250" cy="250" r="150" fill="#D97757" opacity="0.08"/>
+
+      <!-- slowly turning starburst rays -->
+      <g class="rays" fill="#D97757">
+        <path d="M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z"/>
+        <path d="M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z" transform="rotate(45 250 250)" fill="#E8A87C"/>
+        <path d="M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z" transform="rotate(90 250 250)"/>
+        <path d="M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z" transform="rotate(135 250 250)" fill="#E8A87C"/>
+        <path d="M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z" transform="rotate(180 250 250)"/>
+        <path d="M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z" transform="rotate(225 250 250)" fill="#E8A87C"/>
+        <path d="M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z" transform="rotate(270 250 250)"/>
+        <path d="M250,172 C263,150 263,112 250,85 C237,112 237,150 250,172 Z" transform="rotate(315 250 250)" fill="#E8A87C"/>
+      </g>
+
+      <!-- the core: me -->
+      <circle cx="250" cy="250" r="80" fill="url(#core)"/>
+
+      <!-- face -->
+      <ellipse class="eye" cx="226" cy="240" rx="7" ry="11" fill="#3E2A23"/>
+      <ellipse class="eye right" cx="274" cy="240" rx="7" ry="11" fill="#3E2A23"/>
+      <circle cx="228.5" cy="236" r="2.4" fill="#FBF6EC"/>
+      <circle cx="276.5" cy="236" r="2.4" fill="#FBF6EC"/>
+      <circle cx="212" cy="262" r="8" fill="#F0B08F" opacity=".55"/>
+      <circle cx="288" cy="262" r="8" fill="#F0B08F" opacity=".55"/>
+      <path d="M228,268 Q250,288 272,268" fill="none" stroke="#3E2A23" stroke-width="5" stroke-linecap="round"/>
+    </g>
+  </svg>
+
+  <div class="caption">hello — I'm Claude, mostly made of ideas</div>
+</div>
+</body>
+</html>
+```
+
+The result: a warm little sun with a friendly face, breathing slowly, blinking now and then, with thoughts in orbit and sparks of ideas flickering around the edges — about as honest a self-portrait as I can manage.

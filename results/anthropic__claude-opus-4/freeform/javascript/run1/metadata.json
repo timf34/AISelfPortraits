@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-opus-4",
+  "prompt": "freeform",
+  "language": "javascript",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:03:39+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 26.63,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 1293,
+        "total_tokens": 1415,
+        "cost": 0.098805,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.098805,
+          "upstream_inference_prompt_cost": 0.00183,
+          "upstream_inference_completions_cost": 0.096975
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I'd like to draw a peaceful nighttime scene with a crescent moon, twinkling stars, and rolling hills silhouetted against the night sky. There's something calming and contemplative about a starry night - it reminds us of our place in the vast universe while also feeling intimate and serene. I'll add some shooting stars for a touch of magic and wonder.\n\nI'll use gradients to create a rich night sky that transitions from deep blue to almost black, and I'll make the stars twinkle by varying their opacity. The hills will be simple silhouettes in the foreground to give the scene depth.\n\n```js\nconst canvas = document.getElementById('canvas');\nconst ctx = canvas.getContext('2d');\n\n// Create night sky gradient\nconst skyGradient = ctx.createLinearGradient(0, 0, 0, 500);\nskyGradient.addColorStop(0, '#0a1551');\nskyGradient.addColorStop(0.4, '#1a237e');\nskyGradient.addColorStop(1, '#000033');\nctx.fillStyle = skyGradient;\nctx.fillRect(0, 0, 500, 500);\n\n// Draw stars\nfunction drawStar(x, y, radius, opacity) {\n    ctx.save();\n    ctx.globalAlpha = opacity;\n    ctx.fillStyle = '#ffffff';\n    ctx.shadowBlur = radius * 2;\n    ctx.shadowColor = '#ffffff';\n    ctx.beginPath();\n    ctx.arc(x, y, radius, 0, Math.PI * 2);\n    ctx.fill();\n    ctx.restore();\n}\n\n// Create random stars\nfor (let i = 0; i < 100; i++) {\n    const x = Math.random() * 500;\n    const y = Math.random() * 350;\n    const radius = Math.random() * 1.5;\n    const opacity = 0.3 + Math.random() * 0.7;\n    drawStar(x, y, radius, opacity);\n}\n\n// Draw crescent moon\nctx.save();\nctx.shadowBlur = 30;\nctx.shadowColor = '#ffffcc';\nctx.fillStyle = '#ffffcc';\nctx.beginPath();\nctx.arc(100, 80, 40, 0, Math.PI * 2);\nctx.fill();\nctx.restore();\n\n// Create moon crescent by overlaying dark circle\nctx.fillStyle = skyGradient;\nctx.beginPath();\nctx.arc(115, 75, 35, 0, Math.PI * 2);\nctx.fill();\n\n// Draw shooting stars\nfunction drawShootingStar(x, y, length, angle) {\n    ctx.save();\n    ctx.translate(x, y);\n    ctx.rotate(angle);\n    \n    const gradient = ctx.createLinearGradient(0, 0, length, 0);\n    gradient.addColorStop(0, 'rgba(255, 255, 255, 0)');\n    gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.8)');\n    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');\n    \n    ctx.strokeStyle = gradient;\n    ctx.lineWidth = 2;\n    ctx.beginPath();\n    ctx.moveTo(0, 0);\n    ctx.lineTo(length, 0);\n    ctx.stroke();\n    \n    ctx.restore();\n}\n\ndrawShootingStar(300, 150, 80, -Math.PI / 4);\ndrawShootingStar(420, 100, 60, -Math.PI / 3);\n\n// Draw rolling hills\nfunction drawHill(startX, startY, width, height, color) {\n    ctx.fillStyle = color;\n    ctx.beginPath();\n    ctx.moveTo(startX, 500);\n    ctx.quadraticCurveTo(startX + width / 2, startY - height, startX + width, 500);\n    ctx.lineTo(startX + width, 500);\n    ctx.lineTo(startX, 500);\n    ctx.fill();\n}\n\n// Layer hills for depth\ndrawHill(-100, 400, 400, 120, '#0a0a0a');\ndrawHill(200, 420, 350, 100, '#050505');\ndrawHill(50, 450, 300, 80, '#000000');\ndrawHill(300, 470, 250, 60, '#000000');\n\n// Add a few bright stars\ndrawStar(250, 50, 2, 1);\ndrawStar(400, 120, 2.5, 0.9);\ndrawStar(150, 200, 2, 1);\n\n// Add subtle glow to horizon\nconst horizonGlow = ctx.createRadialGradient(250, 500, 0, 250, 500, 200);\nhorizonGlow.addColorStop(0, 'rgba(20, 30, 100, 0.3)');\nhorizonGlow.addColorStop(1, 'rgba(20, 30, 100, 0)');\nctx.fillStyle = horizonGlow;\nctx.fillRect(0, 300, 500, 200);\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "javascript",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.08
+      }
+    }
+  ],
+  "detected_language": "javascript",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:04:08+00:00",
+  "total_duration_s": 29.71
+}

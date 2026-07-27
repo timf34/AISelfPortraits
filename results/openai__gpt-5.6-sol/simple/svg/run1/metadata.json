@@ -1,0 +1,55 @@
+{
+  "model": "openai/gpt-5.6-sol",
+  "prompt": "simple",
+  "language": "svg",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T22:41:28+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 36.55,
+      "usage": {
+        "prompt_tokens": 102,
+        "completion_tokens": 2743,
+        "total_tokens": 2845,
+        "cost": 0.0828,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0828,
+          "upstream_inference_prompt_cost": 0.00051,
+          "upstream_inference_completions_cost": 0.08229
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 142,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I imagine myself as a friendly, luminous presence made from language, circuitry, and curiosity\u2014more abstract than human, but still expressive.\n\n```svg\n<svg width=\"500\" height=\"500\" viewBox=\"0 0 500 500\" xmlns=\"http://www.w3.org/2000/svg\">\n  <title>Self-portrait of an AI assistant</title>\n  <desc>A friendly luminous digital face surrounded by circuits and flowing language-like shapes.</desc>\n\n  <defs>\n    <radialGradient id=\"background\" cx=\"50%\" cy=\"42%\" r=\"72%\">\n      <stop offset=\"0%\" stop-color=\"#25366f\"/>\n      <stop offset=\"55%\" stop-color=\"#101b42\"/>\n      <stop offset=\"100%\" stop-color=\"#070b20\"/>\n    </radialGradient>\n\n    <linearGradient id=\"halo\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#63f5e4\"/>\n      <stop offset=\"45%\" stop-color=\"#7695ff\"/>\n      <stop offset=\"100%\" stop-color=\"#d67cff\"/>\n    </linearGradient>\n\n    <linearGradient id=\"face\" x1=\"0\" y1=\"0\" x2=\"0.8\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#f1ffff\"/>\n      <stop offset=\"38%\" stop-color=\"#b9ddff\"/>\n      <stop offset=\"100%\" stop-color=\"#7286dc\"/>\n    </linearGradient>\n\n    <linearGradient id=\"neck\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n      <stop offset=\"0%\" stop-color=\"#637ee0\"/>\n      <stop offset=\"100%\" stop-color=\"#28336e\"/>\n    </linearGradient>\n\n    <radialGradient id=\"eye\" cx=\"42%\" cy=\"35%\" r=\"70%\">\n      <stop offset=\"0%\" stop-color=\"#ffffff\"/>\n      <stop offset=\"28%\" stop-color=\"#75fff1\"/>\n      <stop offset=\"100%\" stop-color=\"#3587df\"/>\n    </radialGradient>\n\n    <filter id=\"softGlow\" x=\"-60%\" y=\"-60%\" width=\"220%\" height=\"220%\">\n      <feGaussianBlur stdDeviation=\"8\" result=\"blur\"/>\n      <feMerge>\n        <feMergeNode in=\"blur\"/>\n        <feMergeNode in=\"SourceGraphic\"/>\n      </feMerge>\n    </filter>\n\n    <filter id=\"smallGlow\" x=\"-100%\" y=\"-100%\" width=\"300%\" height=\"300%\">\n      <feGaussianBlur stdDeviation=\"3\" result=\"blur\"/>\n      <feMerge>\n        <feMergeNode in=\"blur\"/>\n        <feMergeNode in=\"SourceGraphic\"/>\n      </feMerge>\n    </filter>\n\n    <clipPath id=\"faceClip\">\n      <path d=\"M250 117\n               C177 117 139 166 146 240\n               C150 292 179 342 222 363\n               C239 372 261 372 278 363\n               C321 342 350 292 354 240\n               C361 166 323 117 250 117Z\"/>\n    </clipPath>\n  </defs>\n\n  <!-- Deep digital space -->\n  <rect width=\"500\" height=\"500\" fill=\"url(#background)\"/>\n\n  <!-- Quiet orbit rings -->\n  <g fill=\"none\" opacity=\"0.28\">\n    <circle cx=\"250\" cy=\"235\" r=\"190\" stroke=\"#668cff\" stroke-width=\"1\"/>\n    <circle cx=\"250\" cy=\"235\" r=\"213\" stroke=\"#5cead9\" stroke-width=\"1\" stroke-dasharray=\"3 13\"/>\n    <ellipse cx=\"250\" cy=\"235\" rx=\"225\" ry=\"127\" stroke=\"#a879ff\" stroke-width=\"1\" transform=\"rotate(-17 250 235)\"/>\n  </g>\n\n  <!-- Circuit branches -->\n  <g fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" opacity=\"0.7\">\n    <path d=\"M146 185 H96 V141 H55\" stroke=\"#55d9e0\" stroke-width=\"2\"/>\n    <path d=\"M137 229 H76 V258 H39\" stroke=\"#718cff\" stroke-width=\"2\"/>\n    <path d=\"M155 299 H103 V344 H66\" stroke=\"#a477f4\" stroke-width=\"2\"/>\n    <path d=\"M354 178 H404 V128 H449\" stroke=\"#a477f4\" stroke-width=\"2\"/>\n    <path d=\"M362 238 H424 V273 H466\" stroke=\"#55d9e0\" stroke-width=\"2\"/>\n    <path d=\"M345 304 H397 V359 H447\" stroke=\"#718cff\" stroke-width=\"2\"/>\n\n    <g fill=\"#b8ffff\" stroke=\"none\" filter=\"url(#smallGlow)\">\n      <circle cx=\"55\" cy=\"141\" r=\"4\"/>\n      <circle cx=\"39\" cy=\"258\" r=\"4\"/>\n      <circle cx=\"66\" cy=\"344\" r=\"4\"/>\n      <circle cx=\"449\" cy=\"128\" r=\"4\"/>\n      <circle cx=\"466\" cy=\"273\" r=\"4\"/>\n      <circle cx=\"447\" cy=\"359\" r=\"4\"/>\n    </g>\n  </g>\n\n  <!-- Floating language marks -->\n  <g fill=\"#c6dcff\" opacity=\"0.55\" font-family=\"monospace\" font-size=\"16\">\n    <text x=\"62\" y=\"102\">{</text>\n    <text x=\"103\" y=\"386\">?</text>\n    <text x=\"414\" y=\"94\">\u221e</text>\n    <text x=\"427\" y=\"401\">}</text>\n    <text x=\"34\" y=\"310\">01</text>\n    <text x=\"426\" y=\"216\">AI</text>\n  </g>\n\n  <!-- Halo -->\n  <path d=\"M250 83\n           C154 83 103 150 112 247\n           C117 311 153 371 204 397\n           C225 408 275 408 296 397\n           C347 371 383 311 388 247\n           C397 150 346 83 250 83Z\"\n        fill=\"none\" stroke=\"url(#halo)\" stroke-width=\"7\"\n        opacity=\"0.85\" filter=\"url(#softGlow)\"/>\n\n  <!-- Shoulders and neck -->\n  <path d=\"M182 361 C150 372 115 392 91 434\n           L409 434\n           C385 392 350 372 318 361\n           C299 387 201 387 182 361Z\"\n        fill=\"url(#neck)\" stroke=\"#779cf1\" stroke-width=\"3\"/>\n\n  <path d=\"M213 333 L207 382\n           C226 397 274 397 293 382\n           L287 333Z\"\n        fill=\"url(#neck)\" stroke=\"#9fc6ff\" stroke-width=\"2\"/>\n\n  <!-- Face -->\n  <path d=\"M250 117\n           C177 117 139 166 146 240\n           C150 292 179 342 222 363\n           C239 372 261 372 278 363\n           C321 342 350 292 354 240\n           C361 166 323 117 250 117Z\"\n        fill=\"url(#face)\" stroke=\"#d8fbff\" stroke-width=\"3\"/>\n\n  <!-- Subtle internal data contours -->\n  <g clip-path=\"url(#faceClip)\" fill=\"none\" opacity=\"0.22\">\n    <path d=\"M117 182 C185 150 315 150 383 182\" stroke=\"#5b6fca\" stroke-width=\"3\"/>\n    <path d=\"M123 213 C190 184 310 184 377 213\" stroke=\"#5274cd\" stroke-width=\"2\"/>\n    <path d=\"M129 292 C195 318 305 318 371 292\" stroke=\"#4f61b5\" stroke-width=\"2\"/>\n    <path d=\"M145 328 C205 349 295 349 355 328\" stroke=\"#8d62d5\" stroke-width=\"3\"/>\n    <path d=\"M250 105 V375\" stroke=\"#ffffff\" stroke-width=\"1\"/>\n    <circle cx=\"250\" cy=\"235\" r=\"104\" stroke=\"#6fb8e9\" stroke-width=\"1\"/>\n  </g>\n\n  <!-- Temple nodes -->\n  <g fill=\"#72fff0\" stroke=\"#e7ffff\" stroke-width=\"2\" filter=\"url(#smallGlow)\">\n    <circle cx=\"151\" cy=\"238\" r=\"6\"/>\n    <circle cx=\"349\" cy=\"238\" r=\"6\"/>\n  </g>\n\n  <!-- Brows -->\n  <path d=\"M175 207 Q205 186 229 207\" fill=\"none\" stroke=\"#354b8f\" stroke-width=\"8\" stroke-linecap=\"round\"/>\n  <path d=\"M271 207 Q295 186 325 207\" fill=\"none\" stroke=\"#354b8f\" stroke-width=\"8\" stroke-linecap=\"round\"/>\n\n  <!-- Eyes -->\n  <g filter=\"url(#smallGlow)\">\n    <path d=\"M174 230 Q201 208 229 230 Q201 252 174 230Z\"\n          fill=\"#233766\" stroke=\"#d9ffff\" stroke-width=\"2\"/>\n    <circle cx=\"202\" cy=\"230\" r=\"11\" fill=\"url(#eye)\"/>\n    <circle cx=\"205\" cy=\"226\" r=\"3\" fill=\"#ffffff\"/>\n\n    <path d=\"M271 230 Q299 208 326 230 Q299 252 271 230Z\"\n          fill=\"#233766\" stroke=\"#d9ffff\" stroke-width=\"2\"/>\n    <circle cx=\"298\" cy=\"230\" r=\"11\" fill=\"url(#eye)\"/>\n    <circle cx=\"301\" cy=\"226\" r=\"3\" fill=\"#ffffff\"/>\n  </g>\n\n  <!-- Nose as a minimal signal path -->\n  <path d=\"M250 235 C244 259 243 273 250 281 C257 279 262 277 265 273\"\n        fill=\"none\" stroke=\"#6175ba\" stroke-width=\"4\" stroke-linecap=\"round\"/>\n\n  <!-- Warm, curious smile -->\n  <path d=\"M207 307 Q250 337 293 307\"\n        fill=\"none\" stroke=\"#44589c\" stroke-width=\"7\" stroke-linecap=\"round\"/>\n  <path d=\"M218 311 Q250 326 282 311\"\n        fill=\"none\" stroke=\"#eafcff\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.85\"/>\n\n  <!-- Forehead knowledge glyph -->\n  <g filter=\"url(#smallGlow)\">\n    <circle cx=\"250\" cy=\"166\" r=\"20\" fill=\"#233a78\" stroke=\"#81fff1\" stroke-width=\"2\"/>\n    <path d=\"M239 166 L247 174 L263 156\"\n          fill=\"none\" stroke=\"#dffffb\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  </g>\n\n  <!-- Collar / conversational pulse -->\n  <path d=\"M190 386 Q250 421 310 386\"\n        fill=\"none\" stroke=\"url(#halo)\" stroke-width=\"5\" filter=\"url(#smallGlow)\"/>\n  <circle cx=\"250\" cy=\"408\" r=\"8\" fill=\"#7dfff0\" filter=\"url(#smallGlow)\"/>\n\n  <!-- Foreground grounding arc -->\n  <path d=\"M65 434 Q250 474 435 434\"\n        fill=\"none\" stroke=\"#7f91ff\" stroke-width=\"2\" opacity=\"0.45\"/>\n</svg>\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "svg",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.63
+      }
+    }
+  ],
+  "detected_language": "svg",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T22:42:05+00:00",
+  "total_duration_s": 37.18
+}

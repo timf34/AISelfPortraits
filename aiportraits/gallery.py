@@ -72,8 +72,6 @@ def build_gallery(root: Path = RESULTS_ROOT) -> Path:
                     cell = "<div class='missing'>not run</div>"
                 elif entry.get("status") == "ok" and entry.get("has_image"):
                     cap = f"attempts: {entry.get('final_attempt', '?')}"
-                    if lang == "free" and entry.get("detected_language"):
-                        cap += f" · chose {entry['detected_language']}"
                     if entry.get("resized_from"):
                         cap += f" · resized from {entry['resized_from']}"
                     cap += f" · <a href='{rel}/response.md'>response</a>"

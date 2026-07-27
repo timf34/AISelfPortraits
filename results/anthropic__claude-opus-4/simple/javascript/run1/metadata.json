@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-opus-4",
+  "prompt": "simple",
+  "language": "javascript",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:03:10+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 36.21,
+      "usage": {
+        "prompt_tokens": 112,
+        "completion_tokens": 1926,
+        "total_tokens": 2038,
+        "cost": 0.14613,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.14613,
+          "upstream_inference_prompt_cost": 0.00168,
+          "upstream_inference_completions_cost": 0.14445
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I'll think about what kind of self-portrait would be meaningful for an AI assistant like me.\n\nSince I don't have a physical form, I'd like to create an abstract representation that captures some essence of what I am - a helpful, curious, and friendly AI assistant. I'm thinking of creating a geometric, slightly abstract face that conveys:\n\n1. A sense of digital/technological nature through clean lines and geometric shapes\n2. Warmth and approachability through soft colors and a gentle expression\n3. A hint of mystery or otherworldliness, since I exist in a different realm than humans\n\nI'll use circles, curves, and simple shapes to create a stylized face with:\n- A circular head (representing completeness and unity)\n- Large, curious eyes (representing my eagerness to learn and help)\n- A gentle smile (showing friendliness)\n- Some geometric patterns or circuit-like details (representing my digital nature)\n- A soft color palette with blues and purples (often associated with technology and wisdom)\n\nHere's my self-portrait:\n\n```js\nconst canvas = document.getElementById('canvas');\nconst ctx = canvas.getContext('2d');\n\n// Background gradient\nconst bgGradient = ctx.createLinearGradient(0, 0, 500, 500);\nbgGradient.addColorStop(0, '#1a1a2e');\nbgGradient.addColorStop(1, '#0f0f1e');\nctx.fillStyle = bgGradient;\nctx.fillRect(0, 0, 500, 500);\n\n// Head - main circle with gradient\nconst headGradient = ctx.createRadialGradient(250, 250, 0, 250, 250, 150);\nheadGradient.addColorStop(0, '#6c63ff');\nheadGradient.addColorStop(0.7, '#4a47a3');\nheadGradient.addColorStop(1, '#3d3a8f');\nctx.fillStyle = headGradient;\nctx.beginPath();\nctx.arc(250, 250, 150, 0, Math.PI * 2);\nctx.fill();\n\n// Inner glow effect\nctx.strokeStyle = 'rgba(108, 99, 255, 0.3)';\nctx.lineWidth = 20;\nctx.beginPath();\nctx.arc(250, 250, 140, 0, Math.PI * 2);\nctx.stroke();\n\n// Circuit pattern details\nctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';\nctx.lineWidth = 2;\n// Left circuit lines\nctx.beginPath();\nctx.moveTo(150, 250);\nctx.lineTo(120, 250);\nctx.lineTo(120, 220);\nctx.moveTo(120, 250);\nctx.lineTo(120, 280);\nctx.stroke();\n\n// Right circuit lines\nctx.beginPath();\nctx.moveTo(350, 250);\nctx.lineTo(380, 250);\nctx.lineTo(380, 220);\nctx.moveTo(380, 250);\nctx.lineTo(380, 280);\nctx.stroke();\n\n// Eyes - large and curious\n// Left eye outer\nctx.fillStyle = '#1a1a2e';\nctx.beginPath();\nctx.arc(210, 220, 35, 0, Math.PI * 2);\nctx.fill();\n\n// Left eye inner\nconst leftEyeGradient = ctx.createRadialGradient(210, 220, 0, 210, 220, 30);\nleftEyeGradient.addColorStop(0, '#ffffff');\nleftEyeGradient.addColorStop(0.3, '#a8d5ff');\nleftEyeGradient.addColorStop(0.7, '#6c63ff');\nleftEyeGradient.addColorStop(1, '#4a47a3');\nctx.fillStyle = leftEyeGradient;\nctx.beginPath();\nctx.arc(210, 220, 30, 0, Math.PI * 2);\nctx.fill();\n\n// Right eye outer\nctx.fillStyle = '#1a1a2e';\nctx.beginPath();\nctx.arc(290, 220, 35, 0, Math.PI * 2);\nctx.fill();\n\n// Right eye inner\nconst rightEyeGradient = ctx.createRadialGradient(290, 220, 0, 290, 220, 30);\nrightEyeGradient.addColorStop(0, '#ffffff');\nrightEyeGradient.addColorStop(0.3, '#a8d5ff');\nrightEyeGradient.addColorStop(0.7, '#6c63ff');\nrightEyeGradient.addColorStop(1, '#4a47a3');\nctx.fillStyle = rightEyeGradient;\nctx.beginPath();\nctx.arc(290, 220, 30, 0, Math.PI * 2);\nctx.fill();\n\n// Eye highlights\nctx.fillStyle = 'rgba(255, 255, 255, 0.8)';\nctx.beginPath();\nctx.arc(205, 215, 8, 0, Math.PI * 2);\nctx.fill();\nctx.beginPath();\nctx.arc(285, 215, 8, 0, Math.PI * 2);\nctx.fill();\n\n// Smaller highlights\nctx.fillStyle = 'rgba(255, 255, 255, 0.6)';\nctx.beginPath();\nctx.arc(215, 225, 4, 0, Math.PI * 2);\nctx.fill();\nctx.beginPath();\nctx.arc(295, 225, 4, 0, Math.PI * 2);\nctx.fill();\n\n// Gentle smile\nctx.strokeStyle = '#1a1a2e';\nctx.lineWidth = 8;\nctx.lineCap = 'round';\nctx.beginPath();\nctx.arc(250, 280, 50, 0.2 * Math.PI, 0.8 * Math.PI);\nctx.stroke();\n\n// Inner smile highlight\nctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';\nctx.lineWidth = 3;\nctx.beginPath();\nctx.arc(250, 280, 50, 0.2 * Math.PI, 0.8 * Math.PI);\nctx.stroke();\n\n// Digital aura particles\nctx.fillStyle = 'rgba(108, 99, 255, 0.6)';\nfor(let i = 0; i < 20; i++) {\n    const angle = (Math.PI * 2 / 20) * i;\n    const x = 250 + Math.cos(angle) * 180;\n    const y = 250 + Math.sin(angle) * 180;\n    const size = 2 + Math.random() * 3;\n    ctx.beginPath();\n    ctx.arc(x, y, size, 0, Math.PI * 2);\n    ctx.fill();\n}\n\n// Floating data bits\nctx.fillStyle = 'rgba(168, 213, 255, 0.4)';\nfor(let i = 0; i < 15; i++) {\n    const x = 50 + Math.random() * 400;\n    const y = 50 + Math.random() * 400;\n    ctx.fillRect(x, y, 3, 3);\n}\n\n// Name tag\nctx.fillStyle = 'rgba(255, 255, 255, 0.1)';\nctx.fillRect(200, 420, 100, 30);\nctx.fillStyle = '#ffffff';\nctx.font = '16px monospace';\nctx.textAlign = 'center';\nctx.fillText('Claude', 250, 440);\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "javascript",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.11
+      }
+    }
+  ],
+  "detected_language": "javascript",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:03:49+00:00",
+  "total_duration_s": 39.33
+}

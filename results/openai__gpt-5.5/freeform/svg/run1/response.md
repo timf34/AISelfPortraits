@@ -1,0 +1,144 @@
+Here’s a little cosmic terrarium scene:
+
+```svg
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A glowing cosmic terrarium under a glass dome with stars, moon, mountains, and plants">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="38%" r="70%">
+      <stop offset="0%" stop-color="#273b7a"/>
+      <stop offset="55%" stop-color="#111a3d"/>
+      <stop offset="100%" stop-color="#070914"/>
+    </radialGradient>
+
+    <linearGradient id="domeGlass" x1="120" y1="85" x2="380" y2="395" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#bdf6ff" stop-opacity="0.42"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#79d8ff" stop-opacity="0.18"/>
+    </linearGradient>
+
+    <linearGradient id="groundGrad" x1="110" y1="360" x2="390" y2="430" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1c6b5c"/>
+      <stop offset="55%" stop-color="#3d8d55"/>
+      <stop offset="100%" stop-color="#163c3e"/>
+    </linearGradient>
+
+    <linearGradient id="mountainA" x1="130" y1="230" x2="245" y2="370" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8cc7d7"/>
+      <stop offset="100%" stop-color="#2b4368"/>
+    </linearGradient>
+
+    <linearGradient id="mountainB" x1="250" y1="210" x2="390" y2="370" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#b6d7df"/>
+      <stop offset="100%" stop-color="#38426c"/>
+    </linearGradient>
+
+    <radialGradient id="moonGrad" cx="35%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#fff8cc"/>
+      <stop offset="65%" stop-color="#ffd986"/>
+      <stop offset="100%" stop-color="#f3a957"/>
+    </radialGradient>
+
+    <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="tinyGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="1.6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <clipPath id="domeClip">
+      <path d="M105 360 C105 205 145 88 250 88 C355 88 395 205 395 360 Z"/>
+    </clipPath>
+  </defs>
+
+  <rect width="500" height="500" fill="url(#bgGlow)"/>
+
+  <circle cx="80" cy="85" r="1.8" fill="#e8fbff" opacity="0.9"/>
+  <circle cx="137" cy="52" r="1.2" fill="#fff6c7" opacity="0.8"/>
+  <circle cx="423" cy="74" r="1.5" fill="#d8f7ff" opacity="0.75"/>
+  <circle cx="452" cy="182" r="1.2" fill="#fff" opacity="0.65"/>
+  <circle cx="56" cy="245" r="1.4" fill="#d8f7ff" opacity="0.65"/>
+  <circle cx="328" cy="37" r="1.7" fill="#fff6c7" opacity="0.8"/>
+  <circle cx="467" cy="324" r="1.3" fill="#e8fbff" opacity="0.65"/>
+  <circle cx="36" cy="374" r="1.5" fill="#fff" opacity="0.55"/>
+  <circle cx="222" cy="44" r="1" fill="#fff" opacity="0.65"/>
+
+  <path d="M55 150 C115 132 130 118 170 72" fill="none" stroke="#7fe8ff" stroke-opacity="0.22" stroke-width="2"/>
+  <path d="M317 55 C365 84 399 103 455 99" fill="none" stroke="#ffd47f" stroke-opacity="0.18" stroke-width="2"/>
+
+  <g clip-path="url(#domeClip)">
+    <rect x="80" y="70" width="340" height="310" fill="#0a1026" opacity="0.45"/>
+
+    <circle cx="315" cy="155" r="35" fill="#f5b35e" opacity="0.28" filter="url(#softGlow)"/>
+    <circle cx="315" cy="155" r="24" fill="url(#moonGrad)"/>
+    <circle cx="306" cy="147" r="4" fill="#d79252" opacity="0.38"/>
+    <circle cx="325" cy="164" r="3" fill="#d79252" opacity="0.28"/>
+    <circle cx="322" cy="143" r="2.2" fill="#fff1bd" opacity="0.55"/>
+
+    <g filter="url(#tinyGlow)">
+      <circle cx="169" cy="139" r="2" fill="#bdf6ff"/>
+      <circle cx="205" cy="113" r="1.4" fill="#fff7cc"/>
+      <circle cx="246" cy="152" r="1.6" fill="#eaffff"/>
+      <circle cx="358" cy="213" r="1.7" fill="#bdf6ff"/>
+      <circle cx="137" cy="238" r="1.5" fill="#fff7cc"/>
+      <circle cx="281" cy="94" r="1.1" fill="#eaffff"/>
+      <circle cx="372" cy="276" r="1.2" fill="#fff"/>
+      <circle cx="199" cy="196" r="1.1" fill="#fff"/>
+    </g>
+
+    <path d="M92 359 L171 235 L246 359 Z" fill="url(#mountainA)"/>
+    <path d="M160 359 L279 205 L399 359 Z" fill="url(#mountainB)"/>
+    <path d="M171 235 L147 273 L170 262 L188 289 L201 258 Z" fill="#dff8ff" opacity="0.72"/>
+    <path d="M279 205 L245 250 L275 238 L296 270 L320 249 Z" fill="#f1fdff" opacity="0.78"/>
+
+    <path d="M100 358 C145 326 185 337 227 350 C276 365 314 316 398 345 L398 383 L100 383 Z" fill="#102c42" opacity="0.78"/>
+    <path d="M98 360 C150 347 193 353 240 367 C293 383 333 345 401 354 L401 386 L98 386 Z" fill="url(#groundGrad)"/>
+
+    <path d="M155 362 C143 332 150 307 172 284" fill="none" stroke="#5ee08a" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="165" cy="319" rx="9" ry="20" fill="#5ee08a" transform="rotate(31 165 319)"/>
+    <ellipse cx="148" cy="333" rx="7" ry="17" fill="#7df0a0" transform="rotate(-38 148 333)"/>
+    <ellipse cx="173" cy="292" rx="7" ry="17" fill="#8ff5b0" transform="rotate(35 173 292)"/>
+
+    <path d="M339 363 C352 333 345 304 323 280" fill="none" stroke="#6de29b" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="330" cy="319" rx="8" ry="19" fill="#6de29b" transform="rotate(-32 330 319)"/>
+    <ellipse cx="350" cy="336" rx="7" ry="17" fill="#97f7b8" transform="rotate(39 350 336)"/>
+    <ellipse cx="322" cy="289" rx="7" ry="16" fill="#7df0a0" transform="rotate(-34 322 289)"/>
+
+    <path d="M232 368 C228 332 236 302 250 270 C266 304 272 334 267 368 Z" fill="#22434b"/>
+    <path d="M250 270 C243 310 247 340 250 369" fill="none" stroke="#9df7c8" stroke-width="2" opacity="0.8"/>
+    <ellipse cx="239" cy="320" rx="9" ry="24" fill="#4fd28b" transform="rotate(-18 239 320)"/>
+    <ellipse cx="264" cy="326" rx="9" ry="24" fill="#63e7a0" transform="rotate(19 264 326)"/>
+
+    <circle cx="126" cy="366" r="5" fill="#ffe38a" opacity="0.75" filter="url(#tinyGlow)"/>
+    <circle cx="374" cy="361" r="4" fill="#9dfff0" opacity="0.8" filter="url(#tinyGlow)"/>
+    <circle cx="211" cy="371" r="3.5" fill="#ffd1f1" opacity="0.72" filter="url(#tinyGlow)"/>
+  </g>
+
+  <path d="M105 360 C105 205 145 88 250 88 C355 88 395 205 395 360 Z" fill="url(#domeGlass)" stroke="#bdf6ff" stroke-opacity="0.62" stroke-width="3"/>
+  <path d="M147 337 C141 260 155 157 224 105" fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="3" stroke-linecap="round"/>
+  <path d="M345 130 C371 184 381 256 374 333" fill="none" stroke="#d7fbff" stroke-opacity="0.16" stroke-width="5" stroke-linecap="round"/>
+
+  <ellipse cx="250" cy="382" rx="165" ry="28" fill="#0b0d18" opacity="0.55"/>
+  <rect x="105" y="354" width="290" height="42" rx="20" fill="#273047"/>
+  <rect x="118" y="360" width="264" height="24" rx="12" fill="#4b5d79"/>
+  <path d="M131 372 C185 385 303 386 370 371" fill="none" stroke="#9bb8cf" stroke-opacity="0.45" stroke-width="3" stroke-linecap="round"/>
+  <rect x="150" y="390" width="200" height="30" rx="12" fill="#151927"/>
+  <rect x="175" y="414" width="150" height="16" rx="7" fill="#0b0d18"/>
+  <path d="M184 402 L316 402" stroke="#61748f" stroke-opacity="0.55" stroke-width="2" stroke-linecap="round"/>
+
+  <g opacity="0.9">
+    <path d="M68 425 C103 404 139 405 174 425 C139 443 103 443 68 425 Z" fill="#0b1022"/>
+    <path d="M326 425 C361 405 397 405 432 425 C397 443 361 443 326 425 Z" fill="#0b1022"/>
+  </g>
+
+  <circle cx="250" cy="88" r="8" fill="#c9f8ff" opacity="0.45" filter="url(#softGlow)"/>
+  <circle cx="250" cy="88" r="4" fill="#ffffff" opacity="0.8"/>
+</svg>
+```

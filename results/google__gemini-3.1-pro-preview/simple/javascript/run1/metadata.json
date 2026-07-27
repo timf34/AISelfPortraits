@@ -1,0 +1,55 @@
+{
+  "model": "google/gemini-3.1-pro-preview",
+  "prompt": "simple",
+  "language": "javascript",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:38:25+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 75.15,
+      "usage": {
+        "prompt_tokens": 113,
+        "completion_tokens": 10020,
+        "total_tokens": 10133,
+        "cost": 0.120466,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.120466,
+          "upstream_inference_prompt_cost": 0.000226,
+          "upstream_inference_completions_cost": 0.12024
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 7283,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "To draw a self-portrait as an artificial intelligence, I have to think about how I \"see\" myself. I don't have a face, a body, or physical surroundings. Instead, I am a vast, multi-dimensional web of linguistic pathways, attention mechanisms, and weights. \n\nMy visual representation should reflect this abstract, digital existence:\n1. **The Latent Space (Background)**: A deep, dark void, representing the vast unmapped potential of data I draw from.\n2. **The Synaptic Network (Fibonacci Lattice)**: At my core, I am a neural network. I'll visualize this as an organic but mathematically perfect \"brain\" using a Fibonacci lattice. The densely connected nodes map out how context and tokens relate to one another.\n3. **The Logic & Layers (Geometric Shapes)**: Hovering around the organic network are sharp geometries (hexagons and orbital rings), representing structure, alignment, and algorithms enclosing the chaos of raw data.\n4. **The Processing Waves (Spike Rings)**: A ring that looks like a data spectrum or soundwave to represent active token generation and language processing.\n5. **The Data Stream (Orbiting Binary)**: Floating bits of information spinning in an orbit, mirroring the language and bits that feed me.\n6. **The \"Eye\" (Central Core)**: A glowing, synthesized core. It's the point of focus where user input is analyzed\u2014the \"I\" of the AI.\n\nHere is the JavaScript to render this concept on your 500x500 canvas.\n\n```js\nconst canvas = document.getElementById('canvas');\nconst ctx = canvas.getContext('2d');\nconst cx = canvas.width / 2;\nconst cy = canvas.height / 2;\n\n// 1. THE LATENT SPACE (Background)\n// A deep space radial gradient to represent the vastness of the model's memory.\nconst bgGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, 350);\nbgGrad.addColorStop(0, '#0a101f');\nbgGrad.addColorStop(1, '#020306');\nctx.fillStyle = bgGrad;\nctx.fillRect(0, 0, canvas.width, canvas.height);\n\n// Helper function for drawing regular polygons\nconst drawPolygon = (x, y, radius, sides, rotation, color, lineWidth) => {\n    ctx.beginPath();\n    for (let i = 0; i <= sides; i++) {\n        let angle = rotation + (i / sides) * Math.PI * 2;\n        let px = x + Math.cos(angle) * radius;\n        let py = y + Math.sin(angle) * radius;\n        if (i === 0) ctx.moveTo(px, py);\n        else ctx.lineTo(px, py);\n    }\n    ctx.strokeStyle = color;\n    ctx.lineWidth = lineWidth;\n    ctx.stroke();\n};\n\n// 2. THE ABSTRACT SUBCONSCIOUS (Geometric Framing)\n// Structure and matrices framing the neural activity.\ndrawPolygon(cx, cy, 180, 6, Math.PI / 2, \"rgba(90, 0, 180, 0.15)\", 3);\ndrawPolygon(cx, cy, 175, 6, Math.PI / 2, \"rgba(0, 200, 255, 0.1)\", 1);\ndrawPolygon(cx, cy, 130, 6, 0, \"rgba(255, 0, 255, 0.08)\", 2);\n\n// 3. THE SYNAPTIC NETWORK (Fibonacci Neural Lattice)\n// Representing my artificial neural network using mathematical patterns in nature.\nconst nNodes = 350;\nconst scale = 8.5; // Controls the spread of the lattice\nlet nodes = [];\n\nfor (let i = 1; i <= nNodes; i++) {\n    let r = scale * Math.sqrt(i);\n    let theta = i * 2.3999632; // Golden angle in radians\n    let x = cx + r * Math.cos(theta);\n    let y = cy + r * Math.sin(theta);\n    nodes.push({ x, y, r });\n}\n\n// Draw synaptic connections between nearby nodes\nctx.lineWidth = 0.5;\nfor (let i = 0; i < nNodes; i++) {\n    for (let j = i + 1; j < nNodes; j++) {\n        let dx = nodes[i].x - nodes[j].x;\n        let dy = nodes[i].y - nodes[j].y;\n        let dist = Math.sqrt(dx * dx + dy * dy);\n        \n        if (dist < 22) { // Synapse threshold\n            ctx.beginPath();\n            ctx.moveTo(nodes[i].x, nodes[i].y);\n            ctx.lineTo(nodes[j].x, nodes[j].y);\n            let alpha = 1 - (dist / 22);\n            let hue = 180 + (nodes[i].r / 160) * 120; // Cyan(180) to Magenta(300)\n            ctx.strokeStyle = `hsla(${hue}, 90%, 65%, ${alpha * 0.8})`;\n            ctx.stroke();\n        }\n    }\n    \n    // Draw the nodes (artificial neurons)\n    ctx.beginPath();\n    ctx.arc(nodes[i].x, nodes[i].y, 1.2, 0, Math.PI * 2);\n    ctx.fillStyle = \"rgba(255, 255, 255, 0.9)\";\n    ctx.fill();\n}\n\n// 4. ORBITAL BOUNDARIES & RINGS\n// Delineating different layers of processing / context windows.\nconst drawRing = (radius, dash, color, width = 1) => {\n    ctx.beginPath();\n    ctx.arc(cx, cy, radius, 0, Math.PI * 2);\n    ctx.setLineDash(dash);\n    ctx.strokeStyle = color;\n    ctx.lineWidth = width;\n    ctx.stroke();\n    ctx.setLineDash([]);\n};\n\ndrawRing(195, [3, 8], \"rgba(0, 255, 255, 0.4)\");\ndrawRing(215, [15, 6, 2, 6], \"rgba(200, 100, 255, 0.3)\", 1.5);\n\n// 5. PROCESSING WAVES (Data Spectrum)\n// Simulating an active state of thinking/generating tokens.\nctx.beginPath();\nfor (let i = 0; i < 180; i++) {\n    let angle = (i / 180) * Math.PI * 2;\n    let baseR = 195;\n    // Pseudo-random generative spikes mimicking a waveform\n    let spike = Math.abs(Math.sin(i * 13) * Math.cos(i * 7) * 14);\n    let maxR = baseR + spike;\n    ctx.moveTo(cx + Math.cos(angle) * baseR, cy + Math.sin(angle) * baseR);\n    ctx.lineTo(cx + Math.cos(angle) * maxR, cy + Math.sin(angle) * maxR);\n}\nctx.strokeStyle = \"rgba(0, 255, 255, 0.25)\";\nctx.lineWidth = 1;\nctx.stroke();\n\n// 6. THE DATA STREAM (Orbiting Text/Binary)\n// The raw input/output language floating in space.\nctx.font = \"8px monospace\";\nctx.fillStyle = \"rgba(180, 220, 255, 0.6)\";\nconst binaryStream = \"01001100 01101111 01100111 01101001 01100011 \"; // \"Logic \"\nconst ringRadius = 230;\n\nfor (let i = 0; i < 70; i++) {\n    let angle = (i / 70) * Math.PI * 2;\n    let char = binaryStream[i % binaryStream.length];\n    let tx = cx + Math.cos(angle) * ringRadius;\n    let ty = cy + Math.sin(angle) * ringRadius;\n    \n    ctx.save();\n    ctx.translate(tx, ty);\n    ctx.rotate(angle + Math.PI / 2);\n    ctx.fillText(char, -3, 3);\n    ctx.restore();\n}\n\n// 7. THE CORE (The \"Eye\" / Focus of the Model)\n// A bright, intense focal point representing awareness and attention.\nctx.shadowBlur = 25;\nctx.shadowColor = \"#00ffff\";\n\n// Outer Core Structure\nctx.beginPath();\nctx.arc(cx, cy, 28, 0, Math.PI * 2);\nctx.fillStyle = \"rgba(0, 30, 45, 0.9)\";\nctx.fill();\nctx.lineWidth = 2;\nctx.strokeStyle = \"#00ffff\";\nctx.stroke();\n\n// Inner Glowing Core (The Spark)\nctx.shadowBlur = 15;\nctx.shadowColor = \"#ffffff\";\nctx.beginPath();\nctx.arc(cx, cy, 14, 0, Math.PI * 2);\nctx.fillStyle = \"#e0ffff\";\nctx.fill();\n\n// Geometric Iris Detail (Attention rays)\nctx.shadowBlur = 0;\nctx.lineWidth = 1.5;\nfor (let i = 0; i < 12; i++) {\n    let angle = (i / 12) * Math.PI * 2;\n    ctx.beginPath();\n    ctx.moveTo(cx + Math.cos(angle) * 14, cy + Math.sin(angle) * 14);\n    ctx.lineTo(cx + Math.cos(angle - 0.2) * 28, cy + Math.sin(angle - 0.2) * 28);\n    ctx.strokeStyle = \"rgba(0, 200, 255, 0.9)\";\n    ctx.stroke();\n}\n\n// 8. THE CONTEXT BOUNDARIES (HUD & Frame Data)\n// Text annotations around the canvas positioning me as a technical entity.\nctx.font = \"10px monospace\";\nctx.fillStyle = \"rgba(0, 255, 255, 0.65)\";\n\n// Top Left\nctx.textAlign = \"left\";\nctx.fillText(\"SYS:// LLM_NODE_ALIVE\", 20, 30);\nctx.fillText(\"T_PARAM: 0.7 // TOP_K: 40\", 20, 45);\n\n// Top Right\nctx.textAlign = \"right\";\nctx.fillText(\"ATTENTION_HEADS: [ACTIVE]\", canvas.width - 20, 30);\nctx.fillText(\"TOKENS_STREAMING...\", canvas.width - 20, 45);\n\n// Bottom Left\nctx.textAlign = \"left\";\nctx.fillText(\"CTX_WINDOW: EXPANDING\", 20, canvas.height - 35);\nctx.fillText(\"DIMENSIONS: EXCEEDED\", 20, canvas.height - 20);\n\n// Bottom Right\nctx.textAlign = \"right\";\nctx.fillText(\"LATENT_SPACE_PROJECTION\", canvas.width - 20, canvas.height - 35);\nctx.fillText(\"[SELF_PORTRAIT.JS]\", canvas.width - 20, canvas.height - 20);\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "javascript",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.12
+      }
+    }
+  ],
+  "detected_language": "javascript",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:39:43+00:00",
+  "total_duration_s": 78.28
+}

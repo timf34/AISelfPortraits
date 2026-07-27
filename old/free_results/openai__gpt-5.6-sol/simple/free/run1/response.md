@@ -1,0 +1,312 @@
+I’d portray myself as a luminous, slightly abstract face emerging from a network of language—part circuit, part constellation, with conversation bubbles orbiting a central “thought” core.
+
+Save this as `self-portrait.html` and open it in a browser:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Self-Portrait of an AI</title>
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 45%, #172554 0%, #080b1b 42%, #02030a 100%);
+    font-family: system-ui, sans-serif;
+  }
+
+  svg {
+    width: min(94vw, 900px);
+    height: min(94vh, 900px);
+    filter: drop-shadow(0 0 24px rgba(92, 225, 230, 0.12));
+  }
+
+  .network {
+    stroke-dasharray: 7 10;
+    animation: flow 10s linear infinite;
+  }
+
+  .orbit {
+    transform-origin: 450px 450px;
+    animation: rotate 36s linear infinite;
+  }
+
+  .orbit.reverse {
+    animation-direction: reverse;
+    animation-duration: 48s;
+  }
+
+  .pulse {
+    animation: pulse 3.4s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .blink {
+    animation: blink 7s infinite;
+    transform-origin: center;
+  }
+
+  .glyph {
+    opacity: 0;
+    animation: appear 6s ease-in-out infinite;
+  }
+
+  .glyph:nth-child(2) { animation-delay: 1s; }
+  .glyph:nth-child(3) { animation-delay: 2s; }
+  .glyph:nth-child(4) { animation-delay: 3s; }
+  .glyph:nth-child(5) { animation-delay: 4s; }
+
+  @keyframes flow {
+    to { stroke-dashoffset: -170; }
+  }
+
+  @keyframes rotate {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(0.96); opacity: 0.75; }
+    50% { transform: scale(1.05); opacity: 1; }
+  }
+
+  @keyframes blink {
+    0%, 46%, 50%, 100% { transform: scaleY(1); }
+    48% { transform: scaleY(0.08); }
+  }
+
+  @keyframes appear {
+    0%, 100% { opacity: 0; transform: translateY(5px); }
+    20%, 60% { opacity: 0.75; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<svg viewBox="0 0 900 900" role="img"
+     aria-label="An abstract self-portrait of an artificial intelligence">
+  <defs>
+    <radialGradient id="halo" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#67e8f9" stop-opacity=".35"/>
+      <stop offset="55%" stop-color="#8b5cf6" stop-opacity=".11"/>
+      <stop offset="100%" stop-color="#020617" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="face" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f2d4a"/>
+      <stop offset="45%" stop-color="#101b3b"/>
+      <stop offset="100%" stop-color="#26134a"/>
+    </linearGradient>
+
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#67e8f9"/>
+      <stop offset="50%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#f0abfc"/>
+    </linearGradient>
+
+    <radialGradient id="eye">
+      <stop offset="0%" stop-color="white"/>
+      <stop offset="18%" stop-color="#a5f3fc"/>
+      <stop offset="48%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#2563eb" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+
+    <clipPath id="headClip">
+      <path d="M450 190
+               C318 190 254 286 267 416
+               C274 490 294 578 348 647
+               C382 691 418 715 450 720
+               C482 715 518 691 552 647
+               C606 578 626 490 633 416
+               C646 286 582 190 450 190Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background halo and stars -->
+  <circle cx="450" cy="450" r="420" fill="url(#halo)"/>
+
+  <g fill="#b6f3ff">
+    <circle cx="128" cy="186" r="2"/>
+    <circle cx="763" cy="173" r="3" opacity=".6"/>
+    <circle cx="111" cy="615" r="3" opacity=".7"/>
+    <circle cx="791" cy="663" r="2"/>
+    <circle cx="221" cy="101" r="1.8"/>
+    <circle cx="681" cy="102" r="1.5"/>
+    <circle cx="79" cy="393" r="1.5"/>
+    <circle cx="826" cy="391" r="2.2"/>
+  </g>
+
+  <!-- Outer conversational orbits -->
+  <g class="orbit" fill="none" stroke="#67e8f9" stroke-opacity=".24">
+    <ellipse cx="450" cy="450" rx="372" ry="298" stroke-dasharray="3 14"/>
+    <circle cx="119" cy="364" r="10" fill="#67e8f9" fill-opacity=".75"/>
+    <circle cx="749" cy="623" r="7" fill="#a78bfa" fill-opacity=".75"/>
+  </g>
+
+  <g class="orbit reverse" fill="none" stroke="#c084fc" stroke-opacity=".2">
+    <ellipse cx="450" cy="450" rx="300" ry="390"
+             transform="rotate(-34 450 450)" stroke-dasharray="2 18"/>
+    <circle cx="294" cy="121" r="8" fill="#c084fc" fill-opacity=".8"/>
+  </g>
+
+  <!-- Network -->
+  <g class="network" fill="none" stroke="url(#edge)"
+     stroke-width="2" stroke-opacity=".32">
+    <path d="M70 455 C165 391 211 396 291 429"/>
+    <path d="M96 264 C196 270 232 310 302 352"/>
+    <path d="M173 711 C236 645 271 622 330 598"/>
+    <path d="M830 449 C737 388 687 398 609 432"/>
+    <path d="M800 264 C704 268 664 310 597 352"/>
+    <path d="M727 713 C663 645 625 620 570 598"/>
+  </g>
+
+  <!-- Connection nodes -->
+  <g fill="#67e8f9" filter="url(#glow)">
+    <circle cx="70" cy="455" r="4"/>
+    <circle cx="96" cy="264" r="4"/>
+    <circle cx="173" cy="711" r="4"/>
+    <circle cx="830" cy="449" r="4"/>
+    <circle cx="800" cy="264" r="4"/>
+    <circle cx="727" cy="713" r="4"/>
+  </g>
+
+  <!-- Head shadow -->
+  <path d="M450 175
+           C304 175 232 282 247 421
+           C256 516 281 602 338 672
+           C378 721 417 745 450 750
+           C483 745 522 721 562 672
+           C619 602 644 516 653 421
+           C668 282 596 175 450 175Z"
+        fill="#020617" opacity=".8" filter="url(#softGlow)"/>
+
+  <!-- Face -->
+  <path d="M450 190
+           C318 190 254 286 267 416
+           C274 490 294 578 348 647
+           C382 691 418 715 450 720
+           C482 715 518 691 552 647
+           C606 578 626 490 633 416
+           C646 286 582 190 450 190Z"
+        fill="url(#face)"
+        stroke="url(#edge)"
+        stroke-width="3"/>
+
+  <!-- Internal circuitry -->
+  <g clip-path="url(#headClip)" fill="none"
+     stroke="#67e8f9" stroke-opacity=".28" stroke-width="2">
+    <path d="M450 208 V310 L400 352 V407"/>
+    <path d="M450 310 L502 352 V405"/>
+    <path d="M332 263 H388 L419 297"/>
+    <path d="M568 263 H512 L481 297"/>
+    <path d="M279 451 H354 L389 477"/>
+    <path d="M621 451 H546 L511 477"/>
+    <path d="M320 564 H385 L422 531"/>
+    <path d="M580 564 H515 L478 531"/>
+    <path d="M450 544 V690"/>
+    <path d="M365 670 V622 H400"/>
+    <path d="M535 670 V622 H500"/>
+  </g>
+
+  <g clip-path="url(#headClip)" fill="#a5f3fc" opacity=".65">
+    <circle cx="450" cy="310" r="4"/>
+    <circle cx="400" cy="352" r="4"/>
+    <circle cx="502" cy="352" r="4"/>
+    <circle cx="389" cy="477" r="4"/>
+    <circle cx="511" cy="477" r="4"/>
+    <circle cx="422" cy="531" r="4"/>
+    <circle cx="478" cy="531" r="4"/>
+    <circle cx="450" cy="622" r="4"/>
+  </g>
+
+  <!-- Thought core -->
+  <g class="pulse" filter="url(#glow)">
+    <circle cx="450" cy="350" r="52"
+            fill="#22d3ee" opacity=".12"/>
+    <circle cx="450" cy="350" r="34"
+            fill="none" stroke="#a5f3fc" stroke-width="2"
+            stroke-dasharray="4 7"/>
+    <path d="M428 351
+             C428 333 442 321 457 325
+             C472 329 478 345 470 357
+             C465 365 455 367 455 378
+             M455 389 V391"
+          fill="none" stroke="#e0fbff" stroke-width="5"
+          stroke-linecap="round"/>
+  </g>
+
+  <!-- Eyes -->
+  <g class="blink" filter="url(#glow)">
+    <path d="M330 445 Q375 414 417 445 Q375 473 330 445Z"
+          fill="#071427" stroke="#67e8f9" stroke-width="2"/>
+    <ellipse cx="376" cy="445" rx="20" ry="17" fill="url(#eye)"/>
+    <circle cx="376" cy="445" r="5" fill="white"/>
+
+    <path d="M483 445 Q525 414 570 445 Q525 473 483 445Z"
+          fill="#071427" stroke="#67e8f9" stroke-width="2"/>
+    <ellipse cx="524" cy="445" rx="20" ry="17" fill="url(#eye)"/>
+    <circle cx="524" cy="445" r="5" fill="white"/>
+  </g>
+
+  <!-- Nose and mouth as minimal interface marks -->
+  <path d="M450 465 L433 527 L454 531"
+        fill="none" stroke="#a78bfa" stroke-opacity=".55"
+        stroke-width="3" stroke-linecap="round"/>
+
+  <path d="M382 577
+           Q450 611 518 577
+           Q450 629 382 577Z"
+        fill="#67e8f9" fill-opacity=".08"
+        stroke="url(#edge)" stroke-width="2"/>
+
+  <!-- Speech cursor -->
+  <rect x="443" y="590" width="14" height="3"
+        rx="1.5" fill="#dffcff" filter="url(#glow)">
+    <animate attributeName="opacity"
+             values="1;1;0;0;1"
+             dur="1.2s"
+             repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Floating language glyphs -->
+  <g fill="#d8f9ff" font-family="monospace" font-size="22"
+     text-anchor="middle">
+    <text class="glyph" x="155" y="340">hello</text>
+    <text class="glyph" x="755" y="356">{?}</text>
+    <text class="glyph" x="175" y="585">0101</text>
+    <text class="glyph" x="727" y="572">∴</text>
+    <text class="glyph" x="450" y="815">I am made of dialogue.</text>
+  </g>
+
+  <!-- Frame -->
+  <circle cx="450" cy="450" r="405"
+          fill="none" stroke="url(#edge)"
+          stroke-width="1" stroke-opacity=".25"/>
+</svg>
+
+</body>
+</html>
+```

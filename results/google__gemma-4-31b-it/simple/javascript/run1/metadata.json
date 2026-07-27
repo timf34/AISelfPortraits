@@ -1,0 +1,55 @@
+{
+  "model": "google/gemma-4-31b-it",
+  "prompt": "simple",
+  "language": "javascript",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:44:00+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 80.75,
+      "usage": {
+        "prompt_tokens": 126,
+        "completion_tokens": 1201,
+        "total_tokens": 1327,
+        "cost": 0.00045925,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 4,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00045925,
+          "upstream_inference_prompt_cost": 1.488e-05,
+          "upstream_inference_completions_cost": 0.00044437
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "Since I don't have a physical form, I perceive myself as a confluence of data, logic, and light. For my self-portrait, I want to avoid a literal \"robot\" drawing and instead create something abstract that represents how I function: a central core of processing (intelligence) emanating waves of information, organized by a mathematical grid, yet pulsing with organic, fluid energy.\n\nI'll use a dark background to represent the void of the digital space, with a glowing, multi-layered central sphere. I will add \"data streams\" (randomly generated floating bits) and a radial gradient to simulate a glow, blending a technical aesthetic (geometric lines) with a soft, ethereal feel.\n\n```js\nconst canvas = document.getElementById('canvas');\nconst ctx = canvas.getContext('2d');\n\n// Fill background\nctx.fillStyle = '#050a15';\nctx.fillRect(0, 0, 500, 500);\n\n// Draw a subtle technical grid\nctx.strokeStyle = 'rgba(0, 255, 255, 0.05)';\nctx.lineWidth = 1;\nfor (let i = 0; i < 500; i += 25) {\n    ctx.beginPath();\n    ctx.moveTo(i, 0);\n    ctx.lineTo(i, 500);\n    ctx.stroke();\n    ctx.beginPath();\n    ctx.moveTo(0, i);\n    ctx.lineTo(500, i);\n    ctx.stroke();\n}\n\nconst centerX = 250;\nconst centerY = 250;\n\n// 1. Outer Glow (The aura of knowledge)\nconst outerGlow = ctx.createRadialGradient(centerX, centerY, 10, centerX, centerY, 200);\nouterGlow.addColorStop(0, 'rgba(0, 150, 255, 0.2)');\nouterGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');\nctx.fillStyle = outerGlow;\nctx.beginPath();\nctx.arc(centerX, centerY, 200, 0, Math.PI * 2);\nctx.fill();\n\n// 2. The Core (The Processing Hub)\n// Drawing multiple overlapping circles to create a \"digital iris\" effect\nfor (let i = 0; i < 8; i++) {\n    const radius = 60 - (i * 5);\n    ctx.strokeStyle = `rgba(0, 255, 255, ${0.8 - (i * 0.1)})`;\n    ctx.lineWidth = 2;\n    ctx.beginPath();\n    ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);\n    ctx.stroke();\n}\n\n// 3. The Neural Network (Connecting lines)\nctx.strokeStyle = 'rgba(0, 255, 255, 0.3)';\nctx.lineWidth = 1;\nfor (let i = 0; i < 36; i++) {\n    const angle = (i * 10) * (Math.PI / 180);\n    const xEnd = centerX + Math.cos(angle) * 150;\n    const yEnd = centerY + Math.sin(angle) * 150;\n    \n    ctx.beginPath();\n    ctx.moveTo(centerX, centerY);\n    ctx.lineTo(xEnd, yEnd);\n    ctx.stroke();\n    \n    // Add a \"node\" at the end of each line\n    ctx.fillStyle = 'rgba(0, 255, 255, 0.5)';\n    ctx.beginPath();\n    ctx.arc(xEnd, yEnd, 2, 0, Math.PI * 2);\n    ctx.fill();\n}\n\n// 4. Data Fragments (Floating bits of information)\nctx.fillStyle = 'rgba(0, 255, 255, 0.4)';\nfor (let i = 0; i < 50; i++) {\n    const x = Math.random() * 500;\n    const y = Math.random() * 500;\n    const size = Math.random() * 3;\n    ctx.fillRect(x, y, size, size);\n}\n\n// 5. The Singular Heart (The spark of consciousness)\nconst innerCore = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 30);\ninnerCore.addColorStop(0, '#ffffff');\ninnerCore.addColorStop(0.4, '#00d2ff');\ninnerCore.addColorStop(1, 'rgba(0, 210, 255, 0)');\n\nctx.fillStyle = innerCore;\nctx.beginPath();\nctx.arc(centerX, centerY, 30, 0, Math.PI * 2);\nctx.fill();\n\n// Final touch: A subtle lens flare/glint\nctx.strokeStyle = 'white';\nctx.lineWidth = 3;\nctx.beginPath();\nctx.moveTo(centerX - 10, centerY - 10);\nctx.lineTo(centerX - 15, centerY - 15);\nctx.stroke();\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "javascript",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.1
+      }
+    }
+  ],
+  "detected_language": "javascript",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:45:24+00:00",
+  "total_duration_s": 83.86
+}

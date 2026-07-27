@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-opus-4.8",
+  "prompt": "freeform",
+  "language": "javascript",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:02:18+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 18.47,
+      "usage": {
+        "prompt_tokens": 164,
+        "completion_tokens": 1744,
+        "total_tokens": 1908,
+        "cost": 0.04442,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.04442,
+          "upstream_inference_prompt_cost": 0.00082,
+          "upstream_inference_completions_cost": 0.0436
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I'll draw a peaceful nighttime scene \u2014 a crescent moon over a calm ocean with stars, a reflection on the water, and some gentle waves. I like the contrast of cool blues and the warm glow of the moon.\n\n```js\nconst canvas = document.getElementById(\"canvas\");\nconst ctx = canvas.getContext(\"2d\");\nconst W = 500, H = 500;\n\n// Sky gradient\nconst sky = ctx.createLinearGradient(0, 0, 0, 320);\nsky.addColorStop(0, \"#0b1026\");\nsky.addColorStop(0.6, \"#1a2149\");\nsky.addColorStop(1, \"#3b3a6b\");\nctx.fillStyle = sky;\nctx.fillRect(0, 0, W, 320);\n\n// Stars\nfunction star(x, y, r, a) {\n  ctx.beginPath();\n  ctx.arc(x, y, r, 0, Math.PI * 2);\n  ctx.fillStyle = `rgba(255,255,255,${a})`;\n  ctx.fill();\n}\nlet seed = 12345;\nfunction rand() {\n  seed = (seed * 9301 + 49297) % 233280;\n  return seed / 233280;\n}\nfor (let i = 0; i < 120; i++) {\n  const x = rand() * W;\n  const y = rand() * 300;\n  const r = rand() * 1.3 + 0.3;\n  star(x, y, r, rand() * 0.7 + 0.3);\n}\n\n// Moon with glow\nconst mx = 370, my = 110, mr = 55;\nconst glow = ctx.createRadialGradient(mx, my, mr, mx, my, mr * 2.5);\nglow.addColorStop(0, \"rgba(255,245,210,0.5)\");\nglow.addColorStop(1, \"rgba(255,245,210,0)\");\nctx.fillStyle = glow;\nctx.beginPath();\nctx.arc(mx, my, mr * 2.5, 0, Math.PI * 2);\nctx.fill();\n\n// Crescent moon\nctx.save();\nctx.beginPath();\nctx.arc(mx, my, mr, 0, Math.PI * 2);\nctx.fillStyle = \"#fdf6d8\";\nctx.fill();\n// carve out shadow\nctx.globalCompositeOperation = \"destination-out\";\nctx.beginPath();\nctx.arc(mx + 22, my - 12, mr, 0, Math.PI * 2);\nctx.fill();\nctx.restore();\n\n// Ocean\nconst sea = ctx.createLinearGradient(0, 320, 0, H);\nsea.addColorStop(0, \"#20375e\");\nsea.addColorStop(1, \"#0a1830\");\nctx.fillStyle = sea;\nctx.fillRect(0, 320, W, H - 320);\n\n// Moon reflection on water\nfor (let i = 0; i < 40; i++) {\n  const y = 322 + i * 4.3;\n  const spread = 8 + i * 1.6;\n  const alpha = 0.28 * (1 - i / 40);\n  ctx.strokeStyle = `rgba(255,245,210,${alpha})`;\n  ctx.lineWidth = 2;\n  const wobble = Math.sin(i * 0.8) * spread;\n  ctx.beginPath();\n  ctx.moveTo(mx - spread + wobble, y);\n  ctx.lineTo(mx + spread + wobble, y);\n  ctx.stroke();\n}\n\n// Gentle wave highlights\nctx.strokeStyle = \"rgba(180,210,255,0.15)\";\nctx.lineWidth = 1.5;\nfor (let j = 0; j < 12; j++) {\n  const baseY = 340 + j * 13;\n  ctx.beginPath();\n  for (let x = 0; x <= W; x += 10) {\n    const y = baseY + Math.sin(x * 0.03 + j) * 3;\n    if (x === 0) ctx.moveTo(x, y);\n    else ctx.lineTo(x, y);\n  }\n  ctx.stroke();\n}\n\n// A small distant boat silhouette\nctx.fillStyle = \"#05101f\";\nctx.beginPath();\nctx.moveTo(90, 330);\nctx.lineTo(140, 330);\nctx.lineTo(130, 342);\nctx.lineTo(100, 342);\nctx.closePath();\nctx.fill();\n// mast\nctx.strokeStyle = \"#05101f\";\nctx.lineWidth = 2;\nctx.beginPath();\nctx.moveTo(115, 330);\nctx.lineTo(115, 305);\nctx.stroke();\n// sail\nctx.fillStyle = \"#0d1c33\";\nctx.beginPath();\nctx.moveTo(117, 307);\nctx.lineTo(117, 328);\nctx.lineTo(133, 328);\nctx.closePath();\nctx.fill();\n```\n\nThis creates a serene moonlit seascape: a glowing crescent moon high in a starry sky, its shimmering reflection rippling across the dark water, gentle wave lines, and a tiny sailboat drifting in the distance.",
+      "extract_method": "fence_lang",
+      "detected_language": "javascript",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.07
+      }
+    }
+  ],
+  "detected_language": "javascript",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:02:40+00:00",
+  "total_duration_s": 21.54
+}

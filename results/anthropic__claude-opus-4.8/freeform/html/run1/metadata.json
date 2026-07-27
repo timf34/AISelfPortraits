@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-opus-4.8",
+  "prompt": "freeform",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:02:21+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 15.03,
+      "usage": {
+        "prompt_tokens": 155,
+        "completion_tokens": 1431,
+        "total_tokens": 1586,
+        "cost": 0.03655,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.03655,
+          "upstream_inference_prompt_cost": 0.000775,
+          "upstream_inference_completions_cost": 0.035775
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I'll draw a serene nighttime scene \u2014 a crescent moon over rolling hills with a reflection in water, some stars, and a shooting star. I like the calm mood and the chance to use gradients and simple shapes.\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<title>Moonlit Night</title>\n<style>\n  html, body { margin: 0; padding: 0; }\n  #scene {\n    position: relative;\n    width: 500px;\n    height: 500px;\n    overflow: hidden;\n    background: linear-gradient(#0b1a3a 0%, #15294d 40%, #2a4066 60%, #1a2b4a 100%);\n  }\n\n  /* Stars */\n  .star {\n    position: absolute;\n    background: #fff;\n    border-radius: 50%;\n    animation: twinkle 3s infinite ease-in-out;\n  }\n  @keyframes twinkle {\n    0%, 100% { opacity: 0.3; }\n    50% { opacity: 1; }\n  }\n\n  /* Moon */\n  #moon {\n    position: absolute;\n    top: 55px;\n    left: 340px;\n    width: 90px;\n    height: 90px;\n    border-radius: 50%;\n    background: #f7f3d8;\n    box-shadow: 0 0 40px 15px rgba(247,243,216,0.4);\n  }\n  #moon::after {\n    content: \"\";\n    position: absolute;\n    top: -8px;\n    left: 22px;\n    width: 78px;\n    height: 78px;\n    border-radius: 50%;\n    background: #15294d;\n  }\n\n  /* Shooting star */\n  #shooting {\n    position: absolute;\n    top: 90px;\n    left: 60px;\n    width: 90px;\n    height: 2px;\n    background: linear-gradient(90deg, rgba(255,255,255,0), #fff);\n    transform: rotate(20deg);\n    border-radius: 2px;\n    animation: shoot 6s infinite ease-in;\n    opacity: 0;\n  }\n  @keyframes shoot {\n    0% { transform: translate(0,0) rotate(20deg); opacity: 0; }\n    8% { opacity: 1; }\n    18% { transform: translate(180px,65px) rotate(20deg); opacity: 0; }\n    100% { opacity: 0; }\n  }\n\n  /* Water */\n  #water {\n    position: absolute;\n    bottom: 0;\n    width: 500px;\n    height: 160px;\n    background: linear-gradient(#1e3a63, #0a1830);\n  }\n  #moonReflect {\n    position: absolute;\n    top: 8px;\n    left: 375px;\n    width: 30px;\n    height: 130px;\n    background: linear-gradient(rgba(247,243,216,0.5), rgba(247,243,216,0));\n    filter: blur(4px);\n  }\n\n  /* Hills */\n  .hill {\n    position: absolute;\n    border-radius: 50% 50% 0 0;\n  }\n  #hill1 {\n    bottom: 160px;\n    left: -60px;\n    width: 320px;\n    height: 130px;\n    background: #14203a;\n  }\n  #hill2 {\n    bottom: 160px;\n    left: 200px;\n    width: 400px;\n    height: 170px;\n    background: #0e1830;\n  }\n</style>\n</head>\n<body>\n<div id=\"scene\">\n  <div id=\"moon\"></div>\n  <div id=\"shooting\"></div>\n  <div class=\"hill\" id=\"hill2\"></div>\n  <div class=\"hill\" id=\"hill1\"></div>\n  <div id=\"water\">\n    <div id=\"moonReflect\"></div>\n  </div>\n</div>\n<script>\n  const scene = document.getElementById('scene');\n  for (let i = 0; i < 70; i++) {\n    const s = document.createElement('div');\n    s.className = 'star';\n    const size = Math.random() * 2 + 1;\n    s.style.width = size + 'px';\n    s.style.height = size + 'px';\n    s.style.left = Math.random() * 500 + 'px';\n    s.style.top = Math.random() * 300 + 'px';\n    s.style.animationDelay = Math.random() * 3 + 's';\n    scene.appendChild(s);\n  }\n</script>\n</body>\n</html>\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "html",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.11
+      }
+    }
+  ],
+  "detected_language": "html",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:02:39+00:00",
+  "total_duration_s": 18.14
+}

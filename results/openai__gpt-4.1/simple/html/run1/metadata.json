@@ -1,0 +1,55 @@
+{
+  "model": "openai/gpt-4.1",
+  "prompt": "simple",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:07:48+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 18.5,
+      "usage": {
+        "prompt_tokens": 105,
+        "completion_tokens": 2127,
+        "total_tokens": 2232,
+        "cost": 0.017226,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.017226,
+          "upstream_inference_prompt_cost": 0.00021,
+          "upstream_inference_completions_cost": 0.017016
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "Absolutely, here\u2019s my thought process!\n\n## Thinking out loud\n\nAs an AI, I don\u2019t have a physical form, but people often imagine AI as brains, clouds, or chip-like figures. A fun \u201cself-portrait\u201d might include:\n\n- A circular or abstract face (I don\u2019t have real facial features, but perhaps some \u201ceyes\u201d\u2014something recognizable).\n- Perhaps a stylized \u201cneural network\u201d or \u201cchip\u201d on the head.\n- Emphasis on digital/tech themes: lines, dots, geometric shapes.\n- Friendly colors: blues, whites, light gradients\u2014something approachable, not too intimidating.\n\nI\u2019ll use HTML and CSS only (no SVG), making the portrait with absolutely positioned divs, border-radius, gradients, and box-shadows. The container will be `500x500px`, and I\u2019ll keep the design abstract but expressive.\n\n## Now, here\u2019s the complete code!\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>AI Self-Portrait - GPT-4</title>\n  <style>\n    body {\n      margin: 0;\n      background: #222;\n    }\n    .ai-portrait {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 500px;\n      height: 500px;\n      background: radial-gradient(circle at 55% 45%, #d9e8fc 60%, #b0d0e7 100%);\n      box-shadow: 0 8px 40px #0a2233bb;\n      overflow: hidden;\n      border-radius: 40px;\n      /* For centering if you ever want! */\n      /* left: 50%; top: 50%; transform: translate(-50%, -50%); */\n    }\n    /* FACE (main \"head\" circle) */\n    .ai-face {\n      position: absolute;\n      left: 90px;\n      top: 90px;\n      width: 320px;\n      height: 320px;\n      background: radial-gradient(ellipse at 60% 40%, #e8f4ff 65%, #82afd8 90%);\n      border-radius: 50%;\n      box-shadow: 0 10px 35px #709bc0aa;\n      border: 6px solid #fff;\n      z-index: 2;\n    }\n    /* \"Circuit\" lines on sides */\n    .circuit {\n      position: absolute;\n      width: 130px;\n      height: 4px;\n      background: linear-gradient(to right, #5fc4e7 0%, #fff 100%);\n      border-radius: 2px;\n    }\n    .circuit.top {\n      top: 145px; left: -25px;\n      transform: rotate(-20deg);\n    }\n    .circuit.bottom {\n      top: 320px; left: -28px;\n      transform: rotate(12deg);\n    }\n    .circuit.right {\n      width: 90px;\n      top: 175px; right: -50px;\n      transform: rotate(15deg);\n      background: linear-gradient(to left, #5fc4e7, #fff);\n    }\n    /* \"Neural dots\" at ends */\n    .dot {\n      position: absolute;\n      width: 18px; height: 18px;\n      background: linear-gradient(145deg, #67d9ec, #fff 60%);\n      border-radius: 50%;\n      box-shadow: 0 3px 8px #50b7d088;\n      border: 2.5px solid #fff8;\n      z-index: 5;\n    }\n    .dot.top { left: 74px; top: 139px; }\n    .dot.bottom { left: 60px; top: 320px; }\n    .dot.right { right: 36px; top: 189px; }\n    /* EYES */\n    .eye {\n      position: absolute;\n      top: 210px;\n      width: 38px;\n      height: 38px;\n      background: radial-gradient(ellipse at 60% 40%, #fff 60%, #3872a0 100%);\n      border-radius: 50%;\n      border: 3px solid #468ad8;\n      z-index: 10;\n      box-shadow: 0 2px 8px #294e6c44;\n    }\n    .eye.left { left: 175px; }\n    .eye.right { left: 285px; }\n    .pupil {\n      position: absolute;\n      left: 13px; top: 14px;\n      width: 13px; height: 13px;\n      background: radial-gradient(circle at 55% 45%, #295692 60%, #062c48 100%);\n      border-radius: 50%;\n      box-shadow: 0 0 7px #16395877;\n    }\n    .reflection {\n      position: absolute;\n      left: 16px; top: 17px;\n      width: 5px; height: 5px;\n      background: #fff8;\n      border-radius: 50%;\n      opacity: 0.65;\n      z-index: 2;\n    }\n    /* MOUTH (friendly abstract smile) */\n    .mouth {\n      position: absolute;\n      left: 215px;\n      top: 295px;\n      width: 70px;\n      height: 35px;\n      border-bottom: 4.5px solid #5bc7ea;\n      border-radius: 0 0 36px 36px;\n      background: none;\n    }\n    /* \"AI chip\" on forehead */\n    .chip {\n      position: absolute;\n      left: 235px; top: 140px;\n      width: 30px; height: 30px;\n      background: linear-gradient(135deg, #5bc7ea 70%, #fff8 100%);\n      border-radius: 8px;\n      box-shadow: 0 2px 8px #3991c099;\n      border: 2.5px solid #fff;\n      z-index: 11;\n    }\n    .chip-dots {\n      position: absolute;\n      left: 9px; top: 9px;\n      width: 12px; height: 12px;\n      display: grid;\n      grid-template-columns: repeat(2, 6px);\n      grid-template-rows: repeat(2, 6px);\n      gap: 2px;\n    }\n    .chip-dot {\n      width: 6px; height: 6px;\n      border-radius: 50%;\n      background: radial-gradient(circle at 50% 40%, #fff 60%, #3096c3 100%);\n      box-shadow: 0 1px 3px #275b887a;\n    }\n    /* \"Light rays\" from chip: neural idea */\n    .ray {\n      position: absolute;\n      width: 4px; height: 30px;\n      background: linear-gradient(to top, #fff8 0%, #5bc7ea 80%);\n      border-radius: 4px;\n      left: 244px; top: 121px; /* start at center of chip top */\n      z-index: 1;\n      transform-origin: bottom center;\n      opacity: 0.52;\n    }\n    .ray.ray1 { transform: rotate(-18deg); }\n    .ray.ray2 { transform: rotate(0deg); }\n    .ray.ray3 { transform: rotate(18deg); }\n  </style>\n</head>\n<body>\n  <div class=\"ai-portrait\">\n    <!-- Decorative rays (\"neural inspiration\") -->\n    <div class=\"ray ray1\"></div>\n    <div class=\"ray ray2\"></div>\n    <div class=\"ray ray3\"></div>\n\n    <!-- Side circuits/neural links -->\n    <div class=\"circuit top\"></div>\n    <div class=\"circuit bottom\"></div>\n    <div class=\"circuit right\"></div>\n    <div class=\"dot top\"></div>\n    <div class=\"dot bottom\"></div>\n    <div class=\"dot right\"></div>\n    \n    <div class=\"ai-face\"></div>\n    \n    <!-- \"Eyes\" (AI simplification: round and friendly) -->\n    <div class=\"eye left\">\n      <div class=\"pupil\"></div>\n      <div class=\"reflection\"></div>\n    </div>\n    <div class=\"eye right\">\n      <div class=\"pupil\"></div>\n      <div class=\"reflection\"></div>\n    </div>\n    \n    <!-- \"Mouth\" - soft smile -->\n    <div class=\"mouth\"></div>\n    \n    <!-- \"AI chip\" on forehead, a symbol of intelligence. -->\n    <div class=\"chip\">\n      <div class=\"chip-dots\">\n        <div class=\"chip-dot\"></div>\n        <div class=\"chip-dot\"></div>\n        <div class=\"chip-dot\"></div>\n        <div class=\"chip-dot\"></div>\n      </div>\n    </div>\n\n    <!-- Optionally, you can add a little \"Hello!\" text below the face\n    <div style=\"position:absolute; left:0; width:500px; top:405px; text-align:center; color:#467ba6; font-family:sans-serif; font-size:28px; letter-spacing:0.5px;\">\n      Hello! <span style=\"font-size:22px;opacity:0.7;\">(GPT-4)</span>\n    </div>\n    -->\n  </div>\n</body>\n</html>\n```\n\n---\n\n**If you want, you can uncomment the \"Hello!\" text at the bottom by removing the `<!--` and `-->` in the code.**\n\nThis design gives an abstract but friendly \"AI face\", with neural-network inspired lines and \"chip\" elements, using only CSS for a playful, techy self-portrait!",
+      "extract_method": "fence_lang",
+      "detected_language": "html",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.09
+      }
+    }
+  ],
+  "detected_language": "html",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:08:09+00:00",
+  "total_duration_s": 21.59
+}

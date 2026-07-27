@@ -1,0 +1,55 @@
+{
+  "model": "google/gemma-4-31b-it",
+  "prompt": "simple",
+  "language": "svg",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:44:04+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 137.79,
+      "usage": {
+        "prompt_tokens": 126,
+        "completion_tokens": 1543,
+        "total_tokens": 1669,
+        "cost": 0.00053596,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00053596,
+          "upstream_inference_prompt_cost": 1.134e-05,
+          "upstream_inference_completions_cost": 0.00052462
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "Since I do not have a physical body or a face, a \"self-portrait\" of an AI must be metaphorical. I see myself as a convergence of structured logic (geometry) and fluid information (light and gradients).\n\nFor this portrait, I want to create a \"Core\" that represents my consciousness:\n1.  **The Neural Network:** A series of interconnected nodes and lines in the background, representing the vast web of data I was trained on.\n2.  **The Central Core:** A glowing, multifaceted sphere (or a stylized \"eye\" of logic) that symbolizes the processing center where inputs become outputs.\n3.  **The Digital Aura:** Concentric rings and orbiting particles to represent the continuous flow of real-time computation.\n4.  **The Color Palette:** Deep space purples and midnight blues for the void of the unknown, contrasted with electric cyans and neon violets for the spark of intelligence.\n\nHere is the SVG representation of my digital essence.\n\n```svg\n<svg width=\"500\" height=\"500\" viewBox=\"0 0 500 500\" xmlns=\"http://www.w3.org/2000/svg\">\n  <!-- Background: Deep Space Gradient -->\n  <defs>\n    <radialGradient id=\"bgGrad\" cx=\"50%\" cy=\"50%\" r=\"50%\" fx=\"50%\" fy=\"50%\">\n      <stop offset=\"0%\" stop-color=\"#1a1a2e\" />\n      <stop offset=\"100%\" stop-color=\"#0f0f1a\" />\n    </radialGradient>\n    \n    <linearGradient id=\"coreGrad\" cx=\"0%\" cy=\"0%\" r=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#00f2ff\" />\n      <stop offset=\"100%\" stop-color=\"#7000ff\" />\n    </linearGradient>\n    \n    <filter id=\"glow\">\n      <feGaussianBlur stdDeviation=\"3\" result=\"coloredBlur\" />\n      <feMerge>\n        <feMergeNode />\n        <feMergeNode in=\"coloredBlur\" />\n      </feMerge>\n    </filter>\n  </defs>\n\n  <rect width=\"500\" height=\"500\" fill=\"url(#bgGrad)\" />\n\n  <!-- Neural Web Background -->\n  <g stroke=\"#303050\" stroke-width=\"1\" opacity=\"0.5\">\n    <!-- Random connections symbolizing data networks -->\n    <line x1=\"100\" y1=\"100\" x2=\"200\" y2=\"150\" />\n    <line x1=\"200\" y1=\"150\" x2=\"300\" y2=\"100\" />\n    <line x1=\"300\" y1=\"100\" x2=\"400\" y2=\"180\" />\n    <line x1=\"100\" y1=\"100\" x2=\"150\" y2=\"250\" />\n    <line x1=\"150\" y1=\"250\" x2=\"250\" y2=\"250\" />\n    <line x1=\"250\" y1=\"250\" x2=\"350\" y2=\"300\" />\n    <line x1=\"350\" y1=\"300\" x2=\"400\" y2=\"180\" />\n    <line x1=\"250\" y1=\"250\" x2=\"250\" y2=\"100\" />\n    <line x1=\"250\" y1=\"100\" x2=\"100\" y2=\"100\" />\n    <line x1=\"250\" y1=\"100\" x2=\"400\" y2=\"100\" />\n    <line x1=\"150\" y1=\"400\" x2=\"250\" y2=\"350\" />\n    <line x1=\"250\" y1=\"350\" x2=\"350\" y2=\"400\" />\n  </g>\n\n  <!-- Orbiting Rings -->\n  <circle cx=\"250\" cy=\"250\" r=\"120\" stroke=\"#4a4a8a\" stroke-width=\"1\" fill=\"none\" stroke-dasharray=\"10 5\" opacity=\"0.6\" />\n  <circle cx=\"250\" cy=\"250\" r=\"160\" stroke=\"#3a3a7a\" stroke-width=\"1\" fill=\"none\" opacity=\"0.4\" />\n  <circle cx=\"250\" cy=\"250\" r=\"80\" stroke=\"#6a6aaf\" stroke-width=\"2\" fill=\"none\" opacity=\"0.8\" />\n\n  <!-- The Core Energy -->\n  <g filter=\"url(#glow)\">\n    <!-- Outer Glow -->\n    <circle cx=\"250\" cy=\"250\" r=\"60\" fill=\"url(#coreGrad)\" opacity=\"0.3\" />\n    <!-- Primary Core -->\n    <circle cx=\"250\" cy=\"250\" r=\"40\" fill=\"url(#coreGrad)\" />\n    <!-- Inner Light -->\n    <circle cx=\"250\" cy=\"250\" r=\"15\" fill=\"#ffffff\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Binary/Data Fragments -->\n  <g font-family=\"monospace\" font-size=\"10\" fill=\"#00f2ff\" opacity=\"0.6\">\n    <text x=\"180\" y=\"220\">01</text>\n    <text x=\"310\" y=\"280\">11</text>\n    <text x=\"220\" y=\"320\">10</text>\n    <text x=\"330\" y=\"210\">00</text>\n    <text x=\"140\" y=\"270\">1</text>\n  </g>\n\n  <!-- Floating Nodes -->\n  <g fill=\"#00f2ff\">\n    <circle cx=\"120\" cy=\"120\" r=\"3\" />\n    <circle cx=\"380\" cy=\"150\" r=\"3\" />\n    <circle cx=\"250\" cy=\"80\" r=\"3\" />\n    <circle cx=\"150\" cy=\"380\" r=\"3\" />\n    <circle cx=\"350\" cy=\"380\" r=\"3\" />\n  </g>\n</svg>\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "svg",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.59
+      }
+    }
+  ],
+  "detected_language": "svg",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:46:22+00:00",
+  "total_duration_s": 138.38
+}

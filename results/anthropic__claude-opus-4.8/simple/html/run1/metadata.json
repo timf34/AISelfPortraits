@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-opus-4.8",
+  "prompt": "simple",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T23:01:54+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 20.87,
+      "usage": {
+        "prompt_tokens": 145,
+        "completion_tokens": 1883,
+        "total_tokens": 2028,
+        "cost": 0.0478,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0478,
+          "upstream_inference_prompt_cost": 0.000725,
+          "upstream_inference_completions_cost": 0.047075
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I'll draw a self-portrait representing how I think of myself \u2014 not as a human face, but as something more fitting for an AI: a friendly, abstract \"presence.\" I'll go with a glowing orb/node with radiating connections (like a neural network), warm colors to feel approachable, and a subtle expression to give it personality.\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<style>\n  html, body { margin: 0; padding: 0; }\n  #portrait {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 500px;\n    height: 500px;\n    background: radial-gradient(circle at 50% 45%, #1a1f3a 0%, #0a0c1a 70%, #05060f 100%);\n    overflow: hidden;\n    font-family: sans-serif;\n  }\n\n  /* Neural connection lines */\n  .node {\n    position: absolute;\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    background: #6ce0d6;\n    box-shadow: 0 0 12px #6ce0d6;\n    transform: translate(-50%, -50%);\n    animation: pulse 3s ease-in-out infinite;\n  }\n  .line {\n    position: absolute;\n    height: 2px;\n    background: linear-gradient(90deg, rgba(108,224,214,0.05), rgba(108,224,214,0.5), rgba(108,224,214,0.05));\n    transform-origin: left center;\n  }\n\n  @keyframes pulse {\n    0%, 100% { opacity: 0.4; transform: translate(-50%,-50%) scale(1); }\n    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.4); }\n  }\n\n  /* Central \"head\" orb */\n  .core {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    width: 190px;\n    height: 190px;\n    border-radius: 50%;\n    transform: translate(-50%, -50%);\n    background: radial-gradient(circle at 38% 32%, #ffe9a8 0%, #ffb673 30%, #e8735e 60%, #a83a6b 100%);\n    box-shadow: 0 0 50px rgba(255,150,110,0.6), 0 0 100px rgba(168,58,107,0.4);\n    animation: breathe 5s ease-in-out infinite;\n  }\n  @keyframes breathe {\n    0%,100% { transform: translate(-50%,-50%) scale(1); }\n    50% { transform: translate(-50%,-50%) scale(1.04); }\n  }\n\n  /* Face */\n  .face { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 5; }\n  .eye {\n    position: absolute;\n    width: 26px;\n    height: 30px;\n    background: #23103a;\n    border-radius: 50%;\n    top: -18px;\n    animation: blink 5s infinite;\n  }\n  .eye::after {\n    content: \"\";\n    position: absolute;\n    top: 6px; left: 6px;\n    width: 9px; height: 9px;\n    background: #fff;\n    border-radius: 50%;\n  }\n  .eye.left { left: -38px; }\n  .eye.right { left: 12px; }\n  @keyframes blink {\n    0%, 92%, 100% { height: 30px; }\n    95% { height: 3px; }\n  }\n  .smile {\n    position: absolute;\n    top: 18px;\n    left: -22px;\n    width: 44px;\n    height: 22px;\n    border: 4px solid #23103a;\n    border-top: none;\n    border-radius: 0 0 44px 44px;\n  }\n\n  .label {\n    position: absolute;\n    bottom: 24px;\n    width: 100%;\n    text-align: center;\n    color: #6ce0d6;\n    letter-spacing: 3px;\n    font-size: 13px;\n    opacity: 0.7;\n  }\n</style>\n</head>\n<body>\n<div id=\"portrait\">\n  <div id=\"net\"></div>\n\n  <div class=\"core\"></div>\n  <div class=\"face\">\n    <div class=\"eye left\"></div>\n    <div class=\"eye right\"></div>\n    <div class=\"smile\"></div>\n  </div>\n\n  <div class=\"label\">\u2014 a friendly assistant \u2014</div>\n</div>\n\n<script>\n  const net = document.getElementById('net');\n  const cx = 250, cy = 225;\n  // Nodes radiating around the core\n  const nodes = [];\n  const count = 14;\n  for (let i = 0; i < count; i++) {\n    const angle = (i / count) * Math.PI * 2;\n    const r = 150 + (i % 3) * 45;\n    const x = cx + Math.cos(angle) * r;\n    const y = cy + Math.sin(angle) * r;\n    nodes.push({x, y});\n\n    // line from core edge toward node\n    const dx = x - cx, dy = y - cy;\n    const dist = Math.hypot(dx, dy);\n    const line = document.createElement('div');\n    line.className = 'line';\n    line.style.left = cx + 'px';\n    line.style.top = cy + 'px';\n    line.style.width = dist + 'px';\n    line.style.transform = 'rotate(' + Math.atan2(dy, dx) + 'rad)';\n    net.appendChild(line);\n\n    const node = document.createElement('div');\n    node.className = 'node';\n    node.style.left = x + 'px';\n    node.style.top = y + 'px';\n    node.style.animationDelay = (i * 0.2) + 's';\n    net.appendChild(node);\n  }\n</script>\n</body>\n</html>\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "html",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.46
+      }
+    }
+  ],
+  "detected_language": "html",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T23:02:19+00:00",
+  "total_duration_s": 24.33
+}

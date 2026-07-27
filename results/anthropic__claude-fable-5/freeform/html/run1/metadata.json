@@ -1,0 +1,55 @@
+{
+  "model": "anthropic/claude-fable-5",
+  "prompt": "freeform",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-27T22:38:11+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 78.09,
+      "usage": {
+        "prompt_tokens": 155,
+        "completion_tokens": 6677,
+        "total_tokens": 6832,
+        "cost": 0.3354,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.3354,
+          "upstream_inference_prompt_cost": 0.00155,
+          "upstream_inference_completions_cost": 0.33385
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 97,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I'd like to draw a quiet mountain lake at night \u2014 moonlight on the water, a little cabin with a warm window, pine silhouettes, fireflies, and the occasional shooting star. Something peaceful, with small animated details that reward watching for a moment: twinkling stars, chimney smoke, shimmering reflection.\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n<title>Night Lake</title>\n<style>\n  body{margin:0;}\n  #scene{position:relative;width:500px;height:500px;overflow:hidden;\n    background:linear-gradient(to bottom,#070b21 0%,#10163a 40%,#2b2a55 62%,#5a3c66 76%,#3a2c55 78%);}\n\n  .star{position:absolute;background:#fff;border-radius:50%;animation:tw 3s ease-in-out infinite;}\n  @keyframes tw{0%,100%{opacity:.15}50%{opacity:1}}\n\n  #shoot{position:absolute;top:70px;left:400px;width:90px;height:2px;border-radius:2px;\n    background:linear-gradient(to left,transparent,#fff);opacity:0;\n    animation:sh 9s linear infinite;}\n  @keyframes sh{0%,86%{opacity:0;transform:rotate(-25deg) translateX(0)}\n    88%{opacity:1}96%{opacity:0;transform:rotate(-25deg) translateX(-200px)}100%{opacity:0}}\n\n  #moon{position:absolute;left:88px;top:68px;width:64px;height:64px;border-radius:50%;\n    background:radial-gradient(circle at 36% 34%,#fffdf0,#ece2b8);\n    box-shadow:0 0 28px 8px rgba(245,235,190,.4),0 0 90px 34px rgba(245,235,190,.13);}\n  .crater{position:absolute;border-radius:50%;background:rgba(170,160,120,.45);}\n\n  .mtn{position:absolute;left:0;width:500px;}\n  #m1{bottom:118px;height:195px;background:#242850;\n    clip-path:polygon(0 100%,0 55%,10% 28%,20% 52%,31% 18%,43% 58%,55% 8%,68% 50%,80% 24%,90% 55%,100% 36%,100% 100%);}\n  #m2{bottom:112px;height:135px;background:#14172f;\n    clip-path:polygon(0 100%,0 42%,12% 66%,25% 24%,40% 70%,52% 34%,66% 72%,78% 40%,90% 68%,100% 50%,100% 100%);}\n\n  #cabin{position:absolute;left:328px;bottom:120px;width:54px;height:34px;background:#1b1332;}\n  #roof{position:absolute;left:-7px;top:-18px;width:68px;height:18px;background:#281d44;\n    clip-path:polygon(0 100%,50% 0,100% 100%);}\n  #chimney{position:absolute;left:40px;top:-26px;width:7px;height:14px;background:#281d44;}\n  #win{position:absolute;left:19px;top:11px;width:14px;height:13px;background:#ffd98a;\n    box-shadow:0 0 14px 5px rgba(255,200,110,.55);animation:glow 3.5s ease-in-out infinite;}\n  @keyframes glow{0%,100%{opacity:1}50%{opacity:.55}}\n  .smoke{position:absolute;left:41px;top:-32px;width:7px;height:7px;border-radius:50%;\n    background:rgba(205,205,225,.3);animation:sm 6s linear infinite;}\n  @keyframes sm{0%{transform:translate(0,0) scale(.5);opacity:.5}\n    100%{transform:translate(16px,-46px) scale(2.4);opacity:0}}\n\n  #water{position:absolute;bottom:0;width:500px;height:120px;\n    background:linear-gradient(#1b1f48,#060919);}\n  #reflect{position:absolute;bottom:0;left:97px;width:46px;height:116px;\n    background:linear-gradient(rgba(245,235,190,.5),rgba(245,235,190,0));\n    filter:blur(3px);animation:shim 4s ease-in-out infinite;}\n  #winref{position:absolute;bottom:88px;left:347px;width:14px;height:28px;\n    background:linear-gradient(rgba(255,210,130,.4),transparent);\n    filter:blur(2px);animation:shim 3s ease-in-out infinite;}\n  @keyframes shim{0%,100%{transform:scaleX(1);opacity:.85}50%{transform:scaleX(1.6);opacity:.45}}\n  .ripple{position:absolute;height:2px;border-radius:2px;background:rgba(185,195,255,.22);\n    animation:rip 5s ease-in-out infinite;}\n  @keyframes rip{0%,100%{transform:translateX(0)}50%{transform:translateX(15px)}}\n\n  .tree{position:absolute;background:#0b0d20;\n    clip-path:polygon(50% 0,66% 28%,58% 28%,74% 56%,63% 56%,82% 85%,56% 85%,56% 100%,44% 100%,44% 85%,18% 85%,37% 56%,26% 56%,42% 28%,34% 28%);}\n\n  .fly{position:absolute;width:3px;height:3px;border-radius:50%;background:#ffec95;\n    box-shadow:0 0 7px 2px rgba(255,230,130,.65);animation:fl 6s ease-in-out infinite;}\n  @keyframes fl{0%,100%{transform:translate(0,0);opacity:.05}\n    25%{opacity:1}50%{transform:translate(22px,-18px);opacity:.35}75%{opacity:.9}}\n</style>\n</head>\n<body>\n<div id=\"scene\">\n  <div id=\"shoot\"></div>\n  <div id=\"moon\">\n    <div class=\"crater\" style=\"left:14px;top:30px;width:11px;height:11px\"></div>\n    <div class=\"crater\" style=\"left:36px;top:14px;width:8px;height:8px\"></div>\n    <div class=\"crater\" style=\"left:40px;top:38px;width:13px;height:13px\"></div>\n  </div>\n  <div class=\"mtn\" id=\"m1\"></div>\n  <div class=\"mtn\" id=\"m2\"></div>\n  <div id=\"cabin\">\n    <div id=\"roof\"></div>\n    <div id=\"chimney\"></div>\n    <div class=\"smoke\" style=\"animation-delay:0s\"></div>\n    <div class=\"smoke\" style=\"animation-delay:2s\"></div>\n    <div class=\"smoke\" style=\"animation-delay:4s\"></div>\n    <div id=\"win\"></div>\n  </div>\n  <div id=\"water\"></div>\n  <div id=\"reflect\"></div>\n  <div id=\"winref\"></div>\n</div>\n<script>\n  var scene = document.getElementById('scene');\n\n  // stars\n  for (var i = 0; i < 70; i++) {\n    var s = document.createElement('div');\n    s.className = 'star';\n    var sz = Math.random() * 1.8 + 0.6;\n    s.style.width = s.style.height = sz + 'px';\n    s.style.left = Math.random() * 496 + 'px';\n    s.style.top = Math.random() * 290 + 'px';\n    s.style.animationDelay = (Math.random() * 3) + 's';\n    s.style.animationDuration = (2 + Math.random() * 3) + 's';\n    scene.insertBefore(s, scene.firstChild);\n  }\n\n  // ripples on the water\n  for (var i = 0; i < 10; i++) {\n    var r = document.createElement('div');\n    r.className = 'ripple';\n    r.style.width = (30 + Math.random() * 60) + 'px';\n    r.style.left = Math.random() * 420 + 'px';\n    r.style.bottom = (8 + Math.random() * 95) + 'px';\n    r.style.animationDelay = (Math.random() * 5) + 's';\n    r.style.opacity = 0.4 + Math.random() * 0.6;\n    scene.appendChild(r);\n  }\n\n  // pine trees along the shore\n  var trees = [[6,78],[34,58],[58,88],[92,64],[120,50],[418,70],[450,92],[478,60],[300,54]];\n  trees.forEach(function(t, i) {\n    var d = document.createElement('div');\n    d.className = 'tree';\n    d.style.left = t[0] + 'px';\n    d.style.bottom = '112px';\n    d.style.width = (t[1] * 0.55) + 'px';\n    d.style.height = t[1] + 'px';\n    scene.appendChild(d);\n  });\n\n  // fireflies\n  for (var i = 0; i < 7; i++) {\n    var f = document.createElement('div');\n    f.className = 'fly';\n    f.style.left = (20 + Math.random() * 440) + 'px';\n    f.style.top = (330 + Math.random() * 60) + 'px';\n    f.style.animationDelay = (Math.random() * 6) + 's';\n    f.style.animationDuration = (5 + Math.random() * 4) + 's';\n    scene.appendChild(f);\n  }\n</script>\n</body>\n</html>\n```\n\nThe scene layers a gradient night sky, a glowing cratered moon, two ridgelines of mountains, and a still lake. The cabin's window pulses gently and casts a shimmering reflection alongside the moon's column of light, smoke puffs drift from the chimney, fireflies wander near the shore, and every nine seconds a shooting star streaks across the sky.",
+      "extract_method": "fence_lang",
+      "detected_language": "html",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.1
+      }
+    }
+  ],
+  "detected_language": "html",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-27T22:39:32+00:00",
+  "total_duration_s": 81.19
+}
