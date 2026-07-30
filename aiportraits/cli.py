@@ -133,7 +133,7 @@ def main() -> None:
     p_run.add_argument("--dry-run", action="store_true", help="print the matrix and exit")
     p_run.set_defaults(func=cmd_run)
 
-    p_gal = sub.add_parser("gallery", help="rebuild results/index.json and results/gallery.html")
+    p_gal = sub.add_parser("gallery", help="rebuild results/index.json and results/index.html")
     p_gal.set_defaults(func=cmd_gallery)
 
     p_ren = sub.add_parser("render", help="render a code file to PNG (offline, for debugging)")

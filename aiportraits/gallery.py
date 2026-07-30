@@ -1,4 +1,4 @@
-"""Rebuild results/index.json and results/gallery.html from a filesystem scan."""
+"""Rebuild results/index.json and results/index.html from a filesystem scan."""
 
 import html
 import json
@@ -94,6 +94,7 @@ def build_gallery(root: Path = RESULTS_ROOT) -> Path:
         parts.append("</table>")
 
     parts.append("</body></html>")
-    out = root / "gallery.html"
+    # index.html so `results/` can be served as a static site root as-is.
+    out = root / "index.html"
     out.write_text("\n".join(parts))
     return out

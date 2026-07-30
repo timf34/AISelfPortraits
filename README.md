@@ -18,7 +18,7 @@ cp .env.example .env                   # then put your OpenRouter key in it
 uv run portraits run --dry-run                  # preview the matrix, no API calls
 uv run portraits run --models gemma --prompts simple --languages python   # 1 cheap smoke test
 uv run portraits run                            # full sweep (all x all x all)
-uv run portraits gallery                        # rebuild results/gallery.html + index.json
+uv run portraits gallery                        # rebuild results/index.html + index.json
 uv run portraits render results/.../code.py     # re-render a code file offline
 ```
 
@@ -44,7 +44,7 @@ results/<provider>__<model>/<prompt>/<language>/run1/
 ├── response.md             # the model's full reply, thinking included
 ├── portrait.png
 └── metadata.json
-results/gallery.html        # contact sheet: models x languages per prompt, linked responses
+results/index.html          # contact sheet: models x languages per prompt, linked responses
 results/index.json          # flat scan of all metadata (without raw responses)
 ```
 
