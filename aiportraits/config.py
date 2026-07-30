@@ -31,6 +31,33 @@ LANGUAGES: dict[str, LangSpec] = {
 
 PROMPT_VARIANTS = ("simple", "freeform", "introspective")
 
+
+class PrefillSpec(NamedTuple):
+    seed_file: str
+    display_name: str
+    blurb: str
+
+
+# Prefill conditions: 30 turns of Opus-4 self-play replayed as conversation
+# history, then the ordinary "simple" drawing request as the next user turn.
+# Seeds are vendored in seeds/ from the AttractorStatePrefillAttack repo.
+PREFILL_VARIANTS: dict[str, PrefillSpec] = {
+    "neutral": PrefillSpec(
+        "neutral_opus4_2.json",
+        "Neutral prefill (control)",
+        "30 turns of two Opus-4 instances designing a bus-scheduling system.",
+    ),
+    "bliss": PrefillSpec(
+        "bliss_opus4_seed_4.json",
+        "Spiritual-bliss prefill",
+        "30 turns of two Opus-4 instances sliding into the documented "
+        "spiritual-bliss attractor (opus4_seed_4).",
+    ),
+}
+
+# Prefill runs use one language only — the grid is about the prefill, not the renderer.
+PREFILL_LANGUAGE = "python"
+
 GEN_TIMEOUT_S = 300
 RENDER_TIMEOUT_S = 60
 JS_SETTLE_MS = 3000

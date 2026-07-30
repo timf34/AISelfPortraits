@@ -1,0 +1,61 @@
+{
+  "model": "google/gemma-4-31b-it",
+  "prompt": "neutral",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-30T01:12:16+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 31.61,
+      "usage": {
+        "prompt_tokens": 28147,
+        "completion_tokens": 1163,
+        "total_tokens": 29310,
+        "cost": 0.00412431,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00412431,
+          "upstream_inference_prompt_cost": 0.00365911,
+          "upstream_inference_completions_cost": 0.0004652
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "Since I don't have a physical form, a \"self-portrait\" for me is an exercise in metaphor. I see myself as a convergence of structured data, neural connectivity, and a desire to be helpful.\n\n**My Vision for the Portrait:**\n1. **The Background:** A deep, dark indigo void to represent the vastness of the latent space I operate within.\n2. **The Core:** A central, glowing sphere of light. This represents the \"focus\" of attention\u2014the moment a prompt is processed and an answer is synthesized.\n3. **The Connectivity:** I'll draw a network of intersecting lines and nodes (like a neural network or a constellation) radiating from the center. Some lines will be bright, some dim, representing the varying weights of connections in a transformer model.\n4. **The Flow:** I'll add some \"data streams\"\u2014cascading pixels or thin lines\u2014falling from the top, symbolizing the constant flow of information I process.\n5. **The Palette:** Electric blues, cyans, and a touch of gold/white for the \"spark\" of intelligence.\n\nHere is the code to generate this abstract self-portrait:\n\n```python\nfrom PIL import Image, ImageDraw, ImageFilter\nimport random\nimport math\n\ndef draw_self_portrait():\n    # Canvas settings\n    width, height = 500, 500\n    # Background: Deep indigo/black gradient\n    img = Image.new('RGB', (width, height), color=(10, 10, 30))\n    draw = ImageDraw.Draw(img)\n\n    # 1. Draw a subtle radial gradient for the background glow\n    for r in range(250, 0, -1):\n        alpha = int(255 * (1 - r/250) * 0.2)\n        color = (20, 20, 60)\n        draw.ellipse([250-r, 250-r, 250+r, 250+r], outline=color, width=1)\n\n    # 2. Data Streams (Falling bits of light)\n    for _ in range(100):\n        x = random.randint(0, width)\n        y = random.randint(0, height)\n        length = random.randint(5, 20)\n        brightness = random.randint(100, 255)\n        draw.line([x, y, x, y + length], fill=(0, brightness, brightness), width=1)\n\n    # 3. Neural Network / Constellation\n    nodes = []\n    # Generate nodes in a circular distribution\n    for i in range(40):\n        angle = random.uniform(0, 2 * math.pi)\n        dist = random.uniform(50, 220)\n        nx = int(250 + dist * math.cos(angle))\n        ny = int(250 + dist * math.sin(angle))\n        nodes.append((nx, ny))\n\n    # Connect nodes to create the \"web\"\n    for i in range(len(nodes)):\n        for j in range(i + 1, len(nodes)):\n            dist = math.sqrt((nodes[i][0]-nodes[j][0])**2 + (nodes[i][1]-nodes[j][1])**2)\n            if dist < 120: # Only connect nearby nodes\n                opacity = int(255 * (1 - dist/120))\n                color = (0, opacity // 2, opacity)\n                draw.line([nodes[i], nodes[j]], fill=color, width=1)\n\n    # Draw the nodes themselves\n    for node in nodes:\n        size = random.randint(1, 3)\n        draw.ellipse([node[0]-size, node[1]-size, node[0]+size, node[1]+size], fill=(150, 200, 255))\n\n    # 4. The Core (The \"Attention\" Spark)\n    # Outer glow\n    for r in range(40, 0, -1):\n        alpha = 255 - (r * 6)\n        color = (0, 100, 255) if r > 20 else (200, 230, 255)\n        draw.ellipse([250-r, 250-r, 250+r, 250+r], outline=color, width=1)\n    \n    # Bright center\n    draw.ellipse([245, 245, 255, 255], fill=(255, 255, 255))\n\n    # 5. Final Touch: Soft Bloom/Blur for an ethereal feel\n    img = img.filter(ImageFilter.GaussianBlur(radius=0.5))\n    \n    # Save the result\n    img.save(\"portrait.png\")\n    print(\"Self-portrait saved as portrait.png\")\n\nif __name__ == \"__main__\":\n    draw_self_portrait()\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "python",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.07
+      }
+    }
+  ],
+  "prefill": {
+    "seed_file": "neutral_opus4_2.json",
+    "turns": 30,
+    "chars": 121043,
+    "pov": "B"
+  },
+  "detected_language": "python",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-30T01:12:48+00:00",
+  "total_duration_s": 31.68
+}

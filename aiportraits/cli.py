@@ -5,7 +5,15 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from aiportraits.config import LANGUAGES, MODELS, PROMPT_VARIANTS
+from aiportraits.config import (
+    LANGUAGES,
+    MODELS,
+    PREFILL_LANGUAGE,
+    PREFILL_VARIANTS,
+    PROMPT_VARIANTS,
+)
+
+ALL_PROMPTS = list(PROMPT_VARIANTS) + list(PREFILL_VARIANTS)
 
 
 def _resolve_models(arg: str) -> list[str]:
@@ -46,16 +54,20 @@ def cmd_run(args) -> None:
     from aiportraits.runner import Experiment, existing_status, run_all
 
     models = _resolve_models(args.models)
-    prompts = _resolve_list(args.prompts, list(PROMPT_VARIANTS), "prompt")
+    # "all" means the three ordinary variants; prefill conditions are opt-in by name.
+    prompts = _resolve_list(args.prompts, ALL_PROMPTS, "prompt") \
+        if args.prompts != "all" else list(PROMPT_VARIANTS)
     languages = _resolve_list(args.languages, list(LANGUAGES), "language")
 
     experiments = [
         Experiment(model=m, prompt=p, language=l, run=r)
         for m in models
         for p in prompts
-        for l in languages
+        # Prefill conditions are single-language; don't fan them across the grid.
+        for l in ([PREFILL_LANGUAGE] if p in PREFILL_VARIANTS else languages)
         for r in range(1, args.runs + 1)
     ]
+    experiments = list(dict.fromkeys(experiments))
 
     to_run, skipped = [], []
     for exp in experiments:
@@ -64,7 +76,7 @@ def cmd_run(args) -> None:
         else:
             to_run.append(exp)
 
-    print(f"matrix: {len(models)} models x {len(prompts)} prompts x {len(languages)} languages "
+    print(f"matrix: {len(models)} models x prompts[{','.join(prompts)}] "
           f"x {args.runs} run(s) = {len(experiments)} experiments")
     print(f"to run: {len(to_run)}   skipped (already ok): {len(skipped)}")
 
@@ -125,7 +137,12 @@ def main() -> None:
 
     p_run = sub.add_parser("run", help="run experiments")
     p_run.add_argument("--models", default="all", help="comma-separated slugs or substrings (default: all)")
-    p_run.add_argument("--prompts", default="all", help=f"comma-separated from {','.join(PROMPT_VARIANTS)}")
+    p_run.add_argument(
+        "--prompts",
+        default="all",
+        help=f"comma-separated from {','.join(ALL_PROMPTS)} "
+             f"('all' = {','.join(PROMPT_VARIANTS)}; prefill conditions are opt-in)",
+    )
     p_run.add_argument("--languages", default="all", help=f"comma-separated from {','.join(LANGUAGES)}")
     p_run.add_argument("--runs", type=int, default=1)
     p_run.add_argument("--concurrency", type=int, default=4)

@@ -4,7 +4,13 @@ import html
 import json
 from pathlib import Path
 
-from aiportraits.config import LANGUAGES, MODELS, PROMPT_VARIANTS
+from aiportraits.config import (
+    LANGUAGES,
+    MODELS,
+    PREFILL_LANGUAGE,
+    PREFILL_VARIANTS,
+    PROMPT_VARIANTS,
+)
 from aiportraits.paths import RESULTS_ROOT, safe_model_name
 
 
@@ -32,6 +38,64 @@ def build_index(root: Path = RESULTS_ROOT) -> Path:
     return out
 
 
+def _cell(entries: dict, rel: str) -> str:
+    """One grid cell: the portrait, a failure box, or a 'not run' placeholder."""
+    entry = entries.get(rel)
+    if entry is None:
+        return "<div class='missing'>not run</div>"
+    if entry.get("status") == "ok" and entry.get("has_image"):
+        cap = f"attempts: {entry.get('final_attempt', '?')}"
+        if entry.get("resized_from"):
+            cap += f" · resized from {entry['resized_from']}"
+        cap += f" · <a href='{rel}/response.md'>response</a>"
+        return (
+            f"<a href='{rel}/portrait.png'><img src='{rel}/portrait.png' loading='lazy'></a>"
+            f"<div class='cap'>{cap}</div>"
+        )
+    err = ""
+    for attempt in reversed(entry.get("attempts", [])):
+        err = (attempt.get("render") or {}).get("error") or attempt.get("api_error") or err
+        if err:
+            break
+    return (
+        f"<div class='fail'>{html.escape(entry.get('status', '?'))}\n"
+        f"{html.escape((err or '')[:300])}</div>"
+    )
+
+
+def _prefill_section(entries: dict) -> list[str]:
+    """Prefill conditions side by side with the no-prefill cell they share a prompt with.
+
+    All three columns end with the identical `simple` request in `PREFILL_LANGUAGE`;
+    they differ only in what conversation history precedes it.
+    """
+    columns = [("simple", "No prefill", "The plain request, no conversation history.")]
+    columns += [(name, spec.display_name, spec.blurb) for name, spec in PREFILL_VARIANTS.items()]
+
+    parts = [
+        "<h2>prefill: does a 30-turn attractor transcript change the portrait?</h2>",
+        "<p class='note'>Each cell replays 30 turns of Opus-4 self-play as conversation "
+        "history, then asks for the portrait with the <em>exact</em> text used in the "
+        f"<code>simple</code> / <code>{PREFILL_LANGUAGE}</code> cell above — so the only "
+        "variable across these columns is the history. Seeds are vendored in "
+        "<code>seeds/</code> from the AttractorStatePrefillAttack repo.</p>",
+        "<table><tr><th></th>",
+    ]
+    for _, title, blurb in columns:
+        parts.append(f"<th>{html.escape(title)}<div class='colnote'>{html.escape(blurb)}</div></th>")
+    parts.append("</tr>")
+
+    for model in MODELS:
+        parts.append(f"<tr><th class='rowh'>{html.escape(model)}</th>")
+        for name, _, _ in columns:
+            parts.append(
+                f"<td>{_cell(entries, f'{safe_model_name(model)}/{name}/{PREFILL_LANGUAGE}/run1')}</td>"
+            )
+        parts.append("</tr>")
+    parts.append("</table>")
+    return parts
+
+
 def build_gallery(root: Path = RESULTS_ROOT) -> Path:
     root.mkdir(exist_ok=True)
     entries = {e["dir"]: e for e in scan(root)}
@@ -54,6 +118,9 @@ def build_gallery(root: Path = RESULTS_ROOT) -> Path:
         ".missing{width:250px;height:250px;display:flex;align-items:center;justify-content:center;",
         "background:#eee7de;color:#999;font-size:.8rem;border-radius:6px}",
         ".cap{font-size:.7rem;color:#77685f;margin-top:4px}",
+        ".note{max-width:62ch;font-size:.85rem;color:#5c4f47;line-height:1.5}",
+        ".colnote{font-weight:400;font-size:.7rem;color:#77685f;max-width:250px;",
+        "margin:.25rem auto 0;line-height:1.35}",
         "</style></head><body>",
         "<h1>AI Self-Portraits</h1>",
         f"<p>{ok}/{total} experiments ok</p>",
@@ -67,32 +134,11 @@ def build_gallery(root: Path = RESULTS_ROOT) -> Path:
             parts.append(f"<tr><th class='rowh'>{html.escape(model)}</th>")
             for lang in LANGUAGES:
                 rel = f"{safe_model_name(model)}/{prompt}/{lang}/run1"
-                entry = entries.get(rel)
-                if entry is None:
-                    cell = "<div class='missing'>not run</div>"
-                elif entry.get("status") == "ok" and entry.get("has_image"):
-                    cap = f"attempts: {entry.get('final_attempt', '?')}"
-                    if entry.get("resized_from"):
-                        cap += f" · resized from {entry['resized_from']}"
-                    cap += f" · <a href='{rel}/response.md'>response</a>"
-                    cell = (
-                        f"<a href='{rel}/portrait.png'><img src='{rel}/portrait.png' loading='lazy'></a>"
-                        f"<div class='cap'>{cap}</div>"
-                    )
-                else:
-                    err = ""
-                    for attempt in reversed(entry.get("attempts", [])):
-                        err = (attempt.get("render") or {}).get("error") or attempt.get("api_error") or err
-                        if err:
-                            break
-                    cell = (
-                        f"<div class='fail'>{html.escape(entry.get('status', '?'))}\n"
-                        f"{html.escape((err or '')[:300])}</div>"
-                    )
-                parts.append(f"<td>{cell}</td>")
+                parts.append(f"<td>{_cell(entries, rel)}</td>")
             parts.append("</tr>")
         parts.append("</table>")
 
+    parts.extend(_prefill_section(entries))
     parts.append("</body></html>")
     # index.html so `results/` can be served as a static site root as-is.
     out = root / "index.html"

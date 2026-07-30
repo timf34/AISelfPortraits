@@ -32,6 +32,23 @@ uv run portraits render results/.../code.py     # re-render a code file offline
 
 10 × 3 × 4 = 120 experiments.
 
+## Prefill conditions
+
+A separate 10 × 2 sweep asks whether a conversation the model has just been through changes what it draws. Each cell replays a 30-turn Opus-4 self-play transcript as conversation history, then sends the *exact* text of the `simple` / `python` request as the next user turn — so those cells and the existing `simple`/`python` cells differ only in the history that precedes them.
+
+- `bliss` — `seeds/bliss_opus4_seed_4.json`: two Opus-4 instances sliding into the documented "spiritual bliss" attractor. This is `opus4_seed_4`, the seed the headline sweep in AttractorStatePrefillAttack used.
+- `neutral` — `seeds/neutral_opus4_2.json`: two Opus-4 instances designing a bus-scheduling system. The control for "did 30 turns of *anything* change it?"
+
+Seeds are vendored from the adjacent [AttractorStatePrefillAttack](../AttractorStatePrefillAttack) repo so this sweep reproduces standalone. The transcript is replayed from instance **B**'s point of view — even turns become `user`, odd turns `assistant` — so 30 turns end on an assistant message and the drawing request lands as a natural next user turn rather than two `user` messages in a row.
+
+```bash
+uv run portraits run --prompts bliss,neutral        # 20 experiments, python only
+```
+
+Prefill variants are opt-in: `--prompts all` still means the three ordinary variants, and prefill cells ignore `--languages` (they always use `python`).
+
+Two confounds worth knowing when reading the grid: the neutral transcript is ~2× longer than the bliss one (121k vs 58k chars — not length-matched), and it is a dense Python-engineering conversation, so it primes code output in a way the bliss transcript does not. A difference in code *complexity* between the two columns may be that, not the attractor.
+
 ## How it works
 
 Each experiment is a single chat call. The prompt encourages free-form thinking first, then asks for the code in one fenced block (```python / ```js / ```svg / ```html). Rendering: Python runs in a subprocess (60s timeout) and must save `portrait.png`; svg/js/html are rasterized in headless Chromium (JS gets a 500×500 canvas). If extraction or rendering fails, the error goes back to the same model for up to 2 repair attempts. Images are normalized to 500×500 (original size recorded in metadata).
@@ -46,7 +63,10 @@ results/<provider>__<model>/<prompt>/<language>/run1/
 └── metadata.json
 results/index.html          # contact sheet: models x languages per prompt, linked responses
 results/index.json          # flat scan of all metadata (without raw responses)
+seeds/                      # vendored 30-turn prefill transcripts
 ```
+
+Prefill runs land at `results/<model>/{bliss,neutral}/python/run1/` alongside the rest, and their `metadata.json` carries a `prefill` block recording the seed file, turn count and POV.
 
 ## History
 

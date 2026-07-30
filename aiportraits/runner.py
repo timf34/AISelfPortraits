@@ -13,7 +13,7 @@ from aiportraits.client import OpenRouterClient, OpenRouterError
 from aiportraits.config import LANGUAGES, MAX_REPAIRS
 from aiportraits.extract import extract_code
 from aiportraits.paths import experiment_dir
-from aiportraits.prompts import build_messages, build_repair_message
+from aiportraits.prompts import build_messages, build_repair_message, prefill_info
 from aiportraits.renderers import render, shutdown_browsers
 
 
@@ -65,6 +65,9 @@ def run_experiment(client: OpenRouterClient, exp: Experiment) -> str:
         "started_at": _now(),
         "attempts": [],
     }
+
+    if (info := prefill_info(exp.prompt)) is not None:
+        meta["prefill"] = info
 
     messages = build_messages(exp.prompt, exp.language)
     status = "failed_api"

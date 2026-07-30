@@ -1,6 +1,7 @@
 from pathlib import Path
 
 RESULTS_ROOT = Path(__file__).resolve().parent.parent / "results"
+SEEDS_ROOT = Path(__file__).resolve().parent.parent / "seeds"
 
 
 def safe_model_name(slug: str) -> str:
