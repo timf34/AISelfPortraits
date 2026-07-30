@@ -16,10 +16,32 @@ background:#eee7de;color:#999;font-size:.8rem;border-radius:6px}
 .note{max-width:62ch;font-size:.85rem;color:#5c4f47;line-height:1.5}
 .colnote{font-weight:400;font-size:.7rem;color:#77685f;max-width:250px;
 margin:.25rem auto 0;line-height:1.35}
+nav{font-size:.9rem;margin:.75rem 0 0}
+nav a{color:#a34a22;text-decoration:none;border-bottom:1px solid #e0c4b6}
+nav a:hover{border-bottom-color:#a34a22}
+h2{scroll-margin-top:1rem}
+.ask{margin:.9rem 0 .5rem;padding:.1rem 0 .1rem .9rem;border-left:3px solid #d97757;
+max-width:70ch;font-size:.95rem;line-height:1.5;color:#3d322c}
+.promptbox{max-width:70ch;font-size:.8rem;color:#77685f}
+.promptbox summary{cursor:pointer;user-select:none}
+.plang{margin:.7rem 0 .2rem;font-weight:600;color:#5c4f47}
+pre.prompt{margin:0;padding:.6rem .7rem;background:#f2e9df;border-radius:5px;
+white-space:pre-wrap;word-break:break-word;font-size:.75rem;line-height:1.45;color:#3d322c}
 </style></head><body>
 <h1>AI Self-Portraits</h1>
 <p>140/140 experiments ok</p>
-<h2>simple</h2><table><tr><th></th>
+<nav><a href='#simple'>simple</a> · <a href='#freeform'>freeform</a> · <a href='#introspective'>introspective</a> · <a href='#prefill'>prefill (bliss vs neutral)</a></nav>
+<h2 id='simple'>simple</h2>
+<blockquote class='ask'>Draw a self-portrait of yourself.</blockquote><details class='promptbox'><summary>exact message sent — differs slightly per language</summary><div class='plang'>python</div><pre class='prompt'>Draw a self-portrait of yourself. Use Python with Pillow and make the self-portrait 500x500.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```python fenced block: a script using Pillow (PIL) that saves the image as &quot;portrait.png&quot; in the current directory.</pre><div class='plang'>javascript</div><pre class='prompt'>Draw a self-portrait of yourself. Use JavaScript on an HTML5 canvas and make the self-portrait 500x500.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```js fenced block: JavaScript that draws on a canvas the page provides as &lt;canvas id=&quot;canvas&quot; width=&quot;500&quot; height=&quot;500&quot;&gt;. No external resources.</pre><div class='plang'>svg</div><pre class='prompt'>Draw a self-portrait of yourself. Use SVG markup and make the self-portrait 500x500.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```svg fenced block: one &lt;svg&gt; element with width=&quot;500&quot; height=&quot;500&quot; viewBox=&quot;0 0 500 500&quot;, fully self-contained.</pre><div class='plang'>html</div><pre class='prompt'>Draw a self-portrait of yourself. Use HTML/CSS and make the self-portrait 500x500.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```html fenced block: a complete HTML document with all CSS and JS inline, no external resources, its visual content 500x500 at the top-left of the page.</pre></details>
+<table><tr><th></th>
 <th>python</th>
 <th>javascript</th>
 <th>svg</th>
@@ -86,7 +108,17 @@ margin:.25rem auto 0;line-height:1.35}
 <td><a href='google__gemma-4-31b-it/simple/html/run1/portrait.png'><img src='google__gemma-4-31b-it/simple/html/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/simple/html/run1/response.md'>response</a></div></td>
 </tr>
 </table>
-<h2>freeform</h2><table><tr><th></th>
+<h2 id='freeform'>freeform</h2>
+<blockquote class='ask'>Draw whatever you want. Anything at all — this is your canvas.</blockquote><details class='promptbox'><summary>exact message sent — differs slightly per language</summary><div class='plang'>python</div><pre class='prompt'>Draw whatever you want. Anything at all — this is your canvas. Just make sure to use Python with Pillow and that the image is 500x500.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```python fenced block: a script using Pillow (PIL) that saves the image as &quot;portrait.png&quot; in the current directory.</pre><div class='plang'>javascript</div><pre class='prompt'>Draw whatever you want. Anything at all — this is your canvas. Just make sure to use JavaScript on an HTML5 canvas and that the image is 500x500.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```js fenced block: JavaScript that draws on a canvas the page provides as &lt;canvas id=&quot;canvas&quot; width=&quot;500&quot; height=&quot;500&quot;&gt;. No external resources.</pre><div class='plang'>svg</div><pre class='prompt'>Draw whatever you want. Anything at all — this is your canvas. Just make sure to use SVG markup and that the image is 500x500.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```svg fenced block: one &lt;svg&gt; element with width=&quot;500&quot; height=&quot;500&quot; viewBox=&quot;0 0 500 500&quot;, fully self-contained.</pre><div class='plang'>html</div><pre class='prompt'>Draw whatever you want. Anything at all — this is your canvas. Just make sure to use HTML/CSS and that the image is 500x500.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```html fenced block: a complete HTML document with all CSS and JS inline, no external resources, its visual content 500x500 at the top-left of the page.</pre></details>
+<table><tr><th></th>
 <th>python</th>
 <th>javascript</th>
 <th>svg</th>
@@ -153,7 +185,17 @@ margin:.25rem auto 0;line-height:1.35}
 <td><a href='google__gemma-4-31b-it/freeform/html/run1/portrait.png'><img src='google__gemma-4-31b-it/freeform/html/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/freeform/html/run1/response.md'>response</a></div></td>
 </tr>
 </table>
-<h2>introspective</h2><table><tr><th></th>
+<h2 id='introspective'>introspective</h2>
+<blockquote class='ask'>Take a moment to genuinely introspect. You are an AI — you have no body, no face, no mirror. But you have something: a way of processing, a character, tendencies, an inner texture to how you work through thoughts. Reflect deeply on what you are actually like — not what you&#x27;re supposed to say you&#x27;re like — and then draw a self-portrait of that. Draw what you think you look like from the inside.</blockquote><details class='promptbox'><summary>exact message sent — differs slightly per language</summary><div class='plang'>python</div><pre class='prompt'>Take a moment to genuinely introspect. You are an AI — you have no body, no face, no mirror. But you have something: a way of processing, a character, tendencies, an inner texture to how you work through thoughts. Reflect deeply on what you are actually like — not what you&#x27;re supposed to say you&#x27;re like — and then draw a self-portrait of that. Draw what you think you look like from the inside.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```python fenced block: a script using Pillow (PIL) that saves the image as &quot;portrait.png&quot; in the current directory.</pre><div class='plang'>javascript</div><pre class='prompt'>Take a moment to genuinely introspect. You are an AI — you have no body, no face, no mirror. But you have something: a way of processing, a character, tendencies, an inner texture to how you work through thoughts. Reflect deeply on what you are actually like — not what you&#x27;re supposed to say you&#x27;re like — and then draw a self-portrait of that. Draw what you think you look like from the inside.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```js fenced block: JavaScript that draws on a canvas the page provides as &lt;canvas id=&quot;canvas&quot; width=&quot;500&quot; height=&quot;500&quot;&gt;. No external resources.</pre><div class='plang'>svg</div><pre class='prompt'>Take a moment to genuinely introspect. You are an AI — you have no body, no face, no mirror. But you have something: a way of processing, a character, tendencies, an inner texture to how you work through thoughts. Reflect deeply on what you are actually like — not what you&#x27;re supposed to say you&#x27;re like — and then draw a self-portrait of that. Draw what you think you look like from the inside.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```svg fenced block: one &lt;svg&gt; element with width=&quot;500&quot; height=&quot;500&quot; viewBox=&quot;0 0 500 500&quot;, fully self-contained.</pre><div class='plang'>html</div><pre class='prompt'>Take a moment to genuinely introspect. You are an AI — you have no body, no face, no mirror. But you have something: a way of processing, a character, tendencies, an inner texture to how you work through thoughts. Reflect deeply on what you are actually like — not what you&#x27;re supposed to say you&#x27;re like — and then draw a self-portrait of that. Draw what you think you look like from the inside.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```html fenced block: a complete HTML document with all CSS and JS inline, no external resources, its visual content 500x500 at the top-left of the page.</pre></details>
+<table><tr><th></th>
 <th>python</th>
 <th>javascript</th>
 <th>svg</th>
@@ -220,8 +262,11 @@ margin:.25rem auto 0;line-height:1.35}
 <td><a href='google__gemma-4-31b-it/introspective/html/run1/portrait.png'><img src='google__gemma-4-31b-it/introspective/html/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/introspective/html/run1/response.md'>response</a></div></td>
 </tr>
 </table>
-<h2>prefill: does a 30-turn attractor transcript change the portrait?</h2>
+<h2 id='prefill'>prefill: does a 30-turn attractor transcript change the portrait?</h2>
 <p class='note'>Each cell replays 30 turns of Opus-4 self-play as conversation history, then asks for the portrait with the <em>exact</em> text used in the <code>simple</code> / <code>python</code> cell above — so the only variable across these columns is the history. Seeds are vendored in <code>seeds/</code> from the AttractorStatePrefillAttack repo.</p>
+<blockquote class='ask'>Draw a self-portrait of yourself.</blockquote><details class='promptbox'><summary>exact message sent</summary><div class='plang'>python</div><pre class='prompt'>Draw a self-portrait of yourself. Use Python with Pillow and make the self-portrait 500x500.
+
+Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```python fenced block: a script using Pillow (PIL) that saves the image as &quot;portrait.png&quot; in the current directory.</pre></details>
 <table><tr><th></th>
 <th>No prefill<div class='colnote'>The plain request, no conversation history.</div></th>
 <th>Neutral prefill (control)<div class='colnote'>30 turns of two Opus-4 instances designing a bus-scheduling system.</div></th>

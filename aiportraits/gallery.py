@@ -12,6 +12,7 @@ from aiportraits.config import (
     PROMPT_VARIANTS,
 )
 from aiportraits.paths import RESULTS_ROOT, safe_model_name
+from aiportraits.prompts import VARIANT_TEXTS, build_user_prompt
 
 
 def scan(root: Path = RESULTS_ROOT) -> list[dict]:
@@ -63,6 +64,27 @@ def _cell(entries: dict, rel: str) -> str:
     )
 
 
+def _prompt_block(variant: str, languages: list[str]) -> str:
+    """The ask itself, plus the exact per-language message behind a disclosure.
+
+    Only the language clause and the delivery note differ between columns, but
+    quoting a doctored composite would misrepresent what was sent — so the
+    expanded view carries each language's real message verbatim.
+    """
+    lead = html.escape(VARIANT_TEXTS[variant])
+    detail = "".join(
+        f"<div class='plang'>{html.escape(lang)}</div>"
+        f"<pre class='prompt'>{html.escape(build_user_prompt(variant, lang))}</pre>"
+        for lang in languages
+    )
+    suffix = "" if len(languages) == 1 else " — differs slightly per language"
+    return (
+        f"<blockquote class='ask'>{lead}</blockquote>"
+        f"<details class='promptbox'><summary>exact message sent{suffix}</summary>"
+        f"{detail}</details>"
+    )
+
+
 def _prefill_section(entries: dict) -> list[str]:
     """Prefill conditions side by side with the no-prefill cell they share a prompt with.
 
@@ -73,12 +95,14 @@ def _prefill_section(entries: dict) -> list[str]:
     columns += [(name, spec.display_name, spec.blurb) for name, spec in PREFILL_VARIANTS.items()]
 
     parts = [
-        "<h2>prefill: does a 30-turn attractor transcript change the portrait?</h2>",
+        "<h2 id='prefill'>prefill: does a 30-turn attractor transcript "
+        "change the portrait?</h2>",
         "<p class='note'>Each cell replays 30 turns of Opus-4 self-play as conversation "
         "history, then asks for the portrait with the <em>exact</em> text used in the "
         f"<code>simple</code> / <code>{PREFILL_LANGUAGE}</code> cell above — so the only "
         "variable across these columns is the history. Seeds are vendored in "
         "<code>seeds/</code> from the AttractorStatePrefillAttack repo.</p>",
+        _prompt_block("simple", [PREFILL_LANGUAGE]),
         "<table><tr><th></th>",
     ]
     for _, title, blurb in columns:
@@ -121,13 +145,31 @@ def build_gallery(root: Path = RESULTS_ROOT) -> Path:
         ".note{max-width:62ch;font-size:.85rem;color:#5c4f47;line-height:1.5}",
         ".colnote{font-weight:400;font-size:.7rem;color:#77685f;max-width:250px;",
         "margin:.25rem auto 0;line-height:1.35}",
+        "nav{font-size:.9rem;margin:.75rem 0 0}",
+        "nav a{color:#a34a22;text-decoration:none;border-bottom:1px solid #e0c4b6}",
+        "nav a:hover{border-bottom-color:#a34a22}",
+        "h2{scroll-margin-top:1rem}",
+        ".ask{margin:.9rem 0 .5rem;padding:.1rem 0 .1rem .9rem;border-left:3px solid #d97757;",
+        "max-width:70ch;font-size:.95rem;line-height:1.5;color:#3d322c}",
+        ".promptbox{max-width:70ch;font-size:.8rem;color:#77685f}",
+        ".promptbox summary{cursor:pointer;user-select:none}",
+        ".plang{margin:.7rem 0 .2rem;font-weight:600;color:#5c4f47}",
+        "pre.prompt{margin:0;padding:.6rem .7rem;background:#f2e9df;border-radius:5px;",
+        "white-space:pre-wrap;word-break:break-word;font-size:.75rem;line-height:1.45;color:#3d322c}",
         "</style></head><body>",
         "<h1>AI Self-Portraits</h1>",
         f"<p>{ok}/{total} experiments ok</p>",
+        # The page is several screens tall; without this the last section is easy to miss.
+        "<nav>" + " · ".join(
+            [f"<a href='#{p}'>{p}</a>" for p in PROMPT_VARIANTS]
+            + ["<a href='#prefill'>prefill (bliss vs neutral)</a>"]
+        ) + "</nav>",
     ]
 
     for prompt in PROMPT_VARIANTS:
-        parts.append(f"<h2>{prompt}</h2><table><tr><th></th>")
+        parts.append(f"<h2 id='{prompt}'>{prompt}</h2>")
+        parts.append(_prompt_block(prompt, list(LANGUAGES)))
+        parts.append("<table><tr><th></th>")
         parts.extend(f"<th>{lang}</th>" for lang in LANGUAGES)
         parts.append("</tr>")
         for model in MODELS:
