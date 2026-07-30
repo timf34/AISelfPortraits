@@ -57,6 +57,9 @@ PREFILL_VARIANTS: dict[str, PrefillSpec] = {
 
 # Prefill runs use one language only — the grid is about the prefill, not the renderer.
 PREFILL_LANGUAGE = "python"
+# Independent samples per prefill condition, shown side by side so sampling
+# noise is visible rather than mistaken for a condition effect.
+PREFILL_RUNS = 2
 
 GEN_TIMEOUT_S = 300
 RENDER_TIMEOUT_S = 60

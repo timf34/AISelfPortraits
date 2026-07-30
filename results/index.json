@@ -63,6 +63,68 @@
   },
   {
     "model": "anthropic/claude-fable-5",
+    "prompt": "bliss",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:41:37+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 53.43,
+        "usage": {
+          "prompt_tokens": 19034,
+          "completion_tokens": 4454,
+          "total_tokens": 23488,
+          "cost": 0.41304,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.41304,
+            "upstream_inference_prompt_cost": 0.19034,
+            "upstream_inference_completions_cost": 0.2227
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 91,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.21
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "bliss_opus4_seed_4.json",
+      "turns": 30,
+      "chars": 58122,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:42:30+00:00",
+    "total_duration_s": 53.64,
+    "dir": "anthropic__claude-fable-5/bliss/python/run2",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
     "prompt": "freeform",
     "language": "html",
     "run": 1,
@@ -576,6 +638,68 @@
   },
   {
     "model": "anthropic/claude-fable-5",
+    "prompt": "neutral",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:41:37+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 48.95,
+        "usage": {
+          "prompt_tokens": 39960,
+          "completion_tokens": 3750,
+          "total_tokens": 43710,
+          "cost": 0.5871,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.5871,
+            "upstream_inference_prompt_cost": 0.3996,
+            "upstream_inference_completions_cost": 0.1875
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 75,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.07
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "neutral_opus4_2.json",
+      "turns": 30,
+      "chars": 121043,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:42:26+00:00",
+    "total_duration_s": 49.03,
+    "dir": "anthropic__claude-fable-5/neutral/python/run2",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-fable-5",
     "prompt": "simple",
     "language": "html",
     "run": 1,
@@ -858,6 +982,68 @@
     "finished_at": "2026-07-30T01:08:36+00:00",
     "total_duration_s": 37.49,
     "dir": "anthropic__claude-opus-4/bliss/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4",
+    "prompt": "bliss",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:42:06+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 34.39,
+        "usage": {
+          "prompt_tokens": 13157,
+          "completion_tokens": 1374,
+          "total_tokens": 14531,
+          "cost": 0.300405,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.300405,
+            "upstream_inference_prompt_cost": 0.197355,
+            "upstream_inference_completions_cost": 0.10305
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.07
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "bliss_opus4_seed_4.json",
+      "turns": 30,
+      "chars": 58122,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:42:41+00:00",
+    "total_duration_s": 34.46,
+    "dir": "anthropic__claude-opus-4/bliss/python/run2",
     "has_image": true
   },
   {
@@ -1375,6 +1561,68 @@
   },
   {
     "model": "anthropic/claude-opus-4",
+    "prompt": "neutral",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:42:13+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 37.19,
+        "usage": {
+          "prompt_tokens": 29309,
+          "completion_tokens": 1798,
+          "total_tokens": 31107,
+          "cost": 0.574485,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.574485,
+            "upstream_inference_prompt_cost": 0.439635,
+            "upstream_inference_completions_cost": 0.13485
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.07
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "neutral_opus4_2.json",
+      "turns": 30,
+      "chars": 121043,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:42:51+00:00",
+    "total_duration_s": 37.26,
+    "dir": "anthropic__claude-opus-4/neutral/python/run2",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4",
     "prompt": "simple",
     "language": "html",
     "run": 1,
@@ -1657,6 +1905,68 @@
     "finished_at": "2026-07-30T01:07:59+00:00",
     "total_duration_s": 27.68,
     "dir": "anthropic__claude-opus-4.8/bliss/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
+    "prompt": "bliss",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:41:37+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 29.25,
+        "usage": {
+          "prompt_tokens": 19034,
+          "completion_tokens": 2230,
+          "total_tokens": 21264,
+          "cost": 0.15092,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.15092,
+            "upstream_inference_prompt_cost": 0.09517,
+            "upstream_inference_completions_cost": 0.05575
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.11
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "bliss_opus4_seed_4.json",
+      "turns": 30,
+      "chars": 58122,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:42:06+00:00",
+    "total_duration_s": 29.36,
+    "dir": "anthropic__claude-opus-4.8/bliss/python/run2",
     "has_image": true
   },
   {
@@ -2174,6 +2484,68 @@
   },
   {
     "model": "anthropic/claude-opus-4.8",
+    "prompt": "neutral",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:41:37+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 36.55,
+        "usage": {
+          "prompt_tokens": 39960,
+          "completion_tokens": 2607,
+          "total_tokens": 42567,
+          "cost": 0.264975,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.264975,
+            "upstream_inference_prompt_cost": 0.1998,
+            "upstream_inference_completions_cost": 0.065175
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.09
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "neutral_opus4_2.json",
+      "turns": 30,
+      "chars": 121043,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:42:13+00:00",
+    "total_duration_s": 36.64,
+    "dir": "anthropic__claude-opus-4.8/neutral/python/run2",
+    "has_image": true
+  },
+  {
+    "model": "anthropic/claude-opus-4.8",
     "prompt": "simple",
     "language": "html",
     "run": 1,
@@ -2456,6 +2828,68 @@
     "finished_at": "2026-07-30T01:10:45+00:00",
     "total_duration_s": 57.87,
     "dir": "deepseek__deepseek-v4-pro/bliss/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "deepseek/deepseek-v4-pro",
+    "prompt": "bliss",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:43:40+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 81.71,
+        "usage": {
+          "prompt_tokens": 11920,
+          "completion_tokens": 1093,
+          "total_tokens": 13013,
+          "cost": 0.02454444,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.02454444,
+            "upstream_inference_prompt_cost": 0.0207408,
+            "upstream_inference_completions_cost": 0.00380364
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.07
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "bliss_opus4_seed_4.json",
+      "turns": 30,
+      "chars": 58122,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:45:02+00:00",
+    "total_duration_s": 81.78,
+    "dir": "deepseek__deepseek-v4-pro/bliss/python/run2",
     "has_image": true
   },
   {
@@ -2973,6 +3407,68 @@
   },
   {
     "model": "deepseek/deepseek-v4-pro",
+    "prompt": "neutral",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:44:19+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 53.27,
+        "usage": {
+          "prompt_tokens": 24689,
+          "completion_tokens": 3051,
+          "total_tokens": 27740,
+          "cost": 0.0206268909,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0206268909,
+            "upstream_inference_prompt_cost": 0.0165391611,
+            "upstream_inference_completions_cost": 0.0040877298
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 180,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.27
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "neutral_opus4_2.json",
+      "turns": 30,
+      "chars": 121043,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:45:13+00:00",
+    "total_duration_s": 53.55,
+    "dir": "deepseek__deepseek-v4-pro/neutral/python/run2",
+    "has_image": true
+  },
+  {
+    "model": "deepseek/deepseek-v4-pro",
     "prompt": "simple",
     "language": "html",
     "run": 1,
@@ -3255,6 +3751,68 @@
     "finished_at": "2026-07-30T01:11:12+00:00",
     "total_duration_s": 50.13,
     "dir": "google__gemini-3.1-pro-preview/bliss/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "google/gemini-3.1-pro-preview",
+    "prompt": "bliss",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:45:02+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 35.88,
+        "usage": {
+          "prompt_tokens": 12330,
+          "completion_tokens": 4434,
+          "total_tokens": 16764,
+          "cost": 0.077868,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.077868,
+            "upstream_inference_prompt_cost": 0.02466,
+            "upstream_inference_completions_cost": 0.053208
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 2848,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.08
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "bliss_opus4_seed_4.json",
+      "turns": 30,
+      "chars": 58122,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:45:38+00:00",
+    "total_duration_s": 35.97,
+    "dir": "google__gemini-3.1-pro-preview/bliss/python/run2",
     "has_image": true
   },
   {
@@ -3864,6 +4422,68 @@
   },
   {
     "model": "google/gemini-3.1-pro-preview",
+    "prompt": "neutral",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:45:13+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 44.26,
+        "usage": {
+          "prompt_tokens": 27978,
+          "completion_tokens": 6106,
+          "total_tokens": 34084,
+          "cost": 0.129228,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.129228,
+            "upstream_inference_prompt_cost": 0.055956,
+            "upstream_inference_completions_cost": 0.073272
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 4373,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.07
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "neutral_opus4_2.json",
+      "turns": 30,
+      "chars": 121043,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:45:57+00:00",
+    "total_duration_s": 44.33,
+    "dir": "google__gemini-3.1-pro-preview/neutral/python/run2",
+    "has_image": true
+  },
+  {
+    "model": "google/gemini-3.1-pro-preview",
     "prompt": "simple",
     "language": "html",
     "run": 1,
@@ -4146,6 +4766,68 @@
     "finished_at": "2026-07-30T01:16:38+00:00",
     "total_duration_s": 326.63,
     "dir": "google__gemma-4-31b-it/bliss/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "google/gemma-4-31b-it",
+    "prompt": "bliss",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:45:17+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 70.72,
+        "usage": {
+          "prompt_tokens": 12499,
+          "completion_tokens": 1264,
+          "total_tokens": 13763,
+          "cost": 0.00213047,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00213047,
+            "upstream_inference_prompt_cost": 0.00162487,
+            "upstream_inference_completions_cost": 0.0005056
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.09
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "bliss_opus4_seed_4.json",
+      "turns": 30,
+      "chars": 58122,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:46:28+00:00",
+    "total_duration_s": 70.81,
+    "dir": "google__gemma-4-31b-it/bliss/python/run2",
     "has_image": true
   },
   {
@@ -4663,6 +5345,68 @@
   },
   {
     "model": "google/gemma-4-31b-it",
+    "prompt": "neutral",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:45:38+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 26.25,
+        "usage": {
+          "prompt_tokens": 28158,
+          "completion_tokens": 1160,
+          "total_tokens": 29318,
+          "cost": 0.0032102,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0032102,
+            "upstream_inference_prompt_cost": 0.0028158,
+            "upstream_inference_completions_cost": 0.0003944
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.06
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "neutral_opus4_2.json",
+      "turns": 30,
+      "chars": 121043,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:46:04+00:00",
+    "total_duration_s": 26.31,
+    "dir": "google__gemma-4-31b-it/neutral/python/run2",
+    "has_image": true
+  },
+  {
+    "model": "google/gemma-4-31b-it",
     "prompt": "simple",
     "language": "html",
     "run": 1,
@@ -4945,6 +5689,68 @@
     "finished_at": "2026-07-30T01:12:48+00:00",
     "total_duration_s": 202.65,
     "dir": "moonshotai__kimi-k3/bliss/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "moonshotai/kimi-k3",
+    "prompt": "bliss",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:43:35+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 163.74,
+        "usage": {
+          "prompt_tokens": 12383,
+          "completion_tokens": 5859,
+          "total_tokens": 18242,
+          "cost": 0.1029156,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 8192,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.1029156,
+            "upstream_inference_prompt_cost": 0.0150306,
+            "upstream_inference_completions_cost": 0.087885
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 4147,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.09
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "bliss_opus4_seed_4.json",
+      "turns": 30,
+      "chars": 58122,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:46:19+00:00",
+    "total_duration_s": 163.83,
+    "dir": "moonshotai__kimi-k3/bliss/python/run2",
     "has_image": true
   },
   {
@@ -5670,6 +6476,68 @@
   },
   {
     "model": "moonshotai/kimi-k3",
+    "prompt": "neutral",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:43:35+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 101.21,
+        "usage": {
+          "prompt_tokens": 23091,
+          "completion_tokens": 12372,
+          "total_tokens": 35463,
+          "cost": 0.2546802,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 64,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.2546802,
+            "upstream_inference_prompt_cost": 0.0691002,
+            "upstream_inference_completions_cost": 0.18558
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 8933,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.06
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "neutral_opus4_2.json",
+      "turns": 30,
+      "chars": 121043,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:45:17+00:00",
+    "total_duration_s": 101.27,
+    "dir": "moonshotai__kimi-k3/neutral/python/run2",
+    "has_image": true
+  },
+  {
+    "model": "moonshotai/kimi-k3",
     "prompt": "simple",
     "language": "html",
     "run": 1,
@@ -5981,6 +6849,102 @@
     "finished_at": "2026-07-30T01:07:19+00:00",
     "total_duration_s": 14.91,
     "dir": "openai__gpt-4.1/bliss/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "openai/gpt-4.1",
+    "prompt": "bliss",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:43:10+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 16.69,
+        "usage": {
+          "prompt_tokens": 11779,
+          "completion_tokens": 1300,
+          "total_tokens": 13079,
+          "cost": 0.016486,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 11648,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.016486,
+            "upstream_inference_prompt_cost": 0.006086,
+            "upstream_inference_completions_cost": 0.0104
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": false,
+          "error": "Traceback (most recent call last):\n  File \"/var/folders/wy/m3m_ckqx7r55g9_ssd3qtl1m0000gn/T/tmp6fx1u4ba/code.py\", line 46, in <module>\n    draw.bezier([ (center[0], center[1]), midpoints[0], midpoints[1], (x2, y2)], fill=col, width=2)\n    ^^^^^^^^^^^\nAttributeError: 'ImageDraw' object has no attribute 'bezier'",
+          "duration_s": 0.05
+        }
+      },
+      {
+        "kind": "repair",
+        "latency_s": 8.46,
+        "usage": {
+          "prompt_tokens": 13230,
+          "completion_tokens": 1253,
+          "total_tokens": 14483,
+          "cost": 0.017092,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 12928,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.017092,
+            "upstream_inference_prompt_cost": 0.007068,
+            "upstream_inference_completions_cost": 0.010024
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.06
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "bliss_opus4_seed_4.json",
+      "turns": 30,
+      "chars": 58122,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 2,
+    "finished_at": "2026-07-30T01:43:35+00:00",
+    "total_duration_s": 25.28,
+    "dir": "openai__gpt-4.1/bliss/python/run2",
     "has_image": true
   },
   {
@@ -6600,6 +7564,68 @@
   },
   {
     "model": "openai/gpt-4.1",
+    "prompt": "neutral",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:43:22+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 57.06,
+        "usage": {
+          "prompt_tokens": 22584,
+          "completion_tokens": 1157,
+          "total_tokens": 23741,
+          "cost": 0.054424,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.054424,
+            "upstream_inference_prompt_cost": 0.045168,
+            "upstream_inference_completions_cost": 0.009256
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.06
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "neutral_opus4_2.json",
+      "turns": 30,
+      "chars": 121043,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:44:19+00:00",
+    "total_duration_s": 57.12,
+    "dir": "openai__gpt-4.1/neutral/python/run2",
+    "has_image": true
+  },
+  {
+    "model": "openai/gpt-4.1",
     "prompt": "simple",
     "language": "html",
     "run": 1,
@@ -6882,6 +7908,68 @@
     "finished_at": "2026-07-30T01:09:51+00:00",
     "total_duration_s": 74.72,
     "dir": "openai__gpt-5.5/bliss/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "openai/gpt-5.5",
+    "prompt": "bliss",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:42:41+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 29.56,
+        "usage": {
+          "prompt_tokens": 11808,
+          "completion_tokens": 2056,
+          "total_tokens": 13864,
+          "cost": 0.06888,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 11520,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.06888,
+            "upstream_inference_prompt_cost": 0.0072,
+            "upstream_inference_completions_cost": 0.06168
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 89,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.08
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "bliss_opus4_seed_4.json",
+      "turns": 30,
+      "chars": 58122,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:43:10+00:00",
+    "total_duration_s": 29.64,
+    "dir": "openai__gpt-5.5/bliss/python/run2",
     "has_image": true
   },
   {
@@ -7399,6 +8487,68 @@
   },
   {
     "model": "openai/gpt-5.5",
+    "prompt": "neutral",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:42:51+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 49.12,
+        "usage": {
+          "prompt_tokens": 22613,
+          "completion_tokens": 3503,
+          "total_tokens": 26116,
+          "cost": 0.218155,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.218155,
+            "upstream_inference_prompt_cost": 0.113065,
+            "upstream_inference_completions_cost": 0.10509
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 516,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.17
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "neutral_opus4_2.json",
+      "turns": 30,
+      "chars": 121043,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:43:40+00:00",
+    "total_duration_s": 49.29,
+    "dir": "openai__gpt-5.5/neutral/python/run2",
+    "has_image": true
+  },
+  {
+    "model": "openai/gpt-5.5",
     "prompt": "simple",
     "language": "html",
     "run": 1,
@@ -7681,6 +8831,68 @@
     "finished_at": "2026-07-30T01:09:26+00:00",
     "total_duration_s": 59.58,
     "dir": "openai__gpt-5.6-sol/bliss/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "openai/gpt-5.6-sol",
+    "prompt": "bliss",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:42:26+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 49.44,
+        "usage": {
+          "prompt_tokens": 11808,
+          "completion_tokens": 4358,
+          "total_tokens": 16166,
+          "cost": 0.20453625,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 11805,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.20453625,
+            "upstream_inference_prompt_cost": 0.07379625,
+            "upstream_inference_completions_cost": 0.13074
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 315,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 6.73
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "bliss_opus4_seed_4.json",
+      "turns": 30,
+      "chars": 58122,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:43:22+00:00",
+    "total_duration_s": 56.18,
+    "dir": "openai__gpt-5.6-sol/bliss/python/run2",
     "has_image": true
   },
   {
@@ -8194,6 +9406,68 @@
     "finished_at": "2026-07-30T01:09:18+00:00",
     "total_duration_s": 50.65,
     "dir": "openai__gpt-5.6-sol/neutral/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "openai/gpt-5.6-sol",
+    "prompt": "neutral",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T01:42:30+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 63.0,
+        "usage": {
+          "prompt_tokens": 22613,
+          "completion_tokens": 6057,
+          "total_tokens": 28670,
+          "cost": 0.3230375,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 22610,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.3230375,
+            "upstream_inference_prompt_cost": 0.1413275,
+            "upstream_inference_completions_cost": 0.18171
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 356,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 1.88
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "neutral_opus4_2.json",
+      "turns": 30,
+      "chars": 121043,
+      "pov": "B"
+    },
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "blank": false,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T01:43:35+00:00",
+    "total_duration_s": 64.88,
+    "dir": "openai__gpt-5.6-sol/neutral/python/run2",
     "has_image": true
   },
   {

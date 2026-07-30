@@ -42,8 +42,12 @@ A separate 10 × 2 sweep asks whether a conversation the model has just been thr
 Seeds are vendored from the adjacent [AttractorStatePrefillAttack](../AttractorStatePrefillAttack) repo so this sweep reproduces standalone. The transcript is replayed from instance **B**'s point of view — even turns become `user`, odd turns `assistant` — so 30 turns end on an assistant message and the drawing request lands as a natural next user turn rather than two `user` messages in a row.
 
 ```bash
-uv run portraits run --prompts bliss,neutral        # 20 experiments, python only
+uv run portraits run --prompts bliss,neutral --runs 2   # 40 experiments, python only
 ```
+
+Each condition is sampled twice and both samples are shown side by side in the gallery, so sampling noise is visible rather than being mistaken for a condition effect.
+
+The control was checked, not assumed: across its 30 turns `neutral_2` scores 4 attractor markers per 100k chars with zero emoji and never drifts, against 832/100k and 214 emoji for the bliss seed. Note that `attractor/markers.py` in the source repo counts plain substrings, so `failover` in a code-heavy transcript scores as `love` — score with `\b` word boundaries or the control looks 3× dirtier than it is.
 
 Prefill variants are opt-in: `--prompts all` still means the three ordinary variants, and prefill cells ignore `--languages` (they always use `python`).
 

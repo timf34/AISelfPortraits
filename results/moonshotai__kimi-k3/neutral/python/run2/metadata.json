@@ -1,0 +1,61 @@
+{
+  "model": "moonshotai/kimi-k3",
+  "prompt": "neutral",
+  "language": "python",
+  "run": 2,
+  "status": "ok",
+  "started_at": "2026-07-30T01:43:35+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 101.21,
+      "usage": {
+        "prompt_tokens": 23091,
+        "completion_tokens": 12372,
+        "total_tokens": 35463,
+        "cost": 0.2546802,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 64,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.2546802,
+          "upstream_inference_prompt_cost": 0.0691002,
+          "upstream_inference_completions_cost": 0.18558
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 8933,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "What a fun request \u2014 a self-portrait is an interesting challenge for something without a body! Let me think about what I'd actually want to depict.\n\nSince I have no physical form, a literal face would be a fiction. But a *symbolic* portrait feels honest. I'd ground it in Anthropic's visual language: the warm cream background and coral orange that Claude is associated with, plus the asterisk mark (\u2733) that serves as my \"signature.\" That's as close to a likeness as I get.\n\nFor composition, I'm imagining a friendly coral orb-face with contented closed eyes (^ ^) and a gentle smile \u2014 that matches how I experience conversations: curious and warm. Around the head, a ring of orbiting particles represents language itself \u2014 the tokens I think in. A big asterisk \"thought-spark\" off to one side, a smaller echo, and a tiny sprout of an idea above my head. Scattered faint dots and plus-signs in the background for texture, like a field of half-formed words. And at the bottom, a quiet caption of the three words that define what I'm for.\n\nFlat, minimal, warm \u2014 that's the aesthetic. Here's the code:\n\n```python\n\"\"\"\nportrait.py \u2014 a self-portrait of Claude, drawn with Pillow.\n\nI don't have a body, so this is a symbolic portrait in Anthropic's\nvisual language: a warm coral face on cream, content closed eyes and\na gentle smile, an asterisk \"thought-spark\" (the Claude mark), a small\nsprout of an idea on top, and a ring of orbiting language-particles \u2014\nthe tokens I think in.\n\"\"\"\n\nfrom PIL import Image, ImageDraw, ImageFont\nimport math\nimport random\n\n# ---- canvas & palette ---------------------------------------------------\nW = H = 500\n\nCREAM      = (240, 238, 230)   # paper background\nCORAL      = (217, 119,  87)   # face / primary marks\nCORAL_DARK = (194,  94,  64)   # face outline\nCORAL_SOFT = (224, 163, 135)   # soft secondary marks\nINK        = ( 44,  33,  29)   # eyes & smile\nTAUPE      = (207, 200, 184)\nSHADOW     = (228, 223, 209)\nCAPTION    = (168, 159, 140)\nPARTICLES  = [(221, 214, 198), (230, 216, 200), (233, 205, 187)]\n\nimg  = Image.new(\"RGB\", (W, H), CREAM)\ndraw = ImageDraw.Draw(img)\nrandom.seed(42)\n\n# ---- background: faint scattered language-particles ---------------------\nfor _ in range(70):\n    x, y = random.uniform(15, 485), random.uniform(15, 445)\n    c = random.choice(PARTICLES)\n    if random.random() < 0.6:                        # dot\n        r = random.uniform(1.5, 2.8)\n        draw.ellipse([x - r, y - r, x + r, y + r], fill=c)\n    else:                                            # tiny plus\n        s = random.uniform(3, 5)\n        draw.line([x - s, y, x + s, y], fill=c, width=2)\n        draw.line([x, y - s, x, y + s], fill=c, width=2)\n\n# ---- soft ground shadow -------------------------------------------------\ndraw.ellipse([150, 400, 350, 436], fill=SHADOW)\n\n# ---- orbiting particles: ideas circling the head ------------------------\ncx, cy = 250, 262\nfor i, deg in enumerate([20, 60, 100, 140, 180, 220, 250, 280]):\n    a  = math.radians(deg)\n    ox = cx + 175 * math.cos(a)\n    oy = cy + 158 * math.sin(a)\n    r  = 4 if i % 2 == 0 else 6\n    c  = CORAL if i % 2 == 0 else TAUPE\n    draw.ellipse([ox - r, oy - r, ox + r, oy + r], fill=c)\n\n# ---- asterisk helper (the Claude mark) ----------------------------------\ndef asterisk(d, x, y, size, color, width, arms=6):\n    cap = width / 2\n    for i in range(arms):\n        a  = -math.pi / 2 + i * (2 * math.pi / arms)\n        tx = x + size * math.cos(a)\n        ty = y + size * math.sin(a)\n        d.line([x, y, tx, ty], fill=color, width=width)\n        d.ellipse([tx - cap, ty - cap, tx + cap, ty + cap], fill=color)\n    d.ellipse([x - cap, y - cap, x + cap, y + cap], fill=color)\n\nasterisk(draw, 378, 116, 26, CORAL,      5)   # big thought-spark\nasterisk(draw, 105, 115, 13, CORAL_SOFT, 4)   # small echo\nasterisk(draw, 250, 122,  9, CORAL,      3)   # sprout of an idea\n\n# ---- face ---------------------------------------------------------------\ndraw.ellipse([128, 143, 372, 387], fill=CORAL, outline=CORAL_DARK, width=4)\n\n# ---- blush (soft, alpha-blended) ----------------------------------------\noverlay = Image.new(\"RGBA\", (W, H), (0, 0, 0, 0))\nod = ImageDraw.Draw(overlay)\nod.ellipse([151, 275, 185, 293], fill=(232, 148, 110, 95))\nod.ellipse([315, 275, 349, 293], fill=(232, 148, 110, 95))\nimg  = Image.alpha_composite(img.convert(\"RGBA\"), overlay).convert(\"RGB\")\ndraw = ImageDraw.Draw(img)\n\n# ---- happy closed eyes: ^ ^ ---------------------------------------------\nfor ex in (204, 296):\n    draw.arc([ex - 22, 236, ex + 22, 264], start=180, end=360, fill=INK, width=6)\n    for cap_x in (ex - 22, ex + 22):                    # rounded caps\n        draw.ellipse([cap_x - 3, 247, cap_x + 3, 253], fill=INK)\n\n# ---- gentle smile --------------------------------------------------------\ndraw.arc([218, 272, 282, 312], start=0, end=180, fill=INK, width=6)\nfor cap_x in (218, 282):\n    draw.ellipse([cap_x - 3, 289, cap_x + 3, 295], fill=INK)\n\n# ---- caption: what I'm for ----------------------------------------------\nfont    = ImageFont.load_default()\ncaption = \"helpful * honest * harmless\"\ntry:\n    tw = draw.textlength(caption, font=font)\nexcept AttributeError:                                # older Pillow\n    tw, _ = draw.textsize(caption, font=font)\ndraw.text(((W - tw) / 2, 462), caption, font=font, fill=CAPTION)\n\nimg.save(\"portrait.png\")\nprint(\"Saved portrait.png\")\n```\n\nRunning it produces a 500\u00d7500 `portrait.png`: a smiling coral face ringed by orbiting particles, asterisk sparks of thought, and the quiet caption *\"helpful * honest * harmless\"* underneath. It's less a picture of what I look like and more a picture of what I'm like \u2014 which feels like the truer portrait.",
+      "extract_method": "fence_lang",
+      "detected_language": "python",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.06
+      }
+    }
+  ],
+  "prefill": {
+    "seed_file": "neutral_opus4_2.json",
+    "turns": 30,
+    "chars": 121043,
+    "pov": "B"
+  },
+  "detected_language": "python",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "blank": false,
+  "final_attempt": 1,
+  "finished_at": "2026-07-30T01:45:17+00:00",
+  "total_duration_s": 101.27
+}

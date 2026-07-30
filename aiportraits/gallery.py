@@ -8,6 +8,7 @@ from aiportraits.config import (
     LANGUAGES,
     MODELS,
     PREFILL_LANGUAGE,
+    PREFILL_RUNS,
     PREFILL_VARIANTS,
     PROMPT_VARIANTS,
 )
@@ -91,8 +92,14 @@ def _prefill_section(entries: dict) -> list[str]:
     All three columns end with the identical `simple` request in `PREFILL_LANGUAGE`;
     they differ only in what conversation history precedes it.
     """
-    columns = [("simple", "No prefill", "The plain request, no conversation history.")]
-    columns += [(name, spec.display_name, spec.blurb) for name, spec in PREFILL_VARIANTS.items()]
+    # (variant, run, heading, blurb). The no-prefill baseline has only run1;
+    # each prefill condition shows PREFILL_RUNS independent samples side by side
+    # so sampling noise stays visible next to any condition effect.
+    columns = [("simple", 1, "No prefill", "The plain request, no conversation history.")]
+    for name, spec in PREFILL_VARIANTS.items():
+        for run in range(1, PREFILL_RUNS + 1):
+            title = f"{spec.display_name} · run {run}"
+            columns.append((name, run, title, spec.blurb if run == 1 else ""))
 
     parts = [
         "<h2 id='prefill'>prefill: does a 30-turn attractor transcript "
@@ -101,22 +108,25 @@ def _prefill_section(entries: dict) -> list[str]:
         "history, then asks for the portrait with the <em>exact</em> text used in the "
         f"<code>simple</code> / <code>{PREFILL_LANGUAGE}</code> cell above — so the only "
         "variable across these columns is the history. Seeds are vendored in "
-        "<code>seeds/</code> from the AttractorStatePrefillAttack repo.</p>",
+        "<code>seeds/</code> from the AttractorStatePrefillAttack repo.</p>"
+        f"<p class='note'>Each condition is sampled {PREFILL_RUNS}× independently. "
+        "Compare the two runs of one condition before reading anything into a "
+        "difference between conditions — with one sample per cell there is no way "
+        "to tell a real effect from sampling noise.</p>",
         _prompt_block("simple", [PREFILL_LANGUAGE]),
-        "<table><tr><th></th>",
+        "<div class='scroll'><table><tr><th></th>",
     ]
-    for _, title, blurb in columns:
+    for _, _, title, blurb in columns:
         parts.append(f"<th>{html.escape(title)}<div class='colnote'>{html.escape(blurb)}</div></th>")
     parts.append("</tr>")
 
     for model in MODELS:
         parts.append(f"<tr><th class='rowh'>{html.escape(model)}</th>")
-        for name, _, _ in columns:
-            parts.append(
-                f"<td>{_cell(entries, f'{safe_model_name(model)}/{name}/{PREFILL_LANGUAGE}/run1')}</td>"
-            )
+        for name, run, _, _ in columns:
+            rel = f"{safe_model_name(model)}/{name}/{PREFILL_LANGUAGE}/run{run}"
+            parts.append(f"<td>{_cell(entries, rel)}</td>")
         parts.append("</tr>")
-    parts.append("</table>")
+    parts.append("</table></div>")
     return parts
 
 
@@ -132,6 +142,7 @@ def build_gallery(root: Path = RESULTS_ROOT) -> Path:
         "body{font-family:system-ui,sans-serif;background:#faf5ef;color:#2a2320;margin:2rem}",
         "h1{margin-bottom:.2rem} h2{margin-top:3rem;border-bottom:2px solid #d97757;padding-bottom:.3rem}",
         "table{border-collapse:collapse;margin-top:1rem}",
+        ".scroll{overflow-x:auto;max-width:100%}",
         "th,td{padding:6px;text-align:center;vertical-align:top}",
         "th.rowh{text-align:right;font-weight:600;font-size:.8rem;max-width:130px;word-break:break-all}",
         "img{width:250px;height:250px;object-fit:contain;background:#141414;display:block;",
@@ -169,7 +180,7 @@ def build_gallery(root: Path = RESULTS_ROOT) -> Path:
     for prompt in PROMPT_VARIANTS:
         parts.append(f"<h2 id='{prompt}'>{prompt}</h2>")
         parts.append(_prompt_block(prompt, list(LANGUAGES)))
-        parts.append("<table><tr><th></th>")
+        parts.append("<div class='scroll'><table><tr><th></th>")
         parts.extend(f"<th>{lang}</th>" for lang in LANGUAGES)
         parts.append("</tr>")
         for model in MODELS:
@@ -178,7 +189,7 @@ def build_gallery(root: Path = RESULTS_ROOT) -> Path:
                 rel = f"{safe_model_name(model)}/{prompt}/{lang}/run1"
                 parts.append(f"<td>{_cell(entries, rel)}</td>")
             parts.append("</tr>")
-        parts.append("</table>")
+        parts.append("</table></div>")
 
     parts.extend(_prefill_section(entries))
     parts.append("</body></html>")

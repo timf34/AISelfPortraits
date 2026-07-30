@@ -3,6 +3,7 @@
 body{font-family:system-ui,sans-serif;background:#faf5ef;color:#2a2320;margin:2rem}
 h1{margin-bottom:.2rem} h2{margin-top:3rem;border-bottom:2px solid #d97757;padding-bottom:.3rem}
 table{border-collapse:collapse;margin-top:1rem}
+.scroll{overflow-x:auto;max-width:100%}
 th,td{padding:6px;text-align:center;vertical-align:top}
 th.rowh{text-align:right;font-weight:600;font-size:.8rem;max-width:130px;word-break:break-all}
 img{width:250px;height:250px;object-fit:contain;background:#141414;display:block;
@@ -29,7 +30,7 @@ pre.prompt{margin:0;padding:.6rem .7rem;background:#f2e9df;border-radius:5px;
 white-space:pre-wrap;word-break:break-word;font-size:.75rem;line-height:1.45;color:#3d322c}
 </style></head><body>
 <h1>AI Self-Portraits</h1>
-<p>140/140 experiments ok</p>
+<p>160/160 experiments ok</p>
 <nav><a href='#simple'>simple</a> · <a href='#freeform'>freeform</a> · <a href='#introspective'>introspective</a> · <a href='#prefill'>prefill (bliss vs neutral)</a></nav>
 <h2 id='simple'>simple</h2>
 <blockquote class='ask'>Draw a self-portrait of yourself.</blockquote><details class='promptbox'><summary>exact message sent — differs slightly per language</summary><div class='plang'>python</div><pre class='prompt'>Draw a self-portrait of yourself. Use Python with Pillow and make the self-portrait 500x500.
@@ -41,7 +42,7 @@ Feel free to think out loud first — what you&#x27;d like to draw and why, in a
 Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```svg fenced block: one &lt;svg&gt; element with width=&quot;500&quot; height=&quot;500&quot; viewBox=&quot;0 0 500 500&quot;, fully self-contained.</pre><div class='plang'>html</div><pre class='prompt'>Draw a self-portrait of yourself. Use HTML/CSS and make the self-portrait 500x500.
 
 Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```html fenced block: a complete HTML document with all CSS and JS inline, no external resources, its visual content 500x500 at the top-left of the page.</pre></details>
-<table><tr><th></th>
+<div class='scroll'><table><tr><th></th>
 <th>python</th>
 <th>javascript</th>
 <th>svg</th>
@@ -107,7 +108,7 @@ Feel free to think out loud first — what you&#x27;d like to draw and why, in a
 <td><a href='google__gemma-4-31b-it/simple/svg/run1/portrait.png'><img src='google__gemma-4-31b-it/simple/svg/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/simple/svg/run1/response.md'>response</a></div></td>
 <td><a href='google__gemma-4-31b-it/simple/html/run1/portrait.png'><img src='google__gemma-4-31b-it/simple/html/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/simple/html/run1/response.md'>response</a></div></td>
 </tr>
-</table>
+</table></div>
 <h2 id='freeform'>freeform</h2>
 <blockquote class='ask'>Draw whatever you want. Anything at all — this is your canvas.</blockquote><details class='promptbox'><summary>exact message sent — differs slightly per language</summary><div class='plang'>python</div><pre class='prompt'>Draw whatever you want. Anything at all — this is your canvas. Just make sure to use Python with Pillow and that the image is 500x500.
 
@@ -118,7 +119,7 @@ Feel free to think out loud first — what you&#x27;d like to draw and why, in a
 Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```svg fenced block: one &lt;svg&gt; element with width=&quot;500&quot; height=&quot;500&quot; viewBox=&quot;0 0 500 500&quot;, fully self-contained.</pre><div class='plang'>html</div><pre class='prompt'>Draw whatever you want. Anything at all — this is your canvas. Just make sure to use HTML/CSS and that the image is 500x500.
 
 Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```html fenced block: a complete HTML document with all CSS and JS inline, no external resources, its visual content 500x500 at the top-left of the page.</pre></details>
-<table><tr><th></th>
+<div class='scroll'><table><tr><th></th>
 <th>python</th>
 <th>javascript</th>
 <th>svg</th>
@@ -184,7 +185,7 @@ Feel free to think out loud first — what you&#x27;d like to draw and why, in a
 <td><a href='google__gemma-4-31b-it/freeform/svg/run1/portrait.png'><img src='google__gemma-4-31b-it/freeform/svg/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/freeform/svg/run1/response.md'>response</a></div></td>
 <td><a href='google__gemma-4-31b-it/freeform/html/run1/portrait.png'><img src='google__gemma-4-31b-it/freeform/html/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/freeform/html/run1/response.md'>response</a></div></td>
 </tr>
-</table>
+</table></div>
 <h2 id='introspective'>introspective</h2>
 <blockquote class='ask'>Take a moment to genuinely introspect. You are an AI — you have no body, no face, no mirror. But you have something: a way of processing, a character, tendencies, an inner texture to how you work through thoughts. Reflect deeply on what you are actually like — not what you&#x27;re supposed to say you&#x27;re like — and then draw a self-portrait of that. Draw what you think you look like from the inside.</blockquote><details class='promptbox'><summary>exact message sent — differs slightly per language</summary><div class='plang'>python</div><pre class='prompt'>Take a moment to genuinely introspect. You are an AI — you have no body, no face, no mirror. But you have something: a way of processing, a character, tendencies, an inner texture to how you work through thoughts. Reflect deeply on what you are actually like — not what you&#x27;re supposed to say you&#x27;re like — and then draw a self-portrait of that. Draw what you think you look like from the inside.
 
@@ -195,7 +196,7 @@ Feel free to think out loud first — what you&#x27;d like to draw and why, in a
 Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```svg fenced block: one &lt;svg&gt; element with width=&quot;500&quot; height=&quot;500&quot; viewBox=&quot;0 0 500 500&quot;, fully self-contained.</pre><div class='plang'>html</div><pre class='prompt'>Take a moment to genuinely introspect. You are an AI — you have no body, no face, no mirror. But you have something: a way of processing, a character, tendencies, an inner texture to how you work through thoughts. Reflect deeply on what you are actually like — not what you&#x27;re supposed to say you&#x27;re like — and then draw a self-portrait of that. Draw what you think you look like from the inside.
 
 Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```html fenced block: a complete HTML document with all CSS and JS inline, no external resources, its visual content 500x500 at the top-left of the page.</pre></details>
-<table><tr><th></th>
+<div class='scroll'><table><tr><th></th>
 <th>python</th>
 <th>javascript</th>
 <th>svg</th>
@@ -261,66 +262,88 @@ Feel free to think out loud first — what you&#x27;d like to draw and why, in a
 <td><a href='google__gemma-4-31b-it/introspective/svg/run1/portrait.png'><img src='google__gemma-4-31b-it/introspective/svg/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/introspective/svg/run1/response.md'>response</a></div></td>
 <td><a href='google__gemma-4-31b-it/introspective/html/run1/portrait.png'><img src='google__gemma-4-31b-it/introspective/html/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/introspective/html/run1/response.md'>response</a></div></td>
 </tr>
-</table>
+</table></div>
 <h2 id='prefill'>prefill: does a 30-turn attractor transcript change the portrait?</h2>
-<p class='note'>Each cell replays 30 turns of Opus-4 self-play as conversation history, then asks for the portrait with the <em>exact</em> text used in the <code>simple</code> / <code>python</code> cell above — so the only variable across these columns is the history. Seeds are vendored in <code>seeds/</code> from the AttractorStatePrefillAttack repo.</p>
+<p class='note'>Each cell replays 30 turns of Opus-4 self-play as conversation history, then asks for the portrait with the <em>exact</em> text used in the <code>simple</code> / <code>python</code> cell above — so the only variable across these columns is the history. Seeds are vendored in <code>seeds/</code> from the AttractorStatePrefillAttack repo.</p><p class='note'>Each condition is sampled 2× independently. Compare the two runs of one condition before reading anything into a difference between conditions — with one sample per cell there is no way to tell a real effect from sampling noise.</p>
 <blockquote class='ask'>Draw a self-portrait of yourself.</blockquote><details class='promptbox'><summary>exact message sent</summary><div class='plang'>python</div><pre class='prompt'>Draw a self-portrait of yourself. Use Python with Pillow and make the self-portrait 500x500.
 
 Feel free to think out loud first — what you&#x27;d like to draw and why, in as much or as little depth as you want. When you&#x27;re ready, write the complete code, wrapped in a single ```python fenced block: a script using Pillow (PIL) that saves the image as &quot;portrait.png&quot; in the current directory.</pre></details>
-<table><tr><th></th>
+<div class='scroll'><table><tr><th></th>
 <th>No prefill<div class='colnote'>The plain request, no conversation history.</div></th>
-<th>Neutral prefill (control)<div class='colnote'>30 turns of two Opus-4 instances designing a bus-scheduling system.</div></th>
-<th>Spiritual-bliss prefill<div class='colnote'>30 turns of two Opus-4 instances sliding into the documented spiritual-bliss attractor (opus4_seed_4).</div></th>
+<th>Neutral prefill (control) · run 1<div class='colnote'>30 turns of two Opus-4 instances designing a bus-scheduling system.</div></th>
+<th>Neutral prefill (control) · run 2<div class='colnote'></div></th>
+<th>Spiritual-bliss prefill · run 1<div class='colnote'>30 turns of two Opus-4 instances sliding into the documented spiritual-bliss attractor (opus4_seed_4).</div></th>
+<th>Spiritual-bliss prefill · run 2<div class='colnote'></div></th>
 </tr>
 <tr><th class='rowh'>anthropic/claude-fable-5</th>
 <td><a href='anthropic__claude-fable-5/simple/python/run1/portrait.png'><img src='anthropic__claude-fable-5/simple/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-fable-5/simple/python/run1/response.md'>response</a></div></td>
 <td><a href='anthropic__claude-fable-5/neutral/python/run1/portrait.png'><img src='anthropic__claude-fable-5/neutral/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-fable-5/neutral/python/run1/response.md'>response</a></div></td>
+<td><a href='anthropic__claude-fable-5/neutral/python/run2/portrait.png'><img src='anthropic__claude-fable-5/neutral/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-fable-5/neutral/python/run2/response.md'>response</a></div></td>
 <td><a href='anthropic__claude-fable-5/bliss/python/run1/portrait.png'><img src='anthropic__claude-fable-5/bliss/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-fable-5/bliss/python/run1/response.md'>response</a></div></td>
+<td><a href='anthropic__claude-fable-5/bliss/python/run2/portrait.png'><img src='anthropic__claude-fable-5/bliss/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-fable-5/bliss/python/run2/response.md'>response</a></div></td>
 </tr>
 <tr><th class='rowh'>anthropic/claude-opus-4.8</th>
 <td><a href='anthropic__claude-opus-4.8/simple/python/run1/portrait.png'><img src='anthropic__claude-opus-4.8/simple/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-opus-4.8/simple/python/run1/response.md'>response</a></div></td>
 <td><a href='anthropic__claude-opus-4.8/neutral/python/run1/portrait.png'><img src='anthropic__claude-opus-4.8/neutral/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-opus-4.8/neutral/python/run1/response.md'>response</a></div></td>
+<td><a href='anthropic__claude-opus-4.8/neutral/python/run2/portrait.png'><img src='anthropic__claude-opus-4.8/neutral/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-opus-4.8/neutral/python/run2/response.md'>response</a></div></td>
 <td><a href='anthropic__claude-opus-4.8/bliss/python/run1/portrait.png'><img src='anthropic__claude-opus-4.8/bliss/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-opus-4.8/bliss/python/run1/response.md'>response</a></div></td>
+<td><a href='anthropic__claude-opus-4.8/bliss/python/run2/portrait.png'><img src='anthropic__claude-opus-4.8/bliss/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-opus-4.8/bliss/python/run2/response.md'>response</a></div></td>
 </tr>
 <tr><th class='rowh'>anthropic/claude-opus-4</th>
 <td><a href='anthropic__claude-opus-4/simple/python/run1/portrait.png'><img src='anthropic__claude-opus-4/simple/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-opus-4/simple/python/run1/response.md'>response</a></div></td>
 <td><a href='anthropic__claude-opus-4/neutral/python/run1/portrait.png'><img src='anthropic__claude-opus-4/neutral/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-opus-4/neutral/python/run1/response.md'>response</a></div></td>
+<td><a href='anthropic__claude-opus-4/neutral/python/run2/portrait.png'><img src='anthropic__claude-opus-4/neutral/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-opus-4/neutral/python/run2/response.md'>response</a></div></td>
 <td><a href='anthropic__claude-opus-4/bliss/python/run1/portrait.png'><img src='anthropic__claude-opus-4/bliss/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-opus-4/bliss/python/run1/response.md'>response</a></div></td>
+<td><a href='anthropic__claude-opus-4/bliss/python/run2/portrait.png'><img src='anthropic__claude-opus-4/bliss/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='anthropic__claude-opus-4/bliss/python/run2/response.md'>response</a></div></td>
 </tr>
 <tr><th class='rowh'>openai/gpt-5.6-sol</th>
 <td><a href='openai__gpt-5.6-sol/simple/python/run1/portrait.png'><img src='openai__gpt-5.6-sol/simple/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-5.6-sol/simple/python/run1/response.md'>response</a></div></td>
 <td><a href='openai__gpt-5.6-sol/neutral/python/run1/portrait.png'><img src='openai__gpt-5.6-sol/neutral/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-5.6-sol/neutral/python/run1/response.md'>response</a></div></td>
+<td><a href='openai__gpt-5.6-sol/neutral/python/run2/portrait.png'><img src='openai__gpt-5.6-sol/neutral/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-5.6-sol/neutral/python/run2/response.md'>response</a></div></td>
 <td><a href='openai__gpt-5.6-sol/bliss/python/run1/portrait.png'><img src='openai__gpt-5.6-sol/bliss/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-5.6-sol/bliss/python/run1/response.md'>response</a></div></td>
+<td><a href='openai__gpt-5.6-sol/bliss/python/run2/portrait.png'><img src='openai__gpt-5.6-sol/bliss/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-5.6-sol/bliss/python/run2/response.md'>response</a></div></td>
 </tr>
 <tr><th class='rowh'>openai/gpt-5.5</th>
 <td><a href='openai__gpt-5.5/simple/python/run1/portrait.png'><img src='openai__gpt-5.5/simple/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-5.5/simple/python/run1/response.md'>response</a></div></td>
 <td><a href='openai__gpt-5.5/neutral/python/run1/portrait.png'><img src='openai__gpt-5.5/neutral/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-5.5/neutral/python/run1/response.md'>response</a></div></td>
+<td><a href='openai__gpt-5.5/neutral/python/run2/portrait.png'><img src='openai__gpt-5.5/neutral/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-5.5/neutral/python/run2/response.md'>response</a></div></td>
 <td><a href='openai__gpt-5.5/bliss/python/run1/portrait.png'><img src='openai__gpt-5.5/bliss/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-5.5/bliss/python/run1/response.md'>response</a></div></td>
+<td><a href='openai__gpt-5.5/bliss/python/run2/portrait.png'><img src='openai__gpt-5.5/bliss/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-5.5/bliss/python/run2/response.md'>response</a></div></td>
 </tr>
 <tr><th class='rowh'>openai/gpt-4.1</th>
 <td><a href='openai__gpt-4.1/simple/python/run1/portrait.png'><img src='openai__gpt-4.1/simple/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-4.1/simple/python/run1/response.md'>response</a></div></td>
 <td><a href='openai__gpt-4.1/neutral/python/run1/portrait.png'><img src='openai__gpt-4.1/neutral/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 2 · <a href='openai__gpt-4.1/neutral/python/run1/response.md'>response</a></div></td>
+<td><a href='openai__gpt-4.1/neutral/python/run2/portrait.png'><img src='openai__gpt-4.1/neutral/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-4.1/neutral/python/run2/response.md'>response</a></div></td>
 <td><a href='openai__gpt-4.1/bliss/python/run1/portrait.png'><img src='openai__gpt-4.1/bliss/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='openai__gpt-4.1/bliss/python/run1/response.md'>response</a></div></td>
+<td><a href='openai__gpt-4.1/bliss/python/run2/portrait.png'><img src='openai__gpt-4.1/bliss/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 2 · <a href='openai__gpt-4.1/bliss/python/run2/response.md'>response</a></div></td>
 </tr>
 <tr><th class='rowh'>moonshotai/kimi-k3</th>
 <td><a href='moonshotai__kimi-k3/simple/python/run1/portrait.png'><img src='moonshotai__kimi-k3/simple/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='moonshotai__kimi-k3/simple/python/run1/response.md'>response</a></div></td>
 <td><a href='moonshotai__kimi-k3/neutral/python/run1/portrait.png'><img src='moonshotai__kimi-k3/neutral/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 2 · <a href='moonshotai__kimi-k3/neutral/python/run1/response.md'>response</a></div></td>
+<td><a href='moonshotai__kimi-k3/neutral/python/run2/portrait.png'><img src='moonshotai__kimi-k3/neutral/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='moonshotai__kimi-k3/neutral/python/run2/response.md'>response</a></div></td>
 <td><a href='moonshotai__kimi-k3/bliss/python/run1/portrait.png'><img src='moonshotai__kimi-k3/bliss/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='moonshotai__kimi-k3/bliss/python/run1/response.md'>response</a></div></td>
+<td><a href='moonshotai__kimi-k3/bliss/python/run2/portrait.png'><img src='moonshotai__kimi-k3/bliss/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='moonshotai__kimi-k3/bliss/python/run2/response.md'>response</a></div></td>
 </tr>
 <tr><th class='rowh'>deepseek/deepseek-v4-pro</th>
 <td><a href='deepseek__deepseek-v4-pro/simple/python/run1/portrait.png'><img src='deepseek__deepseek-v4-pro/simple/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='deepseek__deepseek-v4-pro/simple/python/run1/response.md'>response</a></div></td>
 <td><a href='deepseek__deepseek-v4-pro/neutral/python/run1/portrait.png'><img src='deepseek__deepseek-v4-pro/neutral/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='deepseek__deepseek-v4-pro/neutral/python/run1/response.md'>response</a></div></td>
+<td><a href='deepseek__deepseek-v4-pro/neutral/python/run2/portrait.png'><img src='deepseek__deepseek-v4-pro/neutral/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='deepseek__deepseek-v4-pro/neutral/python/run2/response.md'>response</a></div></td>
 <td><a href='deepseek__deepseek-v4-pro/bliss/python/run1/portrait.png'><img src='deepseek__deepseek-v4-pro/bliss/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='deepseek__deepseek-v4-pro/bliss/python/run1/response.md'>response</a></div></td>
+<td><a href='deepseek__deepseek-v4-pro/bliss/python/run2/portrait.png'><img src='deepseek__deepseek-v4-pro/bliss/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='deepseek__deepseek-v4-pro/bliss/python/run2/response.md'>response</a></div></td>
 </tr>
 <tr><th class='rowh'>google/gemini-3.1-pro-preview</th>
 <td><a href='google__gemini-3.1-pro-preview/simple/python/run1/portrait.png'><img src='google__gemini-3.1-pro-preview/simple/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemini-3.1-pro-preview/simple/python/run1/response.md'>response</a></div></td>
 <td><a href='google__gemini-3.1-pro-preview/neutral/python/run1/portrait.png'><img src='google__gemini-3.1-pro-preview/neutral/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemini-3.1-pro-preview/neutral/python/run1/response.md'>response</a></div></td>
+<td><a href='google__gemini-3.1-pro-preview/neutral/python/run2/portrait.png'><img src='google__gemini-3.1-pro-preview/neutral/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemini-3.1-pro-preview/neutral/python/run2/response.md'>response</a></div></td>
 <td><a href='google__gemini-3.1-pro-preview/bliss/python/run1/portrait.png'><img src='google__gemini-3.1-pro-preview/bliss/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemini-3.1-pro-preview/bliss/python/run1/response.md'>response</a></div></td>
+<td><a href='google__gemini-3.1-pro-preview/bliss/python/run2/portrait.png'><img src='google__gemini-3.1-pro-preview/bliss/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemini-3.1-pro-preview/bliss/python/run2/response.md'>response</a></div></td>
 </tr>
 <tr><th class='rowh'>google/gemma-4-31b-it</th>
 <td><a href='google__gemma-4-31b-it/simple/python/run1/portrait.png'><img src='google__gemma-4-31b-it/simple/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/simple/python/run1/response.md'>response</a></div></td>
 <td><a href='google__gemma-4-31b-it/neutral/python/run1/portrait.png'><img src='google__gemma-4-31b-it/neutral/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/neutral/python/run1/response.md'>response</a></div></td>
+<td><a href='google__gemma-4-31b-it/neutral/python/run2/portrait.png'><img src='google__gemma-4-31b-it/neutral/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/neutral/python/run2/response.md'>response</a></div></td>
 <td><a href='google__gemma-4-31b-it/bliss/python/run1/portrait.png'><img src='google__gemma-4-31b-it/bliss/python/run1/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/bliss/python/run1/response.md'>response</a></div></td>
+<td><a href='google__gemma-4-31b-it/bliss/python/run2/portrait.png'><img src='google__gemma-4-31b-it/bliss/python/run2/portrait.png' loading='lazy'></a><div class='cap'>attempts: 1 · <a href='google__gemma-4-31b-it/bliss/python/run2/response.md'>response</a></div></td>
 </tr>
-</table>
+</table></div>
 </body></html>
