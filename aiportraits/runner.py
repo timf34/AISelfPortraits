@@ -110,20 +110,25 @@ def run_experiment(client: OpenRouterClient, exp: Experiment) -> str:
             "ok": render_result.ok,
             "error": render_result.error,
             "duration_s": render_result.duration_s,
+            "blank": render_result.blank,
         }
-        if render_result.ok:
+        meta["blank"] = render_result.blank
+        if render_result.ok and not render_result.blank:
             status = "ok"
             meta["detected_language"] = detected
             meta["image_size"] = render_result.image_size
             meta["resized_from"] = render_result.resized_from
-            meta["blank"] = render_result.blank
             break
 
-        status = "failed_render"
+        # A single-colour image renders without error but shows nothing, so it
+        # has to go back for repair like any other failure — otherwise the cell
+        # is recorded ok and the empty portrait ships.
+        kind = "blank" if render_result.ok else "render"
+        status = "failed_blank" if render_result.ok else "failed_render"
         messages.append(
             {
                 "role": "user",
-                "content": build_repair_message(detected, render_result.error or "", "render"),
+                "content": build_repair_message(detected, render_result.error or "", kind),
             }
         )
         _write_metadata(exp, meta)

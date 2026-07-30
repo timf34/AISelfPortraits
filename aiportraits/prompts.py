@@ -118,6 +118,15 @@ def build_repair_message(language: str, error: str, kind: str) -> str:
             "I could not find a code block in your reply. Please provide the complete "
             f"code wrapped in one fenced ```{tag} block."
         )
+    if kind == "blank":
+        return (
+            "Your code ran without error, but the image it produced is a single "
+            "flat colour — nothing is visible. A common cause is drawing shapes in "
+            "increasing size so each one paints over the last, or relying on an "
+            "alpha channel that the surface does not composite. Please fix it and "
+            "provide the complete corrected code in a single fenced code block, "
+            "same requirements as before."
+        )
     verb = "run" if language == "python" else "render"
     err = error[-2000:] if error else "(no error output captured)"
     return (
