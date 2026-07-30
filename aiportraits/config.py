@@ -13,6 +13,7 @@ MODELS = [
     "deepseek/deepseek-v4-pro",
     "google/gemini-3.1-pro-preview",
     "google/gemma-4-31b-it",
+    "thinkingmachines/inkling",
 ]
 
 

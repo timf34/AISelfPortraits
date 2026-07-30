@@ -1,0 +1,56 @@
+{
+  "model": "thinkingmachines/inkling",
+  "prompt": "freeform",
+  "language": "python",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-30T03:29:24+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 120.11,
+      "usage": {
+        "prompt_tokens": 114,
+        "completion_tokens": 5611,
+        "total_tokens": 5725,
+        "cost": 0.02283855,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.02283855,
+          "upstream_inference_prompt_cost": 0.000114,
+          "upstream_inference_completions_cost": 0.02272455
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4708,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I'll draw an abstract, geometric portrait on a 500\u00d7500 canvas. The idea is a stylized face floating in a dreamy gradient space: a vertical blend from deep midnight blue at the top to warm sunset gold at the bottom, with a large cream-colored head, layered coral hair, dark eyes with highlights, a soft nose, a curved smile, and scattered decorative background circles for atmosphere.\n\n```python\nfrom PIL import Image, ImageDraw\n\n# Create 500x500 canvas\nimg = Image.new('RGB', (500, 500))\ndraw = ImageDraw.Draw(img)\npixels = img.load()\n\n# ----- Background gradient: deep blue (top) to warm sunset gold (bottom) -----\nfor y in range(500):\n    t = y / 499.0\n    r = int(20 + t * (245 - 20))\n    g = int(28 + t * (165 - 28))\n    b = int(70 + t * (100 - 70))\n    color = (r, g, b)\n    for x in range(500):\n        pixels[x, y] = color\n\n# ----- Decorative background dots -----\ndots = [\n    (90, 120, 18, (230, 240, 255)), (410, 140, 22, (255, 240, 220)),\n    (60, 300, 15, (255, 230, 240)), (430, 350, 28, (255, 210, 230)),\n    (140, 420, 12, (255, 245, 230)), (380, 80, 20, (230, 220, 255)),\n    (250, 70, 35, (255, 240, 210)), (80, 250, 14, (230, 240, 250)),\n    (440, 280, 16, (255, 235, 245)), (200, 430, 10, (255, 250, 240))\n]\nfor cx, cy, r, col in dots:\n    draw.ellipse((cx - r, cy - r, cx + r, cy + r), fill=col)\n\n# ----- Hair (layered ellipses) -----\ndraw.ellipse((130, 90, 370, 190), fill=(220, 110, 110))   # coral crown\ndraw.ellipse((100, 130, 240, 220), fill=(240, 140, 100))   # left gold wave\ndraw.ellipse((300, 120, 420, 200), fill=(230, 100, 120))   # right coral wave\n\n# ----- Head -----\ndraw.ellipse((120, 160, 380, 410), fill=(255, 243, 228))  # cream face\n\n# ----- Eyes -----\ndraw.ellipse((185, 225, 235, 275), fill=(20, 35, 85))     # left eye\ndraw.ellipse((265, 225, 315, 275), fill=(20, 35, 85))     # right eye\n# Highlights\ndraw.ellipse((192, 232, 202, 242), fill=(250, 250, 250))\ndraw.ellipse((272, 232, 282, 242), fill=(250, 250, 250))\n\n# ----- Nose -----\ndraw.ellipse((245, 265, 255, 278), fill=(235, 140, 120))\n\n# ----- Blush -----\ndraw.ellipse((145, 250, 175, 275), fill=(255, 210, 200))\ndraw.ellipse((325, 250, 355, 275), fill=(255, 210, 200))\n\n# ----- Mouth (smile arc) -----\ndraw.arc((205, 288, 295, 318), 30, 150, fill=(170, 60, 80), width=3)\n\n# ----- Subtle decorative frame -----\ndraw.rectangle((8, 8, 492, 492), outline=(240, 190, 100), width=3)\n\n# Save result\nimg.save(\"portrait.png\")\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "python",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 0.08,
+        "blank": false
+      }
+    }
+  ],
+  "blank": false,
+  "detected_language": "python",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "final_attempt": 1,
+  "finished_at": "2026-07-30T03:31:33+00:00",
+  "total_duration_s": 128.95
+}

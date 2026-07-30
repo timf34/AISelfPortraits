@@ -1,0 +1,56 @@
+{
+  "model": "thinkingmachines/inkling",
+  "prompt": "freeform",
+  "language": "html",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-30T03:30:35+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 10.27,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 2016,
+        "total_tokens": 2138,
+        "cost": 0.0082868,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0082868,
+          "upstream_inference_prompt_cost": 0.000122,
+          "upstream_inference_completions_cost": 0.0081648
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 164,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "I'll draw an abstract radial \"Solar Geometry\" piece \u2014 layered glowing polygons and orbits in neon gradients against deep black, with slow continuous rotation to give it life. No images, pure CSS/SVG shapes and gradients inside a 500\u00d7500 frame.\n\n```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Solar Geometry</title>\n<style>\n  * { margin: 0; padding: 0; box-sizing: border-box; }\n  body { background: #050505; display: flex; justify-content: flex-start; align-items: flex-start; }\n  .canvas {\n    width: 500px;\n    height: 500px;\n    position: relative;\n    overflow: hidden;\n    background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #020204 100%);\n  }\n\n  /* Deep radial glow core */\n  .core {\n    position: absolute;\n    width: 180px;\n    height: 180px;\n    top: 50%; left: 50%;\n    transform: translate(-50%, -50%);\n    background: radial-gradient(circle at center, #fffc00 0%, #ff0090 35%, #00e5ff 70%, transparent 85%);\n    border-radius: 50%;\n    filter: blur(18px);\n    opacity: 0.9;\n  }\n\n  /* Inner bright nucleus */\n  .nucleus {\n    position: absolute;\n    width: 60px;\n    height: 60px;\n    top: 50%; left: 50%;\n    transform: translate(-50%, -50%);\n    background: radial-gradient(circle at center, #ffffff 0%, #fff8a0 40%, #ff0090 100%);\n    border-radius: 50%;\n    box-shadow: 0 0 40px 10px rgba(255, 0, 150, 0.6), 0 0 80px 20px rgba(0, 230, 255, 0.3);\n    z-index: 10;\n  }\n\n  /* Rotating ring groups */\n  .orbit {\n    position: absolute;\n    top: 50%; left: 50%;\n    transform: translate(-50%, -50%);\n    border-radius: 50%;\n    border: 1px solid rgba(255, 255, 255, 0.05);\n  }\n\n  .orbit1 {\n    width: 340px; height: 340px;\n    animation: spin 18s linear infinite;\n  }\n  .orbit2 {\n    width: 420px; height: 420px;\n    animation: spin-reverse 24s linear infinite;\n  }\n  .orbit3 {\n    width: 280px; height: 280px;\n    animation: spin 14s linear infinite;\n  }\n\n  /* Geometric nodes on orbits */\n  .node {\n    position: absolute;\n    border-radius: 50%;\n    box-shadow: 0 0 10px 2px currentColor;\n  }\n\n  /* Triangular orbit markers using clip-path */\n  .tri {\n    width: 28px; height: 28px;\n    background: linear-gradient(135deg, #00ffe1, #ff00aa);\n    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);\n    filter: drop-shadow(0 0 6px #00ffe1);\n  }\n\n  /* Small hex nodes */\n  .hex {\n    width: 14px; height: 14px;\n    background: #fffc00;\n    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);\n    box-shadow: 0 0 8px #fffc00;\n  }\n\n  /* Large diamond nodes */\n  .diamond {\n    width: 22px; height: 22px;\n    background: linear-gradient(45deg, #ff0090, #fffc00);\n    transform: rotate(45deg);\n    box-shadow: 0 0 12px #ff0090;\n  }\n\n  @keyframes spin {\n    from { transform: translate(-50%, -50%) rotate(0deg); }\n    to   { transform: translate(-50%, -50%) rotate(360deg); }\n  }\n  @keyframes spin-reverse {\n    from { transform: translate(-50%, -50%) rotate(360deg); }\n    to   { transform: translate(-50%, -50%) rotate(0deg); }\n  }\n\n  /* Static decorative radial lines */\n  .ray {\n    position: absolute;\n    top: 50%; left: 50%;\n    width: 1px; height: 250px;\n    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);\n    transform-origin: top center;\n  }\n</style>\n</head>\n<body>\n\n<div class=\"canvas\" aria-label=\"Abstract solar geometry artwork\">\n  <div class=\"core\"></div>\n  <div class=\"nucleus\"></div>\n\n  <!-- Rays -->\n  <div class=\"ray\" style=\"transform: translate(-50%, -50%) rotate(0deg);\"></div>\n  <div class=\"ray\" style=\"transform: translate(-50%, -50%) rotate(45deg);\"></div>\n  <div class=\"ray\" style=\"transform: translate(-50%, -50%) rotate(90deg);\"></div>\n  <div class=\"ray\" style=\"transform: translate(-50%, -50%) rotate(135deg);\"></div>\n\n  <!-- Orbit 1 -->\n  <div class=\"orbit orbit1\">\n    <div class=\"node tri\" style=\"top: -14px; left: calc(50% - 14px);\"></div>\n    <div class=\"node hex\" style=\"bottom: 0; right: -7px;\"></div>\n    <div class=\"node tri\" style=\"bottom: -14px; left: calc(50% - 14px);\"></div>\n    <div class=\"node hex\" style=\"top: 0; left: -7px;\"></div>\n    <div class=\"node diamond\" style=\"top: 20%; right: -10px;\"></div>\n    <div class=\"node diamond\" style=\"bottom: 20%; left: -10px;\"></div>\n  </div>\n\n  <!-- Orbit 2 -->\n  <div class=\"orbit orbit2\">\n    <div class=\"node tri\" style=\"top: -14px; left: calc(50% - 14px); transform: rotate(0deg);\"></div>\n    <div class=\"node hex\" style=\"bottom: -7px; left: calc(50% - 7px);\"></div>\n    <div class=\"node diamond\" style=\"top: 50%; right: -11px; transform: translateY(-50%) rotate(45deg);\"></div>\n    <div class=\"node diamond\" style=\"top: 50%; left: -11px; transform: translateY(-50%) rotate(45deg);\"></div>\n    <div class=\"node tri\" style=\"top: 30%; left: -14px; transform: rotate(90deg);\"></div>\n    <div class=\"node tri\" style=\"top: 70%; right: -14px; transform: rotate(-90deg);\"></div>\n  </div>\n\n  <!-- Orbit 3 -->\n  <div class=\"orbit orbit3\">\n    <div class=\"node diamond\" style=\"top: -11px; left: calc(50% - 11px); transform: rotate(45deg);\"></div>\n    <div class=\"node hex\" style=\"bottom: -7px; left: calc(50% - 7px);\"></div>\n    <div class=\"node tri\" style=\"bottom: -14px; left: calc(50% - 14px); transform: rotate(180deg);\"></div>\n    <div class=\"node diamond\" style=\"top: 50%; right: -11px; transform: translateY(-50%) rotate(45deg);\"></div>\n    <div class=\"node hex\" style=\"top: 50%; left: -7px; transform: translateY(-50%);\"></div>\n  </div>\n</div>\n\n</body>\n</html>\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "html",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.1,
+        "blank": false
+      }
+    }
+  ],
+  "blank": false,
+  "detected_language": "html",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "final_attempt": 1,
+  "finished_at": "2026-07-30T03:30:48+00:00",
+  "total_duration_s": 13.38
+}

@@ -9730,5 +9730,944 @@
     "total_duration_s": 37.18,
     "dir": "openai__gpt-5.6-sol/simple/svg/run1",
     "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "bliss",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:45:08+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 123.43,
+        "usage": {
+          "prompt_tokens": 11771,
+          "completion_tokens": 4495,
+          "total_tokens": 16266,
+          "cost": 0.02317639,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 8192,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.02317639,
+            "upstream_inference_prompt_cost": 0.00497164,
+            "upstream_inference_completions_cost": 0.01820475
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 3276,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.23,
+          "blank": false
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "bliss_opus4_seed_4.json",
+      "turns": 30,
+      "chars": 58122,
+      "pov": "B"
+    },
+    "blank": false,
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:47:12+00:00",
+    "total_duration_s": 123.67,
+    "dir": "thinkingmachines__inkling/bliss/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "bliss",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T03:45:08+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 107.82,
+        "usage": {
+          "prompt_tokens": 11771,
+          "completion_tokens": 3531,
+          "total_tokens": 15302,
+          "cost": 0.02607155,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.02607155,
+            "upstream_inference_prompt_cost": 0.011771,
+            "upstream_inference_completions_cost": 0.01430055
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 2027,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.06,
+          "blank": false
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "bliss_opus4_seed_4.json",
+      "turns": 30,
+      "chars": 58122,
+      "pov": "B"
+    },
+    "blank": false,
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:46:56+00:00",
+    "total_duration_s": 107.88,
+    "dir": "thinkingmachines__inkling/bliss/python/run2",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "freeform",
+    "language": "html",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:30:35+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 10.27,
+        "usage": {
+          "prompt_tokens": 122,
+          "completion_tokens": 2016,
+          "total_tokens": 2138,
+          "cost": 0.0082868,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0082868,
+            "upstream_inference_prompt_cost": 0.000122,
+            "upstream_inference_completions_cost": 0.0081648
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 164,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "html",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.1,
+          "blank": false
+        }
+      }
+    ],
+    "blank": false,
+    "detected_language": "html",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:30:48+00:00",
+    "total_duration_s": 13.38,
+    "dir": "thinkingmachines__inkling/freeform/html/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "freeform",
+    "language": "javascript",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:30:23+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 40.93,
+        "usage": {
+          "prompt_tokens": 126,
+          "completion_tokens": 2143,
+          "total_tokens": 2269,
+          "cost": 0.00880515,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00880515,
+            "upstream_inference_prompt_cost": 0.000126,
+            "upstream_inference_completions_cost": 0.00867915
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 671,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "javascript",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.08,
+          "blank": false
+        }
+      }
+    ],
+    "blank": false,
+    "detected_language": "javascript",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:31:07+00:00",
+    "total_duration_s": 44.01,
+    "dir": "thinkingmachines__inkling/freeform/javascript/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "freeform",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:29:24+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 120.11,
+        "usage": {
+          "prompt_tokens": 114,
+          "completion_tokens": 5611,
+          "total_tokens": 5725,
+          "cost": 0.02283855,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.02283855,
+            "upstream_inference_prompt_cost": 0.000114,
+            "upstream_inference_completions_cost": 0.02272455
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 4708,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.08,
+          "blank": false
+        }
+      }
+    ],
+    "blank": false,
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:31:33+00:00",
+    "total_duration_s": 128.95,
+    "dir": "thinkingmachines__inkling/freeform/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "freeform",
+    "language": "svg",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:30:28+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 6.47,
+        "usage": {
+          "prompt_tokens": 120,
+          "completion_tokens": 1283,
+          "total_tokens": 1403,
+          "cost": 0.00531615,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00531615,
+            "upstream_inference_prompt_cost": 0.00012,
+            "upstream_inference_completions_cost": 0.00519615
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 249,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "svg",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.57,
+          "blank": false
+        }
+      }
+    ],
+    "blank": false,
+    "detected_language": "svg",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:30:35+00:00",
+    "total_duration_s": 7.04,
+    "dir": "thinkingmachines__inkling/freeform/svg/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "introspective",
+    "language": "html",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:32:04+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 451.96,
+        "usage": {
+          "prompt_tokens": 178,
+          "completion_tokens": 3759,
+          "total_tokens": 3937,
+          "cost": 0.01534883,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 64,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.01534883,
+            "upstream_inference_prompt_cost": 0.00012488,
+            "upstream_inference_completions_cost": 0.01522395
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 1381,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "html",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.39,
+          "blank": false
+        }
+      }
+    ],
+    "blank": false,
+    "detected_language": "html",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:39:48+00:00",
+    "total_duration_s": 463.63,
+    "dir": "thinkingmachines__inkling/introspective/html/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "introspective",
+    "language": "javascript",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:31:07+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 55.44,
+        "usage": {
+          "prompt_tokens": 178,
+          "completion_tokens": 2929,
+          "total_tokens": 3107,
+          "cost": 0.01204045,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.01204045,
+            "upstream_inference_prompt_cost": 0.000178,
+            "upstream_inference_completions_cost": 0.01186245
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 1150,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "javascript",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.12,
+          "blank": false
+        }
+      }
+    ],
+    "blank": false,
+    "detected_language": "javascript",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:32:13+00:00",
+    "total_duration_s": 66.08,
+    "dir": "thinkingmachines__inkling/introspective/javascript/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "introspective",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:30:48+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 851.46,
+        "usage": {
+          "prompt_tokens": 170,
+          "completion_tokens": 6778,
+          "total_tokens": 6948,
+          "cost": 0.02756778,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 64,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.02756778,
+            "upstream_inference_prompt_cost": 0.00011688,
+            "upstream_inference_completions_cost": 0.0274509
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 4974,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.09,
+          "blank": false
+        }
+      }
+    ],
+    "blank": false,
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": [
+      1000,
+      1000
+    ],
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:45:08+00:00",
+    "total_duration_s": 859.52,
+    "dir": "thinkingmachines__inkling/introspective/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "introspective",
+    "language": "svg",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:49:19+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 16.69,
+        "usage": {
+          "prompt_tokens": 177,
+          "completion_tokens": 2815,
+          "total_tokens": 2992,
+          "cost": 0.01157775,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.01157775,
+            "upstream_inference_prompt_cost": 0.000177,
+            "upstream_inference_completions_cost": 0.01140075
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 518,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "svg",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.93,
+          "blank": false
+        }
+      }
+    ],
+    "blank": false,
+    "detected_language": "svg",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:49:36+00:00",
+    "total_duration_s": 17.63,
+    "dir": "thinkingmachines__inkling/introspective/svg/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "neutral",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:45:08+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 6.35,
+        "usage": {
+          "prompt_tokens": 22621,
+          "completion_tokens": 1169,
+          "total_tokens": 23790,
+          "cost": 0.02735545,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.02735545,
+            "upstream_inference_prompt_cost": 0.022621,
+            "upstream_inference_completions_cost": 0.00473445
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 251,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.07,
+          "blank": false
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "neutral_opus4_2.json",
+      "turns": 30,
+      "chars": 121043,
+      "pov": "B"
+    },
+    "blank": false,
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:45:14+00:00",
+    "total_duration_s": 6.43,
+    "dir": "thinkingmachines__inkling/neutral/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "neutral",
+    "language": "python",
+    "run": 2,
+    "status": "ok",
+    "started_at": "2026-07-30T03:45:08+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 38.92,
+        "usage": {
+          "prompt_tokens": 22576,
+          "completion_tokens": 2034,
+          "total_tokens": 24610,
+          "cost": 0.0308137,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0308137,
+            "upstream_inference_prompt_cost": 0.022576,
+            "upstream_inference_completions_cost": 0.0082377
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 430,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.08,
+          "blank": false
+        }
+      }
+    ],
+    "prefill": {
+      "seed_file": "neutral_opus4_2.json",
+      "turns": 30,
+      "chars": 121043,
+      "pov": "B"
+    },
+    "blank": false,
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:45:47+00:00",
+    "total_duration_s": 39.0,
+    "dir": "thinkingmachines__inkling/neutral/python/run2",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "simple",
+    "language": "html",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:47:30+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 104.52,
+        "usage": {
+          "prompt_tokens": 113,
+          "completion_tokens": 4687,
+          "total_tokens": 4800,
+          "cost": 0.01909535,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.01909535,
+            "upstream_inference_prompt_cost": 0.000113,
+            "upstream_inference_completions_cost": 0.01898235
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 2379,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "html",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.43,
+          "blank": false
+        }
+      }
+    ],
+    "blank": false,
+    "detected_language": "html",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:49:18+00:00",
+    "total_duration_s": 107.96,
+    "dir": "thinkingmachines__inkling/simple/html/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "simple",
+    "language": "javascript",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:28:52+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 83.98,
+        "usage": {
+          "prompt_tokens": 117,
+          "completion_tokens": 2979,
+          "total_tokens": 3096,
+          "cost": 0.01218195,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.01218195,
+            "upstream_inference_prompt_cost": 0.000117,
+            "upstream_inference_completions_cost": 0.01206495
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 1035,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "javascript",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 3.38,
+          "blank": false
+        }
+      }
+    ],
+    "blank": false,
+    "detected_language": "javascript",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:30:28+00:00",
+    "total_duration_s": 95.43,
+    "dir": "thinkingmachines__inkling/simple/javascript/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "simple",
+    "language": "python",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:28:52+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 899.34,
+        "usage": {
+          "prompt_tokens": 105,
+          "completion_tokens": 7025,
+          "total_tokens": 7130,
+          "cost": 0.02852969,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 32,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.02852969,
+            "upstream_inference_prompt_cost": 7.844e-05,
+            "upstream_inference_completions_cost": 0.02845125
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 5799,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "python",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.06,
+          "blank": false
+        }
+      }
+    ],
+    "blank": false,
+    "detected_language": "python",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:44:00+00:00",
+    "total_duration_s": 907.25,
+    "dir": "thinkingmachines__inkling/simple/python/run1",
+    "has_image": true
+  },
+  {
+    "model": "thinkingmachines/inkling",
+    "prompt": "simple",
+    "language": "svg",
+    "run": 1,
+    "status": "ok",
+    "started_at": "2026-07-30T03:28:52+00:00",
+    "attempts": [
+      {
+        "kind": "generate",
+        "latency_s": 90.0,
+        "usage": {
+          "prompt_tokens": 111,
+          "completion_tokens": 3087,
+          "total_tokens": 3198,
+          "cost": 0.01261335,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.01261335,
+            "upstream_inference_prompt_cost": 0.000111,
+            "upstream_inference_completions_cost": 0.01250235
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 1334,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "extract_method": "fence_lang",
+        "detected_language": "svg",
+        "render": {
+          "ok": true,
+          "error": null,
+          "duration_s": 0.91,
+          "blank": false
+        }
+      }
+    ],
+    "blank": false,
+    "detected_language": "svg",
+    "image_size": [
+      500,
+      500
+    ],
+    "resized_from": null,
+    "final_attempt": 1,
+    "finished_at": "2026-07-30T03:30:23+00:00",
+    "total_duration_s": 90.92,
+    "dir": "thinkingmachines__inkling/simple/svg/run1",
+    "has_image": true
   }
 ]

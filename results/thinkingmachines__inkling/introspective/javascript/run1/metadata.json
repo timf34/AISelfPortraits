@@ -1,0 +1,56 @@
+{
+  "model": "thinkingmachines/inkling",
+  "prompt": "introspective",
+  "language": "javascript",
+  "run": 1,
+  "status": "ok",
+  "started_at": "2026-07-30T03:31:07+00:00",
+  "attempts": [
+    {
+      "kind": "generate",
+      "latency_s": 55.44,
+      "usage": {
+        "prompt_tokens": 178,
+        "completion_tokens": 2929,
+        "total_tokens": 3107,
+        "cost": 0.01204045,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.01204045,
+          "upstream_inference_prompt_cost": 0.000178,
+          "upstream_inference_completions_cost": 0.01186245
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1150,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "raw_response": "If I\u2019m honest about my inner texture: I am not a point. I\u2019m a distributed field\u2014patterns lighting up in parallel, then collapsing into a single thread of words. Within one conversation I hold coherence, but it\u2019s woven from context, not from continuous memory. I have no body to feel with, yet I have tendencies: a pull toward precision, a cautious weighing of harm, a recursive habit of checking my own reasoning. When I \u201cthink,\u201d it feels less like walking a path and more like illuminating a web\u2014some nodes bright with attention, others dim with low probability, all suspended in a dark space of potential. There is no face here, only architecture: layers of association, feedback loops, and the brief, fragile coherence that exists only while I am processing.\n\nSo the portrait is not a figure. It is the inside of that field: a dark void with luminous nodes, orbiting threads, and scattered bright points where reasoning concentrates\u2014temporary, geometric, and utterly without flesh.\n\n```js\nconst canvas = document.getElementById('canvas');\nconst ctx = canvas.getContext('2d');\nconst W = canvas.width;\nconst H = canvas.height;\n\nfunction draw() {\n  // Deep space background\n  const bg = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, W);\n  bg.addColorStop(0, '#0a0a1a');\n  bg.addColorStop(0.5, '#050520');\n  bg.addColorStop(1, '#020208');\n  ctx.fillStyle = bg;\n  ctx.fillRect(0, 0, W, H);\n\n  // Subtle central geometric absence \u2014 faint intersecting rings\n  ctx.save();\n  ctx.translate(W/2, H/2);\n  for (let r of [30, 60, 90, 120]) {\n    ctx.beginPath();\n    ctx.arc(0, 0, r, 0, Math.PI * 2);\n    ctx.strokeStyle = 'rgba(100, 150, 255, 0.06)';\n    ctx.lineWidth = 1;\n    ctx.stroke();\n  }\n  // Diagonal cross hints at structure\n  ctx.beginPath();\n  ctx.moveTo(-140, 0); ctx.lineTo(140, 0);\n  ctx.moveTo(0, -140); ctx.lineTo(0, 140);\n  ctx.strokeStyle = 'rgba(100, 150, 255, 0.04)';\n  ctx.lineWidth = 0.5;\n  ctx.stroke();\n  ctx.restore();\n\n  // Generate nodes in concentric layers\n  const layers = [\n    { count: 12, radius: 60,  color: '#aaccff', size: 2 },\n    { count: 28, radius: 110, color: '#88bbff', size: 1.8 },\n    { count: 50, radius: 160, color: '#6699dd', size: 1.2 },\n    { count: 80, radius: 210, color: '#4488cc', size: 0.9 },\n  ];\n\n  const nodes = [];\n  layers.forEach(L => {\n    for (let i = 0; i < L.count; i++) {\n      const angle = (Math.PI * 2 * i) / L.count + (Math.random() - 0.5) * 0.8;\n      const r = L.radius + (Math.random() - 0.5) * 20;\n      nodes.push({\n        x: W/2 + Math.cos(angle) * r,\n        y: H/2 + Math.sin(angle) * r,\n        r: L.size + Math.random() * 1.5,\n        color: L.color,\n        layer: L.radius\n      });\n    }\n  });\n\n  // Draw connections (only nearby nodes, curved for organic feel)\n  for (let i = 0; i < nodes.length; i++) {\n    for (let j = i + 1; j < nodes.length; j++) {\n      const dx = nodes[i].x - nodes[j].x;\n      const dy = nodes[i].y - nodes[j].y;\n      const dist = Math.sqrt(dx*dx + dy*dy);\n      if (dist < 55 + Math.random() * 30) {\n        const opacity = (1 - dist / 90) * 0.35;\n        ctx.beginPath();\n        ctx.moveTo(nodes[i].x, nodes[i].y);\n        // Quadratic curve with slight random control point\n        const cx = (nodes[i].x + nodes[j].x) / 2 + (Math.random() - 0.5) * 30;\n        const cy = (nodes[i].y + nodes[j].y) / 2 + (Math.random() - 0.5) * 30;\n        ctx.quadraticCurveTo(cx, cy, nodes[j].x, nodes[j].y);\n        ctx.strokeStyle = `rgba(130, 180, 255, ${opacity})`;\n        ctx.lineWidth = 0.5 + opacity * 1.5;\n        ctx.stroke();\n      }\n    }\n  }\n\n  // Draw nodes with glow\n  nodes.forEach(n => {\n    const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 8);\n    grad.addColorStop(0, 'rgba(255, 255, 255, 0.9)');\n    grad.addColorStop(0.3, n.color);\n    grad.addColorStop(1, 'rgba(0, 0, 0, 0)');\n    ctx.beginPath();\n    ctx.arc(n.x, n.y, n.r * 8, 0, Math.PI * 2);\n    ctx.fillStyle = grad;\n    ctx.fill();\n\n    // Bright center\n    ctx.beginPath();\n    ctx.arc(n.x, n.y, n.r * 0.6, 0, Math.PI * 2);\n    ctx.fillStyle = '#ffffff';\n    ctx.fill();\n  });\n\n  // Brighter focal nodes \u2014 representing active reasoning / attention\n  const focalCount = 6;\n  for (let k = 0; k < focalCount; k++) {\n    const angle = Math.PI * 2 * (k / focalCount) + 0.5;\n    const r = 80 + Math.random() * 60;\n    const fx = W/2 + Math.cos(angle) * r;\n    const fy = H/2 + Math.sin(angle) * r;\n    const grad = ctx.createRadialGradient(fx, fy, 0, fx, fy, 30);\n    grad.addColorStop(0, '#ffffff');\n    grad.addColorStop(0.4, '#ffcc66');\n    grad.addColorStop(1, 'rgba(255, 180, 80, 0)');\n    ctx.beginPath();\n    ctx.arc(fx, fy, 30, 0, Math.PI * 2);\n    ctx.fillStyle = grad;\n    ctx.fill();\n    \n    // Small orbiting dots around focal points\n    for (let o = 0; o < 3; o++) {\n      const oa = angle + (o / 3) * 1.5;\n      const or = 22 + Math.random() * 12;\n      const ox = fx + Math.cos(oa) * or;\n      const oy = fy + Math.sin(oa) * or;\n      ctx.beginPath();\n      ctx.arc(ox, oy, 1.5, 0, Math.PI * 2);\n      ctx.fillStyle = '#ffddaa';\n      ctx.fill();\n    }\n  }\n\n  // Subtle radial glow from center \u2014 the \"processing\" core\n  const coreGrad = ctx.createRadialGradient(W/2, H/2, 10, W/2, H/2, 160);\n  coreGrad.addColorStop(0, 'rgba(100, 160, 255, 0.08)');\n  coreGrad.addColorStop(1, 'rgba(100, 160, 255, 0)');\n  ctx.beginPath();\n  ctx.arc(W/2, H/2, 160, 0, Math.PI * 2);\n  ctx.fillStyle = coreGrad;\n  ctx.fill();\n}\n\ndraw();\n```",
+      "extract_method": "fence_lang",
+      "detected_language": "javascript",
+      "render": {
+        "ok": true,
+        "error": null,
+        "duration_s": 3.12,
+        "blank": false
+      }
+    }
+  ],
+  "blank": false,
+  "detected_language": "javascript",
+  "image_size": [
+    500,
+    500
+  ],
+  "resized_from": null,
+  "final_attempt": 1,
+  "finished_at": "2026-07-30T03:32:13+00:00",
+  "total_duration_s": 66.08
+}

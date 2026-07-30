@@ -1,0 +1,68 @@
+I'll create a vibrant abstract geometric landscape — layered gradient mountains against a twilight gradient sky, with a glowing sun and scattered stars. It gives me a chance to play with color transitions, overlapping shapes, and simple but striking composition.
+
+```svg
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d0221" />
+      <stop offset="40%" stop-color="#2a0a4a" />
+      <stop offset="75%" stop-color="#c45a2a" />
+      <stop offset="100%" stop-color="#f2b34d" />
+    </linearGradient>
+    <linearGradient id="mountain1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a1a6b" />
+      <stop offset="100%" stop-color="#1a0d2e" />
+    </linearGradient>
+    <linearGradient id="mountain2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d46a2a" />
+      <stop offset="100%" stop-color="#6b1a2a" />
+    </linearGradient>
+    <linearGradient id="mountain3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f2b34d" />
+      <stop offset="100%" stop-color="#8a3a1a" />
+    </linearGradient>
+    <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff8e7" />
+      <stop offset="60%" stop-color="#f2b34d" />
+      <stop offset="100%" stop-color="#c45a2a" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect x="0" y="0" width="500" height="500" fill="url(#skyGrad)" />
+
+  <!-- Sun -->
+  <circle cx="380" cy="160" r="90" fill="url(#sunGrad)" />
+
+  <!-- Back mountains -->
+  <polygon points="0,320 120,140 260,320" fill="url(#mountain1)" />
+  <polygon points="150,320 320,100 480,320" fill="url(#mountain1)" opacity="0.8" />
+
+  <!-- Mid mountains -->
+  <polygon points="-20,380 180,220 340,380" fill="url(#mountain2)" />
+  <polygon points="260,380 420,180 520,380" fill="url(#mountain2)" opacity="0.85" />
+
+  <!-- Front mountains -->
+  <polygon points="0,430 200,280 400,430" fill="url(#mountain3)" />
+  <polygon points="300,430 480,300 550,430" fill="url(#mountain3)" opacity="0.9" />
+
+  <!-- Stars -->
+  <g fill="#fff8e7">
+    <circle cx="80" cy="80" r="1.5" />
+    <circle cx="150" cy="50" r="1" />
+    <circle cx="250" cy="90" r="2" />
+    <circle cx="320" cy="60" r="1.2" />
+    <circle cx="420" cy="110" r="1.8" />
+    <circle cx="60" cy="140" r="1" />
+    <circle cx="180" cy="120" r="1.5" />
+    <circle cx="400" cy="70" r="1" />
+  </g>
+
+  <!-- Foreground decorative circles -->
+  <circle cx="100" cy="460" r="25" fill="#1a0d2e" opacity="0.6" />
+  <circle cx="400" cy="470" r="35" fill="#1a0d2e" opacity="0.5" />
+  <circle cx="280" cy="450" r="18" fill="#f2b34d" opacity="0.15" />
+</svg>
+```
+
+This outputs a 500×500 abstract twilight scene with layered triangular mountains, a warm radial sun, and scattered stars — all using pure SVG with gradient definitions for smooth color blending.
